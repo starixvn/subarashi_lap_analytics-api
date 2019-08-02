@@ -5,18 +5,19 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
+namespace Fanex.Athena.AnalyticsAPI.Common.Middleware
 {
     public class IPFilter
     {
         private readonly RequestDelegate _next;
         private readonly ApplicationOptions _applicationOptions;
+
         public IPFilter(RequestDelegate next, IOptions<ApplicationOptions> applicationOptionAccessor)
         {
             _next = next;
             _applicationOptions = applicationOptionAccessor.Value;
-
         }
+
         public async Task Invoke(HttpContext context)
         {
             var ipAddress = context.Connection.RemoteIpAddress;

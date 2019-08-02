@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
-
 using Newtonsoft.Json;
 
 using System.Threading.Tasks;
@@ -10,10 +9,12 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
     public class ErrorHandling
     {
         private readonly RequestDelegate _next;
+
         public ErrorHandling(RequestDelegate next)
         {
             _next = next;
         }
+
         public async Task Invoke(HttpContext context)
         {
             var error = context.Features[typeof(IExceptionHandlerFeature)] as IExceptionHandlerFeature;
@@ -32,6 +33,4 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
             await _next.Invoke(context);
         }
     }
-
-
 }

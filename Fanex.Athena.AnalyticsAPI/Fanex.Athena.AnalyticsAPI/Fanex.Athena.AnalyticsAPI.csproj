@@ -3,11 +3,19 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Fanex.Athena.AnalyticsAPI.Common\Fanex.Athena.AnalyticsAPI.Common.csproj" />
+    <ProjectReference Include="..\Fanex.Athena.AnalyticsAPI.Core\Fanex.Athena.AnalyticsAPI.Core.csproj" />
   </ItemGroup>
 
 </Project>
