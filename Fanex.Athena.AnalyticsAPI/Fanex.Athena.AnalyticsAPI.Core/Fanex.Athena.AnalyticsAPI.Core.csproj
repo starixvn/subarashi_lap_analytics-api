@@ -6,9 +6,11 @@
 
   <ItemGroup>
     <Folder Include="Middleware\" />
-    <Folder Include="Models\DTO\" />
+    <Folder Include="Models\ViewModel\" />
+    <Folder Include="Modules\Performance\Controllers\Overview\" />
+    <Folder Include="Modules\Performance\Controllers\Platform\" />
+    <Folder Include="Modules\Performance\Controllers\Product\" />
     <Folder Include="Modules\Performance\Repositories\" />
-    <Folder Include="Modules\Performance\Services\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

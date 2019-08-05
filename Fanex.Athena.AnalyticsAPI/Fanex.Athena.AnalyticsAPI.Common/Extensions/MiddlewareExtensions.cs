@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Middleware;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
-using Fanex.Athena.AnalyticsAPI.Common.Middleware;
-using Fanex.Athena.AnalyticsAPI.Core.Middleware;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
 {
@@ -18,26 +18,36 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
             return builder.UseMiddleware<IPFilter>();
         }
 
-        public static IServiceCollection AddCustomSwagger(this IServiceCollection services, string title = null, string description = null)
+        public static IServiceCollection AddSwaggerDoc(this IServiceCollection services, IHostingEnvironment env, string apiName)
         {
-            services.AddSwaggerGen(c => {
-                c.SwaggerDoc("v1", new Info
+            if (!env.IsProduction())
+            {
+                services.AddSwaggerGen(c =>
                 {
-                    Version = "v1",
-                    Title = string.IsNullOrWhiteSpace(title) ? title : "LAP - API Analytics",
-                    Description = string.IsNullOrWhiteSpace(description) ? description : "LAP - API Analytics"
+                    c.SwaggerDoc("v1", new Info
+                    {
+                        Version = "v1",
+                        Title = apiName,
+                    });
+
+                    c.DescribeStringEnumsInCamelCase();
+                    c.DescribeAllEnumsAsStrings();
                 });
-            });
+            }
 
             return services;
         }
 
-        public static IApplicationBuilder UseCustomSwagger(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseSwaggerDoc(this IApplicationBuilder builder, IHostingEnvironment env, string apiName, string pathBase)
         {
-            builder.UseSwagger();
-            builder.UseSwaggerUI(c => {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "LAP - API Analytics V1");
-            });
+            if (!env.IsProduction())
+            {
+                builder.UseSwagger();
+                builder.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint(pathBase + "/swagger/v1/swagger.json", $"{apiName} V1");
+                });
+            }
 
             return builder;
         }

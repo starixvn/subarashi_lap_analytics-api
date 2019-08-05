@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 using System.Threading.Tasks;
 
-namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
+namespace Fanex.Athena.AnalyticsAPI.Common.Middleware
 {
     public class ErrorHandling
     {

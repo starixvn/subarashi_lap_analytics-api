@@ -1,4 +1,4 @@
-﻿namespace Fanex.Athena.AnalyticsAPI.Common.DTO
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.Models.DTO
 {
     public class BaseEntity
     {

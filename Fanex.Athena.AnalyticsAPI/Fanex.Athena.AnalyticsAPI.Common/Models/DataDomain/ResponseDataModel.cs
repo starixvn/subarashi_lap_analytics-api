@@ -1,4 +1,4 @@
-﻿namespace Fanex.Athena.AnalyticsAPI.Common.Models
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.Models.DataDomain
 {
     public class ResponseDataModel<T> : ResponseDataModel
     {

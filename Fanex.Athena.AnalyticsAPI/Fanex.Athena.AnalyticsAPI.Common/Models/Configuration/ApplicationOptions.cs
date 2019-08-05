@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Fanex.Athena.AnalyticsAPI.Core.DTO
+namespace Fanex.Athena.AnalyticsAPI.Common.Models.Configuration
 {
     public class ApplicationOptions
     {
