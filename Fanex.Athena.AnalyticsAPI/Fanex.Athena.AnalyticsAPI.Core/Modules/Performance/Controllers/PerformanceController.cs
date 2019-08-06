@@ -8,6 +8,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Modules.Performance.Controllers
     public partial class PerformanceController : ControllerBaseCustom
     {
         private readonly IBetTypePerformanceService _betTypePerformanceService;
+
         public PerformanceController(IBetTypePerformanceService betTypePerformanceService)
         {
             _betTypePerformanceService = betTypePerformanceService;

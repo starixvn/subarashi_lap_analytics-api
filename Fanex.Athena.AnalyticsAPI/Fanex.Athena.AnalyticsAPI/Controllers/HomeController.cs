@@ -1,10 +1,9 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Controllers;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace Fanex.Athena.AnalyticsAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class HomeController : ControllerBaseCustom
     {

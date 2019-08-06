@@ -1,31 +1,32 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Models.DTO;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
+using Fanex.Athena.AnalyticsAPI.Core.Models.DTO;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Fanex.Athena.AnalyticsAPI.Core.Modules.Performance.Services
+namespace Fanex.Athena.AnalyticsAPI.Core.Services
 {
-    public class AnalyticService : IAnalyticService
+    public class AnalyticService : BaseService, IAnalyticService
     {
-        public virtual Task<DistributionAnalyticResult> GetDistribution()
+        public virtual Task<DistributionResult> GetDistribution()
         {
             var result = FakeData();
             return Task.FromResult(result);
         }
 
-        public virtual Task<GrowthAnalyticResult> GetGrowth()
+        public virtual Task<GrowthResult> GetGrowth()
         {
             throw new NotImplementedException();
         }
 
-        public virtual Task<TotalAnalyticResult> GetTotal()
+        public virtual Task<TotalResult> GetTotal()
         {
             throw new NotImplementedException();
         }
 
-        private static DistributionAnalyticResult FakeData()
+        private static DistributionResult FakeData()
         {
-            var fake = new DistributionAnalyticResult()
+            var fake = new DistributionResult()
             {
                 Charts = new List<ChartItemResult<ChartColumnResult<PartChartColumnResult>>>()
                 {

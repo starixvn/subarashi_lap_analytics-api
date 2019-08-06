@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Modules.Performance.Controllers
 {

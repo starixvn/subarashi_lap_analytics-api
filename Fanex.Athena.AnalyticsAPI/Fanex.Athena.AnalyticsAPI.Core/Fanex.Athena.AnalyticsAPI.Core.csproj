@@ -5,13 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Middleware\" />
+    <Compile Remove="Middleware\**" />
+    <EmbeddedResource Remove="Middleware\**" />
+    <None Remove="Middleware\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Models\ViewModel\" />
     <Folder Include="Modules\Performance\Controllers\Overview\" />
     <Folder Include="Modules\Performance\Controllers\Platform\" />
     <Folder Include="Modules\Performance\Controllers\Product\" />
     <Folder Include="Modules\Performance\Repositories\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
