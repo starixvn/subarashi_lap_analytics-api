@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Athena.AnalyticsAPI.Core.Models.DTO
 {
-    public class TotalAnalyticResult : AnalyticResult<TotalResultItem<PieceResult>>
+    public class TotalAnalyticResult : AnalyticResult<ChartColumnResult<PartChartColumnResult>>
     {
     }
 }

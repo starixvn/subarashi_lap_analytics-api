@@ -6,7 +6,7 @@ namespace Fanex.Athena.AnalyticsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class HomeController : ControllerCustomBase
+    public class HomeController : ControllerBaseCustom
     {
         // GET api/values
         [HttpGet]

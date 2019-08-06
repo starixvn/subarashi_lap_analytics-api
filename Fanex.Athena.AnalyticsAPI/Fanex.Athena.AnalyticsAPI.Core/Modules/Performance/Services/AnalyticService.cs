@@ -9,41 +9,8 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Modules.Performance.Services
     {
         public virtual Task<DistributionAnalyticResult> GetDistribution()
         {
-            var fake = new DistributionAnalyticResult()
-            {
-                Items = new List<AnalyticResultItem<PieceResult>>()
-                {
-                    new AnalyticResultItem<PieceResult>()
-                    {
-                        Type = 1,
-                        Items = new List<PieceResult>()
-                        {
-                            new PieceResult() { Name = "ABC", Value = 540, Order = 1 },
-                            new PieceResult() { Name = "ABC", Value = 540, Order = 1 }
-                        }
-                    },
-                    new AnalyticResultItem<PieceResult>()
-                    {
-                        Type = 2,
-                        Items = new List<PieceResult>()
-                        {
-                            new PieceResult() { Name = "ABC", Value = 540, Order = 1 },
-                            new PieceResult() { Name = "ABC", Value = 540, Order = 1 }
-                        }
-                    },
-                    new AnalyticResultItem<PieceResult>()
-                    {
-                         Type = 3,
-                        Items = new List<PieceResult>()
-                        {
-                            new PieceResult() { Name = "ABC", Value = 540, Order = 1 },
-                            new PieceResult() { Name = "ABC", Value = 540, Order = 1 }
-                        }
-                    }
-                }
-            };
-
-            return Task.FromResult(fake);
+            var result = FakeData();
+            return Task.FromResult(result);
         }
 
         public virtual Task<GrowthAnalyticResult> GetGrowth()
@@ -55,5 +22,80 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Modules.Performance.Services
         {
             throw new NotImplementedException();
         }
+
+        private static DistributionAnalyticResult FakeData()
+        {
+            var fake = new DistributionAnalyticResult()
+            {
+                Charts = new List<ChartItemResult<ChartColumnResult<PartChartColumnResult>>>()
+                {
+                    new ChartItemResult<ChartColumnResult<PartChartColumnResult>>()
+                    {
+                        Type = 1,
+                        ChartColumns = new List<ChartColumnResult<PartChartColumnResult>>()
+                        {
+                            new ChartColumnResult<PartChartColumnResult>()
+                            {
+                                PartChartColumns = new List<PartChartColumnResult>()
+                                {
+                                    new PartChartColumnResult()
+                                    {
+                                        Id = 1,
+                                        Name = "Part chart column 1",
+                                        Value = 1
+                                    },
+                                    new PartChartColumnResult()
+                                    {
+                                        Id = 1,
+                                        Name = "Part chart column 1",
+                                        Value = 1
+                                    },
+                                    new PartChartColumnResult()
+                                    {
+                                        Id = 1,
+                                        Name = "Part chart column 1",
+                                        Value = 1
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    new ChartItemResult<ChartColumnResult<PartChartColumnResult>>()
+                    {
+                        Type = 2,
+                        ChartColumns = new List<ChartColumnResult<PartChartColumnResult>>()
+                        {
+                            new ChartColumnResult<PartChartColumnResult>()
+                            {
+                                PartChartColumns = new List<PartChartColumnResult>()
+                                {
+                                    new PartChartColumnResult()
+                                    {
+                                        Id = 1,
+                                        Name = "Part chart column 1",
+                                        Value = 1
+                                    },
+                                    new PartChartColumnResult()
+                                    {
+                                        Id = 1,
+                                        Name = "Part chart column 1",
+                                        Value = 1
+                                    },
+                                    new PartChartColumnResult()
+                                    {
+                                        Id = 1,
+                                        Name = "Part chart column 1",
+                                        Value = 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            return fake;
+        }
+
     }
 }

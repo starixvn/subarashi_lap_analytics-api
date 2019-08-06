@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Controllers
 {
-    public class ControllerCustomBase : ControllerBase
+    public class ControllerBaseCustom : ControllerBase
     {
         protected JsonResult ToResult<T>(T data)
         {
