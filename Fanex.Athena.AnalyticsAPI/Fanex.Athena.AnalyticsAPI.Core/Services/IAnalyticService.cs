@@ -1,15 +1,15 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Core.Models.DTO;
+using Fanex.Athena.AnalyticsAPI.Core.Models.ClientParams;
 using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Services
 {
-    public interface IAnalyticService : IBaseService
+    public interface IAnalyticService<TTotal, TGrowth, TDistribution> : IBaseService
     {
-        Task<TotalResult> GetTotal();
+        Task<TDistribution> GetDistribution(GeneralFilterParam filterParam);
 
-        Task<GrowthResult> GetGrowth();
+        Task<TGrowth> GetGrowth(GeneralFilterParam filterParam);
 
-        Task<DistributionResult> GetDistribution();
+        Task<TTotal> GetTotal(GeneralFilterParam filterParam);
     }
 }

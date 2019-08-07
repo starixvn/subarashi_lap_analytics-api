@@ -1,4 +1,4 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Modules.Performance.Services.BetType;
+﻿using Fanex.Athena.AnalyticsAPI.Core.Modules.Performance.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Extensions.StartupExtension
@@ -13,7 +13,13 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions.StartupExtension
 
         private static IServiceCollection AddServices(this IServiceCollection services)
         {
+            services.AddScoped<IPerformanceService, PerformanceService>();
             services.AddScoped<IBetTypePerformanceService, BetTypePerformanceService>();
+            services.AddScoped<ICurrencyPerformanceService, CurrencyPerformanceService>();
+            services.AddScoped<IOverviewPerformanceService, OverviewPerformanceService>();
+            services.AddScoped<IPlatformPerformanceService, PlatformPerformanceService>();
+            services.AddScoped<IProductPerformanceService, ProductPerformanceService>();
+
             return services;
         }
 

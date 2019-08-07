@@ -30,7 +30,11 @@ namespace Fanex.Athena.AnalyticsAPI
             services.AddSwaggerDoc(Env, ApiName);
 
             services.Configure<ApplicationOptions>(Configuration);
+
+            services.AddCoreServices();
             services.AddDI();
+
+            services.BuildServiceProvider().SetServiceProvider();
         }
 
         public void Configure(IApplicationBuilder app)
@@ -46,7 +50,7 @@ namespace Fanex.Athena.AnalyticsAPI
             app.UseErrorHandler();
 
             app.UsePathBase(PathBase);
-
+            app.UseContextService();
             app.UseSwaggerDoc(Env, ApiName, PathBase);
 
             app.UseMvc();

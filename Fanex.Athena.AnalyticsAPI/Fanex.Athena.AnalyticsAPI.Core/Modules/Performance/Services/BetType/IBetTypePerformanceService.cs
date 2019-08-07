@@ -1,8 +1,6 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Services;
-
-namespace Fanex.Athena.AnalyticsAPI.Core.Modules.Performance.Services.BetType
+﻿namespace Fanex.Athena.AnalyticsAPI.Core.Modules.Performance.Services
 {
-    public interface IBetTypePerformanceService : IAnalyticService
+    public interface IBetTypePerformanceService : IPerformanceService
     {
     }
 }

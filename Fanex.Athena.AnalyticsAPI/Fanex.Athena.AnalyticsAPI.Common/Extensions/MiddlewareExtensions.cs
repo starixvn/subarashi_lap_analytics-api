@@ -1,4 +1,5 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Middleware;
+using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +17,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
         public static IApplicationBuilder UseIPFilter(this IApplicationBuilder builder)
         {
             return builder.UseMiddleware<IPFilter>();
+        }
+
+        public static IApplicationBuilder UseContextService(this IApplicationBuilder builder)
+        {
+            return builder.Use(async (context, next) =>
+            {
+                ServiceProviderExtensions.GetRequiredService<IContextService>().Context = context;
+                await next.Invoke();
+            });
         }
 
         public static IServiceCollection AddSwaggerDoc(this IServiceCollection services, IHostingEnvironment env, string apiName)

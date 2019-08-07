@@ -1,4 +1,7 @@
-﻿namespace Fanex.Athena.AnalyticsAPI.Common.Models.DataDomain
+﻿using Fanex.Athena.AnalyticsAPI.Common.Extensions;
+using Fanex.Athena.AnalyticsAPI.Common.Services;
+
+namespace Fanex.Athena.AnalyticsAPI.Common.Models.DataDomain
 {
     public class ResponseDataModel<T> : ResponseDataModel
     {
@@ -7,8 +10,9 @@
             Data = data;
 
             //to do
-            IsSuccess = true;
-            ErrorMsg = string.Empty;
+            var service = ServiceProviderExtensions.GetRequiredService<IContextService>();
+            ErrorMsg = service.GetError();
+            IsSuccess = string.IsNullOrEmpty(ErrorMsg);
         }
 
         public T Data { get; set; }

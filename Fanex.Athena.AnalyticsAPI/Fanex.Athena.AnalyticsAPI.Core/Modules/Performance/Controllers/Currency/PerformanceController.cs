@@ -1,28 +1,33 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Fanex.Athena.AnalyticsAPI.Core.Models.ClientParams;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Modules.Performance.Controllers
 {
     partial class PerformanceController
     {
-        [HttpGet]
+        [HttpPost]
         [Route("performance/currency/total")]
-        public IActionResult GetCurrenyTotal()
+        public async Task<IActionResult> GetCurrenyTotal(GeneralFilterParam filterParam)
         {
-            return ToResult(new { Total = 10000 });
+            var result = await this._currencyPerformanceService.GetTotal(filterParam);
+            return ToResult(result);
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("performance/currency/growth")]
-        public IActionResult GetCurrenyGrowth()
+        public async Task<IActionResult> GetCurrenyGrowth(GeneralFilterParam filterParam)
         {
-            return ToResult(new { Total = 10000 });
+            var result = await this._currencyPerformanceService.GetGrowth(filterParam);
+            return ToResult(result);
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("performance/currency/distribution")]
-        public IActionResult GetCurrenyDistribution()
+        public async Task<IActionResult> GetCurrenyDistribution(GeneralFilterParam filterParam)
         {
-            return ToResult(new { Total = 10000 });
+            var result = await this._currencyPerformanceService.GetDistribution(filterParam);
+            return ToResult(result);
         }
     }
 }
