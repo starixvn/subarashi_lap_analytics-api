@@ -23,41 +23,37 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
         {
             return builder.Use(async (context, next) =>
             {
-                ServiceProviderExtensions.GetRequiredService<IContextService>().Context = context;
+                (context.RequestServices.GetRequiredService<IContextService>()).Context = context;
                 await next.Invoke();
             });
         }
 
         public static IServiceCollection AddSwaggerDoc(this IServiceCollection services, IHostingEnvironment env, string apiName)
         {
-            if (!env.IsProduction())
+            services.AddSwaggerGen(c =>
             {
-                services.AddSwaggerGen(c =>
+                c.SwaggerDoc("v1", new Info
                 {
-                    c.SwaggerDoc("v1", new Info
-                    {
-                        Version = "v1",
-                        Title = apiName,
-                    });
-
-                    c.DescribeStringEnumsInCamelCase();
-                    c.DescribeAllEnumsAsStrings();
+                    Version = "v1",
+                    Title = apiName,
                 });
-            }
+
+                c.DescribeStringEnumsInCamelCase();
+                c.DescribeAllEnumsAsStrings();
+            });
 
             return services;
         }
 
         public static IApplicationBuilder UseSwaggerDoc(this IApplicationBuilder builder, IHostingEnvironment env, string apiName, string pathBase)
         {
-            if (!env.IsProduction())
+            builder.UseSwagger();
+            builder.UseSwaggerUI(c =>
             {
-                builder.UseSwagger();
-                builder.UseSwaggerUI(c =>
-                {
-                    c.SwaggerEndpoint(pathBase + "/swagger/v1/swagger.json", $"{apiName} V1");
-                });
-            }
+                c.SwaggerEndpoint(pathBase + "/swagger/v1/swagger.json", $"{apiName} V1");
+                c.RoutePrefix = string.Empty;
+
+            });
 
             return builder;
         }

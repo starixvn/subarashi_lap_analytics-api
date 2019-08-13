@@ -47,6 +47,8 @@ namespace Fanex.Athena.AnalyticsAPI
             app.UseIPFilter();
             app.UseHttpsRedirection();
 
+            app.UseStaticFiles();
+
             app.UseErrorHandler();
 
             app.UsePathBase(PathBase);
