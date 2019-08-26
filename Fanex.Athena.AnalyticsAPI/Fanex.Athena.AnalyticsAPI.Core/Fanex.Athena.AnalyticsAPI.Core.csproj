@@ -6,26 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Middleware\**" />
-    <EmbeddedResource Remove="Middleware\**" />
-    <None Remove="Middleware\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Models\ViewModel\" />
-    <Folder Include="Modules\Performance\Controllers\Overview\" />
-    <Folder Include="Modules\Performance\Controllers\Platform\" />
-    <Folder Include="Modules\Performance\Controllers\Product\" />
-    <Folder Include="Modules\Performance\Repositories\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="2.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Fanex.Athena.AnalyticsAPI.Common\Fanex.Athena.AnalyticsAPI.Common.csproj" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
   </ItemGroup>
 
 </Project>

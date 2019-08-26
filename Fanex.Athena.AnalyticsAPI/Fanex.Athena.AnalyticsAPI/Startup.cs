@@ -1,6 +1,6 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Extensions;
-using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
-using Fanex.Athena.AnalyticsAPI.Core.Extensions.StartupExtension;
+﻿using Fanex.Athena.AnalyticsAPI.Core.Extensions;
+using Fanex.Athena.AnalyticsAPI.Core.Models.Configuration;
+using Fanex.Athena.AnalyticsAPI.Performance.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -31,10 +31,8 @@ namespace Fanex.Athena.AnalyticsAPI
 
             services.Configure<ApplicationOptions>(Configuration);
 
-            services.AddCoreServices();
-            services.AddDI();
-
-            services.BuildServiceProvider().SetServiceProvider();
+            services.AddDICore();
+            services.AddDIPerformance();
         }
 
         public void Configure(IApplicationBuilder app)

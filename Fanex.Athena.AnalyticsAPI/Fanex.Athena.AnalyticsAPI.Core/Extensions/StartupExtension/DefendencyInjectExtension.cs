@@ -1,11 +1,11 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Modules.Performance.Services;
+﻿using Fanex.Athena.AnalyticsAPI.Core.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Fanex.Athena.AnalyticsAPI.Core.Extensions.StartupExtension
+namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
 {
     public static class DefendencyInjectExtension
     {
-        public static IServiceCollection AddDI(this IServiceCollection services)
+        public static IServiceCollection AddDICore(this IServiceCollection services)
         {
             services.AddServices();
             return services;
@@ -13,12 +13,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions.StartupExtension
 
         private static IServiceCollection AddServices(this IServiceCollection services)
         {
-            services.AddScoped<IPerformanceService, PerformanceService>();
-            services.AddScoped<IBetTypePerformanceService, BetTypePerformanceService>();
-            services.AddScoped<ICurrencyPerformanceService, CurrencyPerformanceService>();
-            services.AddScoped<IOverviewPerformanceService, OverviewPerformanceService>();
-            services.AddScoped<IPlatformPerformanceService, PlatformPerformanceService>();
-            services.AddScoped<IProductPerformanceService, ProductPerformanceService>();
+            services.AddScoped<IContextService, ContextService>();
 
             return services;
         }
