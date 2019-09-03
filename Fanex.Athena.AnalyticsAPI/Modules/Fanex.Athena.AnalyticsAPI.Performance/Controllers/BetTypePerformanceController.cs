@@ -17,10 +17,10 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         }
 
         [HttpPost]
-        [Route("performance/bettype/total")]
+        [Route("performance/bettype/breakdown")]
         public async Task<IActionResult> GetBetTypeTotal(GeneralFilterParam filterParam)
         {
-            var result = await this._betTypePerformanceService.GetTotal(filterParam);
+            var result = await this._betTypePerformanceService.GetBreakdown(filterParam);
             return ToResult(result);
         }
 

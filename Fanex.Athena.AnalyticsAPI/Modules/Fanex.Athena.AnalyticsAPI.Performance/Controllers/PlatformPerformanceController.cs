@@ -17,10 +17,10 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         }
 
         [HttpPost]
-        [Route("performance/platform/total")]
+        [Route("performance/platform/breakdown")]
         public async Task<IActionResult> GetTotal(GeneralFilterParam filterParam)
         {
-            var result = await this._platformPerformanceService.GetTotal(filterParam);
+            var result = await this._platformPerformanceService.GetBreakdown(filterParam);
             return ToResult(result);
         }
 

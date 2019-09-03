@@ -1,5 +1,5 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Core.Controllers;
-using Fanex.Athena.AnalyticsAPI.Core.Models.ClientParams;
+using Fanex.Athena.AnalyticsAPI.Performance.Models.ClientParams;
 using Fanex.Athena.AnalyticsAPI.Performance.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -17,16 +17,16 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         }
 
         [HttpPost]
-        [Route("performance/currency/total")]
-        public async Task<IActionResult> GetTotal(GeneralFilterParam filterParam)
+        [Route("performance/currency/breakdown")]
+        public async Task<IActionResult> GetBreakdown(PerformanceFilterParam filterParam)
         {
-            var result = await this._currencyPerformanceService.GetTotal(filterParam);
+            var result = await this._currencyPerformanceService.GetBreakdown(filterParam);
             return ToResult(result);
         }
 
         [HttpPost]
         [Route("performance/currency/growth")]
-        public async Task<IActionResult> GetGrowth(GeneralFilterParam filterParam)
+        public async Task<IActionResult> GetGrowth(PerformanceFilterParam filterParam)
         {
             var result = await this._currencyPerformanceService.GetGrowth(filterParam);
             return ToResult(result);
@@ -34,7 +34,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 
         [HttpPost]
         [Route("performance/currency/distribution")]
-        public async Task<IActionResult> GetDistribution(GeneralFilterParam filterParam)
+        public async Task<IActionResult> GetDistribution(PerformanceFilterParam filterParam)
         {
             var result = await this._currencyPerformanceService.GetDistribution(filterParam);
             return ToResult(result);

@@ -8,6 +8,8 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
         public static IServiceCollection AddDICore(this IServiceCollection services)
         {
             services.AddServices();
+            services.AddRepositories();
+
             return services;
         }
 

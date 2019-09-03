@@ -24,7 +24,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             return Task.FromResult(FakeGrowthResultData());
         }
 
-        public override Task<PerformanceTotalResult> GetTotal(GeneralFilterParam filterParam)
+        public override Task<PerformanceTotalResult> GetBreakdown(GeneralFilterParam filterParam)
         {
             return Task.FromResult(FakeTotalResultData());
         }

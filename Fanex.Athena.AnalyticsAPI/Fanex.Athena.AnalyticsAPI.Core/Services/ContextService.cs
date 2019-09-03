@@ -12,11 +12,9 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Services
 
         public HttpContext Context { get; set; }
 
-        public void AddError(string key, string message)
-        {
+        public void AddError(string key, string message) =>
             (Errors ?? (Errors = new Dictionary<string, string>()))
                 .Add(key, message);
-        }
 
         public void AddError(string message)
         {
@@ -25,11 +23,9 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Services
                 .Add(key, message);
         }
 
-        public void AddInfo(string key, string message)
-        {
+        public void AddInfo(string key, string message) =>
             (Info ?? (Info = new Dictionary<string, string>()))
                 .Add(key, message);
-        }
 
         public void AddInfo(string message)
         {

@@ -21,6 +21,6 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Services
 
         public abstract Task<TGrowth> GetGrowth(GeneralFilterParam filterParam);
 
-        public abstract Task<TTotal> GetTotal(GeneralFilterParam filterParam);
+        public abstract Task<TTotal> GetBreakdown(GeneralFilterParam filterParam);
     }
 }
