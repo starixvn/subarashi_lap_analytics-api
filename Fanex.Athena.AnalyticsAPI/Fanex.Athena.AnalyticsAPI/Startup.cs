@@ -1,6 +1,12 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Extensions;
+﻿using System.Collections.Generic;
+using Fanex.Athena.AnalyticsAPI.Core.Extensions;
 using Fanex.Athena.AnalyticsAPI.Core.Models.Configuration;
 using Fanex.Athena.AnalyticsAPI.Performance.Extensions;
+using Fanex.Athena.ExtService.Common.Models.DTO;
+using Fanex.Data;
+using Fanex.Data.SqlServer;
+using Fanex.Logging;
+using Fanex.Logging.RabbitMQ;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -31,28 +37,63 @@ namespace Fanex.Athena.AnalyticsAPI
 
             services.Configure<ApplicationOptions>(Configuration);
 
-            services.AddDICore();
-            services.AddDIPerformance();
-        }
+            services.AddHealthChecks();
 
+            services.AddMemoryCache();
+
+            services.AddResponseCaching(options =>
+            {
+                options.UseCaseSensitivePaths = true;
+            });
+
+            var appSettings = Configuration.GetSection("AppSettings").Get<AppSettings>();
+
+            LogManager
+            .SetDefaultLogCategory(appSettings.LogCategory)
+            .Use(new List<ILogEngine>
+             {
+                new RabbitMQLogging(appSettings.RabbitMQ)
+             });
+
+            var conns = GetConnectionString();
+
+            DbSettingProviderManager
+              .StartNewSession()
+              .WithSqlServer(resourcePath: "~/SpConfig")
+              .Use(conns)
+              .Run();
+
+        }
+        private Dictionary<string, ConnectionConfiguration> GetConnectionString()
+        {
+            var connectionStrings = new Dictionary<string, ConnectionConfiguration>
+            {
+                {
+                    "DBEXT.bodb02.bodbLicenseeNet",
+                    new ConnectionConfiguration("DBEXT.bodb02.bodbLicenseeNet",
+                Configuration.GetConnectionString("DBEXT.bodb02.bodbLicenseeNet"))
+
+                }
+            };
+            return connectionStrings;
+        }
         public void Configure(IApplicationBuilder app)
         {
             if (Env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseErrorHandler();
+
+            }
 
             app.UseIPFilter();
             app.UseHttpsRedirection();
-
             app.UseStaticFiles();
-
-            app.UseErrorHandler();
-
             app.UsePathBase(PathBase);
-            app.UseContextService();
             app.UseSwaggerDoc(Env, ApiName, PathBase);
-
             app.UseMvc();
         }
     }

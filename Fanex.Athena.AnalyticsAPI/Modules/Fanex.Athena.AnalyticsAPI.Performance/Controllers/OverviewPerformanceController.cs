@@ -1,5 +1,6 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Controllers;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Controllers;
 using Fanex.Athena.AnalyticsAPI.Performance.Services;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
@@ -9,7 +10,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
     {
         private readonly IOverviewPerformanceService _overviewPerformanceService;
 
-        public OverviewPerformanceController(IOverviewPerformanceService overviewPerformanceService)
+        public OverviewPerformanceController(IOverviewPerformanceService overviewPerformanceService):base(null)
         {
             _overviewPerformanceService = overviewPerformanceService;
         }

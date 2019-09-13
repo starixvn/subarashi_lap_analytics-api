@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Fanex.Athena.AnalyticsAPI.Common\Fanex.Athena.AnalyticsAPI.Common.csproj" />
     <ProjectReference Include="..\..\Fanex.Athena.AnalyticsAPI.Core\Fanex.Athena.AnalyticsAPI.Core.csproj" />
   </ItemGroup>
 

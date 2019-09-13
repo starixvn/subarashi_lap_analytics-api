@@ -1,4 +1,4 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Services;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Services

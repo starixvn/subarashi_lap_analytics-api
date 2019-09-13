@@ -1,4 +1,4 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Controllers;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Controllers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,7 +10,7 @@ namespace Fanex.Athena.AnalyticsAPI.Controllers
     {
         private readonly IHostingEnvironment _env;
 
-        public HomeController(IHostingEnvironment env)
+        public HomeController(IHostingEnvironment env) : base(null)
         {
             _env = env;
         }

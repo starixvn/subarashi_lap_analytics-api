@@ -10,13 +10,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Fanex.Data.SqlServer" Version="4.1.0" />
+    <PackageReference Include="Fanex.Logging" Version="2.0.1" />
+    <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Fanex.Athena.AnalyticsAPI.Common\Fanex.Athena.AnalyticsAPI.Common.csproj" />
     <ProjectReference Include="..\Fanex.Athena.AnalyticsAPI.Core\Fanex.Athena.AnalyticsAPI.Core.csproj" />
     <ProjectReference Include="..\Modules\Fanex.Athena.AnalyticsAPI.Performance\Fanex.Athena.AnalyticsAPI.Performance.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="SpConfig\" />
   </ItemGroup>
 
 </Project>

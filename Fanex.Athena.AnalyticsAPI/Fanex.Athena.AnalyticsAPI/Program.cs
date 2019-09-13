@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 
 namespace Fanex.Athena.AnalyticsAPI
 {
@@ -12,7 +13,20 @@ namespace Fanex.Athena.AnalyticsAPI
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-             .UseStartup<Startup>()
-             .UseUrls("http://+:5001");
+               .ConfigureAppConfiguration((builderContext, config) =>
+               {
+                   var env = builderContext.HostingEnvironment;
+
+                   config.SetBasePath(env.ContentRootPath);
+                   config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+                   config.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
+                   config.AddEnvironmentVariables();
+               })
+             .UseKestrel(x =>
+             {
+                 x.AddServerHeader = false;
+             })
+              .UseIISIntegration()
+             .UseStartup<Startup>();
     }
 }

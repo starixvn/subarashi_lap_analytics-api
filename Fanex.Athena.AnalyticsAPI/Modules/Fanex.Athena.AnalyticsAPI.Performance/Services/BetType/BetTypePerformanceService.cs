@@ -1,4 +1,4 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Services;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 {
