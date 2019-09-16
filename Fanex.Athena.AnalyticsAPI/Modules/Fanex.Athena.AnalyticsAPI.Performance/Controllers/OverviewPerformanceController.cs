@@ -10,7 +10,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
     {
         private readonly IOverviewPerformanceService _overviewPerformanceService;
 
-        public OverviewPerformanceController(IOverviewPerformanceService overviewPerformanceService):base(null)
+        public OverviewPerformanceController(IOverviewPerformanceService overviewPerformanceService): base(null)
         {
             _overviewPerformanceService = overviewPerformanceService;
         }

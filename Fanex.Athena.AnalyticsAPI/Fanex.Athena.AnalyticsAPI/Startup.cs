@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
 using Fanex.Athena.AnalyticsAPI.Core.Extensions;
 using Fanex.Athena.AnalyticsAPI.Core.Models.Configuration;
 using Fanex.Athena.AnalyticsAPI.Performance.Extensions;
@@ -37,6 +38,8 @@ namespace Fanex.Athena.AnalyticsAPI
 
             services.Configure<ApplicationOptions>(Configuration);
 
+            services.Configure<SSASSetting>(Configuration);
+
             services.AddHealthChecks();
 
             services.AddMemoryCache();
@@ -56,12 +59,11 @@ namespace Fanex.Athena.AnalyticsAPI
              });
 
             var conns = GetConnectionString();
-
-            DbSettingProviderManager
-              .StartNewSession()
-              .WithSqlServer(resourcePath: "~/SpConfig")
-              .Use(conns)
-              .Run();
+            //DbSettingProviderManager
+            //  .StartNewSession()
+            //  .WithSqlServer(resourcePath: "~/SpConfig")
+            //  .Use(conns)
+            //  .Run();
 
         }
         private Dictionary<string, ConnectionConfiguration> GetConnectionString()

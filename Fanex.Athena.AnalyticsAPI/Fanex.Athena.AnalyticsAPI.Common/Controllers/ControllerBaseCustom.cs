@@ -12,6 +12,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Controllers
         {
             _contextService = contextService ?? new ContextService();
         }
+
         [NonAction]
         protected JsonResult ToResult<T>(T data)
         {
@@ -23,7 +24,5 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Controllers
         {
             return new JsonResult(new ResponseDataViewModel(_contextService.Errors == null || _contextService.Errors.Count == 0, _contextService.Message));
         }
-
-
     }
 }

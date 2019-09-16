@@ -15,11 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{B187
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.AnalyticsAPI.Performance", "Modules\Fanex.Athena.AnalyticsAPI.Performance\Fanex.Athena.AnalyticsAPI.Performance.csproj", "{3B0287FC-BFD4-4E46-8D87-323BDB8837B0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{C64F4B47-2CA4-4CBD-A425-5BBB8EC02527}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{0EAFC1D2-C52E-417C-9022-A7B77DC2B327}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.AnalyticsAPI.Common", "Fanex.Athena.AnalyticsAPI.Common\Fanex.Athena.AnalyticsAPI.Common.csproj", "{AC03A58B-7B29-448F-947A-C8EA02CE799B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.AnalyticsAPI.Common", "Fanex.Athena.AnalyticsAPI.Common\Fanex.Athena.AnalyticsAPI.Common.csproj", "{AC03A58B-7B29-448F-947A-C8EA02CE799B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
