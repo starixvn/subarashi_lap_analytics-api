@@ -21,7 +21,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Repositories
             get
             {
                 return _bridgeService ?? (_bridgeService = new SsasBridgeService(
-                    _setting?.Modules?.FirstOrDefault(_ => _.ModuledId.Equals(ModuleId))?.ConnectionKey,
+                    _setting?.Modules?.FirstOrDefault(_ => _.ModuleId.Equals(ModuleId))?.ConnectionKey,
                     _setting?.BrigdeHost));
             }
         }
@@ -33,10 +33,10 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Repositories
 
         protected virtual SqlService GetSqlService(string key) => new SqlService(key);
 
-        protected Task<IEnumerable<TResult>> QueryAsync<TResult>(string query)
+        protected Task<IEnumerable<TResult>> QueryAsync<TResult>(string query, IDictionary<string, object> parameters = null)
             where TResult : new()
         {
-            return BridgeService.QueryAsync<TResult>(query);
+            return BridgeService.QueryAsync<TResult>(query, parameters);
         }
 
         protected async Task<IEnumerable<TResult>> QueryAsync<TResult>(ICustomCriteria criteria)

@@ -38,12 +38,13 @@ namespace Fanex.Athena.AnalyticsAPI
 
             services.Configure<ApplicationOptions>(Configuration);
 
-            services.Configure<SSASSetting>(Configuration);
+            services.Configure<SSASSetting>(Configuration.GetSection("SSASSetting"));
+
+            DefendenctInjectExtension.AddDIPerformance(services);
 
             services.AddHealthChecks();
 
             services.AddMemoryCache();
-
             services.AddResponseCaching(options =>
             {
                 options.UseCaseSensitivePaths = true;

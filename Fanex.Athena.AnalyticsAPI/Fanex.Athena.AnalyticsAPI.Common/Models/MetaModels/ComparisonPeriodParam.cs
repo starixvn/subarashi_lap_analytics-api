@@ -9,7 +9,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels
 
         public IDictionary<string, object> ToParamValue()
         {
-            throw new System.NotImplementedException();
+            return null;
         }
     }
 }

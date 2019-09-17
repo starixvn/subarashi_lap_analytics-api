@@ -10,7 +10,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Models.Configuration
 
     public class ModuleSetting
     {
-        public string ModuledId { get; set; }
+        public string ModuleId { get; set; }
         public string ConnectionKey { get; set; }
     }
 }
