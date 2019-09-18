@@ -13,7 +13,7 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.Extensions
             var props = objDTO.GetType().GetProperties();
             foreach (var prop in props)
             {
-                var cubeMappingAttr = Attribute.GetCustomAttribute(prop, typeof(CubeMappingAttribute)) as CubeMappingAttribute;
+                var cubeMappingAttr = Attribute.GetCustomAttribute(prop, typeof(SsasColumnAttribute)) as SsasColumnAttribute;
                 if (cubeMappingAttr != null && !string.IsNullOrWhiteSpace(cubeMappingAttr.MapColumn))
                 {
                     if (!source.ContainsKey(cubeMappingAttr.MapColumn))
@@ -26,44 +26,5 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.Extensions
 
             return objDTO;
         }
-
-        public static IDictionary<string, object> GetParams(this object obj)
-        {
-            var paramsDic = new Dictionary<string, object>();
-            var props = obj.GetType().GetProperties();
-            foreach (var prop in props)
-            {
-                var paramQueryAttribute = Attribute.GetCustomAttribute(prop, typeof(ParamQueryMappingAttribute)) as ParamQueryMappingAttribute;
-
-                if (paramQueryAttribute == null)
-                {
-                    paramsDic.Add(prop.Name, prop.GetValue(obj));
-                }
-                else if (!paramQueryAttribute.NoneParam && !string.IsNullOrWhiteSpace(paramQueryAttribute.ParamName))
-                {
-                    paramsDic.Add(paramQueryAttribute.ParamName, prop.GetValue(obj));
-                }
-                else
-                {
-                    //
-                }
-            }
-            return paramsDic;
-        }
-
-        public static void AddRange<T, S>(this IDictionary<T, S> source, IDictionary<T, S> collection)
-        {
-            if (collection != null)
-            {
-                foreach (var item in collection)
-                {
-                    if (!source.ContainsKey(item.Key))
-                    {
-                        source.Add(item.Key, item.Value);
-                    }
-                }
-            }
-        }
-
     }
 }

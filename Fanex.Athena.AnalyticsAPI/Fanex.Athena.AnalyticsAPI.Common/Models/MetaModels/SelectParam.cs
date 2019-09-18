@@ -5,10 +5,10 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels
 {
     public class SelectParam : IToParamValue
     { 
-        [ParamQueryMapping("baseCurrency")]
+        [SsasParamAttribute("baseCurrency")]
         public int Id { get; set; }
 
-        [ParamQueryMapping(NoneParam =true)]
+        [SsasParamAttribute(NoneParam =true)]
         public string Name { get; set; }
 
         public IDictionary<string, object> ToParamValue()

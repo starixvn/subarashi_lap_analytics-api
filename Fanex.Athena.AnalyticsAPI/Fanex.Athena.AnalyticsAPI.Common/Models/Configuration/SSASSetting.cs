@@ -4,7 +4,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Models.Configuration
 {
     public class SSASSetting
     {
-        public string BrigdeHost { get; set; }
+        public string BridgeHost { get; set; }
         public IList<ModuleSetting> Modules { get; set; }
     }
 

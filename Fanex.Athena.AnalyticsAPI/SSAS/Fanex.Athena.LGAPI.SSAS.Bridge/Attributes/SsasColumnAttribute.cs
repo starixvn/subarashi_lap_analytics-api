@@ -3,14 +3,14 @@
 namespace Fanex.Athena.LGAPI.SSAS.Bridge.Attributes
 {
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
-    public class CubeMappingAttribute : Attribute
+    public class SsasColumnAttribute : Attribute
     {
-        public CubeMappingAttribute(string mapColumn)
+        public SsasColumnAttribute(string mapColumn)
         {
             MapColumn = mapColumn;
         }
 
-        public CubeMappingAttribute()
+        public SsasColumnAttribute()
         {
         }
 

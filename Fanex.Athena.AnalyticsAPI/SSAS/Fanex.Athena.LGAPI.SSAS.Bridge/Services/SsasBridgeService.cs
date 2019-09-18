@@ -11,12 +11,12 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.Services
     public class SsasBridgeService : ISsasBridgeService
     {
         private readonly string _connectionKey;
-        private readonly string _baseUrl;
+        private readonly string _bridgeHost;
 
-        public SsasBridgeService(string connectionKey, string baseUrl)
+        public SsasBridgeService(string connectionKey, string bridgeHost)
         {
             _connectionKey = connectionKey;
-            _baseUrl = baseUrl;
+            _bridgeHost = bridgeHost;
         }
 
         public async Task<IEnumerable<TResult>> QueryAsync<TResult>(string query, IDictionary<string, object> parameters = null, string bridgeUrl = "ssas/query")
@@ -26,7 +26,7 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.Services
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(_baseUrl);
+                client.BaseAddress = new Uri(_bridgeHost);
                 HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Post, bridgeUrl);
                 requestMessage.Content = new StringContent(JsonConvert.SerializeObject(new { query, connectionKey = _connectionKey, parameters }), Encoding.UTF8, "application/json");
                 var response = await client.SendAsync(requestMessage);

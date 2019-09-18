@@ -3,15 +3,15 @@
 namespace Fanex.Athena.LGAPI.SSAS.Bridge.Attributes
 {
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
-    public class ParamQueryMappingAttribute : Attribute
+    public class SsasParamAttribute : Attribute
     {
-        public ParamQueryMappingAttribute(string paramName, bool noneParam = false)
+        public SsasParamAttribute(string paramName, bool noneParam = false)
         {
             ParamName = paramName;
             NoneParam = noneParam;
         }
 
-        public ParamQueryMappingAttribute()
+        public SsasParamAttribute()
         {
         }
 

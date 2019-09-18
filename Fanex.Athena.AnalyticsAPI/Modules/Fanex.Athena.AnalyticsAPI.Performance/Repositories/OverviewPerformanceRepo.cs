@@ -1,6 +1,6 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
-using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
-using Fanex.Athena.LGAPI.SSAS.Bridge.Attributes;
+using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
+using Fanex.Athena.LGAPI.SSAS.Bridge.Utils;
 using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Threading.Tasks;

@@ -25,7 +25,24 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [Route("performance/overview/total")]
         public async Task<IActionResult> GetTotal(GeneralFilterParam filterParam)
         {
-            return ToResult(new { });
+            var result = await _overviewPerformanceRepo.GetTurnover(filterParam);
+            return ToResult(result);
+        }
+
+        [HttpPost]
+        [Route("performance/overview/top-change")]
+        public async Task<IActionResult> GetTopChange(GeneralFilterParam filterParam)
+        {
+            var result = await _overviewPerformanceRepo.GetTurnover(filterParam);
+            return ToResult(result);
+        }
+
+        [HttpPost]
+        [Route("performance/overview/growth")]
+        public async Task<IActionResult> GetGrowth(GeneralFilterParam filterParam)
+        {
+            var result = await _overviewPerformanceRepo.GetTurnover(filterParam);
+            return ToResult(result);
         }
     }
 }
