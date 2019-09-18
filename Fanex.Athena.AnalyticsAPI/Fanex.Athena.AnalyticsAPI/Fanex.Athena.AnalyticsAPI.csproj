@@ -18,6 +18,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="SpConfig\FanexSpName.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="SpConfig\FanexSpName.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Fanex.Data.SqlServer" Version="4.1.0" />
     <PackageReference Include="Fanex.Logging" Version="2.0.1" />
     <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
@@ -29,10 +39,6 @@
     <ProjectReference Include="..\Fanex.Athena.AnalyticsAPI.Common\Fanex.Athena.AnalyticsAPI.Common.csproj" />
     <ProjectReference Include="..\Fanex.Athena.AnalyticsAPI.Core\Fanex.Athena.AnalyticsAPI.Core.csproj" />
     <ProjectReference Include="..\Modules\Fanex.Athena.AnalyticsAPI.Performance\Fanex.Athena.AnalyticsAPI.Performance.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="SpConfig\" />
   </ItemGroup>
 
 </Project>

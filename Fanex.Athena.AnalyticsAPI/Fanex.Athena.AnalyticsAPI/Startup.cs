@@ -60,11 +60,11 @@ namespace Fanex.Athena.AnalyticsAPI
              });
 
             var conns = GetConnectionString();
-            //DbSettingProviderManager
-            //  .StartNewSession()
-            //  .WithSqlServer(resourcePath: "~/SpConfig")
-            //  .Use(conns)
-            //  .Run();
+            DbSettingProviderManager
+              .StartNewSession()
+              .WithSqlServer(resourcePath: "~/SpConfig")
+              .Use(conns)
+              .Run();
 
         }
         private Dictionary<string, ConnectionConfiguration> GetConnectionString()
