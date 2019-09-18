@@ -3,7 +3,7 @@
     "Fanex.Athena.AnalyticsAPI": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/swagger/index.html",
+      "launchUrl": "index.html",
       "applicationUrl": "http://localhost:5001",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
