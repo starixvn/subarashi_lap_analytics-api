@@ -18,28 +18,28 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
             _currencyPerformanceService = currencyPerformanceService;
         }
 
-        [HttpPost]
-        [Route("performance/currency/breakdown")]
-        public async Task<IActionResult> GetBreakdown(PerformanceFilterParam filterParam)
-        {
-            var result = await this._currencyPerformanceService.GetBreakdown(filterParam);
-            return ToResult(result);
-        }
+        //[HttpPost]
+        //[Route("performance/currency/breakdown")]
+        //public async Task<IActionResult> GetBreakdown(PerformanceFilterMetalModel filterParam)
+        //{
+        //    var result = await this._currencyPerformanceService.GetBreakdown(filterParam);
+        //    return ToResult(result);
+        //}
 
-        [HttpPost]
-        [Route("performance/currency/growth")]
-        public async Task<IActionResult> GetGrowth(PerformanceFilterParam filterParam)
-        {
-            var result = await this._currencyPerformanceService.GetGrowth(filterParam);
-            return ToResult(result);
-        }
+        //[HttpPost]
+        //[Route("performance/currency/growth")]
+        //public async Task<IActionResult> GetGrowth(PerformanceFilterMetalModel filterParam)
+        //{
+        //    var result = await this._currencyPerformanceService.GetGrowth(filterParam);
+        //    return ToResult(result);
+        //}
 
-        [HttpPost]
-        [Route("performance/currency/distribution")]
-        public async Task<IActionResult> GetDistribution(PerformanceFilterParam filterParam)
-        {
-            var result = await this._currencyPerformanceService.GetDistribution(filterParam);
-            return ToResult(result);
-        }
+        //[HttpPost]
+        //[Route("performance/currency/distribution")]
+        //public async Task<IActionResult> GetDistribution(PerformanceFilterMetalModel filterParam)
+        //{
+        //    var result = await this._currencyPerformanceService.GetDistribution(filterParam);
+        //    return ToResult(result);
+        //}
     }
 }

@@ -1,19 +1,14 @@
-﻿using System;
+﻿using Fanex.Athena.AnalyticsAPI.Core.Middleware;
+using Fanex.Logging;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http;
+using Moq;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
-using Fanex.Athena.AnalyticsAPI.Core.Middleware;
-using Fanex.Logging;
-
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Http;
-
-using Moq;
-
-using Newtonsoft.Json;
-
 using Xunit;
 
 namespace Fanex.Athena.ExtService.Core.UnitTests.Middleware
@@ -22,7 +17,8 @@ namespace Fanex.Athena.ExtService.Core.UnitTests.Middleware
     {
         private readonly Mock<HttpContext> _mockHttpContext;
         private readonly Mock<IExceptionHandlerFeature> _mockHandlerException;
-        readonly Mock<HttpResponse> _mockResponse;
+        private readonly Mock<HttpResponse> _mockResponse;
+
         public ErrorHandlerTest()
         {
             LogManager
@@ -37,6 +33,7 @@ namespace Fanex.Athena.ExtService.Core.UnitTests.Middleware
             _mockHttpContext.Setup(x => x.Request).Returns(new Mock<HttpRequest>().Object);
             _mockHandlerException = new Mock<IExceptionHandlerFeature>();
         }
+
         [Fact]
         public async Task Invoke_RequestError_ReturnErrorMessageAsync()
         {
@@ -85,7 +82,6 @@ namespace Fanex.Athena.ExtService.Core.UnitTests.Middleware
             var actualContent = string.Empty;
             var actualStatus = 0;
             var actualContentType = string.Empty;
-
 
             _mockHttpContext.Setup(x => x.Features[typeof(IExceptionHandlerFeature)])
                 .Returns(new List<IExceptionHandlerFeature>());

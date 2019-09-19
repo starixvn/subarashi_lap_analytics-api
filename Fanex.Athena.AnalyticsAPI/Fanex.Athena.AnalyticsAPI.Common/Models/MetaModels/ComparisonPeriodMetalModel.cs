@@ -2,7 +2,7 @@
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels
 {
-    public class ComparisonPeriodParam : IToParamValue
+    public class ComparisonPeriodMetalModel
     {
         public bool IsPreviousPeriod { get; set; }
         public int SamePeriodOfYear { get; set; }

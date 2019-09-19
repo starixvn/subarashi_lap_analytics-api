@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
+using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Core.Extensions;
 using Fanex.Athena.AnalyticsAPI.Core.Models.Configuration;
 using Fanex.Athena.AnalyticsAPI.Performance.Extensions;
@@ -36,11 +37,12 @@ namespace Fanex.Athena.AnalyticsAPI
 
             services.AddSwaggerDoc(Env, ApiName);
 
-            services.Configure<ApplicationOptions>(Configuration);
+            services.Configure<ApplicationOptions>(Configuration.GetSection("ApplicationOptions"));
 
             services.Configure<SSASSetting>(Configuration.GetSection("SSASSetting"));
 
             DefendenctInjectExtension.AddDIPerformance(services);
+            services.AddScoped<IContextService, ContextService>();
 
             services.AddHealthChecks();
 
@@ -65,8 +67,8 @@ namespace Fanex.Athena.AnalyticsAPI
               .WithSqlServer(resourcePath: "~/SpConfig")
               .Use(conns)
               .Run();
-
         }
+
         private Dictionary<string, ConnectionConfiguration> GetConnectionString()
         {
             var connectionStrings = new Dictionary<string, ConnectionConfiguration>
@@ -80,6 +82,7 @@ namespace Fanex.Athena.AnalyticsAPI
             };
             return connectionStrings;
         }
+
         public void Configure(IApplicationBuilder app)
         {
             if (Env.IsDevelopment())
@@ -89,7 +92,6 @@ namespace Fanex.Athena.AnalyticsAPI
             else
             {
                 app.UseErrorHandler();
-
             }
 
             app.UseIPFilter();

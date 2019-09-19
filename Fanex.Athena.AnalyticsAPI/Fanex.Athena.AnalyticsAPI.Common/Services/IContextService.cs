@@ -18,6 +18,5 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
         void AddInfo(string message);
 
         string Message { get; }
-
     }
 }

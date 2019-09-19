@@ -1,9 +1,12 @@
 ﻿namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
-    public abstract class BaseService : IBaseService
+    public class BaseService : IBaseService
     {
-        protected BaseService()
+        private readonly IContextService _context;
+
+        protected BaseService(IContextService context)
         {
+            _context = context;
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Repositories
 {
-    public abstract class BaseRepo
+    public abstract class BaseRepo : IBaseRepo
     {
         protected readonly SSASSetting _setting;
 
@@ -32,13 +32,13 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Repositories
 
         protected virtual SqlService GetSqlService(string key) => new SqlService(key);
 
-        protected Task<IEnumerable<TResult>> QueryAsync<TResult>(string query, IDictionary<string, object> parameters = null)
+        public Task<IEnumerable<TResult>> QueryAsync<TResult>(string query, IDictionary<string, object> parameters = null)
             where TResult : new()
         {
             return BridgeService.QueryAsync<TResult>(query, parameters);
         }
 
-        protected Task<IEnumerable<TResult>> QueryAsync<TResult>(ISsasCriteria criteria)
+        public Task<IEnumerable<TResult>> QueryAsync<TResult>(ISsasCriteria criteria)
             where TResult : new()
         {
             return BridgeService.QueryAsync<TResult>(criteria.Query, criteria.GetParams());

@@ -2,7 +2,7 @@
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
 {
-    public class ModelTest
+    public class ModelTestDTO
     {
         [SsasColumn("DimSite[Licensee Name]")]
         public string LicenseeName { get; set; }
@@ -14,6 +14,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
         public string CurrencyName { get; set; }
 
         [SsasColumn("[Licensee Turnover]")]
-        public decimal LicenseeTurnOver { get; set; }
+        public decimal? LicenseeTurnOver { get; set; }
     }
 }
