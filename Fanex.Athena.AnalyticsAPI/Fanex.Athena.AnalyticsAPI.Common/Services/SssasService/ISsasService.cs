@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Fanex.Athena.AnalyticsAPI.Common.Repositories
+namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
-    public interface IBaseRepo
+    public interface ISsasService
     {
         Task<IEnumerable<TResult>> QueryAsync<TResult>(string query, IDictionary<string, object> parameters = null)
                         where TResult : new();

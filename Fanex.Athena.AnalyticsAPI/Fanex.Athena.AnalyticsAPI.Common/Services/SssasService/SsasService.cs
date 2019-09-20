@@ -1,5 +1,4 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
-using Fanex.Athena.AnalyticsAPI.Common.Services.SqlService;
 using Fanex.Athena.LGAPI.SSAS.Bridge.Services;
 using Fanex.Athena.LGAPI.SSAS.Bridge.Utils;
 using Microsoft.Extensions.Options;
@@ -7,11 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Fanex.Athena.AnalyticsAPI.Common.Repositories
+namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
-    public abstract class BaseRepo : IBaseRepo
+    public class SsasService : ISsasService
     {
         protected readonly SSASSetting _setting;
+
+        public string ModuleId { get; set; }
 
         private ISsasBridgeService _bridgeService;
 
@@ -25,12 +26,10 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Repositories
             }
         }
 
-        protected BaseRepo(IOptions<SSASSetting> setting)
+        protected SsasService(IOptions<SSASSetting> setting)
         {
             _setting = setting.Value;
         }
-
-        protected virtual SqlService GetSqlService(string key) => new SqlService(key);
 
         public Task<IEnumerable<TResult>> QueryAsync<TResult>(string query, IDictionary<string, object> parameters = null)
             where TResult : new()
@@ -43,7 +42,5 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Repositories
         {
             return BridgeService.QueryAsync<TResult>(criteria.Query, criteria.GetParams());
         }
-
-        protected abstract string ModuleId { get; }
     }
 }

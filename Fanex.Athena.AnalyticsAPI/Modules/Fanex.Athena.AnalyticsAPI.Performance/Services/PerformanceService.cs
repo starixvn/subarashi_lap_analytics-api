@@ -1,16 +1,18 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Performance.Repositories;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Repositories;
+using Fanex.Athena.AnalyticsAPI.Common.Services;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 {
     public class PerformanceService : BaseService, IPerformanceService
     {
-        protected readonly IPerformanceRepo _performanceRepo;
-
-        public PerformanceService(IContextService context, IPerformanceRepo performanceRepo)
-            : base(context)
+        public PerformanceService(
+            IContextService context,
+            ISsasService ssasService,
+            IDAXQueryRepository daxQueryRepo)
+            : base(context, ssasService, daxQueryRepo)
         {
-            _performanceRepo = performanceRepo;
         }
+
+        protected override string ConnectionKey => "Performance";
     }
 }

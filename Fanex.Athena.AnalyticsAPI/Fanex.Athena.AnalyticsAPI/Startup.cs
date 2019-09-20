@@ -19,8 +19,8 @@ namespace Fanex.Athena.AnalyticsAPI
 {
     public class Startup
     {
-        private static readonly string ApiName = "LAP - Analytics API";
-        private static readonly string PathBase = "/api";
+        private const string ApiName = "LAP - Analytics API";
+        private const string PathBase = "/api";
 
         public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
@@ -41,8 +41,8 @@ namespace Fanex.Athena.AnalyticsAPI
 
             services.Configure<SSASSetting>(Configuration.GetSection("SSASSetting"));
 
-            DefendenctInjectExtension.AddDIPerformance(services);
-            services.AddScoped<IContextService, ContextService>();
+            Performance.Extensions.DefendenctInjectExtension.AddDIPerformance(services);
+            Common.Extensions.DefendenctInjectExtension.AddDICommon(services);
 
             services.AddHealthChecks();
 

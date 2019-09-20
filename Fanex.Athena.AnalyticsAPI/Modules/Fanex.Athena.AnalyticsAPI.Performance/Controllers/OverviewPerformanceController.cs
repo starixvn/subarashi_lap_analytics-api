@@ -25,13 +25,13 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
             return ToResult(result);
         }
 
-        //[HttpPost]
-        //[Route("performance/overview/top-change")]
-        //public async Task<IActionResult> GetTopChange(GeneralFilterMetalModel filterParam)
-        //{
-        //    var result = await _overviewPerformanceRepo.GetTotal(filterParam);
-        //    return ToResult(result);
-        //}
+        [HttpPost]
+        [Route("performance/overview/top-change")]
+        public async Task<IActionResult> GetTopChange([FromBody]PerformanceFilterMetalModel filter)
+        {
+            var result = await _overviewPerformanceService.GetTopChangeResultWithComparison(filter);
+            return ToResult(result);
+        }
 
         //[HttpPost]
         //[Route("performance/overview/growth")]

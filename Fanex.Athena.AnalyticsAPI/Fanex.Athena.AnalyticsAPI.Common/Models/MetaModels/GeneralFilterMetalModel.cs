@@ -13,6 +13,8 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels
 
         public SelectMetalModel BaseCurrency { get; set; }
 
+        public SelectMetalModel Measurement { get; set; }
+
         public ComparisonPeriodMetalModel ComparisonPeriod { get; set; }
 
         public virtual TResult ToCriteria<TResult>()
@@ -23,6 +25,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels
             criteria.SiteId = LicenseeId;
             criteria.FromDate = FromDate;
             criteria.ToDate = ToDate;
+            criteria.Measurement = Measurement.Id;
 
             return criteria;
         }
