@@ -30,7 +30,7 @@ namespace Fanex.Athena.AnalyticsAPI
              {
                  x.AddServerHeader = false;
              })
-              .UseIISIntegration()
+             .UseIISIntegration()
              .UseStartup<Startup>();
     }
 }

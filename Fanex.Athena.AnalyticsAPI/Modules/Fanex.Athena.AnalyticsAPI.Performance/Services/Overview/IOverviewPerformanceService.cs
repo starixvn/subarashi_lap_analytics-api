@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 {
-    public interface IOverviewPerformanceService : IPerformanceService
+    public interface IOverviewPerformanceService
     {
-        Task<IEnumerable<OverviewTotalResultVM>> GetTotalResultWithComparison(PerformanceFilterMetalModel filter);
+        Task<IEnumerable<OverviewTotalResultVM>> GetSummaryResultWithComparison(PerformanceFilterMetaModel filter);
 
-        Task<IEnumerable<OverviewTopChangeResultVM>> GetTopChangeResultWithComparison(PerformanceFilterMetalModel filter);
+        Task<IEnumerable<OverviewTopChangeResultVM>> GetTopChangeResultWithComparison(PerformanceFilterMetaModel filter);
 
-        Task<IEnumerable<string>> GetGrowthResult(PerformanceFilterMetalModel filter);
+        Task<IEnumerable<string>> GetGrowthResultWithComparison(PerformanceFilterMetaModel filter);
     }
 }

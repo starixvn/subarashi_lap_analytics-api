@@ -1,7 +1,9 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Controllers;
+using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Services;
-
+using Fanex.Data;
+using Fanex.Data.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -11,23 +13,28 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
     public class OverviewPerformanceController : ControllerBaseCustom
     {
         private readonly IOverviewPerformanceService _overviewPerformanceService;
+        private readonly IDaxQueryService _service;
 
-        public OverviewPerformanceController(IOverviewPerformanceService overviewPerformanceService) : base(null)
+
+        public OverviewPerformanceController(IOverviewPerformanceService overviewPerformanceService, IDaxQueryService service) : base(null)
         {
             _overviewPerformanceService = overviewPerformanceService;
+            _service = service;
         }
 
         [HttpPost]
         [Route("performance/overview/total")]
-        public async Task<IActionResult> GetTotal([FromBody]PerformanceFilterMetalModel filter)
+        public async Task<IActionResult> GetTotal([FromBody]PerformanceFilterMetaModel filter)
         {
-            var result = await _overviewPerformanceService.GetTotalResultWithComparison(filter);
+            var x = await _service.GetDaxQuery(new TestCriteria());
+
+            var result = await _overviewPerformanceService.GetSummaryResultWithComparison(filter);
             return ToResult(result);
         }
 
         [HttpPost]
         [Route("performance/overview/top-change")]
-        public async Task<IActionResult> GetTopChange([FromBody]PerformanceFilterMetalModel filter)
+        public async Task<IActionResult> GetTopChange([FromBody]PerformanceFilterMetaModel filter)
         {
             var result = await _overviewPerformanceService.GetTopChangeResultWithComparison(filter);
             return ToResult(result);
@@ -40,5 +47,27 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         //    var result = await _overviewPerformanceRepo.GetTotal(filterParam);
         //    return ToResult(result);
         //}
+    }
+
+    public class TestCriteria : ICriteria
+    {
+        public string SiteName { get; set; } = "12BET";
+        public int BaseCurrencyId { get; set; } = 2;
+        public string FromDate { get; set; } = "01/01/2019";
+        public string ToDate { get; set; } = "08/31/2019";
+
+        [SpParam(Ignored = true)]
+        public int MyProperty { get; set; } = 0;
+
+
+        public string GetSettingKey()
+        {
+            return "LAP_Performance_Overview_Summary";
+        }
+
+        public bool IsValid()
+        {
+            return true;
+        }
     }
 }

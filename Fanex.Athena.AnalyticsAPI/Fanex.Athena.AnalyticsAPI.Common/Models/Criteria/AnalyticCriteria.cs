@@ -1,17 +1,24 @@
-﻿using Fanex.Athena.LGAPI.SSAS.Bridge.Attributes;
+﻿using Fanex.Data.Repository;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Models.Criteria
 {
-    public abstract class AnalyticCriteria : DAXQueryCriteria
+    public class AnalyticCriteria : ICriteria
     {
-        public int SiteId { get; set; }
-        public int BaseCurrency { get; set; }
+        protected AnalyticCriteria()
+        {
+        }
+
+        public string SiteName { get; set; }
+        public int BaseCurrencyId { get; set; }
         public string FromDate { get; set; }
         public string ToDate { get; set; }
-        public int Measurement { get; set; }
-        public int Perspective { get; set; }
 
-        public override bool IsValid()
+        public virtual string GetSettingKey()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public virtual bool IsValid()
         {
             return true;
         }

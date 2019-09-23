@@ -2,9 +2,9 @@
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain
 {
-    public class ResponseDataViewModel<T> : ResponseDataViewModel
+    public class ResponseDataVM<T> : ResponseDataVM
     {
-        public ResponseDataViewModel(T data, bool isSuccess, string msg)
+        public ResponseDataVM(T data, bool isSuccess, string msg)
             : base(isSuccess, msg)
         {
             Data = data;
@@ -14,9 +14,9 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain
         public T Data { get; set; }
     }
 
-    public class ResponseDataViewModel
+    public class ResponseDataVM
     {
-        public ResponseDataViewModel(bool isSuccess, string msg)
+        public ResponseDataVM(bool isSuccess, string msg)
         {
             IsSuccess = isSuccess;
             Msg = msg;

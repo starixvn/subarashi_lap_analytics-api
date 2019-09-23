@@ -16,13 +16,13 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Controllers
         [NonAction]
         protected JsonResult ToResult<T>(T data)
         {
-            return new JsonResult(new ResponseDataViewModel<T>(data, _contextService.Errors == null || _contextService.Errors.Count == 0, _contextService.Message));
+            return new JsonResult(new ResponseDataVM<T>(data, _contextService.Errors == null || _contextService.Errors.Count == 0, _contextService.Message));
         }
 
         [NonAction]
         protected JsonResult ToResult()
         {
-            return new JsonResult(new ResponseDataViewModel(_contextService.Errors == null || _contextService.Errors.Count == 0, _contextService.Message));
+            return new JsonResult(new ResponseDataVM(_contextService.Errors == null || _contextService.Errors.Count == 0, _contextService.Message));
         }
     }
 }

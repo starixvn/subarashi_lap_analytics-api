@@ -2,18 +2,18 @@
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
 {
-    public class TotalResultDTO
+    public class SummaryResultDTO
     {
         [SsasColumn("DimSite[Licensee Name]")]
         public string LicenseeName { get; set; }
 
-        [SsasColumn("[Licensee Turnover]")]
+        [SsasColumn("[Turnover]")]
         public decimal Turnover { get; set; }
 
-        [SsasColumn("[Licensee Winloss]")]
+        [SsasColumn("[Gross Profit]")]
         public decimal GrossProfit { get; set; }
 
-        [SsasColumn("[Licensee Margin]")]
+        [SsasColumn("[Margin]")]
         public double Margin { get; set; }
     }
 }

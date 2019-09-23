@@ -38,7 +38,6 @@ namespace Fanex.Athena.AnalyticsAPI
             services.AddSwaggerDoc(Env, ApiName);
 
             services.Configure<ApplicationOptions>(Configuration.GetSection("ApplicationOptions"));
-
             services.Configure<SSASSetting>(Configuration.GetSection("SSASSetting"));
 
             Performance.Extensions.DefendenctInjectExtension.AddDIPerformance(services);
@@ -74,10 +73,9 @@ namespace Fanex.Athena.AnalyticsAPI
             var connectionStrings = new Dictionary<string, ConnectionConfiguration>
             {
                 {
-                    "DBEXT.bodb02.bodbLicenseeNet",
-                    new ConnectionConfiguration("DBEXT.bodb02.bodbLicenseeNet",
-                Configuration.GetConnectionString("DBEXT.bodb02.bodbLicenseeNet"))
-
+                    "DBEXT.bodb_dwrs.bodbLicenseeNet",
+                    new ConnectionConfiguration("DBEXT.bodb_dwrs.bodbLicenseeNet", 
+                        Configuration.GetConnectionString("DBEXT.bodb_dwrs.bodbLicenseeNet"))
                 }
             };
             return connectionStrings;

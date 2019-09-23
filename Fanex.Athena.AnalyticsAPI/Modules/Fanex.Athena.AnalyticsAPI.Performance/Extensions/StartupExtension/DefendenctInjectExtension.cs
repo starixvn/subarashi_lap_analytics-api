@@ -1,4 +1,5 @@
-﻿using Fanex.Athena.AnalyticsAPI.Performance.Services;
+﻿using Fanex.Athena.AnalyticsAPI.Performance.Repositories;
+using Fanex.Athena.AnalyticsAPI.Performance.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Extensions
@@ -15,7 +16,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Extensions
 
         private static IServiceCollection AddServices(this IServiceCollection services)
         {
-            services.AddTransient<IPerformanceService, PerformanceService>();
             services.AddTransient<ICurrencyPerformanceService, CurrencyPerformanceService>();
             services.AddTransient<IOverviewPerformanceService, OverviewPerformanceService>();
 
@@ -24,6 +24,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Extensions
 
         private static IServiceCollection AddRepositories(this IServiceCollection services)
         {
+            services.AddTransient<IPerformanceRepository, PerformanceRepository>();
+
             return services;
         }
     }

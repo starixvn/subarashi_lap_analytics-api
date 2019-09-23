@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels
 {
-    public class SelectMetalModel
+    public class SelectMetaModel
     {
         public int Id { get; set; }
 

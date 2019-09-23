@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions SiteId="31" SiteName="LRF">
-  <Function Name="Common">
-   
+  <Function Name="DAX_Query_Performance_Overview">
+    <Setting Key="LAP_Performance_Overview_Summary" SpName="LAP_Performance_OverviewSummaryBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+    <Setting Key="LAP_Performance_OverviewCurencyBySite" SpName="LAP_Performance_OverviewCurencyBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+    <Setting Key="LAP_Performance_OverviewBetypeBySite" SpName="LAP_Performance_OverviewBetypeBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+    <Setting Key="LAP_Performance_OverviewPlatFormBySite" SpName="LAP_Performance_OverviewPlatFormBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+    <Setting Key="LAP_Performance_OverviewMeasurementGrowthBySite" SpName="LAP_Performance_OverviewMeasurementGrowthBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
   </Function>
 </Functions>

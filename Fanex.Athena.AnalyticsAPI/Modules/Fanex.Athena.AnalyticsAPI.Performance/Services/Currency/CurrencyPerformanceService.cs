@@ -1,5 +1,5 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Repositories;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
+using Fanex.Athena.AnalyticsAPI.Performance.Repositories;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 {
@@ -7,9 +7,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
     {
         public CurrencyPerformanceService(
             IContextService context,
-            ISsasService ssasService,
-            IDAXQueryRepository daxQueryRepo)
-            : base(context, ssasService, daxQueryRepo)
+            IPerformanceRepository performanceRepository
+            ) : base(context, performanceRepository)
         {
         }
     }

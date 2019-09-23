@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 {
-    public interface ICurrencyPerformanceService : IPerformanceService
+    public interface ICurrencyPerformanceService
     {
     }
 }
