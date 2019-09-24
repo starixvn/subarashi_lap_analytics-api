@@ -13,88 +13,80 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 {
     public class OverviewPerformanceService : PerformanceService, IOverviewPerformanceService
     {
+        protected readonly ICalculationService _calculationService;
+
         public OverviewPerformanceService(
             IContextService context,
-            IPerformanceRepository performanceRepository
+            IPerformanceRepository performanceRepository,
+            ICalculationService calculationService
             ) : base(context, performanceRepository)
         {
+            _calculationService = calculationService;
         }
 
-        public Task<IEnumerable<string>> GetGrowthResultWithComparison(PerformanceFilterMetaModel filter)
+        public async Task<IEnumerable<MeasurementGrowthVM>> GetGrowthResultWithComparison(PerformanceFilterMetaModel filter)
         {
-            throw new NotImplementedException();
+            var criteria = filter.ToCriteria<OverviewMeasurementGrowthCriteria>();
+            var dto = await _performanceRepository.QueryAsync<MeasurementGrowthDTO>(criteria);
+            var result = dto.Select(_ => new MeasurementGrowthVM
+            {
+            });
+
+            return result;
         }
 
-        public async Task<IEnumerable<OverviewTopChangeResultVM>> GetTopChangeResultWithComparison(PerformanceFilterMetaModel filter)
+        public async Task<IEnumerable<TopChangeVM>> GetTopChangeResultWithComparison(PerformanceFilterMetaModel filter)
         {
             var criteria = filter.ToCriteria<OverviewTopChangeCriteria>();
 
-            var topChangeByCurrency = await _performanceRepository.QueryAsync<TopChangeResultDTO>(criteria);
+            criteria.Dimension = 0;
+            var currencyDim = await _performanceRepository.QueryAsync<CurrencyTopChangeDTO>(criteria);
 
-            //criteria.Perspective = 1;
-            //var topChangeByBettype = await _performanceRepo.QueryAsync<TopChangeResultDTO>(criteria);
+            criteria.Dimension = 1;
+            var bettypeDim = await _performanceRepository.QueryAsync<BettypeTopChangeDTO>(criteria);
 
-
-            //criteria.Perspective = 2;
-            //var topChangeByPlatform = await _performanceRepo.QueryAsync<TopChangeResultDTO>(criteria);
-
-            //var taskResults = await Task.WhenAll(topChangeByCurrency);
-
-            //var result = new List<OverviewTopChangeResultVM>
-            //{
-            //    new OverviewTopChangeResultVM
-            //    {
-            //        Perspective = 0,
-            //        Table = taskResults[0].Select(_ => new OverviewTopChangeResultItemVM
-            //        {
-            //            Total = _.Total,
-            //            PercentChange = new Random().Next(-20, 20)
-            //        })
-            //    }
-            //};
-
-            //return result;
+            criteria.Dimension = 2;
+            var platformDim = await _performanceRepository.QueryAsync<PlatformTopChangeDTO>(criteria);
 
             return null;
         }
 
-        public async Task<IEnumerable<OverviewTotalResultVM>> GetSummaryResultWithComparison(PerformanceFilterMetaModel filter)
+        public async Task<IEnumerable<SummaryVM>> GetSummaryResultWithComparison(PerformanceFilterMetaModel filter)
         {
+            //
+            var criteria = filter.ToCriteria<OverviewSummaryCriteria>();
+            var summary = await _performanceRepository.QueryAsync<SummaryDTO>(criteria);
+            var selectedData = summary.FirstOrDefault();
 
-            //var criteria = filter.ToCriteria<OverviewTotalCriteria>();
-            //var query = await _daxQueryRepo.GetQuery(criteria);
+            //
+            filter.UpdateDateRangeByComparisonPeriod();
+            criteria = filter.ToCriteria<OverviewSummaryCriteria>();
+            summary = await _performanceRepository.QueryAsync<SummaryDTO>(criteria);
+            var prevData = summary.FirstOrDefault();
 
-            //var dto = await _ssasService.QueryAsync<TotalResultDTO>(query);
-            //var first = dto.FirstOrDefault();
+            var result = new List<SummaryVM>
+            {
+                new SummaryVM
+                {
+                    MeasurementId = 0,
+                    Value = selectedData?.Turnover,
+                    ChangePercent = _calculationService.CalculateGrowth(selectedData?.Turnover, prevData?.Turnover)
+                },
+                new SummaryVM
+                {
+                    MeasurementId = 1,
+                    Value = selectedData?.GrossProfit,
+                    ChangePercent = _calculationService.CalculateGrowth(selectedData?.GrossProfit, prevData?.GrossProfit)
+                },
+                new SummaryVM
+                {
+                    MeasurementId = 2,
+                    Value = selectedData?.Margin,
+                    ChangePercent = _calculationService.CalculateGrowth(selectedData?.Margin, prevData?.Margin)
+                }
+            };
 
-            //var result = new List<OverviewTotalResultVM>
-            //{
-            //    new OverviewTotalResultVM
-            //    {
-            //        Measurement = "Turnover",
-            //        BaseCurrency = filter.BaseCurrency.Name,
-            //        Value = first?.Turnover,
-            //        PercentChange = new Random().Next(-20, 20)
-            //    },
-            //    new OverviewTotalResultVM
-            //    {
-            //        Measurement = "Gross Profit",
-            //        BaseCurrency = filter.BaseCurrency.Name,
-            //        Value = first?.GrossProfit,
-            //        PercentChange = new Random().Next(-20, 20)
-            //    },
-            //    new OverviewTotalResultVM
-            //    {
-            //        Measurement = "Margin",
-            //        BaseCurrency = filter.BaseCurrency.Name,
-            //        Value = Convert.ToDecimal(first?.Margin),
-            //        PercentChange = new Random().Next(-20, 20)
-            //    }
-            //};
-
-            //return result;
-
-            return null;
+            return result;
         }
     }
 }

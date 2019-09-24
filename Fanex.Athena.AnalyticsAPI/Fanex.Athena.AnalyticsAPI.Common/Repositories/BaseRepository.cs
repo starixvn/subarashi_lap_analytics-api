@@ -14,20 +14,20 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Repositories
     {
         protected readonly SSASSetting _setting;
 
-        protected readonly IDaxQueryService _daxQueryService;
+        protected readonly IDaxQueryContentService _daxQueryService;
 
         protected readonly ISsasBridgeService _bridgeService;
 
         protected BaseRepository(
             IOptions<SSASSetting> setting,
-            IDaxQueryService daxQueryService,
+            IDaxQueryContentService daxQueryService,
             ISsasBridgeService bridgeService
             )
         {
             _setting = setting.Value;
             _daxQueryService = daxQueryService;
 
-            bridgeService.Setting = bridgeService.Setting ?? new BridgeSetting
+            bridgeService.Setting = new BridgeSetting
             {
                 BridgeHost = _setting?.BridgeHost,
                 ConnectionKey = _setting?.Modules?.FirstOrDefault(_ => _.ModuleId.Equals(ModuleId))?.ConnectionKey,

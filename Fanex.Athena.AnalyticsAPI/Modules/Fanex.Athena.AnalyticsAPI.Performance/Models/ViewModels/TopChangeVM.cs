@@ -2,7 +2,7 @@
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels
 {
-    public class OverviewTopChangeResultVM
+    public class TopChangeVM
     {
         public IEnumerable<OverviewTopChangeResultItemVM> Table { get; set; }
         public int Perspective { get; set; }

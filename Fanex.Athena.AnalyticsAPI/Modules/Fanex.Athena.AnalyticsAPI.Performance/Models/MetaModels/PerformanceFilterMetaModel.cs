@@ -4,6 +4,5 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels
 {
     public class PerformanceFilterMetaModel : GeneralFilterMetaModel
     {
-
     }
 }

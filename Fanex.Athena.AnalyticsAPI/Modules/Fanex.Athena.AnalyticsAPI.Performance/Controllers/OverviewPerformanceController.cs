@@ -13,21 +13,19 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
     public class OverviewPerformanceController : ControllerBaseCustom
     {
         private readonly IOverviewPerformanceService _overviewPerformanceService;
-        private readonly IDaxQueryService _service;
+        private readonly IDaxQueryContentService _service;
 
 
-        public OverviewPerformanceController(IOverviewPerformanceService overviewPerformanceService, IDaxQueryService service) : base(null)
+        public OverviewPerformanceController(IOverviewPerformanceService overviewPerformanceService, IDaxQueryContentService service) : base(null)
         {
             _overviewPerformanceService = overviewPerformanceService;
             _service = service;
         }
 
         [HttpPost]
-        [Route("performance/overview/total")]
-        public async Task<IActionResult> GetTotal([FromBody]PerformanceFilterMetaModel filter)
+        [Route("performance/overview/summary")]
+        public async Task<IActionResult> GetSummary([FromBody]PerformanceFilterMetaModel filter)
         {
-            var x = await _service.GetDaxQuery(new TestCriteria());
-
             var result = await _overviewPerformanceService.GetSummaryResultWithComparison(filter);
             return ToResult(result);
         }
@@ -40,13 +38,13 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
             return ToResult(result);
         }
 
-        //[HttpPost]
-        //[Route("performance/overview/growth")]
-        //public async Task<IActionResult> GetGrowth(GeneralFilterMetalModel filterParam)
-        //{
-        //    var result = await _overviewPerformanceRepo.GetTotal(filterParam);
-        //    return ToResult(result);
-        //}
+        [HttpPost]
+        [Route("performance/overview/growth")]
+        public async Task<IActionResult> GetGrowth(PerformanceFilterMetaModel filterParam)
+        {
+            var result = await _overviewPerformanceService.GetGrowthResultWithComparison(filterParam);
+            return ToResult(result);
+        }
     }
 
     public class TestCriteria : ICriteria
@@ -62,7 +60,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 
         public string GetSettingKey()
         {
-            return "LAP_Performance_Overview_Summary";
+            return "LAP_Performance_OverviewSummaryBySite";
         }
 
         public bool IsValid()

@@ -10,7 +10,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Repositories
     {
         public PerformanceRepository(
             IOptions<SSASSetting> setting,
-            IDaxQueryService daxQueryService,
+            IDaxQueryContentService daxQueryService,
             ISsasBridgeService bridgeService
             ) : base(setting, daxQueryService, bridgeService)
         {

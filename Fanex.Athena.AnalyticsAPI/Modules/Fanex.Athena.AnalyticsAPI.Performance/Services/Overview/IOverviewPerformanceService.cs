@@ -7,10 +7,10 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 {
     public interface IOverviewPerformanceService
     {
-        Task<IEnumerable<OverviewTotalResultVM>> GetSummaryResultWithComparison(PerformanceFilterMetaModel filter);
+        Task<IEnumerable<SummaryVM>> GetSummaryResultWithComparison(PerformanceFilterMetaModel filter);
 
-        Task<IEnumerable<OverviewTopChangeResultVM>> GetTopChangeResultWithComparison(PerformanceFilterMetaModel filter);
+        Task<IEnumerable<TopChangeVM>> GetTopChangeResultWithComparison(PerformanceFilterMetaModel filter);
 
-        Task<IEnumerable<string>> GetGrowthResultWithComparison(PerformanceFilterMetaModel filter);
+        Task<IEnumerable<MeasurementGrowthVM>> GetGrowthResultWithComparison(PerformanceFilterMetaModel filter);
     }
 }

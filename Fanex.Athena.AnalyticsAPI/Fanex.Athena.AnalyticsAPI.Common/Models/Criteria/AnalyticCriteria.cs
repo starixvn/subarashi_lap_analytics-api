@@ -2,23 +2,14 @@
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Models.Criteria
 {
-    public class AnalyticCriteria : ICriteria
+    public abstract class AnalyticCriteria : CriteriaBase, ICriteria
     {
-        protected AnalyticCriteria()
-        {
-        }
-
-        public string SiteName { get; set; }
+        public string SiteName { get; set; } = "12BET";
         public int BaseCurrencyId { get; set; }
         public string FromDate { get; set; }
         public string ToDate { get; set; }
 
-        public virtual string GetSettingKey()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public virtual bool IsValid()
+        public override bool IsValid()
         {
             return true;
         }

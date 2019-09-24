@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
 using Fanex.Athena.AnalyticsAPI.Core.Extensions;
 using Fanex.Athena.AnalyticsAPI.Core.Models.Configuration;
-using Fanex.Athena.AnalyticsAPI.Performance.Extensions;
 using Fanex.Athena.ExtService.Common.Models.DTO;
 using Fanex.Data;
 using Fanex.Data.SqlServer;
@@ -14,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
 
 namespace Fanex.Athena.AnalyticsAPI
 {
@@ -74,7 +72,7 @@ namespace Fanex.Athena.AnalyticsAPI
             {
                 {
                     "DBEXT.bodb_dwrs.bodbLicenseeNet",
-                    new ConnectionConfiguration("DBEXT.bodb_dwrs.bodbLicenseeNet", 
+                    new ConnectionConfiguration("DBEXT.bodb_dwrs.bodbLicenseeNet",
                         Configuration.GetConnectionString("DBEXT.bodb_dwrs.bodbLicenseeNet"))
                 }
             };

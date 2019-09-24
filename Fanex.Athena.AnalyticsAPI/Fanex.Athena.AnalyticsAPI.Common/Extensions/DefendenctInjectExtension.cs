@@ -1,8 +1,6 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.LGAPI.SSAS.Bridge.Services;
 using Fanex.Data.Repository;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
@@ -21,8 +19,9 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
         private static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddTransient<IContextService, ContextService>();
-            services.AddTransient<IDaxQueryService, DaxQueryService>();
+            services.AddTransient<IDaxQueryContentService, DaxQueryContentService>();
             services.AddTransient<ISsasBridgeService, SsasBridgeService>();
+            services.AddTransient<ICalculationService, CalculationService>();
 
             return services;
         }

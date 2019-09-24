@@ -5,7 +5,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria
 {
     public class OverviewTopChangeCriteria : AnalyticCriteria
     {
-        private static string[] spNames = new [] 
+        private static string[] settingKeys = new [] 
         {
             "LAP_Performance_OverviewCurencyBySite",
             "LAP_Performance_OverviewBetypeBySite",
@@ -15,11 +15,11 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria
         public int MeasurementId { get; set; }
 
         [SpParam(Ignored = true)]
-        public int Perspective { get; set; }
+        public int Dimension { get; set; }
 
         public override string GetSettingKey()
         {
-            return spNames[Perspective];
+            return settingKeys[Dimension];
         }
     }
 }

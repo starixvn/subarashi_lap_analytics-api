@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
-    public class DaxQueryService : IDaxQueryService
+    public class DaxQueryContentService : IDaxQueryContentService
     {
         private const string DAX_Query_Output_Name = "DAX_Query";
 

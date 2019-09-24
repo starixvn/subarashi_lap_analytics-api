@@ -1,14 +1,17 @@
 ﻿using Fanex.Athena.LGAPI.SSAS.Bridge.Attributes;
+using System;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
 {
-    public class TopChangeResultDTO
+    public class MeasurementGrowthDTO
     {
         [SsasColumn("DimSite[Licensee Name]")]
         public string LicenseeName { get; set; }
-        [SsasColumn("DimCurrency[CurrencyName]")]
-        public string Perspective { get; set; }
-        [SsasColumn("[Total]")]
+
+        [SsasColumn("DimDate[MonthKey]")]
+        public DateTime Time { get; set; }
+
+        [SsasColumn("[Measurement]")]
         public decimal Total { get; set; }
     }
 }

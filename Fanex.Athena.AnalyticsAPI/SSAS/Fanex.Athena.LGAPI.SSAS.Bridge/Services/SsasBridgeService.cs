@@ -36,7 +36,7 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.Services
             {
                 client.BaseAddress = new Uri(Setting.BridgeHost);
                 HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Post, bridgeUrl);
-                requestMessage.Content = new StringContent(JsonConvert.SerializeObject(new { query, connectionKey = Setting.BridgeHost, parameters }), Encoding.UTF8, "application/json");
+                requestMessage.Content = new StringContent(JsonConvert.SerializeObject(new { query, connectionKey = Setting.ConnectionKey, parameters }), Encoding.UTF8, "application/json");
                 var response = await client.SendAsync(requestMessage);
                 var content = await response.Content.ReadAsStringAsync();
 

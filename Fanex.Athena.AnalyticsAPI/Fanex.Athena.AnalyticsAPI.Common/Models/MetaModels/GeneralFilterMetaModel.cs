@@ -23,8 +23,22 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels
             criteria.SiteName = "12BET";
             criteria.FromDate = FromDate;
             criteria.ToDate = ToDate;
-
             return criteria;
+        }
+
+        public void UpdateDateRangeByComparisonPeriod()
+        {
+            //test mode
+            if (ComparisonPeriod.IsPreviousPeriod)
+            {
+                FromDate = "05/01/2019";
+                ToDate = "12/31/2019";
+            }
+            else
+            {
+                FromDate = "06/01/2019";
+                ToDate = "12/31/2019";
+            }
         }
     }
 }
