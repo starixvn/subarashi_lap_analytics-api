@@ -1,4 +1,5 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Criteria;
+using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels
 {

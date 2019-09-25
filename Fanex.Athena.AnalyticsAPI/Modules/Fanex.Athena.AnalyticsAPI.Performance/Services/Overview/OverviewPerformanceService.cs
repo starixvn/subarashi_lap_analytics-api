@@ -4,7 +4,6 @@ using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Repositories;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,68 +23,119 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             _calculationService = calculationService;
         }
 
-        public async Task<IEnumerable<MeasurementGrowthVM>> GetGrowthResultWithComparison(PerformanceFilterMetaModel filter)
+        public async Task<IEnumerable<MeasurementGrowthVM>> GetGrowthWithComparison(PerformanceFilterMetaModel filter)
         {
-            var criteria = filter.ToCriteria<OverviewMeasurementGrowthCriteria>();
-            var dto = await _performanceRepository.QueryAsync<MeasurementGrowthDTO>(criteria);
-            var result = dto.Select(_ => new MeasurementGrowthVM
+            var criteriaSelectedPeriod = filter.ToCriteria<OverviewMeasurementGrowthCriteria>();
+            var taskSelectedPeriod = _performanceRepository.QueryAsync<MeasurementGrowthDTO>(criteriaSelectedPeriod);
+
+            filter.UpdateDateRangeByComparePeriod();
+            var criteriaComparePeriod = filter.ToCriteria<OverviewMeasurementGrowthCriteria>();
+            var taskComparePeriod = _performanceRepository.QueryAsync<MeasurementGrowthDTO>(criteriaComparePeriod);
+
+            var taskResults = await Task.WhenAll(taskSelectedPeriod, taskComparePeriod);
+
+            var result = taskResults[0].Select(_ => new MeasurementGrowthVM
             {
+                Time = _.Time.ToString(),
+                Total = _.Total,
             });
 
             return result;
         }
 
-        public async Task<IEnumerable<TopChangeVM>> GetTopChangeResultWithComparison(PerformanceFilterMetaModel filter)
+        public async Task<IEnumerable<SummaryVM>> GetSummaryWithComparison(PerformanceFilterMetaModel filter)
         {
-            var criteria = filter.ToCriteria<OverviewTopChangeCriteria>();
+            var criteriaSelectedPeriod = filter.ToCriteria<OverviewSummaryCriteria>();
+            var taskSelectedPeriod = _performanceRepository.QueryAsync<SummaryDTO>(criteriaSelectedPeriod);
 
-            criteria.Dimension = 0;
-            var currencyDim = await _performanceRepository.QueryAsync<CurrencyTopChangeDTO>(criteria);
+            filter.UpdateDateRangeByComparePeriod();
+            var criteriaComparePeriod = filter.ToCriteria<OverviewSummaryCriteria>();
+            var taskComparePeriod = _performanceRepository.QueryAsync<SummaryDTO>(criteriaComparePeriod);
 
-            criteria.Dimension = 1;
-            var bettypeDim = await _performanceRepository.QueryAsync<BettypeTopChangeDTO>(criteria);
+            var taskResults = await Task.WhenAll(taskSelectedPeriod, taskComparePeriod);
 
-            criteria.Dimension = 2;
-            var platformDim = await _performanceRepository.QueryAsync<PlatformTopChangeDTO>(criteria);
-
-            return null;
-        }
-
-        public async Task<IEnumerable<SummaryVM>> GetSummaryResultWithComparison(PerformanceFilterMetaModel filter)
-        {
-            //
-            var criteria = filter.ToCriteria<OverviewSummaryCriteria>();
-            var summary = await _performanceRepository.QueryAsync<SummaryDTO>(criteria);
-            var selectedData = summary.FirstOrDefault();
-
-            //
-            filter.UpdateDateRangeByComparisonPeriod();
-            criteria = filter.ToCriteria<OverviewSummaryCriteria>();
-            summary = await _performanceRepository.QueryAsync<SummaryDTO>(criteria);
-            var prevData = summary.FirstOrDefault();
+            var selectedPeriodData = taskResults[0]?.FirstOrDefault();
+            var comparePeriodData = taskResults[1]?.FirstOrDefault();
 
             var result = new List<SummaryVM>
             {
                 new SummaryVM
                 {
                     MeasurementId = 0,
-                    Value = selectedData?.Turnover,
-                    ChangePercent = _calculationService.CalculateGrowth(selectedData?.Turnover, prevData?.Turnover)
+                    Value = selectedPeriodData?.Turnover,
+                    ChangePercent = _calculationService.CalculateGrowth(selectedPeriodData?.Turnover, comparePeriodData?.Turnover)
                 },
                 new SummaryVM
                 {
                     MeasurementId = 1,
-                    Value = selectedData?.GrossProfit,
-                    ChangePercent = _calculationService.CalculateGrowth(selectedData?.GrossProfit, prevData?.GrossProfit)
+                    Value = selectedPeriodData?.GrossProfit,
+                    ChangePercent = _calculationService.CalculateGrowth(selectedPeriodData?.GrossProfit, comparePeriodData?.GrossProfit)
                 },
                 new SummaryVM
                 {
                     MeasurementId = 2,
-                    Value = selectedData?.Margin,
-                    ChangePercent = _calculationService.CalculateGrowth(selectedData?.Margin, prevData?.Margin)
+                    Value = selectedPeriodData?.Margin,
+                    ChangePercent = _calculationService.CalculateGrowth(selectedPeriodData?.Margin, comparePeriodData?.Margin)
                 }
             };
 
+            return result;
+        }
+
+        public async Task<IEnumerable<TopChangeVM>> GetCurrencyTopChangeWithComparison(PerformanceFilterMetaModel filter)
+        {
+            var criteriaSelectedPeriod = filter.ToCriteria<OverviewTopChangeCriteria>();
+            criteriaSelectedPeriod.Dimension = 0;
+            var taskSelectedPeriod = _performanceRepository.QueryAsync<CurrencyTopChangeDTO>(criteriaSelectedPeriod);
+
+            filter.UpdateDateRangeByComparePeriod();
+            var criteriaComparePeriod = filter.ToCriteria<OverviewTopChangeCriteria>();
+            criteriaComparePeriod.Dimension = 0;
+            var taskComparePeriod = _performanceRepository.QueryAsync<CurrencyTopChangeDTO>(criteriaComparePeriod);
+
+            var taskResults = await Task.WhenAll(taskSelectedPeriod, taskComparePeriod);
+
+            var result = new List<TopChangeVM>
+            {
+            };
+            return result;
+        }
+
+        public async Task<IEnumerable<TopChangeVM>> GetBettypeTopChangeWithComparison(PerformanceFilterMetaModel filter)
+        {
+            var criteriaSelectedPeriod = filter.ToCriteria<OverviewTopChangeCriteria>();
+            criteriaSelectedPeriod.Dimension = 1;
+            var taskSelectedPeriod = _performanceRepository.QueryAsync<BettypeTopChangeDTO>(criteriaSelectedPeriod);
+
+            filter.UpdateDateRangeByComparePeriod();
+            var criteriaComparePeriod = filter.ToCriteria<OverviewTopChangeCriteria>();
+            criteriaComparePeriod.Dimension = 1;
+            var taskComparePeriod = _performanceRepository.QueryAsync<BettypeTopChangeDTO>(criteriaComparePeriod);
+
+            var taskResults = await Task.WhenAll(taskSelectedPeriod, taskComparePeriod);
+
+            var result = new List<TopChangeVM>
+            {
+            };
+            return result;
+        }
+
+        public async Task<IEnumerable<TopChangeVM>> GetPlatformTopChangeWithComparison(PerformanceFilterMetaModel filter)
+        {
+            var criteriaSelectedPeriod = filter.ToCriteria<OverviewTopChangeCriteria>();
+            criteriaSelectedPeriod.Dimension = 2;
+            var taskSelectedPeriod = _performanceRepository.QueryAsync<PlatformTopChangeDTO>(criteriaSelectedPeriod);
+
+            filter.UpdateDateRangeByComparePeriod();
+            var criteriaComparePeriod = filter.ToCriteria<OverviewTopChangeCriteria>();
+            criteriaComparePeriod.Dimension = 2;
+            var taskComparePeriod = _performanceRepository.QueryAsync<PlatformTopChangeDTO>(criteriaComparePeriod);
+
+            var taskResults = await Task.WhenAll(taskSelectedPeriod, taskComparePeriod);
+
+            var result = new List<TopChangeVM>
+            {
+            };
             return result;
         }
     }
