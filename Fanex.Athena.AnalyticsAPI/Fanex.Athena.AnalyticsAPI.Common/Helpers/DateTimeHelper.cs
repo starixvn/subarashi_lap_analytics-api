@@ -8,12 +8,12 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
         public const string DATE_FORMAT = "MM/dd/yyyy";
         public const string MONTH_FORMAT = "MM/yyyy";
 
-        public static string ParseToFullDateString(string date, bool includeEndOfMonth) //- MM/yyyy => MM/dd/yyyy
+        public static string ParseFromFormatMonthToString(string date, bool includeEndOfMonth)
         {
-            return ParseToFullDate(date, includeEndOfMonth).ToString(DATE_FORMAT);
+            return ParseFromFormatMonthToDate(date, includeEndOfMonth).ToString(DATE_FORMAT);
         }
 
-        public static DateTime ParseToFullDate(string date, bool includeEndOfMonth) //- MM/yyyy => MM/dd/yyyy
+        public static DateTime ParseFromFormatMonthToDate(string date, bool includeEndOfMonth)
         {
             var parsedDate = DateTime.ParseExact(date, MONTH_FORMAT, CultureInfo.InvariantCulture);
             var day = includeEndOfMonth ? DateTime.DaysInMonth(parsedDate.Year, parsedDate.Month) : 1;
@@ -21,9 +21,10 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
             return new DateTime(parsedDate.Year, parsedDate.Month, day);
         }
 
-        public static DateTime MinusMonth(this DateTime date, int numberOfMonth)
+        public static DateTime ParseFromFormatDateToDate(string date)
         {
-            return date.AddMonths(-1);
+            var parsedDate = DateTime.ParseExact(date, DATE_FORMAT, CultureInfo.InvariantCulture);
+            return parsedDate;
         }
     }
 }

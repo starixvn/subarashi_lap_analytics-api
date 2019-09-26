@@ -15,6 +15,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
         Task<IEnumerable<TopChangeVM>> GetPlatformTopChangeWithComparison(PerformanceFilterMetaModel filter);
 
+        Task<IEnumerable<TopChangeVM>> GetProductTopChangeWithComparison(PerformanceFilterMetaModel filter);
+
         Task<IEnumerable<MeasurementGrowthVM>> GetGrowthWithComparison(PerformanceFilterMetaModel filter);
     }
 }

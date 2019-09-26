@@ -8,12 +8,12 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
         public string LicenseeName { get; set; }
 
         [SsasColumn("[Measurement]")]
-        public decimal? Total { get; set; }
+        public decimal Total { get; set; }
     }
 
     public class CurrencyTopChangeDTO : TopChangeDTO
     {
-        [SsasColumn("DimCurrency[CurrencyId]")]
+        [SsasColumn("DimCurrency[CurrencyID]")]
         public int CurrencyId { get; set; }
     }
 
@@ -23,7 +23,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
         public int BetTypeDisplayID { get; set; }
 
         [SsasColumn("DimSportBettypeMatrix[BetTypeDisplayName]")]
-        public int BetTypeDisplayName { get; set; }
+        public string BetTypeDisplayName { get; set; }
     }
 
     public class PlatformTopChangeDTO : TopChangeDTO

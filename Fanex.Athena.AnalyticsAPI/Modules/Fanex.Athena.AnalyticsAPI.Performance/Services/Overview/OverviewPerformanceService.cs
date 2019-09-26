@@ -1,4 +1,5 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Helpers;
+using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
@@ -7,6 +8,8 @@ using Fanex.Athena.AnalyticsAPI.Performance.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CommonHelper = Fanex.Athena.AnalyticsAPI.Common.Helpers;
+using PerformanceHelper = Fanex.Athena.AnalyticsAPI.Performance.Helpers;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 {
@@ -25,18 +28,17 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
         public async Task<IEnumerable<MeasurementGrowthVM>> GetGrowthWithComparison(PerformanceFilterMetaModel filter)
         {
-            var criteriaSelectedPeriod = filter.ToCriteria<OverviewMeasurementGrowthCriteria>();
+            var criteriaSelectedPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewMeasurementGrowthCriteria, PerformanceFilterMetaModel>(filter);
             var taskSelectedPeriod = _performanceRepository.QueryAsync<MeasurementGrowthDTO>(criteriaSelectedPeriod);
 
-            filter.UpdateDateRangeByComparePeriod();
-            var criteriaComparePeriod = filter.ToCriteria<OverviewMeasurementGrowthCriteria>();
+            var criteriaComparePeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewMeasurementGrowthCriteria, PerformanceFilterMetaModel>(filter, false);
             var taskComparePeriod = _performanceRepository.QueryAsync<MeasurementGrowthDTO>(criteriaComparePeriod);
 
             var taskResults = await Task.WhenAll(taskSelectedPeriod, taskComparePeriod);
 
             var result = taskResults[0].Select(_ => new MeasurementGrowthVM
             {
-                Time = _.Time.ToString(),
+                Time = _.Time.ToLocalTime().ToString(CommonHelper.DateTimeHelper.MONTH_FORMAT),
                 Total = _.Total,
             });
 
@@ -45,11 +47,10 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
         public async Task<IEnumerable<SummaryVM>> GetSummaryWithComparison(PerformanceFilterMetaModel filter)
         {
-            var criteriaSelectedPeriod = filter.ToCriteria<OverviewSummaryCriteria>();
+            var criteriaSelectedPeriod = CommonHelper.CriteriaHelper.ToCriteria<OverviewSummaryCriteria, PerformanceFilterMetaModel>(filter);
             var taskSelectedPeriod = _performanceRepository.QueryAsync<SummaryDTO>(criteriaSelectedPeriod);
 
-            filter.UpdateDateRangeByComparePeriod();
-            var criteriaComparePeriod = filter.ToCriteria<OverviewSummaryCriteria>();
+            var criteriaComparePeriod = CommonHelper.CriteriaHelper.ToCriteria<OverviewSummaryCriteria, PerformanceFilterMetaModel>(filter, false);
             var taskComparePeriod = _performanceRepository.QueryAsync<SummaryDTO>(criteriaComparePeriod);
 
             var taskResults = await Task.WhenAll(taskSelectedPeriod, taskComparePeriod);
@@ -84,12 +85,11 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
         public async Task<IEnumerable<TopChangeVM>> GetCurrencyTopChangeWithComparison(PerformanceFilterMetaModel filter)
         {
-            var criteriaSelectedPeriod = filter.ToCriteria<OverviewTopChangeCriteria>();
+            var criteriaSelectedPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
             criteriaSelectedPeriod.Dimension = 0;
             var taskSelectedPeriod = _performanceRepository.QueryAsync<CurrencyTopChangeDTO>(criteriaSelectedPeriod);
 
-            filter.UpdateDateRangeByComparePeriod();
-            var criteriaComparePeriod = filter.ToCriteria<OverviewTopChangeCriteria>();
+            var criteriaComparePeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
             criteriaComparePeriod.Dimension = 0;
             var taskComparePeriod = _performanceRepository.QueryAsync<CurrencyTopChangeDTO>(criteriaComparePeriod);
 
@@ -103,12 +103,11 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
         public async Task<IEnumerable<TopChangeVM>> GetBettypeTopChangeWithComparison(PerformanceFilterMetaModel filter)
         {
-            var criteriaSelectedPeriod = filter.ToCriteria<OverviewTopChangeCriteria>();
+            var criteriaSelectedPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
             criteriaSelectedPeriod.Dimension = 1;
             var taskSelectedPeriod = _performanceRepository.QueryAsync<BettypeTopChangeDTO>(criteriaSelectedPeriod);
 
-            filter.UpdateDateRangeByComparePeriod();
-            var criteriaComparePeriod = filter.ToCriteria<OverviewTopChangeCriteria>();
+            var criteriaComparePeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
             criteriaComparePeriod.Dimension = 1;
             var taskComparePeriod = _performanceRepository.QueryAsync<BettypeTopChangeDTO>(criteriaComparePeriod);
 
@@ -122,12 +121,11 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
         public async Task<IEnumerable<TopChangeVM>> GetPlatformTopChangeWithComparison(PerformanceFilterMetaModel filter)
         {
-            var criteriaSelectedPeriod = filter.ToCriteria<OverviewTopChangeCriteria>();
+            var criteriaSelectedPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
             criteriaSelectedPeriod.Dimension = 2;
             var taskSelectedPeriod = _performanceRepository.QueryAsync<PlatformTopChangeDTO>(criteriaSelectedPeriod);
 
-            filter.UpdateDateRangeByComparePeriod();
-            var criteriaComparePeriod = filter.ToCriteria<OverviewTopChangeCriteria>();
+            var criteriaComparePeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
             criteriaComparePeriod.Dimension = 2;
             var taskComparePeriod = _performanceRepository.QueryAsync<PlatformTopChangeDTO>(criteriaComparePeriod);
 
@@ -137,6 +135,11 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             {
             };
             return result;
+        }
+
+        public Task<IEnumerable<TopChangeVM>> GetProductTopChangeWithComparison(PerformanceFilterMetaModel filter)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

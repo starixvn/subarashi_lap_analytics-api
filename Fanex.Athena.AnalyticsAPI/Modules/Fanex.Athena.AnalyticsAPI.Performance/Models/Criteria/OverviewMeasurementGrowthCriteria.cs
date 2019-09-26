@@ -2,7 +2,7 @@
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria
 {
-    public class OverviewMeasurementGrowthCriteria : AnalyticCriteria
+    public class OverviewMeasurementGrowthCriteria : AnalyticCriteria, IMeasurementCriteria
     {
         public int MeasurementId { get; set; }
 

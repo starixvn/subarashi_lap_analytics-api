@@ -2,6 +2,6 @@
 {
     public interface ICalculationService
     {
-        double CalculateGrowth(double? later, double? previous);
+        double CalculateGrowth(double? current, double? previous);
     }
 }

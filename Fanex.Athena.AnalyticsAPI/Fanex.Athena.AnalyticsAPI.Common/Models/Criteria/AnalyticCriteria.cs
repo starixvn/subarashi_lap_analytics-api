@@ -4,7 +4,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Models.Criteria
 {
     public abstract class AnalyticCriteria : CriteriaBase, ICriteria
     {
-        public string SiteName { get; set; } = "12BET";
+        public string SiteName { get; set; }
         public int BaseCurrencyId { get; set; }
         public string FromDate { get; set; }
         public string ToDate { get; set; }

@@ -1,7 +1,4 @@
-﻿using System.Threading.Tasks;
-
-using Fanex.Athena.AnalyticsAPI.Common.Controllers;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Controllers;
 using Fanex.Athena.AnalyticsAPI.Performance.Services;
 
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +10,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
     {
         private readonly ICurrencyPerformanceService _currencyPerformanceService;
 
-        public CurrencyPerformanceController(ICurrencyPerformanceService currencyPerformanceService):base(null)
+        public CurrencyPerformanceController(ICurrencyPerformanceService currencyPerformanceService) : base(null)
         {
             _currencyPerformanceService = currencyPerformanceService;
         }
