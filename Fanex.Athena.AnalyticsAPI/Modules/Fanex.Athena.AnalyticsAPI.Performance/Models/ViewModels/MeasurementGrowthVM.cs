@@ -3,7 +3,7 @@
     public class MeasurementGrowthVM
     {
         public string Time { get; set; }
-        public decimal Total { get; set; }
-        public double? GrowthPercent { get; set; }
+        public double Total { get; set; }
+        public double GrowthPercent { get; set; }
     }
 }

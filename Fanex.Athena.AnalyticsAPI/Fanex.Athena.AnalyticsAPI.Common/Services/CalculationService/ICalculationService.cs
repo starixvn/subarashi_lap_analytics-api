@@ -3,5 +3,6 @@
     public interface ICalculationService
     {
         double CalculateGrowth(double? current, double? previous);
+        double ToThousandUnit(double? value);
     }
 }

@@ -6,6 +6,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria
     {
         public int MeasurementId { get; set; }
 
+        public byte GroupID { get; set; }
+
         public override string GetSettingKey()
         {
             return "LAP_Performance_OverviewMeasurementGrowthBySite";

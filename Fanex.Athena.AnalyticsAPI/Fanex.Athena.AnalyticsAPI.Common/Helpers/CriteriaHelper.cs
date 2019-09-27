@@ -10,7 +10,6 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
             where TMetalModel : GeneralFilterMetaModel
         {
             var period = isCurrentPeriod ? metaModel.CurrentPeriod : metaModel.PreviousPeriod;
-
             var criteria = new TCriteria
             {
                 BaseCurrencyId = metaModel.BaseCurrency.Id,

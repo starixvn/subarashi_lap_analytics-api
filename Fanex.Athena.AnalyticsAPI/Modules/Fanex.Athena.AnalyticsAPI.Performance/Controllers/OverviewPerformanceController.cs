@@ -1,4 +1,5 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Controllers;
+using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -9,18 +10,22 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
     [ApiController]
     public class OverviewPerformanceController : ControllerBaseCustom
     {
-        private readonly IOverviewPerformanceService _overviewPerformanceService;
+        private readonly IOverviewPerformanceService _overviewService;
 
-        public OverviewPerformanceController(IOverviewPerformanceService overviewPerformanceService) : base(null)
+        public OverviewPerformanceController(
+            IContextService contextService,
+            IOverviewPerformanceService overviewPerformanceService
+            )
+            : base(contextService)
         {
-            _overviewPerformanceService = overviewPerformanceService;
+            _overviewService = overviewPerformanceService;
         }
 
         [HttpPost]
         [Route("performance/overview/summary")]
         public async Task<IActionResult> GetSummary([FromBody]PerformanceFilterMetaModel filter)
         {
-            var result = await _overviewPerformanceService.GetSummaryWithComparison(filter);
+            var result = await _overviewService.GetSummaryWithComparison(filter);
             return ToResult(result);
         }
 
@@ -28,20 +33,29 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [Route("performance/overview/top-change")]
         public async Task<IActionResult> GetTopChange([FromBody]PerformanceFilterMetaModel filter)
         {
-            var taskCurrency = _overviewPerformanceService.GetCurrencyTopChangeWithComparison(filter);
-            var taskBettype = _overviewPerformanceService.GetBettypeTopChangeWithComparison(filter);
-            var taskPlatform = _overviewPerformanceService.GetPlatformTopChangeWithComparison(filter);
+            var taskCurrency = _overviewService.GetCurrencyTopChangeWithComparison(filter);
+            var taskBettype = _overviewService.GetBettypeTopChangeWithComparison(filter);
+            var taskPlatform = _overviewService.GetPlatformTopChangeWithComparison(filter);
+            var taskProduct = _overviewService.GetProductTopChangeWithComparison(filter);
 
-            var results = await Task.WhenAll(taskCurrency, taskBettype, taskPlatform);
+            var results = await Task.WhenAll(taskCurrency, taskBettype, taskPlatform, taskProduct);
 
             return ToResult(results);
         }
 
         [HttpPost]
-        [Route("performance/overview/growth")]
-        public async Task<IActionResult> GetGrowth(PerformanceFilterMetaModel filterParam)
+        [Route("performance/overview/period-growth")]
+        public async Task<IActionResult> GetPeriodGrowth(PerformanceFilterMetaModel filter)
         {
-            var result = await _overviewPerformanceService.GetGrowthWithComparison(filterParam);
+            var result = await _overviewService.GetPeriodGrowthWithComparison(filter);
+            return ToResult(result);
+        }
+
+        [HttpPost]
+        [Route("performance/overview/month-growth")]
+        public async Task<IActionResult> GetMonthGrowth(PerformanceFilterMetaModel filter)
+        {
+            var result = await _overviewService.GetMonthGrowthWithComparison(filter);
             return ToResult(result);
         }
     }

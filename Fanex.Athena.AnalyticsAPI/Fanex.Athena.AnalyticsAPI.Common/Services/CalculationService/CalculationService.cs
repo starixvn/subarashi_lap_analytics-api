@@ -5,6 +5,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
     public class CalculationService : ICalculationService
     {
         private static int Round_Floating_Point = 2;
+        private static int Thousand_Unit = 1000;
 
         public double CalculateGrowth(double? current, double? previous)
         {
@@ -20,6 +21,13 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
             result = Math.Round(result, Round_Floating_Point);
 
             return result;
+        }
+
+        public double ToThousandUnit(double? value)
+        {
+            value = value ?? 0;
+
+            return Math.Round(value.Value / Thousand_Unit, Round_Floating_Point);
         }
     }
 }

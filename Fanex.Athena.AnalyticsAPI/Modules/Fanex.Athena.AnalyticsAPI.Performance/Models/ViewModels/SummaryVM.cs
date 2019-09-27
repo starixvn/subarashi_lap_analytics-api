@@ -3,7 +3,7 @@
     public class SummaryVM
     {
         public int MeasurementId { get; set; }
-        public double? Value { get; set; }
+        public double? Total { get; set; }
         public double? ChangePercent { get; set; }
     }
 }

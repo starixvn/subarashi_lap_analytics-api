@@ -16,7 +16,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria
         public int MeasurementId { get; set; }
 
         [SpParam(Ignored = true)]
-        public int Dimension { get; set; }
+        public byte Dimension { get; set; }
 
         public override string GetSettingKey()
         {

@@ -4,9 +4,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
 {
     public class SummaryDTO
     {
-        [SsasColumn("DimSite[Licensee Name]")]
-        public string LicenseeName { get; set; }
-
         [SsasColumn("[Turnover]")]
         public double Turnover { get; set; }
 
