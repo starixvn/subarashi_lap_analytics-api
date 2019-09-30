@@ -33,8 +33,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
         public async Task<IEnumerable<MeasurementGrowthVM>> GetPeriodGrowthWithComparison(PerformanceFilterMetaModel filter)
         {
-            //todo
-            var criteriaPrevOfPrevPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewMeasurementGrowthCriteria, PerformanceFilterMetaModel>(filter, false);
+            var criteriaPrevOfPrevPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewMeasurementGrowthCriteria, PerformanceFilterMetaModel>(filter);
+            CriteriaHelper.UpdateCurrentPeriodToPreviousPeriod(criteriaPrevOfPrevPeriod, filter.PreviousPeriod, filter.CurrentPeriod);
             criteriaPrevOfPrevPeriod.GroupID = GroupData.NONE_GROUP;
             var taskPrevOfPrevPeriod = _performanceRepository.QueryAsync<TotalDTO>(criteriaPrevOfPrevPeriod);
 
@@ -53,8 +53,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
         public async Task<IEnumerable<MeasurementGrowthVM>> GetMonthGrowthWithComparison(PerformanceFilterMetaModel filter)
         {
-            filter = MetaModelHelper.BackToCurrentPeriodByMonth(filter, 1);
-            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewMeasurementGrowthCriteria, PerformanceFilterMetaModel>(filter);
+            var newFilter = MetaModelHelper.BackToCurrentPeriodByMonth(filter, 1);
+            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewMeasurementGrowthCriteria, PerformanceFilterMetaModel>(newFilter);
             criteriaCurrentPeriod.GroupID = GroupData.MONTH_GROUP;
             var taskCurrentPeriod = _performanceRepository.QueryAsync<MeasurementGrowthDTO>(criteriaCurrentPeriod);
 
@@ -69,7 +69,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
         public async Task<IEnumerable<SummaryVM>> GetSummaryWithComparison(PerformanceFilterMetaModel filter)
         {
-            var criteriaPrevPeriod = CommonHelper.CriteriaHelper.ToCriteria<OverviewSummaryCriteria, PerformanceFilterMetaModel>(filter, false);
+            var criteriaPrevPeriod = CriteriaHelper.ToCriteria<OverviewSummaryCriteria, PerformanceFilterMetaModel>(filter, false);
             var taskPrevPeriod = _performanceRepository.QueryAsync<SummaryDTO>(criteriaPrevPeriod);
 
             var criteriaCurrentPeriod = CommonHelper.CriteriaHelper.ToCriteria<OverviewSummaryCriteria, PerformanceFilterMetaModel>(filter);
@@ -82,7 +82,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
         public async Task<IEnumerable<TopChangeVM>> GetCurrencyTopChangeWithComparison(PerformanceFilterMetaModel filter)
         {
-            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
+            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter, false);
             criteriaPrevPeriod.Dimension = Dimension.CURRENCY;
             var taskPrevPeriod = _performanceRepository.QueryAsync<CurrencyTopChangeDTO>(criteriaPrevPeriod);
 
@@ -90,14 +90,14 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             criteriaCurrentPeriod.Dimension = Dimension.CURRENCY;
             var taskCurrentPeriod = _performanceRepository.QueryAsync<CurrencyTopChangeDTO>(criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToViewModel(await taskPrevPeriod, await taskCurrentPeriod, _ => _.CurrencyId);
+            var result = _viewModelMapper.ToViewModel(await taskPrevPeriod, await taskCurrentPeriod, _ => _.CurrencyId, _ => _.CurrencyName);
 
             return result;
         }
 
         public async Task<IEnumerable<TopChangeVM>> GetBettypeTopChangeWithComparison(PerformanceFilterMetaModel filter)
         {
-            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
+            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter, false);
             criteriaPrevPeriod.Dimension = Dimension.BETTYPE;
             var taskPrevPeriod = _performanceRepository.QueryAsync<BettypeTopChangeDTO>(criteriaPrevPeriod);
 
@@ -108,17 +108,17 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             var prevPeriodDtos = await taskPrevPeriod;
             var currentPeriodDtos = await taskCurrentPeriod;
 
-            prevPeriodDtos = prevPeriodDtos.GroupTo(_ => _.BetTypeDisplayID, BettypeTopChangeDTOSelector);
-            currentPeriodDtos = currentPeriodDtos.GroupTo(_ => _.BetTypeDisplayID, BettypeTopChangeDTOSelector);
+            prevPeriodDtos = prevPeriodDtos.GroupTo(_ => _.Key, BettypeTopChangeDTOSelector);
+            currentPeriodDtos = currentPeriodDtos.GroupTo(_ => _.Key, BettypeTopChangeDTOSelector);
 
-            var result = _viewModelMapper.ToViewModel(prevPeriodDtos, currentPeriodDtos, _ => _.BetTypeDisplayID);
+            var result = _viewModelMapper.ToViewModel(prevPeriodDtos, currentPeriodDtos, _ => _.Key, _ => _.DisplayName);
 
             return result;
         }
 
         public async Task<IEnumerable<TopChangeVM>> GetPlatformTopChangeWithComparison(PerformanceFilterMetaModel filter)
         {
-            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
+            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter, false);
             criteriaPrevPeriod.Dimension = Dimension.PLATFORM;
             var taskPrevPeriod = _performanceRepository.QueryAsync<PlatformTopChangeDTO>(criteriaPrevPeriod);
 
@@ -126,14 +126,14 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             criteriaCurrentPeriod.Dimension = Dimension.PLATFORM;
             var taskCurrentPeriod = _performanceRepository.QueryAsync<PlatformTopChangeDTO>(criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToViewModel(await taskPrevPeriod, await taskCurrentPeriod, _ => _.PlatformId);
+            var result = _viewModelMapper.ToViewModel(await taskPrevPeriod, await taskCurrentPeriod, _ => _.PlatformId, _ => _.PlatformName);
 
             return result;
         }
 
         public async Task<IEnumerable<TopChangeVM>> GetProductTopChangeWithComparison(PerformanceFilterMetaModel filter)
         {
-            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
+            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter, false);
             criteriaPrevPeriod.Dimension = Dimension.PRODUCT;
             var taskPrevPeriod = _performanceRepository.QueryAsync<ProductTopChangeDTO>(criteriaPrevPeriod);
 
@@ -141,16 +141,22 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             criteriaCurrentPeriod.Dimension = Dimension.PRODUCT;
             var taskCurrentPeriod = _performanceRepository.QueryAsync<ProductTopChangeDTO>(criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToViewModel(await taskPrevPeriod, await taskCurrentPeriod, _ => _.ProductId);
+            var result = _viewModelMapper.ToViewModel(await taskPrevPeriod, await taskCurrentPeriod, _ => _.ProductId, _ => _.ProductName);
 
             return result;
         }
 
-        private static Func<IGrouping<int, BettypeTopChangeDTO>, BettypeTopChangeDTO> BettypeTopChangeDTOSelector = _ => new BettypeTopChangeDTO
+        private static Func<IGrouping<string, BettypeTopChangeDTO>, BettypeTopChangeDTO> BettypeTopChangeDTOSelector = _ =>
         {
-            BetTypeDisplayID = _.Key,
-            BetTypeDisplayName = _.First().BetTypeDisplayName,
-            Total = _.Sum(__ => __.Total)
+            var first = _.First();
+            return new BettypeTopChangeDTO
+            {
+                BetTypeDisplayID = first.BetTypeDisplayID,
+                BetTypeDisplayName = first.BetTypeDisplayName,
+                ProductId = first.ProductId,
+                ProductName = first.ProductName,
+                Total = _.Sum(__ => __.Total)
+            };
         };
     }
 }

@@ -36,14 +36,19 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
             var taskCurrency = _overviewService.GetCurrencyTopChangeWithComparison(filter);
             var taskBettype = _overviewService.GetBettypeTopChangeWithComparison(filter);
             var taskPlatform = _overviewService.GetPlatformTopChangeWithComparison(filter);
-            var taskProduct = _overviewService.GetProductTopChangeWithComparison(filter);
+            //var taskProduct = _overviewService.GetProductTopChangeWithComparison(filter);
+
+            var currencyTopChange = await taskCurrency;
+            var bettypeTopChange = await taskBettype;
+            var platfromTopChange = await taskPlatform;
+            //var productTopeChange = await taskProduct;
 
             return ToResult(new
             {
-                Currency = await taskCurrency,
-                Bettype = await taskBettype,
-                Platform = await taskPlatform,
-                Product = await taskProduct
+                currencyTopChange,
+                bettypeTopChange,
+                platfromTopChange,
+                //productTopeChange
             });
         }
 

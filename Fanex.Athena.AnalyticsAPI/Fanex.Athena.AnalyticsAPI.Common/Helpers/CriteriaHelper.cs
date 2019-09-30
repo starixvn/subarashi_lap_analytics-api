@@ -20,5 +20,13 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
 
             return criteria;
         }
+
+        public static void UpdateCurrentPeriodToPreviousPeriod<TCriteria>(TCriteria criteria, MonthRangeMetaModel prevPeriod, MonthRangeMetaModel currentPeriod)
+            where TCriteria : AnalyticCriteria, new()
+        {
+            var prevofPrevPeriod = MetaModelHelper.GetPrevOfPrevPeriod(prevPeriod, currentPeriod);
+            criteria.FromDate = prevofPrevPeriod.FromMonth;
+            criteria.ToDate = prevofPrevPeriod.ToMonth;
+        }
     }
 }

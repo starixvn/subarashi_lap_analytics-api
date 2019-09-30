@@ -17,10 +17,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
                 return 0;
             }
 
-            var result = (current.Value - previous.Value) / Math.Abs(previous.Value);
-            result = Math.Round(result, Round_Floating_Point);
+            var result = ((current.Value - previous.Value) / Math.Abs(previous.Value))*100;
+            result = ToRound(result, Round_Floating_Point);
 
             return result;
+        }
+
+        public double ToRound(double? value, int numberOfRound = 2)
+        {
+            return Math.Round(value ?? 0, numberOfRound);
         }
 
         public double ToThousandUnit(double? value)

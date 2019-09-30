@@ -12,7 +12,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria
             "LAP_Performance_OverviewPlatFormBySite",
             "LAP_Performance_OverviewProductBySite"
         };
-
+        
         public int MeasurementId { get; set; }
 
         [SpParam(Ignored = true)]

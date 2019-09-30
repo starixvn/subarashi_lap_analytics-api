@@ -4,6 +4,6 @@
     {
         public string PerspectiveName { get; set; }
         public double Total { get; set; }
-        public double PercentChange { get; set; }
+        public double ChangePercent { get; set; }
     }
 }

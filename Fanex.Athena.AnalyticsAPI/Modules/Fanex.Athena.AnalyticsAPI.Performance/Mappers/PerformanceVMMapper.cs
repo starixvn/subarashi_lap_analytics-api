@@ -38,7 +38,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                 });
 
                 prevMonthData = currentMonthData;
-                fromMonth.AddMonths(1);
+                fromMonth = fromMonth.AddMonths(1);
             }
 
             return result;

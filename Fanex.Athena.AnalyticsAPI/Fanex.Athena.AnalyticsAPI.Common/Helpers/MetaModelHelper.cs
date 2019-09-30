@@ -9,12 +9,34 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
         public static TMetalModel BackToCurrentPeriodByMonth<TMetalModel>(TMetalModel metaModel, int numberOfMonth)
             where TMetalModel : GeneralFilterMetaModel
         {
-            var objClone = metaModel.Clone();
-            objClone.CurrentPeriod.FromMonth = DateTimeHelper.ParseFromFormatDateToDate(objClone.CurrentPeriod.FromMonth)
+            var modelClone = metaModel.Clone();
+
+            modelClone.CurrentPeriod.FromMonth = DateTimeHelper.ParseFromFormatDateToDate(modelClone.CurrentPeriod.FromMonth)
                 .AddMonths(-numberOfMonth)
                 .ToString(DateTimeHelper.MONTH_FORMAT);
 
-            return objClone;
+            return modelClone;
+        }
+
+        public static MonthRangeMetaModel GetPrevOfPrevPeriod(MonthRangeMetaModel prevPeriod, MonthRangeMetaModel currentPeriod)
+        {
+            var prevPeriodFrom = DateTimeHelper.ParseFromFormatDateToDate(prevPeriod.FromMonth);
+            var prevPeriodTo = DateTimeHelper.ParseFromFormatDateToDate(prevPeriod.ToMonth);
+            
+            var currentPeriodFrom = DateTimeHelper.ParseFromFormatDateToDate(currentPeriod.FromMonth);
+            var currentPeriodTo = DateTimeHelper.ParseFromFormatDateToDate(currentPeriod.ToMonth);
+
+            var distanceOfTwoPeriod = DateTimeHelper.GetDistanceBetweenTwoDate(prevPeriodTo, currentPeriodFrom);
+            var durationOfPeriod = DateTimeHelper.GetDistanceBetweenTwoDate(currentPeriodFrom, currentPeriodTo);
+
+            var prevOfPrevPeriodTo = prevPeriodFrom.AddMonths(-distanceOfTwoPeriod);
+            var prevOfPrevPeriodFrom = prevOfPrevPeriodTo.AddMonths(-durationOfPeriod);
+
+            return new MonthRangeMetaModel
+            {
+                FromMonth = prevOfPrevPeriodFrom.ToString(DateTimeHelper.DATE_FORMAT),
+                ToMonth = prevOfPrevPeriodTo.ToString(DateTimeHelper.DATE_FORMAT),
+            };
         }
 
         private static T Clone<T>(this T source)

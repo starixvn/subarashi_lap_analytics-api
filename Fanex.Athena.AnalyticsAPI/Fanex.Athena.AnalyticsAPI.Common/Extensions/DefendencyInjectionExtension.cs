@@ -1,6 +1,5 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.LGAPI.SSAS.Bridge.Services;
-using Fanex.Data.Repository;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
@@ -26,7 +25,6 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
 
         private static IServiceCollection AddRepositories(this IServiceCollection services)
         {
-            services.AddTransient<IDynamicRepository, DynamicRepository>();
             return services;
         }
     }

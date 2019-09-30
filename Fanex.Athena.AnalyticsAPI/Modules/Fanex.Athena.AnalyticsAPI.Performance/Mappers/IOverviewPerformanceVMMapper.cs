@@ -9,7 +9,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
     {
         IEnumerable<SummaryVM> ToViewModel(IEnumerable<SummaryDTO> prevPeriodDtos, IEnumerable<SummaryDTO> currentPeriodDtos);
 
-        IEnumerable<TopChangeVM> ToViewModel<TDto>(IEnumerable<TDto> prevPeriodDtos, IEnumerable<TDto> currentPeriodDtos, Func<TDto, int> keySelector)
+        IEnumerable<TopChangeVM> ToViewModel<TDto, TKey>(IEnumerable<TDto> prevPeriodDtos, IEnumerable<TDto> currentPeriodDtos, Func<TDto, TKey> keySelector, Func<TDto, string> displayer)
             where TDto : TopChangeDTO;
     }
 }

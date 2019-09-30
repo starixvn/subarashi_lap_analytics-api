@@ -49,17 +49,4 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
             }));
         }
     }
-
-    public class ForwardHandler
-    { 
-        private readonly RequestDelegate _next;
-        public ForwardHandler(RequestDelegate next)
-        {
-            _next = next;
-        }
-        public async Task Invoke(HttpContext context)
-        {
-
-        }
-    }
 }

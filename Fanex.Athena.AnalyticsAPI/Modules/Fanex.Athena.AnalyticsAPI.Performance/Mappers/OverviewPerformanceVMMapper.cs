@@ -16,25 +16,32 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
         {
         }
 
-        public IEnumerable<TopChangeVM> ToViewModel<TDto>(IEnumerable<TDto> prevPeriodDtos, IEnumerable<TDto> currentPeriodDtos, Func<TDto, int> keySelector)
+        public IEnumerable<TopChangeVM> ToViewModel<TDto, TKey>(IEnumerable<TDto> prevPeriodDtos, IEnumerable<TDto> currentPeriodDtos, Func<TDto, TKey> keySelector, Func<TDto, string> displayer)
             where TDto : TopChangeDTO
         {
-            var currentPeriodData = prevPeriodDtos.ToDictionary(_ => keySelector(_));
-            var prevPeriodData = currentPeriodDtos.ToDictionary(_ => keySelector(_));
+            var prevPeriodData = prevPeriodDtos.ToDictionary(_ => keySelector(_));
+            var currentPeriodData = currentPeriodDtos.ToDictionary(_ => keySelector(_));
 
             var distinctList = Enumerable.Union(currentPeriodDtos.Select(_ => keySelector(_)), prevPeriodDtos.Select(_ => keySelector(_)));
 
             var result = distinctList
-                .Select(_ => new TopChangeVM
+                .Select(_ =>
                 {
-                    PercentChange = _calculationService.CalculateGrowth(
-                        currentPeriodData.TryGetValue(_, out TDto current) ? current.Total : 0,
-                        prevPeriodData.TryGetValue(_, out TDto prev) ? prev.Total : 0
-                        ),
-                    PerspectiveName = keySelector(current).ToString(),
-                    Total = _calculationService.ToThousandUnit(current.Total)
+                    var percentChange = _calculationService.CalculateGrowth(
+                            currentPeriodData.TryGetValue(_, out TDto current) ? current.Total : 0,
+                            prevPeriodData.TryGetValue(_, out TDto prev) ? prev.Total : 0
+                        );
+                    var perspectiveName = displayer(current ?? prev);
+                    var total = _calculationService.ToThousandUnit(current?.Total);
+
+                    return new TopChangeVM
+                    {
+                        ChangePercent = percentChange,
+                        PerspectiveName = perspectiveName,
+                        Total = total
+                    };
                 })
-                .OrderByDescending(_ => Math.Abs(_.PercentChange))
+                .OrderByDescending(_ => Math.Abs(_.ChangePercent))
                 .Take(5);
 
             return result;
@@ -62,7 +69,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                 new SummaryVM
                 {
                     MeasurementId = 2,
-                    Total = _calculationService.ToThousandUnit(currentPeriodData?.Margin),
+                    Total = _calculationService.ToRound(currentPeriodData?.Margin),
                     ChangePercent = _calculationService.CalculateGrowth(currentPeriodData?.Margin, prevPeriodData?.Margin)
                 }
             };

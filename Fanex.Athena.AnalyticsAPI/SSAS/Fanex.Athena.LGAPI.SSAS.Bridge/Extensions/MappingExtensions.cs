@@ -18,9 +18,13 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.Extensions
                 {
                     if (!source.ContainsKey(cubeMappingAttr.MapColumn))
                     {
-                        throw new KeyNotFoundException($"{nameof(cubeMappingAttr.MapColumn)} {cubeMappingAttr.MapColumn}");
+                        throw new KeyNotFoundException($"{nameof(cubeMappingAttr.MapColumn)} {cubeMappingAttr.MapColumn} is invalid");
                     }
-                    prop.SetValue(objDTO, Convert.ChangeType(source[cubeMappingAttr.MapColumn], prop.PropertyType));
+
+                    if(source[cubeMappingAttr.MapColumn] != null)
+                    {
+                        prop.SetValue(objDTO, Convert.ChangeType(source[cubeMappingAttr.MapColumn], prop.PropertyType));
+                    }
                 }
             }
 

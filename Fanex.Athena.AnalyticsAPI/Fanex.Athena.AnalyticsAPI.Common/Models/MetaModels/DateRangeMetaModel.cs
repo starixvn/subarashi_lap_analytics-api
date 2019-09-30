@@ -10,11 +10,11 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels
         {
             get
             {
-                return DateTimeHelper.ParseFromFormatMonthToString(_fromMonth, false);
+                return _fromMonth;
             }
             set
             {
-                _fromMonth = value;
+                _fromMonth = DateTimeHelper.ParseFromFormatToString(value, false);
             }
         }
 
@@ -24,11 +24,11 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels
         {
             get
             {
-                return DateTimeHelper.ParseFromFormatMonthToString(_toMonth, true);
+                return _toMonth;
             }
             set
             {
-                _toMonth = value;
+                _toMonth = DateTimeHelper.ParseFromFormatToString(value, true);
             }
         }
     }
