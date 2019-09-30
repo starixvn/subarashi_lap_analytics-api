@@ -38,9 +38,13 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
             var taskPlatform = _overviewService.GetPlatformTopChangeWithComparison(filter);
             var taskProduct = _overviewService.GetProductTopChangeWithComparison(filter);
 
-            var results = await Task.WhenAll(taskCurrency, taskBettype, taskPlatform, taskProduct);
-
-            return ToResult(results);
+            return ToResult(new
+            {
+                Currency = await taskCurrency,
+                Bettype = await taskBettype,
+                Platform = await taskPlatform,
+                Product = await taskProduct
+            });
         }
 
         [HttpPost]

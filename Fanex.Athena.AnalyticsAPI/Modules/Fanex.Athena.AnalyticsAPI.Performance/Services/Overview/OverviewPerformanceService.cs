@@ -1,33 +1,40 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Extensions;
+using Fanex.Athena.AnalyticsAPI.Common.Helpers;
+using Fanex.Athena.AnalyticsAPI.Common.Services;
+using Fanex.Athena.AnalyticsAPI.Performance.Mappers;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using CommonHelper = Fanex.Athena.AnalyticsAPI.Common.Helpers;
+
 using PerformanceHelper = Fanex.Athena.AnalyticsAPI.Performance.Helpers;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 {
     public class OverviewPerformanceService : PerformanceService, IOverviewPerformanceService
     {
-        protected readonly ICalculationService _calculationService;
+        private readonly IOverviewPerformanceVMMapper _viewModelMapper;
 
         public OverviewPerformanceService(
             IContextService context,
             IPerformanceRepository performanceRepository,
-            ICalculationService calculationService
+            IOverviewPerformanceVMMapper viewModelMapper
             ) : base(context, performanceRepository)
         {
-            _calculationService = calculationService;
+            _viewModelMapper = viewModelMapper;
         }
 
         public async Task<IEnumerable<MeasurementGrowthVM>> GetPeriodGrowthWithComparison(PerformanceFilterMetaModel filter)
         {
-            var criteriaPrevOfPrevPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewMeasurementGrowthCriteria, PerformanceFilterMetaModel>(filter);
+            //todo
+            var criteriaPrevOfPrevPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewMeasurementGrowthCriteria, PerformanceFilterMetaModel>(filter, false);
             criteriaPrevOfPrevPeriod.GroupID = GroupData.NONE_GROUP;
             var taskPrevOfPrevPeriod = _performanceRepository.QueryAsync<TotalDTO>(criteriaPrevOfPrevPeriod);
 
@@ -39,120 +46,111 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             criteriaCurrentPeriod.GroupID = GroupData.NONE_GROUP;
             var taskCurrentPeriod = _performanceRepository.QueryAsync<TotalDTO>(criteriaCurrentPeriod);
 
-            var taskResults = await Task.WhenAll(taskPrevOfPrevPeriod, taskPrevPeriod, taskCurrentPeriod);
+            var result = _viewModelMapper.ToViewModel(await taskPrevOfPrevPeriod, await taskPrevPeriod, await taskCurrentPeriod);
 
-            return null;
+            return result;
         }
 
         public async Task<IEnumerable<MeasurementGrowthVM>> GetMonthGrowthWithComparison(PerformanceFilterMetaModel filter)
         {
-            var criteriaSelectedPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewMeasurementGrowthCriteria, PerformanceFilterMetaModel>(filter);
-            criteriaSelectedPeriod.GroupID = GroupData.MONTH_GROUP;
-            var taskSelectedPeriod = _performanceRepository.QueryAsync<MeasurementGrowthDTO>(criteriaSelectedPeriod);
+            filter = MetaModelHelper.BackToCurrentPeriodByMonth(filter, 1);
+            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewMeasurementGrowthCriteria, PerformanceFilterMetaModel>(filter);
+            criteriaCurrentPeriod.GroupID = GroupData.MONTH_GROUP;
+            var taskCurrentPeriod = _performanceRepository.QueryAsync<MeasurementGrowthDTO>(criteriaCurrentPeriod);
 
-            var criteriaComparePeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewMeasurementGrowthCriteria, PerformanceFilterMetaModel>(filter, false);
-            criteriaSelectedPeriod.GroupID = GroupData.MONTH_GROUP;
-
-            var taskComparePeriod = _performanceRepository.QueryAsync<MeasurementGrowthDTO>(criteriaComparePeriod);
-
-            var taskResults = await Task.WhenAll(taskSelectedPeriod, taskComparePeriod);
-
-            var result = taskResults[0].Select(_ => new MeasurementGrowthVM
-            {
-                Time = _.Time.ToLocalTime().ToString(CommonHelper.DateTimeHelper.MONTH_FORMAT),
-                Total = _.Total
-            });
+            var result = _viewModelMapper.ToViewModel(
+                await taskCurrentPeriod,
+                DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.FromMonth),
+                DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.ToMonth)
+                );
 
             return result;
         }
 
         public async Task<IEnumerable<SummaryVM>> GetSummaryWithComparison(PerformanceFilterMetaModel filter)
         {
-            var criteriaSelectedPeriod = CommonHelper.CriteriaHelper.ToCriteria<OverviewSummaryCriteria, PerformanceFilterMetaModel>(filter);
-            var taskSelectedPeriod = _performanceRepository.QueryAsync<SummaryDTO>(criteriaSelectedPeriod);
+            var criteriaPrevPeriod = CommonHelper.CriteriaHelper.ToCriteria<OverviewSummaryCriteria, PerformanceFilterMetaModel>(filter, false);
+            var taskPrevPeriod = _performanceRepository.QueryAsync<SummaryDTO>(criteriaPrevPeriod);
 
-            var criteriaComparePeriod = CommonHelper.CriteriaHelper.ToCriteria<OverviewSummaryCriteria, PerformanceFilterMetaModel>(filter, false);
-            var taskComparePeriod = _performanceRepository.QueryAsync<SummaryDTO>(criteriaComparePeriod);
+            var criteriaCurrentPeriod = CommonHelper.CriteriaHelper.ToCriteria<OverviewSummaryCriteria, PerformanceFilterMetaModel>(filter);
+            var taskCurrentPeriod = _performanceRepository.QueryAsync<SummaryDTO>(criteriaCurrentPeriod);
 
-            var taskResults = await Task.WhenAll(taskSelectedPeriod, taskComparePeriod);
+            var result = _viewModelMapper.ToViewModel(await taskPrevPeriod, await taskCurrentPeriod);
 
-            var selectedPeriodData = taskResults[0];
-            var comparePeriodData = taskResults[1];
-
-            return null;
+            return result;
         }
 
         public async Task<IEnumerable<TopChangeVM>> GetCurrencyTopChangeWithComparison(PerformanceFilterMetaModel filter)
         {
-            var criteriaSelectedPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
-            criteriaSelectedPeriod.Dimension = Dimension.CURRENCY;
-            var taskSelectedPeriod = _performanceRepository.QueryAsync<CurrencyTopChangeDTO>(criteriaSelectedPeriod);
+            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
+            criteriaPrevPeriod.Dimension = Dimension.CURRENCY;
+            var taskPrevPeriod = _performanceRepository.QueryAsync<CurrencyTopChangeDTO>(criteriaPrevPeriod);
 
-            var criteriaComparePeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
-            criteriaComparePeriod.Dimension = Dimension.CURRENCY;
-            var taskComparePeriod = _performanceRepository.QueryAsync<CurrencyTopChangeDTO>(criteriaComparePeriod);
+            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
+            criteriaCurrentPeriod.Dimension = Dimension.CURRENCY;
+            var taskCurrentPeriod = _performanceRepository.QueryAsync<CurrencyTopChangeDTO>(criteriaCurrentPeriod);
 
-            var taskResults = await Task.WhenAll(taskSelectedPeriod, taskComparePeriod);
-
-            var result = new List<TopChangeVM>
-            {
-            };
+            var result = _viewModelMapper.ToViewModel(await taskPrevPeriod, await taskCurrentPeriod, _ => _.CurrencyId);
 
             return result;
         }
 
         public async Task<IEnumerable<TopChangeVM>> GetBettypeTopChangeWithComparison(PerformanceFilterMetaModel filter)
         {
-            var criteriaSelectedPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
-            criteriaSelectedPeriod.Dimension = Dimension.BETTYPE;
-            var taskSelectedPeriod = _performanceRepository.QueryAsync<BettypeTopChangeDTO>(criteriaSelectedPeriod);
+            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
+            criteriaPrevPeriod.Dimension = Dimension.BETTYPE;
+            var taskPrevPeriod = _performanceRepository.QueryAsync<BettypeTopChangeDTO>(criteriaPrevPeriod);
 
-            var criteriaComparePeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
-            criteriaComparePeriod.Dimension = Dimension.BETTYPE;
-            var taskComparePeriod = _performanceRepository.QueryAsync<BettypeTopChangeDTO>(criteriaComparePeriod);
+            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
+            criteriaCurrentPeriod.Dimension = Dimension.BETTYPE;
+            var taskCurrentPeriod = _performanceRepository.QueryAsync<BettypeTopChangeDTO>(criteriaCurrentPeriod);
 
-            var taskResults = await Task.WhenAll(taskSelectedPeriod, taskComparePeriod);
+            var prevPeriodDtos = await taskPrevPeriod;
+            var currentPeriodDtos = await taskCurrentPeriod;
 
-            var result = new List<TopChangeVM>
-            {
-            };
+            prevPeriodDtos = prevPeriodDtos.GroupTo(_ => _.BetTypeDisplayID, BettypeTopChangeDTOSelector);
+            currentPeriodDtos = currentPeriodDtos.GroupTo(_ => _.BetTypeDisplayID, BettypeTopChangeDTOSelector);
+
+            var result = _viewModelMapper.ToViewModel(prevPeriodDtos, currentPeriodDtos, _ => _.BetTypeDisplayID);
+
             return result;
         }
 
         public async Task<IEnumerable<TopChangeVM>> GetPlatformTopChangeWithComparison(PerformanceFilterMetaModel filter)
         {
-            var criteriaSelectedPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
-            criteriaSelectedPeriod.Dimension = Dimension.PLATFORM;
-            var taskSelectedPeriod = _performanceRepository.QueryAsync<PlatformTopChangeDTO>(criteriaSelectedPeriod);
+            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
+            criteriaPrevPeriod.Dimension = Dimension.PLATFORM;
+            var taskPrevPeriod = _performanceRepository.QueryAsync<PlatformTopChangeDTO>(criteriaPrevPeriod);
 
-            var criteriaComparePeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
-            criteriaComparePeriod.Dimension = Dimension.PLATFORM;
-            var taskComparePeriod = _performanceRepository.QueryAsync<PlatformTopChangeDTO>(criteriaComparePeriod);
+            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
+            criteriaCurrentPeriod.Dimension = Dimension.PLATFORM;
+            var taskCurrentPeriod = _performanceRepository.QueryAsync<PlatformTopChangeDTO>(criteriaCurrentPeriod);
 
-            var taskResults = await Task.WhenAll(taskSelectedPeriod, taskComparePeriod);
-            
-            var result = new List<TopChangeVM>
-            {
-            };
+            var result = _viewModelMapper.ToViewModel(await taskPrevPeriod, await taskCurrentPeriod, _ => _.PlatformId);
+
             return result;
         }
 
         public async Task<IEnumerable<TopChangeVM>> GetProductTopChangeWithComparison(PerformanceFilterMetaModel filter)
         {
-            var criteriaSelectedPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
-            criteriaSelectedPeriod.Dimension = Dimension.PRODUCT;
-            var taskSelectedPeriod = _performanceRepository.QueryAsync<ProductTopChangeDTO>(criteriaSelectedPeriod);
+            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
+            criteriaPrevPeriod.Dimension = Dimension.PRODUCT;
+            var taskPrevPeriod = _performanceRepository.QueryAsync<ProductTopChangeDTO>(criteriaPrevPeriod);
 
-            var criteriaComparePeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
-            criteriaComparePeriod.Dimension = Dimension.PRODUCT;
-            var taskComparePeriod = _performanceRepository.QueryAsync<ProductTopChangeDTO>(criteriaComparePeriod);
+            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
+            criteriaCurrentPeriod.Dimension = Dimension.PRODUCT;
+            var taskCurrentPeriod = _performanceRepository.QueryAsync<ProductTopChangeDTO>(criteriaCurrentPeriod);
 
-            var taskResults = await Task.WhenAll(taskSelectedPeriod, taskComparePeriod);
+            var result = _viewModelMapper.ToViewModel(await taskPrevPeriod, await taskCurrentPeriod, _ => _.ProductId);
 
-            var result = new List<TopChangeVM>
-            {
-            };
             return result;
         }
+
+        private static Func<IGrouping<int, BettypeTopChangeDTO>, BettypeTopChangeDTO> BettypeTopChangeDTOSelector = _ => new BettypeTopChangeDTO
+        {
+            BetTypeDisplayID = _.Key,
+            BetTypeDisplayName = _.First().BetTypeDisplayName,
+            Total = _.Sum(__ => __.Total)
+        };
     }
 }

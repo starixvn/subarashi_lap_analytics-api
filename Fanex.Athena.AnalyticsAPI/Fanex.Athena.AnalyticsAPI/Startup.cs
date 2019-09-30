@@ -38,8 +38,8 @@ namespace Fanex.Athena.AnalyticsAPI
             services.Configure<ApplicationOptions>(Configuration.GetSection("ApplicationOptions"));
             services.Configure<SSASSetting>(Configuration.GetSection("SSASSetting"));
 
-            Performance.Extensions.DefendenctInjectExtension.AddDIPerformance(services);
-            Common.Extensions.DefendenctInjectExtension.AddDICommon(services);
+            Performance.Extensions.DefendencyInjectionExtension.AddDIPerformance(services);
+            Common.Extensions.DefendencyInjectionExtension.AddDICommon(services);
 
             services.AddHealthChecks();
 

@@ -1,17 +1,18 @@
-﻿using Fanex.Athena.AnalyticsAPI.Performance.Repositories;
+﻿using Fanex.Athena.AnalyticsAPI.Performance.Mappers;
+using Fanex.Athena.AnalyticsAPI.Performance.Repositories;
 using Fanex.Athena.AnalyticsAPI.Performance.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Extensions
 {
-    public static class DefendenctInjectExtension
+    public static class DefendencyInjectionExtension
     {
         public static IServiceCollection AddDIPerformance(this IServiceCollection services)
         {
-            services.AddServices();
-            services.AddRepositories();
-
-            return services;
+            return services
+                .AddServices()
+                .AddRepositories()
+                .AddMappers();
         }
 
         private static IServiceCollection AddServices(this IServiceCollection services)
@@ -25,6 +26,13 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Extensions
         private static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddTransient<IPerformanceRepository, PerformanceRepository>();
+
+            return services;
+        }
+
+        private static IServiceCollection AddMappers(this IServiceCollection services)
+        {
+            services.AddTransient<IOverviewPerformanceVMMapper, OverviewPerformanceVMMapper>();
 
             return services;
         }

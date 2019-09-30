@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
+namespace Fanex.Athena.AnalyticsAPI.Common.Mappers
 {
-    public class ViewModelHelper
+    public class ViewModelMapper
     {
         protected readonly ICalculationService _calculationService;
 
-        public ViewModelHelper(
+        public ViewModelMapper(
             ICalculationService calculationService
             )
         {
             _calculationService = calculationService;
         }
 
-        protected virtual bool IsInValidDto<TDto>(params IEnumerable<TDto>[] dtos)
+        protected virtual bool IsInvalidDto<TDto>(params IEnumerable<TDto>[] dtos)
         {
             return dtos == null || dtos.Count() < 2;
         }

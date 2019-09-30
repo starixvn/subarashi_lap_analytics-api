@@ -5,15 +5,13 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
 {
-    public static class DefendenctInjectExtension
+    public static class DefendencyInjectionExtension
     {
         public static IServiceCollection AddDICommon(this IServiceCollection services)
         {
-            services
+            return services
                 .AddServices()
                 .AddRepositories();
-
-            return services;
         }
 
         private static IServiceCollection AddServices(this IServiceCollection services)

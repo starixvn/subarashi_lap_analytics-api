@@ -5,6 +5,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
     public class TotalDTO
     {
         [SsasColumn("[Measurement]")]
-        public decimal Total { get; set; }
+        public double Total { get; set; }
     }
 }
