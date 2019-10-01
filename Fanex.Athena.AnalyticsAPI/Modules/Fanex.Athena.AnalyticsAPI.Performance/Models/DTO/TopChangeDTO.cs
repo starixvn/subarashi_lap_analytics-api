@@ -29,11 +29,11 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
         public int ProductId { get; set; }
 
         [SsasColumn("DimSportBettypeMatrix[ProductName]")]
-        public int ProductName { get; set; }
+        public string ProductName { get; set; }
 
         public string Key { get { return $"{ProductId}_{BetTypeDisplayID}"; } }
 
-        public string DisplayName { get { return $"{BetTypeDisplayName} ({ProductName})";  } }
+        public string DisplayName { get { return $"{BetTypeDisplayName} ({ProductName})"; } }
     }
 
     public class PlatformTopChangeDTO : TopChangeDTO
