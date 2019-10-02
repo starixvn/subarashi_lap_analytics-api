@@ -41,6 +41,13 @@ namespace Fanex.Athena.AnalyticsAPI
             Performance.Extensions.DefendencyInjectionExtension.AddDIPerformance(services);
             Common.Extensions.DefendencyInjectionExtension.AddDICommon(services);
 
+            services.AddCors(o => o.AddPolicy("DefaultPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+
             services.AddHealthChecks();
 
             services.AddMemoryCache();
@@ -89,7 +96,7 @@ namespace Fanex.Athena.AnalyticsAPI
             {
                 app.UseErrorHandler();
             }
-
+            app.UseCors("DefaultPolicy");
             app.UseIPFilter();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
