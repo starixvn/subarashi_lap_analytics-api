@@ -32,7 +32,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                             prevPeriodData.TryGetValue(_, out TDto prev) ? prev.Total : 0
                         );
                     var perspectiveName = displayer(current ?? prev);
-                    var total = _calculationService.ToThousandUnit(current?.Total);
+                    var total = _calculationService.ToRound(current?.Total);
 
                     return new TopChangeVM
                     {
@@ -56,19 +56,19 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             {
                 new SummaryVM
                 {
-                    MeasurementId = 0,
+                    MeasurementId = 1,
                     Total = _calculationService.ToThousandUnit(currentPeriodData?.Turnover),
                     ChangePercent = _calculationService.CalculateGrowth(currentPeriodData?.Turnover, prevPeriodData?.Turnover)
                 },
                 new SummaryVM
                 {
-                    MeasurementId = 1,
+                    MeasurementId = 2,
                     Total = _calculationService.ToThousandUnit(currentPeriodData?.GrossProfit),
                     ChangePercent = _calculationService.CalculateGrowth(currentPeriodData?.GrossProfit, prevPeriodData?.GrossProfit)
                 },
                 new SummaryVM
                 {
-                    MeasurementId = 2,
+                    MeasurementId = 3,
                     Total = _calculationService.ToRound(currentPeriodData?.Margin),
                     ChangePercent = _calculationService.CalculateGrowth(currentPeriodData?.Margin, prevPeriodData?.Margin)
                 }

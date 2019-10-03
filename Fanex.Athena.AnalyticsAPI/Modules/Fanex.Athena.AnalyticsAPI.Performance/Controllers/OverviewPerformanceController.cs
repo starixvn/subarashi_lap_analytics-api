@@ -60,17 +60,24 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         public async Task<IActionResult> GetCombineData(PerformanceFilterMetaModel filter)
         {
             var summaryTask = _overviewService.GetSummaryWithComparison(filter);
-            var growthTask = _overviewService.GetPeriodGrowthWithComparison(filter);
+            var periodgrowthTask = _overviewService.GetPeriodGrowthWithComparison(filter);
+            var monthGrowthTask = _overviewService.GetMonthGrowthWithComparison(filter);
             var topChangeTask = _getTopChange(filter);
 
             var summaryData = await summaryTask;
-            var growthData = await growthTask;
+            var periodGrowth = await periodgrowthTask;
+            var monthGrowth = await monthGrowthTask;
             var topChangeData = await topChangeTask;
 
             return ToResult(new
             {
+                baseCurrency = filter.BaseCurrency.Name,
+                measurementId = filter.Measurement.Id,
                 summaryData,
-                growthData,
+                growthData = new {
+                    monthGrowth,
+                    periodGrowth
+                },
                 topChangeData
             });
         }
@@ -84,17 +91,16 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 
             var currencyTopChange = await taskCurrency;
             var bettypeTopChange = await taskBettype;
-            var platfromTopChange = await taskPlatform;
+            var platformTopChange = await taskPlatform;
             //var productTopeChange = await taskProduct;
 
             return new
             {
                 currencyTopChange,
                 bettypeTopChange,
-                platfromTopChange,
+                platformTopChange,
                 //productTopeChange
             };
         }
-
     }
 }

@@ -54,13 +54,13 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             {
                 new MeasurementGrowthVM
                 {
-                    Time = "Previous_Period",
+                    Time = "Previous Period",
                     Total = _calculationService.ToThousandUnit(prevPeriodData?.Total),
                     GrowthPercent = _calculationService.CalculateGrowth(prevPeriodData?.Total, prevPeriodOfPrevData?.Total)
                 },
                 new MeasurementGrowthVM
                 {
-                    Time = "Current_Period",
+                    Time = "Current Period",
                     Total = _calculationService.ToThousandUnit(currentPeriodData?.Total),
                     GrowthPercent = _calculationService.CalculateGrowth(currentPeriodData?.Total, prevPeriodData?.Total)
                 }

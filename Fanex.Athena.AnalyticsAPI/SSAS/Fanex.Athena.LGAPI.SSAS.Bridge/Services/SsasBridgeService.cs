@@ -3,6 +3,7 @@ using Fanex.Athena.LGAPI.SSAS.Bridge.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,10 +40,11 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.Services
                 requestMessage.Content = new StringContent(JsonConvert.SerializeObject(new { query, connectionKey = Setting.ConnectionKey, parameters }), Encoding.UTF8, "application/json");
                 var response = await client.SendAsync(requestMessage);
                 var content = await response.Content.ReadAsStringAsync();
-
                 if (response.IsSuccessStatusCode)
                 {
                     var records = JsonConvert.DeserializeObject<IEnumerable<IDictionary<string, object>>>(content);
+                    result.Capacity = records.Count();
+
                     foreach (var record in records)
                     {
                         var obj = record.ToObject<TResult>();
