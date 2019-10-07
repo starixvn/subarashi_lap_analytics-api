@@ -8,6 +8,6 @@
 
         public MonthRangeMetaModel PreviousPeriod { get; set; }
 
-        public SelectMetaModel BaseCurrency { get; set; }
+        public string BaseCurrencyName { get; set; }
     }
 }
