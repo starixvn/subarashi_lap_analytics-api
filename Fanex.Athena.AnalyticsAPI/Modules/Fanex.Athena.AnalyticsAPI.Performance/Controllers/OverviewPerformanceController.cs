@@ -71,7 +71,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 
             return ToResult(new
             {
-                baseCurrency = filter.BaseCurrency.Name,
+                baseCurrency = filter.BaseCurrencyName,
                 measurementId = filter.Measurement.Id,
                 summaryData,
                 growthData = new {
@@ -87,19 +87,19 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
             var taskCurrency = _overviewService.GetCurrencyTopChangeWithComparison(filter);
             var taskBettype = _overviewService.GetBettypeTopChangeWithComparison(filter);
             var taskPlatform = _overviewService.GetPlatformTopChangeWithComparison(filter);
-            //var taskProduct = _overviewService.GetProductTopChangeWithComparison(filter);
+            var taskProduct = _overviewService.GetProductTopChangeWithComparison(filter);
 
             var currencyTopChange = await taskCurrency;
             var bettypeTopChange = await taskBettype;
             var platformTopChange = await taskPlatform;
-            //var productTopeChange = await taskProduct;
+            var productTopChange = await taskProduct;
 
             return new
             {
                 currencyTopChange,
                 bettypeTopChange,
                 platformTopChange,
-                //productTopeChange
+                productTopChange
             };
         }
     }

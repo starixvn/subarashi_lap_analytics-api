@@ -46,7 +46,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             criteriaCurrentPeriod.GroupID = GroupData.NONE_GROUP;
             var taskCurrentPeriod = _performanceRepository.QueryAsync<TotalDTO>(criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToViewModel(await taskPrevOfPrevPeriod, await taskPrevPeriod, await taskCurrentPeriod);
+            var result = _viewModelMapper.ToViewModel(await taskPrevOfPrevPeriod, await taskPrevPeriod, await taskCurrentPeriod, criteriaCurrentPeriod.MeasurementId != MeasurementType.MARGIN);
 
             return result;
         }
@@ -61,7 +61,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             var result = _viewModelMapper.ToViewModel(
                 await taskCurrentPeriod,
                 DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.FromMonth),
-                DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.ToMonth)
+                DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.ToMonth),
+                criteriaCurrentPeriod.MeasurementId != MeasurementType.MARGIN
                 );
 
             return result;
