@@ -9,9 +9,11 @@ using Fanex.Logging.RabbitMQ;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
+using System.IO.Compression;
 
 namespace Fanex.Athena.AnalyticsAPI
 {
@@ -49,11 +51,26 @@ namespace Fanex.Athena.AnalyticsAPI
             }));
 
             services.AddHealthChecks();
-
             services.AddMemoryCache();
             services.AddResponseCaching(options =>
             {
                 options.UseCaseSensitivePaths = true;
+            });
+
+            services.Configure<GzipCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Optimal;
+            });
+
+            services.AddResponseCompression(options =>
+            {
+                IEnumerable<string> MimeTypes = new[]
+                {
+                     "application/json"
+                 };
+                options.EnableForHttps = true;
+                options.MimeTypes = MimeTypes;
+                options.Providers.Add<GzipCompressionProvider>();
             });
 
             var appSettings = Configuration.GetSection("AppSettings").Get<AppSettings>();
@@ -99,6 +116,7 @@ namespace Fanex.Athena.AnalyticsAPI
             app.UseCors("DefaultPolicy");
             app.UseIPFilter();
             app.UseHttpsRedirection();
+            app.UseResponseCompression();
             app.UseStaticFiles();
             app.UsePathBase(PathBase);
             app.UseSwaggerDoc(Env, ApiName, PathBase);
