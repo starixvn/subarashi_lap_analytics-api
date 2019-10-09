@@ -20,10 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\CacheService\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SSAS\Fanex.Athena.LGAPI.SSAS.Bridge\Fanex.Athena.LGAPI.SSAS.Bridge.csproj" />
   </ItemGroup>
 

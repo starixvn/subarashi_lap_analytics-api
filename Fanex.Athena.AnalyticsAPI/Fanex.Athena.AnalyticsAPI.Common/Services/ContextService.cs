@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
     public class ContextService : IContextService
     {
-        public IDictionary<string, string> Errors {  get; protected set; }
+        public IDictionary<string, string> Errors { get; protected set; }
 
         public IDictionary<string, string> Info { get; protected set; }
 
@@ -46,6 +45,11 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
                 {
                     msg = string.Join(", ", Info.Values);
                 }
+                else
+                {
+                    //nothing
+                }
+
 
                 return msg;
             }

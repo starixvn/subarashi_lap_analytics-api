@@ -18,7 +18,10 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
         {
         }
 
-        public IEnumerable<MeasurementGrowthVM> ToViewModel(IEnumerable<MeasurementGrowthDTO> periodDtos, DateTime fromMonth, DateTime toMonth, bool parseUnit = true)
+        public IEnumerable<MeasurementGrowthVM> ToViewModel(
+            IEnumerable<MeasurementGrowthDTO> periodDtos,
+            DateTime fromMonth, DateTime toMonth,
+            bool parseUnit = true)
         {
             fromMonth = new DateTime(fromMonth.Year, fromMonth.Month, 1);
             toMonth = new DateTime(toMonth.Year, toMonth.Month, 1);

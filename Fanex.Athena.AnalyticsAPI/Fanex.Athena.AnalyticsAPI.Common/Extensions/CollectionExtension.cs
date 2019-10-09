@@ -6,7 +6,9 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
 {
     public static class CollectionExtension
     {
-        public static IEnumerable<TOutput> GroupTo<TInput, TKey, TOutput>(this IEnumerable<TInput> collection, Func<TInput, TKey> keySelector, Func<IGrouping<TKey, TInput>, TOutput> mapper)
+        public static IEnumerable<TOutput> GroupTo<TInput, TKey, TOutput>(this IEnumerable<TInput> collection,
+            Func<TInput, TKey> keySelector,
+            Func<IGrouping<TKey, TInput>, TOutput> mapper)
         {
             if (collection == null)
             {

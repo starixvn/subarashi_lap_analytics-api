@@ -1,10 +1,8 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Controllers;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
@@ -74,7 +72,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
                 baseCurrency = filter.BaseCurrencyName,
                 measurementId = filter.Measurement.Id,
                 summaryData,
-                growthData = new {
+                growthData = new
+                {
                     monthGrowth,
                     periodGrowth
                 },

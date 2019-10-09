@@ -51,7 +51,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.UnitTest.Services
         [InlineData(1.5, 100.23, -98.5)]
         [InlineData(-50, -100, 50)]
         [InlineData(100, 50, 100)]
-        public void CalculateGrowth_NotNullAndNotZeroValue_ReturnCorrectResult(double? current, double? previous, double expected)
+        public void CalculateGrowth_NotNullAndNotZero_ReturnCorrectResult(double? current, double? previous, double expected)
         {
             //Arrange
 
