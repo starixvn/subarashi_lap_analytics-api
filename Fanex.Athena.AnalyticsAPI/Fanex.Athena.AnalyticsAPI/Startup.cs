@@ -114,7 +114,6 @@ namespace Fanex.Athena.AnalyticsAPI
                 app.UseErrorHandler();
             }
             app.UseCors("DefaultPolicy");
-            app.UseIPFilter();
             app.UseHttpsRedirection();
             app.UseResponseCompression();
             app.UseStaticFiles();
