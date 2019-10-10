@@ -1,4 +1,5 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Controllers;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Attributes;
+using Fanex.Athena.AnalyticsAPI.Common.Controllers;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Services;
@@ -55,6 +56,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 
         [HttpPost]
         [Route("performance/overview")]
+        [AutoBindMetaModel]
         public async Task<IActionResult> GetCombineData(PerformanceFilterMetaModel filter)
         {
             var summaryTask = _overviewService.GetSummaryWithComparison(filter);

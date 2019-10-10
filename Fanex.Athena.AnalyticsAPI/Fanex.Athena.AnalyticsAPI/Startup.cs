@@ -6,12 +6,15 @@ using Fanex.Data;
 using Fanex.Data.SqlServer;
 using Fanex.Logging;
 using Fanex.Logging.RabbitMQ;
+using LAP.ONEBook.Security;
+using LAP.ONEBook.Security.StorageProvider.SqlServer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.IO.Compression;
 
@@ -39,9 +42,6 @@ namespace Fanex.Athena.AnalyticsAPI
 
             services.Configure<ApplicationOptions>(Configuration.GetSection("ApplicationOptions"));
             services.Configure<SSASSetting>(Configuration.GetSection("SSASSetting"));
-
-            Performance.Extensions.DefendencyInjectionExtension.AddDIPerformance(services);
-            Common.Extensions.DefendencyInjectionExtension.AddDICommon(services);
 
             services.AddCors(o => o.AddPolicy("DefaultPolicy", builder =>
             {
@@ -88,6 +88,22 @@ namespace Fanex.Athena.AnalyticsAPI
               .WithSqlServer(resourcePath: "~/SpConfig")
               .Use(conns)
               .Run();
+
+            Performance.Extensions.DefendencyInjectionExtension.AddDIPerformance(services);
+            Common.Extensions.DefendencyInjectionExtension.AddDICommon(services);
+            services.AddSingleton<IStorageProvider, SqlServerProvider>(x =>
+            {
+                var connection = GetOneBookSecurityConnection();
+                return new SqlServerProvider(connection);
+            }
+            );
+
+        }
+
+        private string GetOneBookSecurityConnection()
+        {
+            var encryptedConnectionString = Configuration.GetConnectionString("LAP.OneBook");
+            return Cryptography.DecryptConnectionString(encryptedConnectionString);
         }
 
         private Dictionary<string, ConnectionConfiguration> GetConnectionString()
@@ -111,6 +127,7 @@ namespace Fanex.Athena.AnalyticsAPI
             }
             else
             {
+                app.UseOneAuth();
                 app.UseErrorHandler();
             }
             app.UseCors("DefaultPolicy");
