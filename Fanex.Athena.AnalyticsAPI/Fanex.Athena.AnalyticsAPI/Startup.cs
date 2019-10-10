@@ -123,20 +123,20 @@ namespace Fanex.Athena.AnalyticsAPI
         {
             if (Env.IsDevelopment())
             {
-
                 app.UseDeveloperExceptionPage();
             }
             else
             {
-                app.UseOneAuth();
                 app.UseErrorHandler();
             }
+
             app.UseCors("DefaultPolicy");
             app.UseHttpsRedirection();
             app.UseResponseCompression();
             app.UseStaticFiles();
             app.UsePathBase(PathBase);
             app.UseSwaggerDoc(Env, ApiName, PathBase);
+            app.UseOneAuth();
             app.UseMvc();
         }
     }
