@@ -12,14 +12,17 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.Services
 {
     public class SsasBridgeService : ISsasBridgeService
     {
+        private const string KEY_NAME = "LGAPI_TOKEN_KEY";
+
         public BridgeSetting Setting { get; set; }
 
-        public SsasBridgeService(string connectionKey, string bridgeHost)
+        public SsasBridgeService(string connectionKey, string bridgeHost, string authKey)
         {
             Setting = new BridgeSetting
             {
                 ConnectionKey = connectionKey,
-                BridgeHost = bridgeHost
+                BridgeHost = bridgeHost,
+                AuthKey = authKey
             };
         }
 
@@ -37,6 +40,7 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.Services
             {
                 client.BaseAddress = new Uri(Setting.BridgeHost);
                 HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Post, bridgeUrl);
+                requestMessage.Headers.Add(KEY_NAME, Setting.AuthKey);
                 requestMessage.Content = new StringContent(JsonConvert.SerializeObject(new { query, connectionKey = Setting.ConnectionKey, parameters }), Encoding.UTF8, "application/json");
                 var response = await client.SendAsync(requestMessage);
                 var content = await response.Content.ReadAsStringAsync();
