@@ -26,11 +26,10 @@ namespace Fanex.Athena.AnalyticsAPI
                    config.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
                    config.AddEnvironmentVariables();
                })
-             .UseKestrel(x =>
-             {
-                 x.AddServerHeader = false;
-             })
-             .UseIISIntegration()
-             .UseStartup<Startup>();
+               .UseKestrel(options =>
+               {
+                    options.AddServerHeader = false;
+               })
+              .UseStartup<Startup>();
     }
 }
