@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fanex.Data.SqlServer" Version="4.1.1" />
+    <PackageReference Include="Fanex.Data.SqlServer" Version="4.2.0" />
     <PackageReference Include="Fanex.Logging" Version="2.0.1" />
     <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
