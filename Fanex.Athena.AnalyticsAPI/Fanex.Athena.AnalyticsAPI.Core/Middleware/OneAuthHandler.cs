@@ -46,7 +46,9 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
             {
                 var auth = new Auth<AuthInfo>(_storageProvider);
                 var authInfo = await auth.AuthenticateAsync(token[0]).ConfigureAwait(false);
-                if (ValidateToken(authInfo, context.Request.Path))
+                var path = context.Request.PathBase + context.Request.Path;  
+
+                if (ValidateToken(authInfo, path))
                 {
                     context.User = new GenericPrincipal(new ClaimsIdentity(new[] {
                         new Claim(ClaimTypes.Name, authInfo.SiteName) }),
@@ -56,6 +58,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
                 {
                     isAuthorized = false;
                 }
+
             }
 
             return isAuthorized;
