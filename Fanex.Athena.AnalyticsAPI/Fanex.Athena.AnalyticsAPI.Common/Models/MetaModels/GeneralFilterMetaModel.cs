@@ -2,7 +2,7 @@
 {
     public class GeneralFilterMetaModel : IBaseMetaModel
     {
-        public string SiteName { get; set; } = "12BET";
+        public string SiteName { get; set; }
 
         public MonthRangeMetaModel CurrentPeriod { get; set; }
 

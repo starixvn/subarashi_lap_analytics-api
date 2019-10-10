@@ -123,6 +123,7 @@ namespace Fanex.Athena.AnalyticsAPI
         {
             if (Env.IsDevelopment())
             {
+
                 app.UseDeveloperExceptionPage();
             }
             else
