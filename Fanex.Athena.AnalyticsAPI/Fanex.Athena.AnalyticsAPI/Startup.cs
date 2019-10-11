@@ -24,8 +24,8 @@ namespace Fanex.Athena.AnalyticsAPI
 {
     public class Startup
     {
-        private const string ApiName = "LAP - Analytics API";
-        const string DEFAULT_SITE_NAME = "12Bet"; //only development
+        private const string API_NAME = "LAP - Analytics API";
+        private const string DEFAULT_SITE_NAME = "12Bet"; //only development
 
         public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
@@ -40,7 +40,7 @@ namespace Fanex.Athena.AnalyticsAPI
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddSwaggerDoc(Env, ApiName);
+            services.AddSwaggerDoc(Env, API_NAME);
 
             services.Configure<ApplicationOptions>(Configuration.GetSection("ApplicationOptions"));
             services.Configure<SSASSetting>(Configuration.GetSection("SSASSetting"));
@@ -126,7 +126,7 @@ namespace Fanex.Athena.AnalyticsAPI
             app.UseStaticFiles();
             app.UseCors("DefaultPolicy");
             app.UseResponseCompression();
-            app.UseSwaggerDoc(Env, ApiName);
+            app.UseSwaggerDoc(Env, API_NAME);
             if (Env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

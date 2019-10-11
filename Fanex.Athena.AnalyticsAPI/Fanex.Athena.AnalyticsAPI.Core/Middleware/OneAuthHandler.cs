@@ -18,7 +18,6 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
 
         private readonly RequestDelegate _next;
         private readonly IStorageProvider _storageProvider;
-        private readonly IHostingEnvironment _env;
 
         public OneAuthHandler(RequestDelegate next, IStorageProvider storageProvider)
         {
