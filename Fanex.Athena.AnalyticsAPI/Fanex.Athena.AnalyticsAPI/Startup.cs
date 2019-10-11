@@ -23,7 +23,6 @@ namespace Fanex.Athena.AnalyticsAPI
     public class Startup
     {
         private const string ApiName = "LAP - Analytics API";
-        private const string PathBase = "/api";
 
         public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
@@ -130,12 +129,10 @@ namespace Fanex.Athena.AnalyticsAPI
                 app.UseErrorHandler();
             }
 
-            app.UseCors("DefaultPolicy");
-            app.UseHttpsRedirection();
-            app.UseResponseCompression();
             app.UseStaticFiles();
-            app.UsePathBase(PathBase);
-            app.UseSwaggerDoc(Env, ApiName, PathBase);
+            app.UseCors("DefaultPolicy");
+            app.UseResponseCompression();
+            app.UseSwaggerDoc(Env, ApiName);
             app.UseOneAuth();
             app.UseMvc();
         }

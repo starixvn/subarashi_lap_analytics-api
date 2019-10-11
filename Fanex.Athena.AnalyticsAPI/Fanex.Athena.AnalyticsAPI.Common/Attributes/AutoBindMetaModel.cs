@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 namespace Fanex.Athena.AnalyticsAPI.Common.Attributes
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
-    public sealed class AutoBindMetaModel : ActionFilterAttribute
+    public sealed class AutoBindMetaModelAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {

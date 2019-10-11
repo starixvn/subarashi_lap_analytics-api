@@ -23,7 +23,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         }
 
         [HttpPost]
-        [Route("performance/overview/summary")]
+        [Route("api/performance/overview/summary")]
+        [AutoBindMetaModel]
         public async Task<IActionResult> GetSummary([FromBody]PerformanceFilterMetaModel filter)
         {
             var result = await _overviewService.GetSummaryWithComparison(filter);
@@ -31,7 +32,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         }
 
         [HttpPost]
-        [Route("performance/overview/top-change")]
+        [Route("api/performance/overview/top-change")]
+        [AutoBindMetaModel]
         public async Task<IActionResult> GetTopChange([FromBody]PerformanceFilterMetaModel filter)
         {
             var result = await _getTopChange(filter);
@@ -39,7 +41,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         }
 
         [HttpPost]
-        [Route("performance/overview/period-growth")]
+        [Route("api/performance/overview/period-growth")]
+        [AutoBindMetaModel]
         public async Task<IActionResult> GetPeriodGrowth(PerformanceFilterMetaModel filter)
         {
             var result = await _overviewService.GetPeriodGrowthWithComparison(filter);
@@ -47,7 +50,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         }
 
         [HttpPost]
-        [Route("performance/overview/month-growth")]
+        [Route("api/performance/overview/month-growth")]
+        [AutoBindMetaModel]
         public async Task<IActionResult> GetMonthGrowth(PerformanceFilterMetaModel filter)
         {
             var result = await _overviewService.GetMonthGrowthWithComparison(filter);
@@ -55,7 +59,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         }
 
         [HttpPost]
-        [Route("performance/overview")]
+        [Route("api/performance/overview")]
         [AutoBindMetaModel]
         public async Task<IActionResult> GetCombineData(PerformanceFilterMetaModel filter)
         {

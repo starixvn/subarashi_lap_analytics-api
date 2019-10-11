@@ -20,10 +20,12 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
         {
             return builder.UseMiddleware<IPFilter>();
         }
+
         public static IApplicationBuilder UseOneAuth(this IApplicationBuilder builder)
         {
             return builder.UseMiddleware<OneAuthHandler>();
         }
+
         public static IServiceCollection AddSwaggerDoc(this IServiceCollection services, IHostingEnvironment env, string apiName)
         {
             services.AddSwaggerGen(c =>
@@ -41,12 +43,12 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
             return services;
         }
 
-        public static IApplicationBuilder UseSwaggerDoc(this IApplicationBuilder builder, IHostingEnvironment env, string apiName, string pathBase)
+        public static IApplicationBuilder UseSwaggerDoc(this IApplicationBuilder builder, IHostingEnvironment env, string apiName)
         {
             builder.UseSwagger();
             builder.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint(pathBase + "/swagger/v1/swagger.json", $"{apiName} V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", $"{apiName} V1");
                 c.RoutePrefix = string.Empty;
             });
 
