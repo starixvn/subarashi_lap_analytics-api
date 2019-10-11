@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Security.Claims;
 using System.Security.Principal;
-using System.Text;
 using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Core.Models.DTO;
 using LAP.ONEBook.Security;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
+
 using Newtonsoft.Json;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
@@ -17,17 +15,15 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
     public class OneAuthHandler
     {
         const string AUTHKEY = "X-Auth-Token";
-        const string DEFAULT_SITE_NAME = "12Bet"; //only development
 
         private readonly RequestDelegate _next;
         private readonly IStorageProvider _storageProvider;
         private readonly IHostingEnvironment _env;
 
-        public OneAuthHandler(RequestDelegate next, IStorageProvider storageProvider, IHostingEnvironment env)
+        public OneAuthHandler(RequestDelegate next, IStorageProvider storageProvider)
         {
             _next = next;
             _storageProvider = storageProvider;
-            _env = env;
         }
 
         public async Task Invoke(HttpContext context)
@@ -45,39 +41,29 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
 
         private async Task<bool> Authorize(HttpContext context)
         {
-            var isAuthorized = true;
+            var isAuthorized = context.Request.Headers.TryGetValue(AUTHKEY, out StringValues token);
+            if (isAuthorized)
+            {
+                var auth = new Auth<DefaultAuthInfo<dynamic, dynamic>>(_storageProvider);
+                var authInfo = await auth.AuthenticateAsync(token[0]).ConfigureAwait(false);
 
-            if (_env.IsDevelopment())
-            {
-                context.User = new GenericPrincipal(new ClaimsIdentity(new[] {
-                        new Claim(ClaimTypes.Name, DEFAULT_SITE_NAME) }),
-                            new[] { "" });
-            }
-            else
-            {
-                isAuthorized = context.Request.Headers.TryGetValue(AUTHKEY, out StringValues token);
-                if (isAuthorized)
+                if (ValidateToken(authInfo, context.Request.Path))
                 {
-                    var auth = new Auth<AuthInfo>(_storageProvider);
-                    var authInfo = await auth.AuthenticateAsync(token[0]).ConfigureAwait(false);
-
-                    if (ValidateToken(authInfo, context.Request.Path))
-                    {
-                        context.User = new GenericPrincipal(new ClaimsIdentity(new[] {
+                    context.User = new GenericPrincipal(new ClaimsIdentity(new[] {
                         new Claim(ClaimTypes.Name, authInfo.SiteName) }),
-                            new[] { "" });
-                    }
-                    else
-                    {
-                        isAuthorized = false;
-                    }
+                        new[] { "" });
+                }
+                else
+                {
+                    isAuthorized = false;
                 }
             }
+
 
             return isAuthorized;
         }
 
-        private static bool ValidateToken(AuthInfo authInfo, string actionUrl)
+        private static bool ValidateToken(DefaultAuthInfo<dynamic, dynamic> authInfo, string actionUrl)
         {
             if (string.IsNullOrEmpty(authInfo?.SiteName) || string.IsNullOrEmpty(authInfo?.UserName) || authInfo?.UserSEQ <= 0)
             {

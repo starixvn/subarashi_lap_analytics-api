@@ -17,12 +17,15 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.IO.Compression;
+using System.Security.Claims;
+using System.Security.Principal;
 
 namespace Fanex.Athena.AnalyticsAPI
 {
     public class Startup
     {
         private const string ApiName = "LAP - Analytics API";
+        const string DEFAULT_SITE_NAME = "12Bet"; //only development
 
         public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
@@ -120,20 +123,27 @@ namespace Fanex.Athena.AnalyticsAPI
 
         public void Configure(IApplicationBuilder app)
         {
-            if (Env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseErrorHandler();
-            }
-
             app.UseStaticFiles();
             app.UseCors("DefaultPolicy");
             app.UseResponseCompression();
             app.UseSwaggerDoc(Env, ApiName);
-            app.UseOneAuth();
+            if (Env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.Use(async (context, next) =>
+                {
+                    context.User = new GenericPrincipal(new ClaimsIdentity(new[] {
+                        new Claim(ClaimTypes.Name, DEFAULT_SITE_NAME) }),
+                           new[] { "" });
+
+                    await next.Invoke();
+                });
+            }
+            else
+            {
+                app.UseErrorHandler();
+                app.UseOneAuth();
+            }
             app.UseMvc();
         }
     }
