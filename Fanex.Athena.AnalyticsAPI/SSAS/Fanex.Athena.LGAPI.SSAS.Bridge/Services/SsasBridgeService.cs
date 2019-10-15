@@ -14,51 +14,54 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.Services
     {
         private const string KEY_NAME = "LGAPI_TOKEN_KEY";
 
-        public BridgeSetting Setting { get; set; }
+        private readonly HttpClient _client;
 
-        public SsasBridgeService(string connectionKey, string bridgeHost, string authKey)
+        private BridgeSetting _setting;
+
+        public BridgeSetting Setting
         {
-            Setting = new BridgeSetting
+            get
             {
-                ConnectionKey = connectionKey,
-                BridgeHost = bridgeHost,
-                AuthKey = authKey
-            };
+                return _setting;
+            }
+            set
+            {
+                _setting = value;
+                if (_client != null)
+                {
+                    _client.BaseAddress = new Uri(_setting?.BridgeHost);
+                }
+            }
         }
 
-        public SsasBridgeService()
+        public SsasBridgeService(HttpClient httpClient)
         {
-            Setting = new BridgeSetting();
+            _client = httpClient;
         }
 
         public async Task<IEnumerable<TResult>> QueryAsync<TResult>(string query, IDictionary<string, object> parameters = null, string bridgeUrl = "ssas/query")
             where TResult : new()
         {
             var result = Activator.CreateInstance<List<TResult>>();
-
-            using (var client = new HttpClient())
+            HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Post, bridgeUrl);
+            requestMessage.Headers.Add(KEY_NAME, _setting.AuthKey);
+            requestMessage.Content = new StringContent(JsonConvert.SerializeObject(new { query, connectionKey = _setting.ConnectionKey, parameters }), Encoding.UTF8, "application/json");
+            var response = await _client.SendAsync(requestMessage);
+            var content = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
             {
-                client.BaseAddress = new Uri(Setting.BridgeHost);
-                HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Post, bridgeUrl);
-                requestMessage.Headers.Add(KEY_NAME, Setting.AuthKey);
-                requestMessage.Content = new StringContent(JsonConvert.SerializeObject(new { query, connectionKey = Setting.ConnectionKey, parameters }), Encoding.UTF8, "application/json");
-                var response = await client.SendAsync(requestMessage);
-                var content = await response.Content.ReadAsStringAsync();
-                if (response.IsSuccessStatusCode)
-                {
-                    var records = JsonConvert.DeserializeObject<IEnumerable<IDictionary<string, object>>>(content);
-                    result.Capacity = records.Count();
+                var records = JsonConvert.DeserializeObject<IEnumerable<IDictionary<string, object>>>(content);
+                result.Capacity = records.Count();
 
-                    foreach (var record in records)
-                    {
-                        var obj = record.ToObject<TResult>();
-                        result.Add(obj);
-                    }
-                }
-                else
+                foreach (var record in records)
                 {
-                    throw new Exception(content);
+                    var obj = record.ToObject<TResult>();
+                    result.Add(obj);
                 }
+            }
+            else
+            {
+                throw new Exception(content);
             }
 
             return result;

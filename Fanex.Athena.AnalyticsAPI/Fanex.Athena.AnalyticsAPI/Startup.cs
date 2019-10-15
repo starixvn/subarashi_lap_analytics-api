@@ -2,6 +2,7 @@
 using Fanex.Athena.AnalyticsAPI.Core.Extensions;
 using Fanex.Athena.AnalyticsAPI.Core.Models.Configuration;
 using Fanex.Athena.ExtService.Common.Models.DTO;
+using Fanex.Athena.LGAPI.SSAS.Bridge.Services;
 using Fanex.Data;
 using Fanex.Data.SqlServer;
 using Fanex.Logging;
@@ -14,7 +15,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using System.Collections.Generic;
 using System.IO.Compression;
 using System.Security.Claims;
@@ -52,8 +52,6 @@ namespace Fanex.Athena.AnalyticsAPI
                        .AllowAnyHeader();
             }));
 
-            services.AddHealthChecks();
-            services.AddMemoryCache();
             services.AddResponseCaching(options =>
             {
                 options.UseCaseSensitivePaths = true;
@@ -97,9 +95,7 @@ namespace Fanex.Athena.AnalyticsAPI
             {
                 var connection = GetOneBookSecurityConnection();
                 return new SqlServerProvider(connection);
-            }
-            );
-
+            });
         }
 
         private string GetOneBookSecurityConnection()

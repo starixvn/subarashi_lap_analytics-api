@@ -20,6 +20,8 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
             services.AddTransient<ISsasBridgeService, SsasBridgeService>();
             services.AddTransient<ICalculationService, CalculationService>();
 
+            services.AddHttpClient<ISsasBridgeService, SsasBridgeService>();
+
             return services;
         }
 
