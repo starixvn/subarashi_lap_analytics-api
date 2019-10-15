@@ -20,8 +20,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
 
         public IEnumerable<MeasurementGrowthVM> ToViewModel(
             IEnumerable<MeasurementGrowthDTO> periodDtos,
-            DateTime fromMonth, DateTime toMonth,
-            bool parseUnit = true)
+            DateTime fromMonth, DateTime toMonth)
         {
             fromMonth = new DateTime(fromMonth.Year, fromMonth.Month, 1);
             toMonth = new DateTime(toMonth.Year, toMonth.Month, 1);
@@ -36,8 +35,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                 result.Add(new MeasurementGrowthVM
                 {
                     Time = fromMonth.ToString(DateTimeHelper.MONTH_FORMAT),
-                    Total = parseUnit ? _calculationService.ToThousandUnit(currentMonthData?.Total) 
-                        : _calculationService.ToRound(currentMonthData?.Total),
+                    Total = _calculationService.ToRound(currentMonthData?.Total),
                     GrowthPercent = _calculationService.CalculateGrowth(currentMonthData?.Total, prevMonthData?.Total)
                 });
 
@@ -51,8 +49,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
         public IEnumerable<MeasurementGrowthVM> ToViewModel(
             IEnumerable<TotalDTO> prevPeriodOfPrevDtos,
             IEnumerable<TotalDTO> prevPeriodDtos,
-            IEnumerable<TotalDTO> currentPeriodDtos,
-            bool parseUnit = true)
+            IEnumerable<TotalDTO> currentPeriodDtos)
         {
             var prevPeriodOfPrevData = prevPeriodOfPrevDtos.FirstOrDefault();
             var prevPeriodData = prevPeriodDtos.FirstOrDefault();
@@ -63,15 +60,13 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                 new MeasurementGrowthVM
                 {
                     Time = "Previous Period",
-                    Total = parseUnit ? _calculationService.ToThousandUnit(prevPeriodData?.Total) 
-                        : _calculationService.ToRound(prevPeriodData?.Total),
+                    Total = _calculationService.ToRound(prevPeriodData?.Total),
                     GrowthPercent = _calculationService.CalculateGrowth(prevPeriodData?.Total, prevPeriodOfPrevData?.Total)
                 },
                 new MeasurementGrowthVM
                 {
                     Time = "Current Period",
-                    Total = parseUnit ? _calculationService.ToThousandUnit(currentPeriodData?.Total) 
-                        : _calculationService.ToRound(currentPeriodData?.Total),
+                    Total = _calculationService.ToRound(currentPeriodData?.Total),
                     GrowthPercent = _calculationService.CalculateGrowth(currentPeriodData?.Total, prevPeriodData?.Total)
                 }
             };

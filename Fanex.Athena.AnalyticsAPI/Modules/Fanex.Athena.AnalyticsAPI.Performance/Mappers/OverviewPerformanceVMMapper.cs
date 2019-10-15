@@ -9,6 +9,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
 {
     public class OverviewPerformanceVMMapper : PerformanceVMMapper, IOverviewPerformanceVMMapper
     {
+        private const int NUMBER_OF_TOP_CHANGE = 5;
+
         public OverviewPerformanceVMMapper(
             ICalculationService calculationService
             )
@@ -42,7 +44,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                     };
                 })
                 .OrderByDescending(_ => Math.Abs(_.ChangePercent))
-                .Take(5);
+                .Take(NUMBER_OF_TOP_CHANGE);
 
             return result;
         }
@@ -57,13 +59,13 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                 new SummaryVM
                 {
                     MeasurementId = 1,
-                    Total = _calculationService.ToThousandUnit(currentPeriodData?.Turnover),
+                    Total = _calculationService.ToRound(currentPeriodData?.Turnover),
                     ChangePercent = _calculationService.CalculateGrowth(currentPeriodData?.Turnover, prevPeriodData?.Turnover)
                 },
                 new SummaryVM
                 {
                     MeasurementId = 2,
-                    Total = _calculationService.ToThousandUnit(currentPeriodData?.GrossProfit),
+                    Total = _calculationService.ToRound(currentPeriodData?.GrossProfit),
                     ChangePercent = _calculationService.CalculateGrowth(currentPeriodData?.GrossProfit, prevPeriodData?.GrossProfit)
                 },
                 new SummaryVM
