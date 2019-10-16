@@ -73,5 +73,11 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
 
             return result;
         }
+
+        public IEnumerable<DistributionVM> ToViewModel<T>(IEnumerable<T> prevPeriodDtos, IEnumerable<T> currentPeriodDtos) 
+            where T : DistributionDTO
+        {
+            throw new NotImplementedException();
+        }
     }
 }

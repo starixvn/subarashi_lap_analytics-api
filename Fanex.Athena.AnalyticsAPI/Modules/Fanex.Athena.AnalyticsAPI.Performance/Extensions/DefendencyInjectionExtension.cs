@@ -33,6 +33,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Extensions
         private static IServiceCollection AddMappers(this IServiceCollection services)
         {
             services.AddTransient<IOverviewPerformanceVMMapper, OverviewPerformanceVMMapper>();
+            services.AddTransient<ICurrencyPerformanceVMMapper, CurrencyPerformanceVMMapper>();
 
             return services;
         }
