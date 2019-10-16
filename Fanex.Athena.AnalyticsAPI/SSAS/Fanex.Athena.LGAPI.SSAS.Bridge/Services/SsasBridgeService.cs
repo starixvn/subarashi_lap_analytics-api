@@ -30,6 +30,7 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.Services
                 if (_client != null)
                 {
                     _client.BaseAddress = new Uri(_setting?.BridgeHost);
+                    _client.DefaultRequestHeaders.Add(KEY_NAME, _setting?.AuthKey);
                 }
             }
         }
@@ -43,26 +44,24 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.Services
             where TResult : new()
         {
             var result = Activator.CreateInstance<List<TResult>>();
-            HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Post, bridgeUrl);
-            requestMessage.Headers.Add(KEY_NAME, _setting.AuthKey);
-            requestMessage.Content = new StringContent(JsonConvert.SerializeObject(new { query, connectionKey = _setting.ConnectionKey, parameters }), Encoding.UTF8, "application/json");
-            var response = await _client.SendAsync(requestMessage);
-            var content = await response.Content.ReadAsStringAsync();
-            if (response.IsSuccessStatusCode)
+            using (var requestMessage = new HttpRequestMessage(HttpMethod.Post, bridgeUrl))
             {
-                var records = JsonConvert.DeserializeObject<IEnumerable<IDictionary<string, object>>>(content);
-                result.Capacity = records.Count();
-
-                foreach (var record in records)
+                requestMessage.Content = new StringContent(JsonConvert.SerializeObject(new { query, connectionKey = _setting.ConnectionKey, parameters }), Encoding.UTF8, "application/json");
+                using (var response = await _client.SendAsync(requestMessage))
                 {
-                    var obj = record.ToObject<TResult>();
-                    result.Add(obj);
+                    var content = await response.Content.ReadAsStringAsync();
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var records = JsonConvert.DeserializeObject<IEnumerable<IDictionary<string, object>>>(content);
+                        result.Capacity = records.Count();
+                        foreach (var record in records)
+                        {
+                            var obj = record.ToObject<TResult>();
+                            result.Add(obj);
+                        }
+                    }
                 }
-            }
-            else
-            {
-                throw new Exception(content);
-            }
+            }            
 
             return result;
         }
