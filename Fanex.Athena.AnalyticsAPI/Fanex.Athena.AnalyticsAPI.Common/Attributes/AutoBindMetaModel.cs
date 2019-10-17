@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
 using Microsoft.AspNetCore.Mvc.Filters;
+using System;
+using System.Linq;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Attributes
 {

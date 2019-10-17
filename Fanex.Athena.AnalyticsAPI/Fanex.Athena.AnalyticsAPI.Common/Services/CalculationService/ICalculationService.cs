@@ -4,6 +4,8 @@
     {
         double CalculateGrowth(double? current, double? previous);
 
+        double CalculatePercent(double value, double total);
+
         double ToThousandUnit(double? value);
 
         double ToRound(double? value, int numberOfRound = 2);

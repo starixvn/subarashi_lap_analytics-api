@@ -54,6 +54,7 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.Services
                     {
                         var records = JsonConvert.DeserializeObject<IEnumerable<IDictionary<string, object>>>(content);
                         result.Capacity = records.Count();
+
                         foreach (var record in records)
                         {
                             var obj = record.ToObject<TResult>();
@@ -61,7 +62,7 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.Services
                         }
                     }
                 }
-            }            
+            }
 
             return result;
         }

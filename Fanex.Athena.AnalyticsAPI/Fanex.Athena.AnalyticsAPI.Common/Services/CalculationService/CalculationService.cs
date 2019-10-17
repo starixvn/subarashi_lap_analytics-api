@@ -12,13 +12,27 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
             current = current ?? 0;
             previous = previous ?? 0;
 
-            if(previous == 0)
+            if (previous == 0)
             {
                 return 0;
             }
 
-            var result = ((current.Value - previous.Value) / Math.Abs(previous.Value))*100;
+            var result = ((current.Value - previous.Value) / Math.Abs(previous.Value)) * 100;
             result = ToRound(result, Round_Floating_Point);
+
+            return result;
+        }
+
+        public double CalculatePercent(double value, double total)
+        {
+            if (total == 0)
+            {
+                return 0;
+            }
+
+            var result = (value / total) * 100;
+
+            result = ToRound(result);
 
             return result;
         }

@@ -22,7 +22,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
         {
             var prevPeriodFrom = DateTimeHelper.ParseFromFormatDateToDate(prevPeriod.FromMonth);
             var prevPeriodTo = DateTimeHelper.ParseFromFormatDateToDate(prevPeriod.ToMonth);
-            
+
             var currentPeriodFrom = DateTimeHelper.ParseFromFormatDateToDate(currentPeriod.FromMonth);
             var currentPeriodTo = DateTimeHelper.ParseFromFormatDateToDate(currentPeriod.ToMonth);
 

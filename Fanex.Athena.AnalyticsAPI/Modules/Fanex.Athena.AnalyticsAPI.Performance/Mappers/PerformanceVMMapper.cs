@@ -11,6 +11,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
 {
     public class PerformanceVMMapper : ViewModelMapper, IPerformanceVMMapper
     {
+        private const int NUMBER_OF_TOP = 5;
+
         public PerformanceVMMapper(
             ICalculationService calculationService
             )
@@ -74,10 +76,56 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             return result;
         }
 
-        public IEnumerable<DistributionVM> ToViewModel<T>(IEnumerable<T> prevPeriodDtos, IEnumerable<T> currentPeriodDtos) 
+        public IEnumerable<DistributionVM> ToViewModel<T>(IEnumerable<T> prevPeriodDtos, IEnumerable<T> currentPeriodDtos)
             where T : DistributionDTO
         {
-            throw new NotImplementedException();
+            return new List<DistributionVM>
+            {
+                ToViewModel<DistributionDTO>(prevPeriodDtos, "Previous Period"),
+                ToViewModel<DistributionDTO>(currentPeriodDtos, "Current Period")
+            };
+        }
+
+        private DistributionVM ToViewModel<T>(IEnumerable<T> dtos, string name)
+            where T : DistributionDTO
+        {
+            var sumItem = dtos.FirstOrDefault(_ => _.IsSum);
+            var sum = _calculationService.ToRound(sumItem.Total);
+
+            var list = dtos.ToList();
+            list.Remove(sumItem);
+            var topDistribution = list.OrderByDescending(_ => Math.Abs(_.Total)).Take(NUMBER_OF_TOP).ToList();
+
+            var result = new DistributionVM(topDistribution.Count + 1)
+            {
+                Name = name,
+                Total = sum
+            };
+
+            var percentSum = 0.00;
+
+            topDistribution.ForEach(_ =>
+            {
+                var distributionItem = new DistributionItemVM
+                {
+                    Name = _.GetName,
+                    Percent = _calculationService.CalculatePercent(_.Total, sum)
+                };
+
+                result.Distributions.Add(distributionItem);
+                percentSum += distributionItem.Percent;
+            });
+
+            if (result.Distributions.Count == NUMBER_OF_TOP)
+            {
+                result.Distributions.Add(new DistributionItemVM
+                {
+                    Name = "Others",
+                    Percent = _calculationService.ToRound(100 - percentSum)
+                });
+            }
+
+            return result;
         }
     }
 }
