@@ -1,5 +1,7 @@
 ﻿using Fanex.Data;
 using Fanex.Data.Repository;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Services
@@ -23,6 +25,20 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
             }
 
             return query;
+        }
+
+        public async Task<IEnumerable<string>> GetMultipleDaxQuery<T>(IEnumerable<T> listCriteria)
+            where T : ICriteria
+        {
+            var tasks = new List<Task<string>>(listCriteria.Count());
+            foreach (var criteria in listCriteria)
+            {
+                tasks.Add(GetDaxQuery(criteria));
+            }
+
+            var queries = await Task.WhenAll(tasks);
+
+            return queries;
         }
     }
 }

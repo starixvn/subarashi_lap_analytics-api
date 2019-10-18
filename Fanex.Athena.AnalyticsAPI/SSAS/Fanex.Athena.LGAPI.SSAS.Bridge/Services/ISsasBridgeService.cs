@@ -8,7 +8,10 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.Services
     {
         BridgeSetting Setting { get; set; }
 
-        Task<IEnumerable<TResult>> QueryAsync<TResult>(string query, IDictionary<string, object> parameters = null, string bridgeUrl = "ssas/query")
+        Task<IEnumerable<TResult>> QueryAsync<TResult>(string query, string bridgeUrl = "SSAS/Query")
                         where TResult : new();
+
+        Task<IEnumerable<IEnumerable<TResult>>> QueryMultipleAsync<TResult>(IEnumerable<string> queries, string bridgeUrl = "SSAS/QueryMultiple")
+            where TResult : new();
     }
 }

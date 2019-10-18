@@ -37,10 +37,10 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Repositories
             _bridgeService = bridgeService;
         }
 
-        public Task<IEnumerable<TResult>> QueryAsync<TResult>(string query, IDictionary<string, object> parameters = null)
+        public Task<IEnumerable<TResult>> QueryAsync<TResult>(string query)
             where TResult : new()
         {
-            return _bridgeService.QueryAsync<TResult>(query, parameters);
+            return _bridgeService.QueryAsync<TResult>(query);
         }
 
         public async Task<IEnumerable<TResult>> QueryAsync<TResult>(ICriteria criteria)
@@ -48,6 +48,23 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Repositories
         {
             var daxQuery = await _daxQueryService.GetDaxQuery(criteria);
             var result = await _bridgeService.QueryAsync<TResult>(daxQuery);
+
+            return result;
+        }
+
+        public async Task<IEnumerable<IEnumerable<TResult>>> QueryMultipleAsync<TResult>(params ICriteria[] listCriteria)
+            where TResult : new()
+        {
+            var daxQuery = await _daxQueryService.GetMultipleDaxQuery(listCriteria);
+            var result = await _bridgeService.QueryMultipleAsync<TResult>(daxQuery);
+
+            return result;
+        }
+
+        public async Task<IEnumerable<IEnumerable<TResult>>> QueryMultipleAsync<TResult>(IEnumerable<string> queries)
+            where TResult : new()
+        {
+            var result = await _bridgeService.QueryMultipleAsync<TResult>(queries);
 
             return result;
         }

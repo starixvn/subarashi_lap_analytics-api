@@ -1,5 +1,6 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Attributes;
 using Fanex.Athena.AnalyticsAPI.Common.Controllers;
+using Fanex.Athena.AnalyticsAPI.Common.Helpers;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Services;
@@ -54,7 +55,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [AutoBindMetaModel]
         public async Task<IActionResult> GetMonthGrowth(PerformanceFilterMetaModel filter)
         {
-            var result = await _overviewService.GetMonthGrowthWithComparison(filter);
+            var result = await _overviewService.GetDetailMonthGrowthWithComparison(filter);
             return ToResult(result);
         }
 
@@ -63,15 +64,22 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [AutoBindMetaModel]
         public async Task<IActionResult> GetCombineData(PerformanceFilterMetaModel filter)
         {
-            var summaryTask = _overviewService.GetSummaryWithComparison(filter);
-            var periodgrowthTask = _overviewService.GetPeriodGrowthWithComparison(filter);
-            var monthGrowthTask = _overviewService.GetMonthGrowthWithComparison(filter);
             var topChangeTask = _getTopChange(filter);
+            var summaryTask = _overviewService.GetSummaryWithComparison(filter);
+            var periodGrowthTask = _overviewService.GetPeriodGrowthWithComparison(filter);
 
-            var summaryData = await summaryTask;
-            var periodGrowth = await periodgrowthTask;
-            var monthGrowth = await monthGrowthTask;
+            var filterClone = MetaModelHelper.Clone(filter);
+            filterClone.CurrentPeriod = filter.PreviousPeriod;
+            var prevDetailMonthGrowthTask = _overviewService.GetDetailMonthGrowthWithComparison(filterClone);
+
+            var currentDetailMonthGrowthTask = _overviewService.GetDetailMonthGrowthWithComparison(filter);
+
             var topChangeData = await topChangeTask;
+            var summaryData = await summaryTask;
+            var periodGrowth = await periodGrowthTask;
+
+            var prevDetailMonthGrowth = await prevDetailMonthGrowthTask;
+            var currentDetailMonthGrowth = await currentDetailMonthGrowthTask;
 
             return ToResult(new
             {
@@ -80,7 +88,11 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
                 summaryData,
                 growthData = new
                 {
-                    monthGrowth,
+                    monthGrowth = new [] 
+                    {
+                        prevDetailMonthGrowth,
+                        currentDetailMonthGrowth
+                    },
                     periodGrowth
                 },
                 topChangeData

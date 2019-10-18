@@ -39,7 +39,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
             };
         }
 
-        private static T Clone<T>(this T source)
+        public static T Clone<T>(this T source)
         {
             if (Object.ReferenceEquals(source, null))
             {

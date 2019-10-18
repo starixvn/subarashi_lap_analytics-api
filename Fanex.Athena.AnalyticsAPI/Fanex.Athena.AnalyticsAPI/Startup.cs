@@ -17,6 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.IO.Compression;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Security.Principal;
 
@@ -90,12 +91,12 @@ namespace Fanex.Athena.AnalyticsAPI
               .Run();
 
             Performance.Extensions.DefendencyInjectionExtension.AddDIPerformance(services);
-            Common.Extensions.DefendencyInjectionExtension.AddDICommon(services);
+            Common.Extensions.DefendencyInjectionExtension.AddDICommon(services, Configuration);
             services.AddSingleton<IStorageProvider, SqlServerProvider>(x =>
             {
                 var connection = GetOneBookSecurityConnection();
                 return new SqlServerProvider(connection);
-            });
+            });           
         }
 
         private string GetOneBookSecurityConnection()
