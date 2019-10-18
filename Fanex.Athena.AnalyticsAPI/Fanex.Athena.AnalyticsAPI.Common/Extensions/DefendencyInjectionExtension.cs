@@ -1,26 +1,39 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
+using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.LGAPI.SSAS.Bridge.Services;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Net.Http.Headers;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
 {
     public static class DefendencyInjectionExtension
     {
-        public static IServiceCollection AddDICommon(this IServiceCollection services)
+        private const string BRIDGE_TOKEN_KEY = "LGAPI_TOKEN_KEY";
+
+        public static IServiceCollection AddDICommon(this IServiceCollection services, IConfiguration configuration)
         {
             return services
-                .AddServices()
+                .AddServices(configuration)
                 .AddRepositories();
         }
 
-        private static IServiceCollection AddServices(this IServiceCollection services)
+        private static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<IContextService, ContextService>();
             services.AddTransient<IDaxQueryContentService, DaxQueryContentService>();
             services.AddTransient<ISsasBridgeService, SsasBridgeService>();
             services.AddTransient<ICalculationService, CalculationService>();
 
-            services.AddHttpClient<ISsasBridgeService, SsasBridgeService>();
+            var setting = new SSASSetting();
+            configuration.GetSection("SSASSetting").Bind(setting);
+            services.AddHttpClient<ISsasBridgeService, SsasBridgeService>(client =>
+            {
+                client.BaseAddress = new Uri(setting.BridgeHost);
+                client.DefaultRequestHeaders.Add(BRIDGE_TOKEN_KEY, setting.AuthKey);
+            })
+            .SetHandlerLifetime(TimeSpan.FromMinutes(setting.ConnectionExprieTime));
 
             return services;
         }
