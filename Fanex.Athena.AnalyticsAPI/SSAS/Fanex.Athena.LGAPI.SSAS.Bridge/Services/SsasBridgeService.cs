@@ -1,4 +1,5 @@
 ﻿using Fanex.Athena.LGAPI.SSAS.Bridge.Extensions;
+using Fanex.Athena.LGAPI.SSAS.Bridge.Helpers;
 using Fanex.Athena.LGAPI.SSAS.Bridge.Models;
 using Newtonsoft.Json;
 using System;
@@ -47,18 +48,20 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.Services
             using (var requestMessage = new HttpRequestMessage(HttpMethod.Post, bridgeUrl))
             {
                 requestMessage.Content = new StringContent(JsonConvert.SerializeObject(new { query, connectionKey = _setting.ConnectionKey, parameters }), Encoding.UTF8, "application/json");
-                using (var response = await _client.SendAsync(requestMessage))
+                using (var response = await _client.SendAsync(requestMessage, HttpCompletionOption.ResponseHeadersRead))
                 {
-                    var content = await response.Content.ReadAsStringAsync();
-                    if (response.IsSuccessStatusCode)
+                    using (var content = await response.Content.ReadAsStreamAsync())
                     {
-                        var records = JsonConvert.DeserializeObject<IEnumerable<IDictionary<string, object>>>(content);
-                        result.Capacity = records.Count();
-
-                        foreach (var record in records)
+                        if (response.IsSuccessStatusCode)
                         {
-                            var obj = record.ToObject<TResult>();
-                            result.Add(obj);
+                            var records = JsonHelper.DeserializeJsonFromStream<IEnumerable<IDictionary<string, object>>>(content);
+                            result.Capacity = records.Count();
+
+                            foreach (var record in records)
+                            {
+                                var obj = record.ToObject<TResult>();
+                                result.Add(obj);
+                            }
                         }
                     }
                 }
