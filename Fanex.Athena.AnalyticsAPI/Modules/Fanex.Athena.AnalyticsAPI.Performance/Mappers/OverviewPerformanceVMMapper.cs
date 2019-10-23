@@ -18,7 +18,11 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
         {
         }
 
-        public IEnumerable<TopChangeVM> ToViewModel<TDto, TKey>(IEnumerable<TDto> prevPeriodDtos, IEnumerable<TDto> currentPeriodDtos, Func<TDto, TKey> keySelector, Func<TDto, string> displayer)
+        public IEnumerable<TopChangeVM> ToTopChangeVM<TDto, TKey>(
+            IEnumerable<TDto> prevPeriodDtos,
+            IEnumerable<TDto> currentPeriodDtos,
+            Func<TDto, TKey> keySelector,
+            Func<TDto, string> displayer)
             where TDto : TopChangeDTO
         {
             var prevPeriodData = prevPeriodDtos.ToDictionary(_ => keySelector(_));
@@ -49,7 +53,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             return result;
         }
 
-        public IEnumerable<SummaryVM> ToViewModel(IEnumerable<SummaryDTO> prevPeriodDtos, IEnumerable<SummaryDTO> currentPeriodDtos)
+        public IEnumerable<SummaryVM> ToSummaryVM(IEnumerable<SummaryDTO> prevPeriodDtos, IEnumerable<SummaryDTO> currentPeriodDtos)
         {
             var prevPeriodData = prevPeriodDtos.FirstOrDefault();
             var currentPeriodData = currentPeriodDtos.FirstOrDefault();

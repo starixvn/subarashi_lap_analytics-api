@@ -7,6 +7,12 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 {
     public interface ICurrencyPerformanceService
     {
-        Task<IEnumerable<DistributionVM>> GetDistributionWithComparison(PerformanceFilterMetaModel filter);
+        Task<IEnumerable<DistributionVM>> GetDistributionWithComparison(CurrenyPerformanceFilterMetalModel filter);
+
+        Task<IEnumerable<MeasurementComparisonVM>> GetMeasurementDifferenceWithComparison(CurrenyPerformanceFilterMetalModel filter);
+
+        Task<IEnumerable<MeasurementPeriodComparisonGrowthVM>> GetPeriodGrowthWithComparison(CurrenyPerformanceFilterMetalModel filter);
+
+        Task<IEnumerable<MeasurementGrowthVM>> GetDetailMonthGrowthWithComparison(CurrenyPerformanceFilterMetalModel filter);
     }
 }

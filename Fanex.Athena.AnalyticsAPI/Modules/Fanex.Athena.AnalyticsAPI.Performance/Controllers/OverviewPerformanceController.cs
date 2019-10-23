@@ -26,7 +26,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [HttpPost]
         [Route("api/performance/overview/summary")]
         [AutoBindMetaModel]
-        public async Task<IActionResult> GetSummary([FromBody]PerformanceFilterMetaModel filter)
+        public async Task<JsonResult> GetSummary([FromBody]PerformanceFilterMetaModel filter)
         {
             var result = await _overviewService.GetSummaryWithComparison(filter);
             return ToResult(result);
@@ -35,7 +35,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [HttpPost]
         [Route("api/performance/overview/top-change")]
         [AutoBindMetaModel]
-        public async Task<IActionResult> GetTopChange([FromBody]PerformanceFilterMetaModel filter)
+        public async Task<JsonResult> GetTopChange([FromBody]PerformanceFilterMetaModel filter)
         {
             var result = await _getTopChange(filter);
             return ToResult(result);
@@ -44,7 +44,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [HttpPost]
         [Route("api/performance/overview/period-growth")]
         [AutoBindMetaModel]
-        public async Task<IActionResult> GetPeriodGrowth(PerformanceFilterMetaModel filter)
+        public async Task<JsonResult> GetPeriodGrowth(PerformanceFilterMetaModel filter)
         {
             var result = await _overviewService.GetPeriodGrowthWithComparison(filter);
             return ToResult(result);
@@ -53,7 +53,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [HttpPost]
         [Route("api/performance/overview/month-growth")]
         [AutoBindMetaModel]
-        public async Task<IActionResult> GetMonthGrowth(PerformanceFilterMetaModel filter)
+        public async Task<JsonResult> GetMonthGrowth(PerformanceFilterMetaModel filter)
         {
             var result = await _overviewService.GetDetailMonthGrowthWithComparison(filter);
             return ToResult(result);
@@ -62,7 +62,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [HttpPost]
         [Route("api/performance/overview")]
         [AutoBindMetaModel]
-        public async Task<IActionResult> GetCombineData(PerformanceFilterMetaModel filter)
+        public async Task<JsonResult> GetCombineData(PerformanceFilterMetaModel filter)
         {
             var topChangeTask = _getTopChange(filter);
             var summaryTask = _overviewService.GetSummaryWithComparison(filter);

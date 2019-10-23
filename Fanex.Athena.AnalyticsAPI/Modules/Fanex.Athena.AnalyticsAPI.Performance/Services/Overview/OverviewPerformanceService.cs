@@ -33,19 +33,19 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
         public async Task<IEnumerable<MeasurementGrowthVM>> GetPeriodGrowthWithComparison(PerformanceFilterMetaModel filter)
         {
-            var criteriaPrevOfPrevPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewMeasurementGrowthCriteria, PerformanceFilterMetaModel>(filter);
+            var criteriaPrevOfPrevPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<OverviewMeasurementGrowthCriteria, PerformanceFilterMetaModel>(filter);
             CriteriaHelper.UpdateCurrentPeriodToPreviousPeriod(criteriaPrevOfPrevPeriod, filter.PreviousPeriod, filter.CurrentPeriod);
-            criteriaPrevOfPrevPeriod.GroupID = GroupData.NONE_GROUP;
+            criteriaPrevOfPrevPeriod.GroupID = GroupDataConst.NONE_GROUP;
 
-            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewMeasurementGrowthCriteria, PerformanceFilterMetaModel>(filter, false);
-            criteriaPrevPeriod.GroupID = GroupData.NONE_GROUP;
+            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<OverviewMeasurementGrowthCriteria, PerformanceFilterMetaModel>(filter, false);
+            criteriaPrevPeriod.GroupID = GroupDataConst.NONE_GROUP;
 
-            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewMeasurementGrowthCriteria, PerformanceFilterMetaModel>(filter);
-            criteriaCurrentPeriod.GroupID = GroupData.NONE_GROUP;
+            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<OverviewMeasurementGrowthCriteria, PerformanceFilterMetaModel>(filter);
+            criteriaCurrentPeriod.GroupID = GroupDataConst.NONE_GROUP;
 
             var dtos = await _performanceRepository.QueryMultipleAsync<TotalDTO>(criteriaPrevOfPrevPeriod, criteriaPrevPeriod, criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToViewModel(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), dtos.ElementAtOrDefault(2));
+            var result = _viewModelMapper.ToMeasurementGrowthPeriodVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), dtos.ElementAtOrDefault(2));
 
             return result;
         }
@@ -53,11 +53,11 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
         public async Task<IEnumerable<MeasurementGrowthVM>> GetDetailMonthGrowthWithComparison(PerformanceFilterMetaModel filter)
         {
             var newFilter = MetaModelHelper.BackToCurrentPeriodByMonth(filter, 1);
-            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewMeasurementGrowthCriteria, PerformanceFilterMetaModel>(newFilter);
-            criteriaCurrentPeriod.GroupID = GroupData.MONTH_GROUP;
-            var taskCurrentPeriod = _performanceRepository.QueryAsync<MeasurementGrowthDTO>(criteriaCurrentPeriod);
+            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<OverviewMeasurementGrowthCriteria, PerformanceFilterMetaModel>(newFilter);
+            criteriaCurrentPeriod.GroupID = GroupDataConst.MONTH_GROUP;
+            var taskCurrentPeriod = _performanceRepository.QueryAsync<MeasurementTimeDTO>(criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToViewModel(
+            var result = _viewModelMapper.ToMeasurementGrowthTimeVM(
                 await taskCurrentPeriod,
                 DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.FromMonth),
                 DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.ToMonth)
@@ -73,34 +73,34 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
             var dtos = await _performanceRepository.QueryMultipleAsync<SummaryDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToViewModel(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1));
+            var result = _viewModelMapper.ToSummaryVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1));
 
             return result;
         }
 
         public async Task<IEnumerable<TopChangeVM>> GetCurrencyTopChangeWithComparison(PerformanceFilterMetaModel filter)
         {
-            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter, false);
-            criteriaPrevPeriod.Dimension = Dimension.CURRENCY;
+            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter, false);
+            criteriaPrevPeriod.Dimension = DimensionConst.CURRENCY;
 
-            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
-            criteriaCurrentPeriod.Dimension = Dimension.CURRENCY;
+            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
+            criteriaCurrentPeriod.Dimension = DimensionConst.CURRENCY;
 
             var dtos = await _performanceRepository.QueryMultipleAsync<CurrencyTopChangeDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToViewModel(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), _ => _.CurrencyId, _ => _.CurrencyName);
+            var result = _viewModelMapper.ToTopChangeVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), _ => _.CurrencyId, _ => _.CurrencyName);
 
             return result;
         }
 
         public async Task<IEnumerable<TopChangeVM>> GetBettypeTopChangeWithComparison(PerformanceFilterMetaModel filter)
         {
-            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter, false);
-            criteriaPrevPeriod.Dimension = Dimension.BETTYPE;
+            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter, false);
+            criteriaPrevPeriod.Dimension = DimensionConst.BETTYPE;
             var taskPrevPeriod = _performanceRepository.QueryAsync<BettypeTopChangeDTO>(criteriaPrevPeriod);
 
-            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
-            criteriaCurrentPeriod.Dimension = Dimension.BETTYPE;
+            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
+            criteriaCurrentPeriod.Dimension = DimensionConst.BETTYPE;
             var taskCurrentPeriod = _performanceRepository.QueryAsync<BettypeTopChangeDTO>(criteriaCurrentPeriod);
 
             var prevPeriodDtos = await taskPrevPeriod;
@@ -109,37 +109,37 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             prevPeriodDtos = prevPeriodDtos.GroupTo(_ => _.Key, BettypeTopChangeDTOSelector);
             currentPeriodDtos = currentPeriodDtos.GroupTo(_ => _.Key, BettypeTopChangeDTOSelector);
 
-            var result = _viewModelMapper.ToViewModel(prevPeriodDtos, currentPeriodDtos, _ => _.Key, _ => _.DisplayName);
+            var result = _viewModelMapper.ToTopChangeVM(prevPeriodDtos, currentPeriodDtos, _ => _.Key, _ => _.DisplayName);
 
             return result;
         }
 
         public async Task<IEnumerable<TopChangeVM>> GetPlatformTopChangeWithComparison(PerformanceFilterMetaModel filter)
         {
-            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter, false);
-            criteriaPrevPeriod.Dimension = Dimension.PLATFORM;
+            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter, false);
+            criteriaPrevPeriod.Dimension = DimensionConst.PLATFORM;
 
-            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
-            criteriaCurrentPeriod.Dimension = Dimension.PLATFORM;
+            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
+            criteriaCurrentPeriod.Dimension = DimensionConst.PLATFORM;
 
             var dtos = await _performanceRepository.QueryMultipleAsync<PlatformTopChangeDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToViewModel(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), _ => _.PlatformId, _ => _.PlatformName);
+            var result = _viewModelMapper.ToTopChangeVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), _ => _.PlatformId, _ => _.PlatformName);
 
             return result;
         }
 
         public async Task<IEnumerable<TopChangeVM>> GetProductTopChangeWithComparison(PerformanceFilterMetaModel filter)
         {
-            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter, false);
-            criteriaPrevPeriod.Dimension = Dimension.PRODUCT;
+            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter, false);
+            criteriaPrevPeriod.Dimension = DimensionConst.PRODUCT;
 
-            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
-            criteriaCurrentPeriod.Dimension = Dimension.PRODUCT;
+            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
+            criteriaCurrentPeriod.Dimension = DimensionConst.PRODUCT;
 
             var dtos = await _performanceRepository.QueryMultipleAsync<ProductTopChangeDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToViewModel(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), _ => _.ProductId, _ => _.ProductName);
+            var result = _viewModelMapper.ToTopChangeVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), _ => _.ProductId, _ => _.ProductName);
 
             return result;
         }

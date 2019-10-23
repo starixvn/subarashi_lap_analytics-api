@@ -2,17 +2,6 @@
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
 {
-    public abstract class DistributionDTO
-    {
-        [SsasColumn("[Measurement]")]
-        public double Total { get; set; }
-
-        [SsasColumn("[IsTotal]")]
-        public bool IsSum { get; set; }
-
-        public abstract string GetName { get;}
-    }
-
     public class CurrencyDistributionDTO : DistributionDTO
     {
         [SsasColumn("DimCurrency[CurrencyID]")]
@@ -21,6 +10,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
         [SsasColumn("DimCurrency[CurrencyName]")]
         public string CurrencyName { get; set; }
 
-        public override string GetName => CurrencyName;
+        public override string Id => CurrencyId;
+
+        public override string Name => CurrencyName;
     }
 }

@@ -63,16 +63,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.UnitTest.Repositories
         {
             //Arrange
             var query = _fixture.Create<string>();
-            var @params = _fixture.Create<IDictionary<string, object>>();
             var expected = _fixture.CreateMany<object>();
 
-            _mockBridgeService.Setup(_ => _.QueryAsync<object>(query, @params, It.IsAny<string>()))
+            _mockBridgeService.Setup(_ => _.QueryAsync<object>(query, It.IsAny<string>()))
                 .Returns(() => Task.FromResult(expected));
 
             _baseRepository = new BaseRepositoryTestable(_mockSetting.Object, _mockDaxQueryService.Object, _mockBridgeService.Object);
 
             //Act
-            var actual = await _baseRepository.QueryAsync<object>(query, @params);
+            var actual = await _baseRepository.QueryAsync<object>(query);
 
             //Assert
             Assert.Equal(expected, actual);
@@ -87,7 +86,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.UnitTest.Repositories
 
             _mockDaxQueryService.Setup(_ => _.GetDaxQuery(It.IsAny<ICriteria>())).Returns(() => Task.FromResult(query));
 
-            _mockBridgeService.Setup(_ => _.QueryAsync<object>(query, It.IsAny<IDictionary<string, object>>(), It.IsAny<string>()))
+            _mockBridgeService.Setup(_ => _.QueryAsync<object>(query, It.IsAny<string>()))
                 .Returns(() => Task.FromResult(expected));
 
             _baseRepository = new BaseRepositoryTestable(_mockSetting.Object, _mockDaxQueryService.Object, _mockBridgeService.Object);

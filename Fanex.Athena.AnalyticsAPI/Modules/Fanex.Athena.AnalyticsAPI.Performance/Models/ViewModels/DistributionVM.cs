@@ -4,9 +4,9 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels
 {
     public class DistributionVM
     {
-        public DistributionVM(int sizeDistribution = 6)
+        public DistributionVM(int distributionSize = 6)
         {
-            Distributions = new List<DistributionItemVM>(sizeDistribution);
+            Distributions = new List<DistributionItemVM>(distributionSize);
         }
 
         public string Name { get; set; }

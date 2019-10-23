@@ -6,7 +6,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Models.Configuration
     {
         public string BridgeHost { get; set; }
         public string AuthKey { get; set; }
-        public int ConnectionExprieTime { get; set; }
+        public int ConnectionExpireTime { get; set; }
         public IList<ModuleSetting> Modules { get; set; }
     }
 

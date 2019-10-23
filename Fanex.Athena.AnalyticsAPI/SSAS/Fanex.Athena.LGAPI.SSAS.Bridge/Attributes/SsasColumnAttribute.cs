@@ -3,7 +3,7 @@
 namespace Fanex.Athena.LGAPI.SSAS.Bridge.Attributes
 {
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
-    public class SsasColumnAttribute : Attribute
+    public sealed class SsasColumnAttribute : Attribute
     {
         public SsasColumnAttribute(string mapColumn)
         {

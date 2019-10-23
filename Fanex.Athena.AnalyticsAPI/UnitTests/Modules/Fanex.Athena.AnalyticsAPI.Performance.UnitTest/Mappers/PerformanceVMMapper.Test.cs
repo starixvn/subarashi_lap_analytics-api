@@ -46,14 +46,14 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
             _target = new PerformanceVMMapper(_calculationService.Object);
 
             //Act
-            var result = _target.ToViewModel(Enumerable.Empty<TotalDTO>(), Enumerable.Empty<TotalDTO>(), Enumerable.Empty<TotalDTO>());
+            var result = _target.ToMeasurementGrowthPeriodVM(Enumerable.Empty<TotalDTO>(), Enumerable.Empty<TotalDTO>(), Enumerable.Empty<TotalDTO>());
 
             //Assert
             Assert.Equal(2, result.Count());
             for (int i = 0; i < 2; i++)
             {
                 var _ = result.ElementAt(i);
-                Assert.Equal(labels[i], _.Time);
+                Assert.Equal(labels[i], _.Name);
                 Assert.Equal(0, _.GrowthPercent);
                 Assert.Equal(0, _.Total);
             }

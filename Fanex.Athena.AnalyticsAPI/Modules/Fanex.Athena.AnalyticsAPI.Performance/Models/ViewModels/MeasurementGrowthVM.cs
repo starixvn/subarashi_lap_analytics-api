@@ -2,7 +2,7 @@
 {
     public class MeasurementGrowthVM
     {
-        public string Time { get; set; }
+        public string Name { get; set; }
         public double Total { get; set; }
         public double GrowthPercent { get; set; }
     }

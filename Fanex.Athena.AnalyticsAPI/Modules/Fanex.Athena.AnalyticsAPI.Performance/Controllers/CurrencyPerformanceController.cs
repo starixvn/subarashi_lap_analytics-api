@@ -26,10 +26,45 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [HttpPost]
         [Route("api/performance/currency/distribution")]
         [AutoBindMetaModel]
-        public async Task<IActionResult> GetDistribution([FromBody]PerformanceFilterMetaModel filter)
+        public async Task<JsonResult> GetDistribution([FromBody]CurrenyPerformanceFilterMetalModel filter)
         {
             var result = await _currencyService.GetDistributionWithComparison(filter);
             return ToResult(result);
+        }
+
+        [HttpPost]
+        [Route("api/performance/currency/diffences")]
+        [AutoBindMetaModel]
+        public async Task<JsonResult> GetDiffences([FromBody]CurrenyPerformanceFilterMetalModel filter)
+        {
+            var result = await _currencyService.GetMeasurementDifferenceWithComparison(filter);
+            return ToResult(result);
+        }
+
+        [HttpPost]
+        [Route("api/performance/currency/period-growth")]
+        [AutoBindMetaModel]
+        public async Task<JsonResult> GetPeriodGrowth([FromBody]CurrenyPerformanceFilterMetalModel filter)
+        {
+            var result = await _currencyService.GetPeriodGrowthWithComparison(filter);
+            return ToResult(result);
+        }
+
+        [HttpPost]
+        [Route("api/performance/currency/month-growth")]
+        [AutoBindMetaModel]
+        public async Task<JsonResult> GetMonthGrowth([FromBody]CurrenyPerformanceFilterMetalModel filter)
+        {
+            var result = await _currencyService.GetDetailMonthGrowthWithComparison(filter);
+            return ToResult(result);
+        }
+
+        [HttpPost]
+        [Route("api/performance/currency")]
+        [AutoBindMetaModel]
+        public async Task<JsonResult> GetCombineData([FromBody]CurrenyPerformanceFilterMetalModel filter)
+        {
+            return ToResult(new { });
         }
     }
 }

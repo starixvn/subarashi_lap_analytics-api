@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain
+﻿namespace Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain
 {
     public class ResponseDataVM<T> : ResponseDataVM
     {
@@ -10,7 +8,6 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain
             Data = data;
         }
 
-        [JsonProperty("data")]
         public T Data { get; set; }
     }
 
@@ -22,10 +19,8 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain
             Msg = msg;
         }
 
-        [JsonProperty("isSuccess")]
         public bool IsSuccess { get; set; }
 
-        [JsonProperty("msg")]
         public string Msg { get; set; }
     }
 }

@@ -34,6 +34,7 @@
     <PackageReference Include="LAP.ONEBook.Security.StorageProvider.SqlServer" Version="1.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="ONEBook.UM.Extensions" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -20,8 +20,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
         {
         }
 
-        public IEnumerable<MeasurementGrowthVM> ToViewModel(
-            IEnumerable<MeasurementGrowthDTO> periodDtos,
+        public IEnumerable<MeasurementGrowthVM> ToMeasurementGrowthTimeVM(
+            IEnumerable<MeasurementTimeDTO> periodDtos,
             DateTime fromMonth, DateTime toMonth)
         {
             fromMonth = new DateTime(fromMonth.Year, fromMonth.Month, 1);
@@ -29,14 +29,14 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
 
             var result = new List<MeasurementGrowthVM>();
             var currentPeriodData = periodDtos.ToDictionary(_ => _.Time.ToLocalTime().ToString(DateTimeHelper.MONTH_FORMAT));
-            var prevMonthData = currentPeriodData.TryGetValue(fromMonth.AddMonths(-1).ToString(DateTimeHelper.MONTH_FORMAT), out MeasurementGrowthDTO prevDto) ? prevDto : null;
+            var prevMonthData = currentPeriodData.TryGetValue(fromMonth.AddMonths(-1).ToString(DateTimeHelper.MONTH_FORMAT), out MeasurementTimeDTO prevDto) ? prevDto : null;
 
             while (fromMonth <= toMonth)
             {
-                var currentMonthData = currentPeriodData.TryGetValue(fromMonth.ToString(DateTimeHelper.MONTH_FORMAT), out MeasurementGrowthDTO currentDto) ? currentDto : null;
+                var currentMonthData = currentPeriodData.TryGetValue(fromMonth.ToString(DateTimeHelper.MONTH_FORMAT), out MeasurementTimeDTO currentDto) ? currentDto : null;
                 result.Add(new MeasurementGrowthVM
                 {
-                    Time = fromMonth.ToString(DateTimeHelper.MONTH_FORMAT),
+                    Name = fromMonth.ToString(DateTimeHelper.MONTH_FORMAT),
                     Total = _calculationService.ToRound(currentMonthData?.Total),
                     GrowthPercent = _calculationService.CalculateGrowth(currentMonthData?.Total, prevMonthData?.Total)
                 });
@@ -48,7 +48,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             return result;
         }
 
-        public IEnumerable<MeasurementGrowthVM> ToViewModel(
+        public IEnumerable<MeasurementGrowthVM> ToMeasurementGrowthPeriodVM(
             IEnumerable<TotalDTO> prevPeriodOfPrevDtos,
             IEnumerable<TotalDTO> prevPeriodDtos,
             IEnumerable<TotalDTO> currentPeriodDtos)
@@ -61,13 +61,13 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             {
                 new MeasurementGrowthVM
                 {
-                    Time = "Previous Period",
+                    Name = "Previous Period",
                     Total = _calculationService.ToRound(prevPeriodData?.Total),
                     GrowthPercent = _calculationService.CalculateGrowth(prevPeriodData?.Total, prevPeriodOfPrevData?.Total)
                 },
                 new MeasurementGrowthVM
                 {
-                    Time = "Current Period",
+                    Name = "Current Period",
                     Total = _calculationService.ToRound(currentPeriodData?.Total),
                     GrowthPercent = _calculationService.CalculateGrowth(currentPeriodData?.Total, prevPeriodData?.Total)
                 }
@@ -76,7 +76,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             return result;
         }
 
-        public IEnumerable<DistributionVM> ToViewModel<T>(IEnumerable<T> prevPeriodDtos, IEnumerable<T> currentPeriodDtos)
+        public IEnumerable<DistributionVM> ToDistributionVM<T>(IEnumerable<T> prevPeriodDtos, IEnumerable<T> currentPeriodDtos)
             where T : DistributionDTO
         {
             return new List<DistributionVM>
@@ -108,7 +108,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             {
                 var distributionItem = new DistributionItemVM
                 {
-                    Name = _.GetName,
+                    Name = _.Name,
                     Percent = _calculationService.CalculatePercent(_.Total, sum)
                 };
 
@@ -126,6 +126,17 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             }
 
             return result;
+        }
+
+        public IEnumerable<MeasurementComparisonVM> ToMeasurementComparisonVM<T>(IEnumerable<T> prevPeriodDtos, IEnumerable<T> currentPeriodDtos)
+            where T : MeasurementComparisonDTO
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<MeasurementPeriodComparisonGrowthVM> ToMeasurementGrowthPeriodVM<T>(IEnumerable<T> prevPeriodDtos, IEnumerable<T> currentPeriodDtos) where T : MeasurementPeriodDTO
+        {
+            throw new NotImplementedException();
         }
     }
 }

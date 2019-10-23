@@ -4,7 +4,6 @@ using Fanex.Athena.LGAPI.SSAS.Bridge.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Net.Http.Headers;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
 {
@@ -33,7 +32,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
                 client.BaseAddress = new Uri(setting.BridgeHost);
                 client.DefaultRequestHeaders.Add(BRIDGE_TOKEN_KEY, setting.AuthKey);
             })
-            .SetHandlerLifetime(TimeSpan.FromMinutes(setting.ConnectionExprieTime));
+            .SetHandlerLifetime(TimeSpan.FromMinutes(setting.ConnectionExpireTime));
 
             return services;
         }
