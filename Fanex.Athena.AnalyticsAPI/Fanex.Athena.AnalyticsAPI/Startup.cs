@@ -2,7 +2,6 @@
 using Fanex.Athena.AnalyticsAPI.Core.Extensions;
 using Fanex.Athena.AnalyticsAPI.Core.Models.Configuration;
 using Fanex.Athena.ExtService.Common.Models.DTO;
-using Fanex.Athena.LGAPI.SSAS.Bridge.Services;
 using Fanex.Data;
 using Fanex.Data.SqlServer;
 using Fanex.Logging;
@@ -11,13 +10,16 @@ using LAP.ONEBook.Security;
 using LAP.ONEBook.Security.StorageProvider.SqlServer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ONEbook.UM.Configurations;
+using ONEBook.UM.Extensions;
+using ONEBook.UM.Extensions.Middleware;
 using System.Collections.Generic;
 using System.IO.Compression;
-using System.Net.Http;
 using System.Security.Claims;
 using System.Security.Principal;
 
@@ -75,7 +77,6 @@ namespace Fanex.Athena.AnalyticsAPI
             });
 
             var appSettings = Configuration.GetSection("AppSettings").Get<AppSettings>();
-
             LogManager
             .SetDefaultLogCategory(appSettings.LogCategory)
             .Use(new List<ILogEngine>
@@ -96,7 +97,10 @@ namespace Fanex.Athena.AnalyticsAPI
             {
                 var connection = GetOneBookSecurityConnection();
                 return new SqlServerProvider(connection);
-            });           
+            });
+
+            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddUMService(Configuration.GetSection("ONEbook.UM").Get<UMClientConfiguration>());
         }
 
         private string GetOneBookSecurityConnection()
@@ -140,7 +144,9 @@ namespace Fanex.Athena.AnalyticsAPI
             {
                 app.UseErrorHandler();
                 app.UseOneAuth();
+                app.UseMiddleware<UMHandler>();
             }
+
             app.UseMvc();
         }
     }
