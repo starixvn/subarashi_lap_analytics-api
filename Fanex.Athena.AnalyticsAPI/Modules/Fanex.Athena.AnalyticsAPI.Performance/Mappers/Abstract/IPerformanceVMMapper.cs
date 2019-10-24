@@ -9,10 +9,13 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
     {
         IEnumerable<MeasurementGrowthVM> ToMeasurementGrowthPeriodVM(IEnumerable<TotalDTO> prevPeriodOfPrevDtos, IEnumerable<TotalDTO> prevPeriodDtos, IEnumerable<TotalDTO> currentPeriodDtos);
 
-        IEnumerable<MeasurementGrowthVM> ToMeasurementGrowthTimeVM(IEnumerable<MeasurementTimeDTO> periodDtos, DateTime fromMonth, DateTime toMonth);
-
-        IEnumerable<MeasurementPeriodComparisonGrowthVM> ToMeasurementGrowthPeriodVM<T>(IEnumerable<T> prevPeriodDtos, IEnumerable<T> currentPeriodDtos)
+        IEnumerable<MeasurementPeriodComparisonGrowthVM> ToMeasurementGrowthPeriodVM<T>(
+            IEnumerable<T> prevPeriodDtos,
+            IEnumerable<T> currentPeriodDtos,
+            IEnumerable<Tuple<string, string>> topDistributions)
             where T : MeasurementPeriodDTO;
+
+        IEnumerable<MeasurementGrowthVM> ToMeasurementGrowthTimeVM(IEnumerable<MeasurementTimeDTO> periodDtos, DateTime fromMonth, DateTime toMonth);
 
         IEnumerable<DistributionVM> ToDistributionVM<T>(IEnumerable<T> prevPeriodDtos, IEnumerable<T> currentPeriodDtos)
             where T : DistributionDTO;

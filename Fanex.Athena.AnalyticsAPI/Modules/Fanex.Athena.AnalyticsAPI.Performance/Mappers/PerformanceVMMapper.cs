@@ -12,6 +12,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
     public class PerformanceVMMapper : ViewModelMapper, IPerformanceVMMapper
     {
         private const int NUMBER_OF_TOP = 5;
+        private const string DISTRIBUTION_OTHERS_ID = "0";
+        private const string DISTRIBUTION_OTHERS_NAME = "Others";
 
         public PerformanceVMMapper(
             ICalculationService calculationService
@@ -79,49 +81,71 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
         public IEnumerable<DistributionVM> ToDistributionVM<T>(IEnumerable<T> prevPeriodDtos, IEnumerable<T> currentPeriodDtos)
             where T : DistributionDTO
         {
+            var topDistribution = currentPeriodDtos
+                .Where(_ => !_.IsSum)
+                .OrderByDescending(_ => Math.Abs(_.Total))
+                .Take(NUMBER_OF_TOP)
+                .Select(_ => new Tuple<string, string>(_.Id, _.Name));
+
+            if (currentPeriodDtos.Count() > NUMBER_OF_TOP)
+            {
+                topDistribution = topDistribution.Append(new Tuple<string, string>(DISTRIBUTION_OTHERS_ID, DISTRIBUTION_OTHERS_NAME));
+            }
+
             return new List<DistributionVM>
             {
-                ToViewModel<DistributionDTO>(prevPeriodDtos, "Previous Period"),
-                ToViewModel<DistributionDTO>(currentPeriodDtos, "Current Period")
+                ToDistributionVM<DistributionDTO>(prevPeriodDtos, topDistribution, "Previous Period"),
+                ToDistributionVM<DistributionDTO>(currentPeriodDtos, topDistribution, "Current Period")
             };
         }
 
-        private DistributionVM ToViewModel<T>(IEnumerable<T> dtos, string name)
+        private DistributionVM ToDistributionVM<T>(IEnumerable<T> dtos, IEnumerable<Tuple<string, string>> topDistributions, string name)
             where T : DistributionDTO
         {
-            var sumItem = dtos.FirstOrDefault(_ => _.IsSum);
-            var sum = _calculationService.ToRound(sumItem.Total);
-
             var list = dtos.ToList();
+            var sumItem = list.FirstOrDefault(_ => _.IsSum);
             list.Remove(sumItem);
-            var topDistribution = list.OrderByDescending(_ => Math.Abs(_.Total)).Take(NUMBER_OF_TOP).ToList();
 
-            var result = new DistributionVM(topDistribution.Count + 1)
+            var sumAbs = list.Sum(_ => Math.Abs(_.Total));
+            var dtoDic = list.ToDictionary(_ => _.Id, _ => _);
+
+            var result = new DistributionVM(topDistributions.Count() + 1)
             {
                 Name = name,
-                Total = sum
+                Total = _calculationService.ToRound(sumItem.Total)
             };
 
-            var percentSum = 0.00;
-
-            topDistribution.ForEach(_ =>
+            foreach (var distribution in topDistributions)
             {
+                if(distribution.Item1 == DISTRIBUTION_OTHERS_ID)
+                {
+                    continue;
+                }
+
                 var distributionItem = new DistributionItemVM
                 {
-                    Name = _.Name,
-                    Percent = _calculationService.CalculatePercent(_.Total, sum)
+                    Name = distribution.Item2
                 };
 
-                result.Distributions.Add(distributionItem);
-                percentSum += distributionItem.Percent;
-            });
+                if (dtoDic.TryGetValue(distribution.Item1, out T distributionDto))
+                {
+                    distributionItem.Percent = _calculationService.CalculateDistribution(distributionDto.Total, sumAbs);
+                    dtoDic.Remove(distribution.Item1);
+                }
+                else
+                {
+                    distributionItem.Percent = _calculationService.CalculateDistribution(0, sumAbs);
+                }
 
-            if (result.Distributions.Count == NUMBER_OF_TOP)
+                result.Distributions.Add(distributionItem);
+            }
+
+            if(topDistributions.Any(_ => _.Item1 == DISTRIBUTION_OTHERS_ID))
             {
                 result.Distributions.Add(new DistributionItemVM
                 {
-                    Name = "Others",
-                    Percent = _calculationService.ToRound(100 - percentSum)
+                    Name = DISTRIBUTION_OTHERS_NAME,
+                    Percent = _calculationService.CalculateDistribution(dtoDic.Sum(_ => _.Value.Total), sumAbs)
                 });
             }
 
@@ -134,9 +158,64 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             throw new NotImplementedException();
         }
 
-        public IEnumerable<MeasurementPeriodComparisonGrowthVM> ToMeasurementGrowthPeriodVM<T>(IEnumerable<T> prevPeriodDtos, IEnumerable<T> currentPeriodDtos) where T : MeasurementPeriodDTO
+        public IEnumerable<MeasurementPeriodComparisonGrowthVM> ToMeasurementGrowthPeriodVM<T>(
+            IEnumerable<T> prevPeriodDtos,
+            IEnumerable<T> currentPeriodDtos,
+            IEnumerable<Tuple<string, string>> topDistributions
+            )
+            where T : MeasurementPeriodDTO
         {
-            throw new NotImplementedException();
+            var result = new List<MeasurementPeriodComparisonGrowthVM>(topDistributions.Count());
+            var prevPeriodDtoDic = prevPeriodDtos.ToDictionary(_ => _.Id, _ => _);
+            var currentPeriodDtoDic = currentPeriodDtos.ToDictionary(_ => _.Id, _ => _);
+
+            var hasOthers = topDistributions.Any(_ => _.Item1 == DISTRIBUTION_OTHERS_ID);
+
+            var prevPeriodDtoTotal = prevPeriodDtos.Sum(_ => _.Total);
+            var currentPeriodDtoTotal = prevPeriodDtos.Sum(_ => _.Total);
+
+            foreach (var topDistribution in topDistributions)
+            {
+                if (currentPeriodDtoDic.TryGetValue(topDistribution.Item1, out T currentPeriodDto))
+                {
+                    var vm = CreateMeasurementPeriodComparisonGrowthVM(
+                        currentPeriodDto.Name,
+                        prevPeriodDtoDic.ContainsKey(topDistribution.Item1) ? prevPeriodDtoDic[topDistribution.Item1].Total : 0,
+                        currentPeriodDto.Total);
+
+                    result.Add(vm);
+
+                    if (hasOthers)
+                    {
+                        prevPeriodDtoTotal -= vm.PreviousPeriodTotal;
+                        currentPeriodDtoTotal -= vm.CurrentPeriodTotal;
+                    }
+                }
+            }
+
+            if (hasOthers)
+            {
+                result.Add(CreateMeasurementPeriodComparisonGrowthVM(
+                        DISTRIBUTION_OTHERS_NAME,
+                        prevPeriodDtos.Count() > NUMBER_OF_TOP ? prevPeriodDtoTotal : 0,
+                        currentPeriodDtoTotal));
+            }
+
+            return result;
+        }
+
+        private MeasurementPeriodComparisonGrowthVM CreateMeasurementPeriodComparisonGrowthVM(
+            string name,
+            double prevPeriodTotal,
+            double currentPeriodTotal)
+        {
+            return new MeasurementPeriodComparisonGrowthVM
+            {
+                Name = name,
+                PreviousPeriodTotal = _calculationService.ToRound(prevPeriodTotal),
+                CurrentPeriodTotal = _calculationService.ToRound(currentPeriodTotal),
+                GrowthPercent = _calculationService.CalculateGrowth(currentPeriodTotal, prevPeriodTotal)
+            };
         }
     }
 }

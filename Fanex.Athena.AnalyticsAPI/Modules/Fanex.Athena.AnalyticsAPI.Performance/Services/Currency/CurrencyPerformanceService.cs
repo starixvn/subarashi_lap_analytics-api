@@ -6,6 +6,7 @@ using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -59,7 +60,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
             var dtos = await _performanceRepository.QueryMultipleAsync<CurrencyMeasurementPeriodDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToMeasurementGrowthPeriodVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1));
+            var result = _viewModelMapper.ToMeasurementGrowthPeriodVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), null);
 
             return result;
         }
