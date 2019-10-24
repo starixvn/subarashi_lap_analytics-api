@@ -3,8 +3,12 @@ using Fanex.Athena.AnalyticsAPI.Core.Middleware;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
+using ONEbook.UM.Configurations;
+using ONEBook.UM.Extensions;
+using ONEBook.UM.Extensions.Middleware;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
@@ -54,5 +58,27 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
 
             return builder;
         }
+
+        public static IServiceCollection AddUMHandler(this IServiceCollection services, IHostingEnvironment env, IConfiguration configuration)
+        {
+            if (env.IsEnvironment("UAT") || env.IsEnvironment("PROD"))
+            {
+                services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
+                services.AddUMService(configuration.GetSection("ONEbook.UM").Get<UMClientConfiguration>());
+            }
+
+            return services;
+        }
+
+        public static IApplicationBuilder UseUMHandler(this IApplicationBuilder builder, IHostingEnvironment env)
+        {
+            if(env.IsEnvironment("UAT") || env.IsEnvironment("PROD"))
+            {
+                builder.UseMiddleware<UMHandler>();
+            }
+
+            return builder;
+        }
+
     }
 }

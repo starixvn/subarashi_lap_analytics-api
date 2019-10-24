@@ -10,15 +10,11 @@ using LAP.ONEBook.Security;
 using LAP.ONEBook.Security.StorageProvider.SqlServer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ONEbook.UM.Configurations;
-using ONEBook.UM.Extensions;
-using ONEBook.UM.Extensions.Middleware;
 using System.Collections.Generic;
 using System.IO.Compression;
 using System.Security.Claims;
@@ -100,8 +96,7 @@ namespace Fanex.Athena.AnalyticsAPI
                 return new SqlServerProvider(connection);
             });
 
-            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddUMService(Configuration.GetSection("ONEbook.UM").Get<UMClientConfiguration>());
+            services.AddUMHandler(Env, Configuration);
         }
 
         private string GetOneBookSecurityConnection()
@@ -149,9 +144,8 @@ namespace Fanex.Athena.AnalyticsAPI
             {
                 app.UseErrorHandler();
                 app.UseOneAuth();
-                app.UseMiddleware<UMHandler>();
             }
-
+            app.UseUMHandler(Env);
             app.UseMvc();
         }
     }
