@@ -26,6 +26,7 @@ namespace Fanex.Athena.AnalyticsAPI
                    config.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
                    config.AddEnvironmentVariables();
                })
+               .UseUrls("http://localhost:5001")
                .UseKestrel(options =>
                {
                     options.AddServerHeader = false;
