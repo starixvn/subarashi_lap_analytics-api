@@ -48,7 +48,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCurrencyPerformanceCriteria<CurrencyMeasurementComparisonCriteria, CurrenyPerformanceFilterMetalModel>(filter);
             var taskCurrentPeriod = _performanceRepository.QueryAsync<CurrencyMeasurementComparisonDTO>(criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToMeasurementComparisonVM(await taskPrevPeriod, await taskCurrentPeriod);
+            var result = _viewModelMapper.ToMeasurementComparisonVM(await taskPrevPeriod, await taskCurrentPeriod, filter.TopDistributions);
 
             return result;
         }
@@ -60,7 +60,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
             var dtos = await _performanceRepository.QueryMultipleAsync<CurrencyMeasurementPeriodDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToMeasurementGrowthPeriodVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), null);
+            var result = _viewModelMapper.ToMeasurementGrowthPeriodVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), filter.TopDistributions);
 
             return result;
         }

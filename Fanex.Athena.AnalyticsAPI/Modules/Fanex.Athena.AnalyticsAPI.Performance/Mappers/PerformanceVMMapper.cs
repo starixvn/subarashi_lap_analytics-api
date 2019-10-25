@@ -11,10 +11,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
 {
     public class PerformanceVMMapper : ViewModelMapper, IPerformanceVMMapper
     {
-        private const int NUMBER_OF_TOP = 5;
-        private const string DISTRIBUTION_OTHERS_ID = "0";
-        private const string DISTRIBUTION_OTHERS_NAME = "Others";
-
         public PerformanceVMMapper(
             ICalculationService calculationService
             )
@@ -81,7 +77,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
         public IEnumerable<DistributionVM> ToDistributionVM<T>(IEnumerable<T> prevPeriodDtos, IEnumerable<T> currentPeriodDtos)
             where T : DistributionDTO
         {
-            var topDistribution = currentPeriodDtos
+            var topDistributions = currentPeriodDtos
                 .Where(_ => !_.IsSum)
                 .OrderByDescending(_ => Math.Abs(_.Total))
                 .Take(NUMBER_OF_TOP)
@@ -89,13 +85,13 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
 
             if (currentPeriodDtos.Count() > NUMBER_OF_TOP)
             {
-                topDistribution = topDistribution.Append(new Tuple<string, string>(DISTRIBUTION_OTHERS_ID, DISTRIBUTION_OTHERS_NAME));
+                topDistributions = topDistributions.Append(new Tuple<string, string>(DISTRIBUTION_OTHERS_ID, DISTRIBUTION_OTHERS_NAME));
             }
 
             return new List<DistributionVM>
             {
-                ToDistributionVM<DistributionDTO>(prevPeriodDtos, topDistribution, "Previous Period"),
-                ToDistributionVM<DistributionDTO>(currentPeriodDtos, topDistribution, "Current Period")
+                ToDistributionVM<DistributionDTO>(prevPeriodDtos, topDistributions, "Previous Period"),
+                ToDistributionVM<DistributionDTO>(currentPeriodDtos, topDistributions, "Current Period")
             };
         }
 
@@ -115,22 +111,25 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                 Total = _calculationService.ToRound(sumItem.Total)
             };
 
-            foreach (var distribution in topDistributions)
+            foreach (var topDistribution in topDistributions)
             {
-                if(distribution.Item1 == DISTRIBUTION_OTHERS_ID)
+                (string topDistributionId, string topDistributionName) = topDistribution;
+
+                if (topDistributionId == DISTRIBUTION_OTHERS_ID)
                 {
                     continue;
                 }
 
                 var distributionItem = new DistributionItemVM
                 {
-                    Name = distribution.Item2
+                    Id = topDistributionId,
+                    Name = topDistributionName
                 };
 
-                if (dtoDic.TryGetValue(distribution.Item1, out T distributionDto))
+                if (dtoDic.TryGetValue(topDistributionId, out T distributionDto))
                 {
                     distributionItem.Percent = _calculationService.CalculateDistribution(distributionDto.Total, sumAbs);
-                    dtoDic.Remove(distribution.Item1);
+                    dtoDic.Remove(topDistributionId);
                 }
                 else
                 {
@@ -140,10 +139,11 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                 result.Distributions.Add(distributionItem);
             }
 
-            if(topDistributions.Any(_ => _.Item1 == DISTRIBUTION_OTHERS_ID))
+            if (HasOthers(topDistributions))
             {
                 result.Distributions.Add(new DistributionItemVM
                 {
+                    Id = DISTRIBUTION_OTHERS_ID,
                     Name = DISTRIBUTION_OTHERS_NAME,
                     Percent = _calculationService.CalculateDistribution(dtoDic.Sum(_ => _.Value.Total), sumAbs)
                 });
@@ -152,10 +152,73 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             return result;
         }
 
-        public IEnumerable<MeasurementComparisonVM> ToMeasurementComparisonVM<T>(IEnumerable<T> prevPeriodDtos, IEnumerable<T> currentPeriodDtos)
+        public IEnumerable<MeasurementComparisonVM> ToMeasurementComparisonVM<T>(
+            IEnumerable<T> prevPeriodDtos,
+            IEnumerable<T> currentPeriodDtos,
+            IEnumerable<Tuple<string, string>> topDistributions)
             where T : MeasurementComparisonDTO
         {
-            throw new NotImplementedException();
+            var result = new List<MeasurementComparisonVM>(topDistributions.Count());
+
+            var prevPeriodDtoDic = prevPeriodDtos.ToDictionary(_ => _.Id, _ => _);
+            var currentPeriodDtoDic = currentPeriodDtos.ToDictionary(_ => _.Id, _ => _);
+
+            var sumAbsPeriodTurnover = ValueTuple.Create(prevPeriodDtos.Sum(_ => Math.Abs(_.Turnover)), currentPeriodDtos.Sum(_ => Math.Abs(_.Turnover)));
+            var sumAbsPeriodGrossProfit = ValueTuple.Create(prevPeriodDtos.Sum(_ => Math.Abs(_.GrossProfit)), currentPeriodDtos.Sum(_ => Math.Abs(_.GrossProfit)));
+
+            var sumCurrentPeriod = ValueTuple.Create(0.00, 0.00, 0.00);
+            var sumPrevPeriod = ValueTuple.Create(0.00, 0.00, 0.00);
+
+            var hasOthers = HasOthers(topDistributions);
+
+            foreach (var topDistribution in topDistributions)
+            {
+                (string topDistributionId, string topDistributionName) = topDistribution;
+
+                if (topDistributionId == DISTRIBUTION_OTHERS_ID)
+                {
+                    continue;
+                }
+
+                if (currentPeriodDtoDic.TryGetValue(topDistributionId, out T currentPeriodDto))
+                {
+                    var prevPeriodDto = prevPeriodDtoDic.ContainsKey(topDistributionId) ? prevPeriodDtoDic[topDistributionId] : null;
+                    var vmItem = CreateMeasurementComparisonVM(topDistributionName, prevPeriodDto, currentPeriodDto, sumAbsPeriodTurnover, sumAbsPeriodGrossProfit);
+                    if (hasOthers)
+                    {
+                        sumPrevPeriod = UpdateSumCurrentMeasurement(sumPrevPeriod, prevPeriodDto);
+                        sumCurrentPeriod = UpdateSumCurrentMeasurement(sumCurrentPeriod, currentPeriodDto);
+                    }
+
+                    result.Add(vmItem);
+                }
+            }
+
+            if (hasOthers)
+            {
+                (double sumPrevPeriodTurnover, double sumPrevPeriodGrossProfit, double sumPrevPeriodMargin) = sumPrevPeriod;
+                (double sumCurrentPeriodTurnover, double sumCurrentPeriodGrossProfit, double sumCurrentPeriodMargin) = sumCurrentPeriod;
+
+                sumCurrentPeriodTurnover = currentPeriodDtos.Sum(_ => _.Turnover) - sumCurrentPeriodTurnover;
+                sumCurrentPeriodGrossProfit = currentPeriodDtos.Sum(_ => _.GrossProfit) - sumCurrentPeriodGrossProfit;
+                sumCurrentPeriodMargin = currentPeriodDtos.Sum(_ => _.Margin) - sumCurrentPeriodMargin;
+
+                sumPrevPeriodTurnover = prevPeriodDtos.Sum(_ => _.Turnover) - sumPrevPeriodTurnover;
+                sumPrevPeriodGrossProfit = prevPeriodDtos.Sum(_ => _.GrossProfit) - sumPrevPeriodGrossProfit;
+                sumPrevPeriodMargin = prevPeriodDtos.Sum(_ => _.Margin) - sumPrevPeriodMargin;
+
+                var vmItem = new MeasurementComparisonVM
+                {
+                    Name = DISTRIBUTION_OTHERS_NAME,
+                    DifferenceTurnover = CreateDifferenceMeasurement(sumPrevPeriodTurnover, sumCurrentPeriodTurnover, sumAbsPeriodTurnover),
+                    DifferenceGrossProfit = CreateDifferenceMeasurement(sumPrevPeriodGrossProfit, sumCurrentPeriodGrossProfit, sumAbsPeriodGrossProfit),
+                    DifferenceMargin = CreateDifferenceMeasurement(sumPrevPeriodMargin, sumCurrentPeriodMargin, (0, 0))
+                };
+
+                result.Add(vmItem);
+            }
+
+            return result;
         }
 
         public IEnumerable<MeasurementPeriodComparisonGrowthVM> ToMeasurementGrowthPeriodVM<T>(
@@ -169,26 +232,31 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             var prevPeriodDtoDic = prevPeriodDtos.ToDictionary(_ => _.Id, _ => _);
             var currentPeriodDtoDic = currentPeriodDtos.ToDictionary(_ => _.Id, _ => _);
 
-            var hasOthers = topDistributions.Any(_ => _.Item1 == DISTRIBUTION_OTHERS_ID);
+            var hasOthers = HasOthers(topDistributions);
 
             var prevPeriodDtoTotal = prevPeriodDtos.Sum(_ => _.Total);
             var currentPeriodDtoTotal = prevPeriodDtos.Sum(_ => _.Total);
 
             foreach (var topDistribution in topDistributions)
             {
-                if (currentPeriodDtoDic.TryGetValue(topDistribution.Item1, out T currentPeriodDto))
-                {
-                    var vm = CreateMeasurementPeriodComparisonGrowthVM(
-                        currentPeriodDto.Name,
-                        prevPeriodDtoDic.ContainsKey(topDistribution.Item1) ? prevPeriodDtoDic[topDistribution.Item1].Total : 0,
-                        currentPeriodDto.Total);
+                (string topDistributionId, string topDistributionName) = topDistribution;
 
+                if (topDistributionId == DISTRIBUTION_OTHERS_ID)
+                {
+                    continue;
+                }
+
+                if (currentPeriodDtoDic.TryGetValue(topDistributionId, out T currentPeriodDto))
+                {
+                    var previousPeriodTotal = prevPeriodDtoDic.ContainsKey(topDistributionId) ? prevPeriodDtoDic[topDistributionId].Total : 0;
+                    var currentPeriodTotal = currentPeriodDto.Total;
+                    var vm = CreateMeasurementPeriodComparisonGrowthVM(currentPeriodDto.Name, previousPeriodTotal, currentPeriodTotal);
                     result.Add(vm);
 
                     if (hasOthers)
                     {
-                        prevPeriodDtoTotal -= vm.PreviousPeriodTotal;
-                        currentPeriodDtoTotal -= vm.CurrentPeriodTotal;
+                        prevPeriodDtoTotal -= previousPeriodTotal;
+                        currentPeriodDtoTotal -= currentPeriodTotal;
                     }
                 }
             }
@@ -205,7 +273,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
         }
 
         private MeasurementPeriodComparisonGrowthVM CreateMeasurementPeriodComparisonGrowthVM(
-            string name,
+            in string name,
             double prevPeriodTotal,
             double currentPeriodTotal)
         {
@@ -216,6 +284,52 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                 CurrentPeriodTotal = _calculationService.ToRound(currentPeriodTotal),
                 GrowthPercent = _calculationService.CalculateGrowth(currentPeriodTotal, prevPeriodTotal)
             };
+        }
+
+        private MeasurementComparisonVM CreateMeasurementComparisonVM(
+            in string name,
+            MeasurementComparisonDTO prevPeriodDto,
+            MeasurementComparisonDTO currentPeriodDto,
+            in ValueTuple<double, double> sumAbsPeriodTurnover,
+            in ValueTuple<double, double> sumAbsPeriodGrossProfit
+            )
+        {
+            (double sumAbsPrevPeriodTurnover, double sumAbsCurrentPeriodTurnover) = sumAbsPeriodTurnover;
+            (double sumAbsPrevPeriodGrossProfit, double sumAbsCurrentPeriodGrossProfit) = sumAbsPeriodGrossProfit;
+
+            return new MeasurementComparisonVM
+            {
+                Name = name,
+                DifferenceTurnover = CreateDifferenceMeasurement(prevPeriodDto?.Turnover, currentPeriodDto.Turnover, (sumAbsPrevPeriodTurnover, sumAbsCurrentPeriodTurnover)),
+                DifferenceGrossProfit = CreateDifferenceMeasurement(prevPeriodDto?.GrossProfit, currentPeriodDto.GrossProfit, (sumAbsPrevPeriodGrossProfit, sumAbsCurrentPeriodGrossProfit)),
+                DifferenceMargin = CreateDifferenceMeasurement(prevPeriodDto?.Margin, currentPeriodDto.Margin, (0, 0))
+            };
+        }
+
+        private DifferenceMeasurement CreateDifferenceMeasurement(
+            double? prevPeriodMeasurement,
+            double currentPeriodMeasurement,
+            in ValueTuple<double, double> sumAbsPeriodMeasurement
+            )
+        {
+            (double sumAbsPrevPeriodMeasurement, double sumAbsCurrentPeriodMeasurement) = sumAbsPeriodMeasurement;
+
+            return new DifferenceMeasurement
+            {
+                DifferenceTotal = _calculationService.ToRound(currentPeriodMeasurement - (prevPeriodMeasurement ?? 0)),
+                DifferenceDistribution = _calculationService.ToRound(_calculationService.CalculateDistribution(currentPeriodMeasurement, sumAbsCurrentPeriodMeasurement)
+                        - _calculationService.CalculateDistribution(prevPeriodMeasurement, sumAbsPrevPeriodMeasurement)),
+            };
+        }
+
+        private static ValueTuple<double, double, double> UpdateSumCurrentMeasurement(in ValueTuple<double, double, double> measurements, MeasurementComparisonDTO dto)
+        {
+            (double sumTurnover, double sumGrossProfit, double sumMargin) = measurements;
+            sumTurnover += dto?.Turnover ?? 0;
+            sumGrossProfit += dto?.GrossProfit ?? 0;
+            sumMargin += dto?.Margin ?? 0;
+
+            return (sumTurnover, sumGrossProfit, sumMargin);
         }
     }
 }

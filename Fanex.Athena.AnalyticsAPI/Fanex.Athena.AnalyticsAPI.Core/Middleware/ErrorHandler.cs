@@ -44,8 +44,9 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
             Logging.Logger.Log.Error(errorMsg);
             await context.Response.WriteAsync(JsonConvert.SerializeObject(new
             {
-                State = "Internal Server Error",
-                Msg = "Sorry, an error occurred while processing your request."
+                state = "Internal Server Error",
+                msg = "Sorry, an error occurred while processing your request.",
+                isSuccess = false
             }));
         }
     }

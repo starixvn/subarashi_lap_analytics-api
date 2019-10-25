@@ -7,14 +7,16 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
         private static int Round_Floating_Point = 2;
         private static int Thousand_Unit = 1000;
 
-        public double CalculateDistribution(double itemValue, double total)
+        public double CalculateDistribution(double? itemValue, double total)
         {
+            itemValue = itemValue ?? 0;
+
             if (itemValue == 0 || total == 0)
             {
                 return 0;
             }
 
-            var result = (itemValue / Math.Abs(total)) * 100;
+            var result = (itemValue.Value / Math.Abs(total)) * 100;
             result = ToRound(result);
 
             return result;

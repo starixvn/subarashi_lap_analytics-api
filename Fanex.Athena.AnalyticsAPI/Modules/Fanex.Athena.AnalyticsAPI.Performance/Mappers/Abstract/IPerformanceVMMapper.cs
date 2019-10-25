@@ -20,7 +20,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
         IEnumerable<DistributionVM> ToDistributionVM<T>(IEnumerable<T> prevPeriodDtos, IEnumerable<T> currentPeriodDtos)
             where T : DistributionDTO;
 
-        IEnumerable<MeasurementComparisonVM> ToMeasurementComparisonVM<T>(IEnumerable<T> prevPeriodDtos, IEnumerable<T> currentPeriodDtos)
+        IEnumerable<MeasurementComparisonVM> ToMeasurementComparisonVM<T>(IEnumerable<T> prevPeriodDtos, IEnumerable<T> currentPeriodDtos, IEnumerable<Tuple<string, string>> topDistributions)
             where T : MeasurementComparisonDTO;
     }
 }

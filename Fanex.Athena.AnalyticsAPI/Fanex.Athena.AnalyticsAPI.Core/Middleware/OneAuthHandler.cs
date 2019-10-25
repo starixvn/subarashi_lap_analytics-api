@@ -1,20 +1,18 @@
-﻿using System;
+﻿using LAP.ONEBook.Security;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Primitives;
+using Newtonsoft.Json;
+using System;
 using System.Net;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
-using LAP.ONEBook.Security;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Primitives;
-
-using Newtonsoft.Json;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
 {
     public class OneAuthHandler
     {
-        const string AUTHKEY = "X-Auth-Token";
+        private const string AUTHKEY = "X-Auth-Token";
 
         private readonly RequestDelegate _next;
         private readonly IStorageProvider _storageProvider;
@@ -58,7 +56,6 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
                 }
             }
 
-
             return isAuthorized;
         }
 
@@ -79,9 +76,8 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
 
             await context.Response.WriteAsync(JsonConvert.SerializeObject(new
             {
-                State = "401 Unauthorized Error",
-                Msg = "401 Unauthorized",
-                IsSuccess = false
+                msg = "401 Unauthorized",
+                isSuccess = false
             }));
         }
     }

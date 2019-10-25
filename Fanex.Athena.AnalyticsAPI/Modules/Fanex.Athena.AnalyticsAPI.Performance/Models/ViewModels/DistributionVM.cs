@@ -16,6 +16,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels
 
     public class DistributionItemVM
     {
+        public string Id { get; set; }
         public string Name { get; set; }
         public double Percent { get; set; }
     }

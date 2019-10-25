@@ -15,6 +15,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ONEbook.UM.Configurations;
+using ONEbook.UM.Extensions;
 using System.Collections.Generic;
 using System.IO.Compression;
 using System.Security.Claims;
@@ -51,11 +53,6 @@ namespace Fanex.Athena.AnalyticsAPI
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             }));
-
-            services.AddResponseCaching(options =>
-            {
-                options.UseCaseSensitivePaths = true;
-            });
 
             services.Configure<GzipCompressionProviderOptions>(options =>
             {
@@ -96,7 +93,7 @@ namespace Fanex.Athena.AnalyticsAPI
                 return new SqlServerProvider(connection);
             });
 
-            services.AddUMHandler(Env, Configuration);
+            services.AddUMService(Configuration.GetSection("ONEbook.UM").Get<UMClientConfiguration>());
         }
 
         private string GetOneBookSecurityConnection()
@@ -145,7 +142,7 @@ namespace Fanex.Athena.AnalyticsAPI
                 app.UseErrorHandler();
                 app.UseOneAuth();
             }
-            app.UseUMHandler(Env);
+            app.UseUM();
             app.UseMvc();
         }
     }
