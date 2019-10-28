@@ -6,7 +6,6 @@ using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Repositories;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -35,7 +34,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
             var dtos = await _performanceRepository.QueryMultipleAsync<CurrencyDistributionDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToDistributionVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1));
+            var result = _viewModelMapper.ToDistributionVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), filter.TopDistributions);
 
             return result;
         }
@@ -75,6 +74,31 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
                 DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.FromMonth),
                 DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.ToMonth)
                 );
+
+            return result;
+        }
+
+        public async Task<IEnumerable<OverallMeasurementVM>> GetOverallMeasurement(PerformanceFilterMetaModel filter)
+        {
+            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<CurrencyDistributionCriteria, PerformanceFilterMetaModel>(filter, false);
+            criteriaPrevPeriod.DrillDown = DrillDownConst.NONE_DRILL_DOWN;
+
+            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<CurrencyDistributionCriteria, PerformanceFilterMetaModel>(filter);
+            criteriaCurrentPeriod.DrillDown = DrillDownConst.NONE_DRILL_DOWN;
+
+            var dtos = await _performanceRepository.QueryMultipleAsync<TotalDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
+
+            var result = _viewModelMapper.ToOverallMeasurement(dtos.ElementAtOrDefault(0)?.FirstOrDefault(), dtos.ElementAtOrDefault(1)?.FirstOrDefault());
+
+            return result;
+        }
+
+        public async Task<IEnumerable<(string topDistributionId, string topDistributionName)>> GetTopDistributions(PerformanceFilterMetaModel filter)
+        {
+            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<CurrencyDistributionCriteria, PerformanceFilterMetaModel>(filter);
+            var dtos = await _performanceRepository.QueryAsync<CurrencyDistributionDTO>(criteriaCurrentPeriod);
+
+            var result = GetTopDistributions(dtos);
 
             return result;
         }

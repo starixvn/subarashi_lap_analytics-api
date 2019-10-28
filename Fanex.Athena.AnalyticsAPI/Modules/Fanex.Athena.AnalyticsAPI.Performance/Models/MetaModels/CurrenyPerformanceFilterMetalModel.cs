@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels
 {
@@ -7,6 +6,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels
     {
         public IEnumerable<string> Currencies { get; set; }
 
-        public IEnumerable<Tuple<string, string>> TopDistributions { get; set; }
+        public IEnumerable<(string topDistributionId, string topDistributionName)> TopDistributions { get; set; }
     }
 }

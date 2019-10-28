@@ -10,6 +10,8 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Mappers
         protected const int NUMBER_OF_TOP = 5;
         protected const string DISTRIBUTION_OTHERS_ID = "0";
         protected const string DISTRIBUTION_OTHERS_NAME = "Others";
+        protected const string CURRENT_PERIOD_NAME = "Current Period";
+        protected const string PREVIOUS_PERIOD_NAME = "Previous Period";
 
         protected readonly ICalculationService _calculationService;
 
@@ -20,7 +22,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Mappers
             _calculationService = calculationService;
         }
 
-        protected static bool HasOthers(IEnumerable<Tuple<string, string>> topDistributions)
+        protected static bool HasOthers(IEnumerable<(string, string)> topDistributions)
         {
             if (topDistributions == null)
             {

@@ -12,15 +12,24 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
         IEnumerable<MeasurementPeriodComparisonGrowthVM> ToMeasurementGrowthPeriodVM<T>(
             IEnumerable<T> prevPeriodDtos,
             IEnumerable<T> currentPeriodDtos,
-            IEnumerable<Tuple<string, string>> topDistributions)
+            IEnumerable<(string topDistributionId, string topDistributionName)> topDistributions)
             where T : MeasurementPeriodDTO;
 
         IEnumerable<MeasurementGrowthVM> ToMeasurementGrowthTimeVM(IEnumerable<MeasurementTimeDTO> periodDtos, DateTime fromMonth, DateTime toMonth);
 
-        IEnumerable<DistributionVM> ToDistributionVM<T>(IEnumerable<T> prevPeriodDtos, IEnumerable<T> currentPeriodDtos)
+        IEnumerable<DistributionVM> ToDistributionVM<T>(
+            IEnumerable<T> prevPeriodDtos,
+            IEnumerable<T> currentPeriodDtos,
+            IEnumerable<(string topDistributionId, string topDistributionName)> topDistributions)
             where T : DistributionDTO;
 
-        IEnumerable<MeasurementComparisonVM> ToMeasurementComparisonVM<T>(IEnumerable<T> prevPeriodDtos, IEnumerable<T> currentPeriodDtos, IEnumerable<Tuple<string, string>> topDistributions)
+        IEnumerable<MeasurementComparisonVM> ToMeasurementComparisonVM<T>(
+            IEnumerable<T> prevPeriodDtos,
+            IEnumerable<T> currentPeriodDtos,
+            IEnumerable<(string topDistributionId, string topDistributionName)> topDistributions)
             where T : MeasurementComparisonDTO;
+
+        IEnumerable<OverallMeasurementVM> ToOverallMeasurement<T>(T prevPeriodDto, T currentPeriodDto)
+            where T : TotalDTO;
     }
 }
