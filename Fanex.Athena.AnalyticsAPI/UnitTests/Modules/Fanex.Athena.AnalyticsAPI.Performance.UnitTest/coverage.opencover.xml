@@ -2,9 +2,9 @@
 <CoverageSession>
   <Summary numSequencePoints="1280" visitedSequencePoints="33" numBranchPoints="490" visitedBranchPoints="6" sequenceCoverage="2.57" branchCoverage="1.22" maxCyclomaticComplexity="389" minCyclomaticComplexity="62" visitedClasses="3" numClasses="119" visitedMethods="6" numMethods="268" />
   <Modules>
-    <Module hash="9C818709-A331-4F78-A6E1-EED0D56F2E21">
+    <Module hash="DC17F9F5-8020-4B13-A60F-3C3D42FDDBC2">
       <ModulePath>Fanex.Athena.AnalyticsAPI.Common.dll</ModulePath>
-      <ModuleTime>2019-10-29T02:53:53</ModuleTime>
+      <ModuleTime>2019-10-29T04:49:17</ModuleTime>
       <ModuleName>Fanex.Athena.AnalyticsAPI.Common</ModuleName>
       <Files>
         <File uid="1" fullPath="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Models\DTO\AppSettings.cs" />
@@ -1496,9 +1496,9 @@
         </Class>
       </Classes>
     </Module>
-    <Module hash="6CBA3F18-E035-43EA-8EDF-60D65BFDFE78">
+    <Module hash="6596E2D6-79ED-46E4-8894-AA4B4B055B9C">
       <ModulePath>Fanex.Athena.AnalyticsAPI.Core.dll</ModulePath>
-      <ModuleTime>2019-10-29T02:53:53</ModuleTime>
+      <ModuleTime>2019-10-29T04:49:17</ModuleTime>
       <ModuleName>Fanex.Athena.AnalyticsAPI.Core</ModuleName>
       <Files>
         <File uid="23" fullPath="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Core\Middleware\IPFilter.cs" />
@@ -1962,9 +1962,9 @@
         </Class>
       </Classes>
     </Module>
-    <Module hash="65D4F2C7-2E40-486E-A2A3-994EB68CA8A9">
+    <Module hash="02A21E85-2A61-4312-A1BB-9732F427648C">
       <ModulePath>Fanex.Athena.AnalyticsAPI.Performance.dll</ModulePath>
-      <ModuleTime>2019-10-29T02:53:53</ModuleTime>
+      <ModuleTime>2019-10-29T04:49:17</ModuleTime>
       <ModuleName>Fanex.Athena.AnalyticsAPI.Performance</ModuleName>
       <Files>
         <File uid="28" fullPath="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Modules\Fanex.Athena.AnalyticsAPI.Performance\Services\Currency\CurrencyPerformanceService.cs" />
@@ -4932,9 +4932,9 @@
         </Class>
       </Classes>
     </Module>
-    <Module hash="9E11CFA4-D6AA-4185-A6A6-41328A7F8823">
+    <Module hash="96AA35AC-4803-4CE2-9449-4C7F81A44B9B">
       <ModulePath>Fanex.Athena.LGAPI.SSAS.Bridge.dll</ModulePath>
-      <ModuleTime>2019-10-29T02:53:53</ModuleTime>
+      <ModuleTime>2019-10-29T04:49:17</ModuleTime>
       <ModuleName>Fanex.Athena.LGAPI.SSAS.Bridge</ModuleName>
       <Files>
         <File uid="66" fullPath="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\SSAS\Fanex.Athena.LGAPI.SSAS.Bridge\Services\SsasBridgeService.cs" />

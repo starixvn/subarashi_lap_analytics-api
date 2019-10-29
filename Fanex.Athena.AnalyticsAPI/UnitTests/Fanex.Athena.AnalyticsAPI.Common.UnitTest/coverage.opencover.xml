@@ -2,9 +2,9 @@
 <CoverageSession>
   <Summary numSequencePoints="434" visitedSequencePoints="82" numBranchPoints="154" visitedBranchPoints="25" sequenceCoverage="18.89" branchCoverage="16.23" maxCyclomaticComplexity="161" minCyclomaticComplexity="62" visitedClasses="6" numClasses="37" visitedMethods="19" numMethods="101" />
   <Modules>
-    <Module hash="91740673-8DCE-41C8-A25A-A3F7B5B3846D">
+    <Module hash="9927C31E-D22E-4328-9A5E-322B867C4EEF">
       <ModulePath>Fanex.Athena.AnalyticsAPI.Common.dll</ModulePath>
-      <ModuleTime>2019-10-29T02:53:53</ModuleTime>
+      <ModuleTime>2019-10-29T04:49:14</ModuleTime>
       <ModuleName>Fanex.Athena.AnalyticsAPI.Common</ModuleName>
       <Files>
         <File uid="1" fullPath="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Models\DTO\AppSettings.cs" />
@@ -1492,9 +1492,9 @@
         </Class>
       </Classes>
     </Module>
-    <Module hash="2AA8E0F9-5686-407E-8B47-A93FE0606A61">
+    <Module hash="D8E36CAD-126B-4EB6-972B-2D8AFB4CA137">
       <ModulePath>Fanex.Athena.LGAPI.SSAS.Bridge.dll</ModulePath>
-      <ModuleTime>2019-10-29T02:53:53</ModuleTime>
+      <ModuleTime>2019-10-29T04:49:14</ModuleTime>
       <ModuleName>Fanex.Athena.LGAPI.SSAS.Bridge</ModuleName>
       <Files>
         <File uid="23" fullPath="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\SSAS\Fanex.Athena.LGAPI.SSAS.Bridge\Services\SsasBridgeService.cs" />

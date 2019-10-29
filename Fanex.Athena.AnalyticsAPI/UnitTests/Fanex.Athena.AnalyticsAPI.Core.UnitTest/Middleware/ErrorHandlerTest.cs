@@ -56,8 +56,9 @@ namespace Fanex.Athena.ExtService.Core.UnitTests.Middleware
 
             var expectedResult = JsonConvert.SerializeObject(new
             {
-                State = "Internal Server Error",
-                Msg = "Sorry, an error occurred while processing your request."
+                state = "Internal Server Error",
+                msg = "Sorry, an error occurred while processing your request.",
+                isSuccess = false
             });
 
             var errorHandler = new ErrorHandler(next: async (x) =>
@@ -97,8 +98,9 @@ namespace Fanex.Athena.ExtService.Core.UnitTests.Middleware
 
             var expectedResult = JsonConvert.SerializeObject(new
             {
-                State = "Internal Server Error",
-                Msg = "Sorry, an error occurred while processing your request."
+                state = "Internal Server Error",
+                msg = "Sorry, an error occurred while processing your request.",
+                isSuccess = false
             });
 
             var errorHandler = new ErrorHandler(next: async (x) =>

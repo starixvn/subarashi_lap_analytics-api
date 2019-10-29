@@ -95,7 +95,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                 new OverallMeasurementVM
                 {
                     Name = PREVIOUS_PERIOD_NAME,
-                    Total = _calculationService.ToRound(prevPeriodDto.Total)
+                    Total = _calculationService.ToRound(prevPeriodDto?.Total)
                 },
                 new OverallMeasurementVM
                 {
@@ -188,7 +188,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             var hasOthers = HasOthers(topDistributions);
 
             var prevPeriodDtoTotal = prevPeriodDtos.Sum(_ => _.Total);
-            var currentPeriodDtoTotal = prevPeriodDtos.Sum(_ => _.Total);
+            var currentPeriodDtoTotal = currentPeriodDtos.Sum(_ => _.Total);
 
             foreach (var topDistribution in topDistributions)
             {

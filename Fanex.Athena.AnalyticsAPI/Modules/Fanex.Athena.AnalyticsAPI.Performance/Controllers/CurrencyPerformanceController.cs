@@ -90,6 +90,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
                 MeasurementId = filter.Measurement.Id,
                 filter.CurrentPeriod,
                 filter.PreviousPeriod,
+                filter.TopDistributions,
                 DistributionData = distributions != null ? await distributions : null,
                 OverallMarginData = overallMargin != null ? await overallMargin : null,
                 MeasurementDifferenceData = await taskMeasurementDifference,
