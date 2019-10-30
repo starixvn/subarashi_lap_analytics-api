@@ -187,9 +187,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
 
             var hasOthers = HasOthers(topDistributions);
 
-            var prevPeriodDtoTotal = prevPeriodDtos.Sum(_ => _.Total);
-            var currentPeriodDtoTotal = currentPeriodDtos.Sum(_ => _.Total);
-
             foreach (var topDistribution in topDistributions)
             {
                 (string topDistributionId, string topDistributionName) = topDistribution;
@@ -199,27 +196,31 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                     continue;
                 }
 
-                if (currentPeriodDtoDic.TryGetValue(topDistributionId, out T currentPeriodDto))
-                {
-                    var previousPeriodTotal = prevPeriodDtoDic.ContainsKey(topDistributionId) ? prevPeriodDtoDic[topDistributionId].Total : 0;
-                    var currentPeriodTotal = currentPeriodDto.Total;
-                    var vm = CreateMeasurementPeriodComparisonGrowthVM(currentPeriodDto.Name, previousPeriodTotal, currentPeriodTotal);
-                    result.Add(vm);
+                var currentPeriodDto = currentPeriodDtoDic[topDistributionId];
 
-                    if (hasOthers)
-                    {
-                        prevPeriodDtoTotal -= previousPeriodTotal;
-                        currentPeriodDtoTotal -= currentPeriodTotal;
-                    }
+                var previousPeriodTotal = prevPeriodDtoDic.ContainsKey(topDistributionId) ? prevPeriodDtoDic[topDistributionId].Total : 0;
+                var currentPeriodTotal = currentPeriodDto.Total;
+
+                var vm = CreateMeasurementPeriodComparisonGrowthVM(topDistributionId, topDistributionName, previousPeriodTotal, currentPeriodTotal);
+                result.Add(vm);
+
+                if (hasOthers)
+                {
+                    currentPeriodDtoDic.Remove(topDistributionId);
+                    prevPeriodDtoDic.Remove(topDistributionId);
                 }
             }
 
             if (hasOthers)
             {
                 result.Add(CreateMeasurementPeriodComparisonGrowthVM(
+                        DISTRIBUTION_OTHERS_ID,
                         DISTRIBUTION_OTHERS_NAME,
-                        prevPeriodDtos.Count() > NUMBER_OF_TOP ? prevPeriodDtoTotal : 0,
-                        currentPeriodDtoTotal));
+                        prevPeriodDtoDic.Sum(_ => _.Value.Total),
+                        currentPeriodDtoDic.Sum(_ => _.Value.Total),
+                        prevPeriodDtoDic.Select(_ => new IdentifyVM { Id = _.Value.Id, Name = _.Value.Name }),
+                        currentPeriodDtoDic.Select(_ => new IdentifyVM { Id = _.Value.Id, Name = _.Value.Name })
+                        ));
             }
 
             return result;
@@ -283,16 +284,22 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
         }
 
         private MeasurementPeriodComparisonGrowthVM CreateMeasurementPeriodComparisonGrowthVM(
+            in string id,
             in string name,
             double prevPeriodTotal,
-            double currentPeriodTotal)
+            double currentPeriodTotal,
+            IEnumerable<IdentifyVM> previousPeriodIdentifies = null,
+            IEnumerable<IdentifyVM> currentPeriodIdentifies = null)
         {
             return new MeasurementPeriodComparisonGrowthVM
             {
+                Id = id,
                 Name = name,
                 PreviousPeriodTotal = _calculationService.ToRound(prevPeriodTotal),
                 CurrentPeriodTotal = _calculationService.ToRound(currentPeriodTotal),
-                GrowthPercent = _calculationService.CalculateGrowth(currentPeriodTotal, prevPeriodTotal)
+                GrowthPercent = _calculationService.CalculateGrowth(currentPeriodTotal, prevPeriodTotal),
+                PreviousPeriodIdentifies = previousPeriodIdentifies ?? new List<IdentifyVM> { new IdentifyVM { Id = id, Name = name } },
+                CurrentPeriodIdentifies = currentPeriodIdentifies ?? new List<IdentifyVM> { new IdentifyVM { Id = id, Name = name } }
             };
         }
 

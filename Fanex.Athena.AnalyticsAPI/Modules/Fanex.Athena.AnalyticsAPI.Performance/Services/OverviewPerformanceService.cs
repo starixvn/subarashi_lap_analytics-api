@@ -52,7 +52,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
         public async Task<IEnumerable<MeasurementGrowthVM>> GetDetailMonthGrowthWithComparison(PerformanceFilterMetaModel filter)
         {
-            var newFilter = MetaModelHelper.BackToCurrentPeriodByMonth(filter, 1);
+            var newFilter = MetaModelHelper.BackToPeriodByMonth(filter, 1);
             var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<OverviewMeasurementGrowthCriteria, PerformanceFilterMetaModel>(newFilter);
             criteriaCurrentPeriod.GroupID = GroupDataConst.MONTH_GROUP;
             var taskCurrentPeriod = _performanceRepository.QueryAsync<MeasurementTimeDTO>(criteriaCurrentPeriod);

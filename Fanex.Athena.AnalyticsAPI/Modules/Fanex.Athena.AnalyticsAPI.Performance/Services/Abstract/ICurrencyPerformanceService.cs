@@ -18,5 +18,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
         Task<IEnumerable<(string topDistributionId, string topDistributionName)>> GetTopDistributions(PerformanceFilterMetaModel filter);
 
         Task<IEnumerable<OverallMeasurementVM>> GetOverallMeasurement(PerformanceFilterMetaModel filter);
+
+        Task<IDictionary<string, object>> GetAllDetailMonthGrowthWithComparison(CurrenyPerformanceFilterMetalModel filter);
     }
 }

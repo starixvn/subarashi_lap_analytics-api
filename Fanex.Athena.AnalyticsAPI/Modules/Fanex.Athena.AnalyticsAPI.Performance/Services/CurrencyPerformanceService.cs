@@ -1,4 +1,5 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Helpers;
+using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Mappers;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria;
@@ -66,7 +67,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
         public async Task<IEnumerable<MeasurementGrowthVM>> GetDetailMonthGrowthWithComparison(CurrenyPerformanceFilterMetalModel filter)
         {
-            var newFilter = MetaModelHelper.BackToCurrentPeriodByMonth(filter, 1);
+            var newFilter = MetaModelHelper.BackToPeriodByMonth(filter, 1);
             var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCurrencyPerformanceCriteria<CurrencyTimeGrowthCriteria, CurrenyPerformanceFilterMetalModel>(newFilter);
             var taskCurrentPeriod = _performanceRepository.QueryAsync<MeasurementTimeDTO>(criteriaCurrentPeriod);
 
@@ -74,6 +75,40 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
                 DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.FromMonth),
                 DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.ToMonth)
                 );
+
+            return result;
+        }
+
+        public async Task<IDictionary<string, object>> GetAllDetailMonthGrowthWithComparison(CurrenyPerformanceFilterMetalModel filter)
+        {
+            var result = new Dictionary<string, object>(filter.TopDistributions.Count());
+
+            var cloneFilter = MetaModelHelper.Clone(filter);
+            cloneFilter = MetaModelHelper.BackToPeriodByMonth(cloneFilter, 1);
+            cloneFilter = MetaModelHelper.BackToPeriodByMonth(cloneFilter, 1, false);
+
+            foreach (var topDistribution in filter.TopDistributions)
+            {
+                cloneFilter.Currencies = new List<string> { topDistribution.topDistributionName };
+
+                var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<CurrencyTimeGrowthCriteria, PerformanceFilterMetaModel>(cloneFilter, false);
+                var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCurrencyPerformanceCriteria<CurrencyTimeGrowthCriteria, CurrenyPerformanceFilterMetalModel>(cloneFilter);
+
+                var dtos = await _performanceRepository.QueryMultipleAsync<MeasurementTimeDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
+
+                var prevPeriodResult = _viewModelMapper.ToMeasurementGrowthTimeVM(dtos.ElementAtOrDefault(0),
+                        DateTimeHelper.ParseFromFormatDateToDate(filter.PreviousPeriod.FromMonth),
+                        DateTimeHelper.ParseFromFormatDateToDate(filter.PreviousPeriod.ToMonth)
+                        );
+
+                var currentPeriodResult = _viewModelMapper.ToMeasurementGrowthTimeVM(dtos.ElementAtOrDefault(1),
+                   DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.FromMonth),
+                   DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.ToMonth)
+                   );
+
+                result.Add(GetFieldNameOfMonthGrowthObject(topDistribution.topDistributionName, filter.PreviousPeriod), prevPeriodResult);
+                result.Add(GetFieldNameOfMonthGrowthObject(topDistribution.topDistributionName, filter.CurrentPeriod), currentPeriodResult);
+            }
 
             return result;
         }

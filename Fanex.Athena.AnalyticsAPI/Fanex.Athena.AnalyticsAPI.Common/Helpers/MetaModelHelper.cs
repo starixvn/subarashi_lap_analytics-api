@@ -6,12 +6,14 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
 {
     public static class MetaModelHelper
     {
-        public static TMetalModel BackToCurrentPeriodByMonth<TMetalModel>(TMetalModel metaModel, int numberOfMonth)
+        public static TMetalModel BackToPeriodByMonth<TMetalModel>(TMetalModel metaModel, int numberOfMonth, bool isCurrentPeriod = true)
             where TMetalModel : GeneralFilterMetaModel
         {
             var modelClone = metaModel.Clone();
 
-            modelClone.CurrentPeriod.FromMonth = DateTimeHelper.ParseFromFormatDateToDate(modelClone.CurrentPeriod.FromMonth)
+            var period = isCurrentPeriod ? modelClone.CurrentPeriod : modelClone.PreviousPeriod;
+
+            period.FromMonth = DateTimeHelper.ParseFromFormatDateToDate(modelClone.CurrentPeriod.FromMonth)
                 .AddMonths(-numberOfMonth)
                 .ToString(DateTimeHelper.MONTH_FORMAT);
 
