@@ -22,7 +22,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Helpers
 
         public static TCriteria ToCurrencyPerformanceCriteria<TCriteria, TMetalModel>(TMetalModel metaModel, bool isCurrentPeriod = true)
             where TCriteria : CurrencyPerformanceCriteria, new()
-            where TMetalModel : CurrenyPerformanceFilterMetalModel
+            where TMetalModel : CurrenyPerformanceFilterMetaModel
         {
             var criteria = ToPerformanceCriteria<TCriteria, TMetalModel>(metaModel, isCurrentPeriod);
             criteria.ListCurrency = string.Join(',', metaModel.Currencies ?? Enumerable.Empty<string>());

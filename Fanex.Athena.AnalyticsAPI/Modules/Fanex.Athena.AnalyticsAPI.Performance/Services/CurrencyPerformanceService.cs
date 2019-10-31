@@ -1,5 +1,4 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Helpers;
-using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Mappers;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria;
@@ -28,47 +27,47 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             _viewModelMapper = viewModelMapper;
         }
 
-        public async Task<IEnumerable<DistributionVM>> GetDistributionWithComparison(CurrenyPerformanceFilterMetalModel filter)
+        public async Task<IEnumerable<DistributionVM>> GetDistributionWithComparison(CurrenyPerformanceFilterMetaModel filter)
         {
-            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<CurrencyDistributionCriteria, CurrenyPerformanceFilterMetalModel>(filter, false);
-            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<CurrencyDistributionCriteria, CurrenyPerformanceFilterMetalModel>(filter);
+            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<CurrencyDistributionCriteria, CurrenyPerformanceFilterMetaModel>(filter, false);
+            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<CurrencyDistributionCriteria, CurrenyPerformanceFilterMetaModel>(filter);
 
             var dtos = await _performanceRepository.QueryMultipleAsync<CurrencyDistributionDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToDistributionVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), filter.TopDistributions);
+            var result = _viewModelMapper.ToDistributionVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), MapToTopDistributions(filter.TopDistributions));
 
             return result;
         }
 
-        public async Task<IEnumerable<MeasurementComparisonVM>> GetMeasurementDifferenceWithComparison(CurrenyPerformanceFilterMetalModel filter)
+        public async Task<IEnumerable<MeasurementComparisonVM>> GetMeasurementDifferenceWithComparison(CurrenyPerformanceFilterMetaModel filter)
         {
-            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToCurrencyPerformanceCriteria<CurrencyMeasurementComparisonCriteria, CurrenyPerformanceFilterMetalModel>(filter, false);
+            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToCurrencyPerformanceCriteria<CurrencyMeasurementComparisonCriteria, CurrenyPerformanceFilterMetaModel>(filter, false);
             var taskPrevPeriod = _performanceRepository.QueryAsync<CurrencyMeasurementComparisonDTO>(criteriaPrevPeriod);
 
-            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCurrencyPerformanceCriteria<CurrencyMeasurementComparisonCriteria, CurrenyPerformanceFilterMetalModel>(filter);
+            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCurrencyPerformanceCriteria<CurrencyMeasurementComparisonCriteria, CurrenyPerformanceFilterMetaModel>(filter);
             var taskCurrentPeriod = _performanceRepository.QueryAsync<CurrencyMeasurementComparisonDTO>(criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToMeasurementComparisonVM(await taskPrevPeriod, await taskCurrentPeriod, filter.TopDistributions);
+            var result = _viewModelMapper.ToMeasurementComparisonVM(await taskPrevPeriod, await taskCurrentPeriod, MapToTopDistributions(filter.TopDistributions));
 
             return result;
         }
 
-        public async Task<IEnumerable<MeasurementPeriodComparisonGrowthVM>> GetPeriodGrowthWithComparison(CurrenyPerformanceFilterMetalModel filter)
+        public async Task<IEnumerable<MeasurementPeriodComparisonGrowthVM>> GetPeriodGrowthWithComparison(CurrenyPerformanceFilterMetaModel filter)
         {
-            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToCurrencyPerformanceCriteria<CurrencyPeriodGrowthCriteria, CurrenyPerformanceFilterMetalModel>(filter, false);
-            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCurrencyPerformanceCriteria<CurrencyPeriodGrowthCriteria, CurrenyPerformanceFilterMetalModel>(filter);
+            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToCurrencyPerformanceCriteria<CurrencyPeriodGrowthCriteria, CurrenyPerformanceFilterMetaModel>(filter, false);
+            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCurrencyPerformanceCriteria<CurrencyPeriodGrowthCriteria, CurrenyPerformanceFilterMetaModel>(filter);
 
             var dtos = await _performanceRepository.QueryMultipleAsync<CurrencyMeasurementPeriodDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToMeasurementGrowthPeriodVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), filter.TopDistributions);
+            var result = _viewModelMapper.ToMeasurementGrowthPeriodVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), MapToTopDistributions(filter.TopDistributions));
 
             return result;
         }
 
-        public async Task<IEnumerable<MeasurementGrowthVM>> GetDetailMonthGrowthWithComparison(CurrenyPerformanceFilterMetalModel filter)
+        public async Task<IEnumerable<MeasurementGrowthVM>> GetDetailMonthGrowthWithComparison(CurrenyPerformanceFilterMetaModel filter)
         {
             var newFilter = MetaModelHelper.BackToPeriodByMonth(filter, 1);
-            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCurrencyPerformanceCriteria<CurrencyTimeGrowthCriteria, CurrenyPerformanceFilterMetalModel>(newFilter);
+            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCurrencyPerformanceCriteria<CurrencyTimeGrowthCriteria, CurrenyPerformanceFilterMetaModel>(newFilter);
             var taskCurrentPeriod = _performanceRepository.QueryAsync<MeasurementTimeDTO>(criteriaCurrentPeriod);
 
             var result = _viewModelMapper.ToMeasurementGrowthTimeVM(await taskCurrentPeriod,
@@ -79,7 +78,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             return result;
         }
 
-        public async Task<IDictionary<string, object>> GetAllDetailMonthGrowthWithComparison(CurrenyPerformanceFilterMetalModel filter)
+        public async Task<IDictionary<string, object>> GetAllDetailMonthGrowthWithComparison(CurrenyPerformanceFilterMetaModel filter)
         {
             var result = new Dictionary<string, object>(filter.TopDistributions.Count());
 
@@ -89,10 +88,11 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
             foreach (var topDistribution in filter.TopDistributions)
             {
-                cloneFilter.Currencies = new List<string> { topDistribution.topDistributionName };
+                cloneFilter.Currencies = topDistribution.PreviousPeriodDistributions.Select(_ => _.Name);
+                var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToCurrencyPerformanceCriteria<CurrencyTimeGrowthCriteria, CurrenyPerformanceFilterMetaModel>(cloneFilter, false);
 
-                var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<CurrencyTimeGrowthCriteria, PerformanceFilterMetaModel>(cloneFilter, false);
-                var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCurrencyPerformanceCriteria<CurrencyTimeGrowthCriteria, CurrenyPerformanceFilterMetalModel>(cloneFilter);
+                cloneFilter.Currencies = topDistribution.CurrentPeriodDistributions.Select(_ => _.Name);
+                var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCurrencyPerformanceCriteria<CurrencyTimeGrowthCriteria, CurrenyPerformanceFilterMetaModel>(cloneFilter);
 
                 var dtos = await _performanceRepository.QueryMultipleAsync<MeasurementTimeDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 
@@ -102,12 +102,12 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
                         );
 
                 var currentPeriodResult = _viewModelMapper.ToMeasurementGrowthTimeVM(dtos.ElementAtOrDefault(1),
-                   DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.FromMonth),
-                   DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.ToMonth)
-                   );
+                       DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.FromMonth),
+                       DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.ToMonth)
+                       );
 
-                result.Add(GetFieldNameOfMonthGrowthObject(topDistribution.topDistributionName, filter.PreviousPeriod), prevPeriodResult);
-                result.Add(GetFieldNameOfMonthGrowthObject(topDistribution.topDistributionName, filter.CurrentPeriod), currentPeriodResult);
+                result.Add(GetFieldNameOfMonthGrowthObject(topDistribution.DisplayName, filter.PreviousPeriod), prevPeriodResult);
+                result.Add(GetFieldNameOfMonthGrowthObject(topDistribution.DisplayName, filter.CurrentPeriod), currentPeriodResult);
             }
 
             return result;

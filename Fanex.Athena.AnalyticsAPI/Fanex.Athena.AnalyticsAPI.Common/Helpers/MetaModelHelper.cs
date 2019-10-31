@@ -13,7 +13,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
 
             var period = isCurrentPeriod ? modelClone.CurrentPeriod : modelClone.PreviousPeriod;
 
-            period.FromMonth = DateTimeHelper.ParseFromFormatDateToDate(modelClone.CurrentPeriod.FromMonth)
+            period.FromMonth = DateTimeHelper.ParseFromFormatDateToDate(period.FromMonth)
                 .AddMonths(-numberOfMonth)
                 .ToString(DateTimeHelper.MONTH_FORMAT);
 

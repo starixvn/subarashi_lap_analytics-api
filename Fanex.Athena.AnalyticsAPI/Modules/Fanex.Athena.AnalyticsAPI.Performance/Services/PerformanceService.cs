@@ -1,6 +1,7 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
+using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Repositories;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
         protected readonly IPerformanceRepository _performanceRepository;
 
-        public PerformanceService(
+        protected PerformanceService(
             IContextService context,
             IPerformanceRepository performanceRepository
             )
@@ -42,7 +43,13 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
         protected static string GetFieldNameOfMonthGrowthObject(string name, MonthRangeMetaModel period)
         {
-            return $"{name}_{period.FromMonth}_{period.FromMonth}";
+            return $"{name}_{period.FromMonth}_{period.ToMonth}";
+        }
+
+        protected static IEnumerable<(string topDistributionId, string topDistributionName)> MapToTopDistributions(IEnumerable<DistributionMetaModel> topDistributions)
+        {
+            return topDistributions?.Select(_ => (_.DisplayId, _.DisplayName))
+                ?? new List<(string topDistributionId, string topDistributionName)>();
         }
     }
 }

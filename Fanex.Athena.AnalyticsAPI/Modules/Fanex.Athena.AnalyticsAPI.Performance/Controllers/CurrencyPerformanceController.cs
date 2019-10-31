@@ -8,6 +8,7 @@ using Fanex.Athena.AnalyticsAPI.Performance.Services;
 
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
@@ -29,7 +30,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [HttpPost]
         [Route("api/performance/currency/distribution")]
         [AutoBindMetaModel]
-        public async Task<JsonResult> GetDistribution([FromBody]CurrenyPerformanceFilterMetalModel filter)
+        public async Task<JsonResult> GetDistribution([FromBody]CurrenyPerformanceFilterMetaModel filter)
         {
             var result = await _currencyService.GetDistributionWithComparison(filter);
             return ToResult(result);
@@ -38,7 +39,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [HttpPost]
         [Route("api/performance/currency/diffences")]
         [AutoBindMetaModel]
-        public async Task<JsonResult> GetDiffences([FromBody]CurrenyPerformanceFilterMetalModel filter)
+        public async Task<JsonResult> GetDiffences([FromBody]CurrenyPerformanceFilterMetaModel filter)
         {
             var result = await _currencyService.GetMeasurementDifferenceWithComparison(filter);
             return ToResult(result);
@@ -47,7 +48,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [HttpPost]
         [Route("api/performance/currency/period-growth")]
         [AutoBindMetaModel]
-        public async Task<JsonResult> GetPeriodGrowth([FromBody]CurrenyPerformanceFilterMetalModel filter)
+        public async Task<JsonResult> GetPeriodGrowth([FromBody]CurrenyPerformanceFilterMetaModel filter)
         {
             var result = await _currencyService.GetPeriodGrowthWithComparison(filter);
             return ToResult(result);
@@ -56,7 +57,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [HttpPost]
         [Route("api/performance/currency/month-growth")]
         [AutoBindMetaModel]
-        public async Task<JsonResult> GetMonthGrowth([FromBody]CurrenyPerformanceFilterMetalModel filter)
+        public async Task<JsonResult> GetMonthGrowth([FromBody]CurrenyPerformanceFilterMetaModel filter)
         {
             var result = await _currencyService.GetDetailMonthGrowthWithComparison(filter);
             return ToResult(result);
@@ -65,7 +66,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [HttpPost]
         [Route("api/performance/currency/month-growth-all")]
         [AutoBindMetaModel]
-        public async Task<JsonResult> GetAllMonthGrowth([FromBody]CurrenyPerformanceFilterMetalModel filter)
+        public async Task<JsonResult> GetAllMonthGrowth([FromBody]CurrenyPerformanceFilterMetaModel filter)
         {
             var result = await _currencyService.GetAllDetailMonthGrowthWithComparison(filter);
             return ToResult(result);
@@ -74,9 +75,9 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [HttpPost]
         [Route("api/performance/currency")]
         [AutoBindMetaModel]
-        public async Task<JsonResult> GetCombineData([FromBody]CurrenyPerformanceFilterMetalModel filter)
+        public async Task<JsonResult> GetCombineData([FromBody]CurrenyPerformanceFilterMetaModel filter)
         {
-            filter.TopDistributions = await _currencyService.GetTopDistributions(filter);
+            await BindTopDistributionsToFilterMetaModel(filter);
 
             var distributions = null as Task<IEnumerable<DistributionVM>>;
             var overallMargin = null as Task<IEnumerable<OverallMeasurementVM>>;
@@ -108,6 +109,16 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
                     PeriodGrowth = await taskPeriodGrowth,
                     MonthGrowth = new {}
                 }
+            });
+        }
+
+        private async Task BindTopDistributionsToFilterMetaModel(CurrenyPerformanceFilterMetaModel filter)
+        {
+            var topDistributions = await _currencyService.GetTopDistributions(filter);
+            filter.TopDistributions = topDistributions.Select(_ => new DistributionMetaModel
+            {
+                DisplayId = _.topDistributionId,
+                DisplayName = _.topDistributionName
             });
         }
     }

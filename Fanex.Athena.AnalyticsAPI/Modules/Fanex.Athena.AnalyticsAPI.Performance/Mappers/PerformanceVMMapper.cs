@@ -298,8 +298,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                 PreviousPeriodTotal = _calculationService.ToRound(prevPeriodTotal),
                 CurrentPeriodTotal = _calculationService.ToRound(currentPeriodTotal),
                 GrowthPercent = _calculationService.CalculateGrowth(currentPeriodTotal, prevPeriodTotal),
-                PreviousPeriodIdentifies = previousPeriodIdentifies ?? new List<IdentifyVM> { new IdentifyVM { Id = id, Name = name } },
-                CurrentPeriodIdentifies = currentPeriodIdentifies ?? new List<IdentifyVM> { new IdentifyVM { Id = id, Name = name } }
+                PreviousPeriodDistributions = previousPeriodIdentifies ?? new List<IdentifyVM> { new IdentifyVM { Id = id, Name = name } },
+                CurrentPeriodDistributions = currentPeriodIdentifies ?? new List<IdentifyVM> { new IdentifyVM { Id = id, Name = name } }
             };
         }
 
