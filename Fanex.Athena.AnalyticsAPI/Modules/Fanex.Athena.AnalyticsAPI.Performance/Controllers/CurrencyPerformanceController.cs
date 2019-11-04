@@ -5,7 +5,6 @@ using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels.Constant;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Services;
-
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -107,7 +106,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
                 GrowthData = new
                 {
                     PeriodGrowth = await taskPeriodGrowth,
-                    MonthGrowth = new {}
+                    MonthGrowth = new { }
                 }
             });
         }

@@ -42,7 +42,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
             return parsedDate;
         }
 
-        public static int GetDistanceBetweenTwoDate(DateTime from, DateTime to) 
+        public static int GetDistanceBetweenTwoDate(DateTime from, DateTime to)
         {
             return 12 * (to.Year - from.Year) + (to.Month - from.Month);
         }

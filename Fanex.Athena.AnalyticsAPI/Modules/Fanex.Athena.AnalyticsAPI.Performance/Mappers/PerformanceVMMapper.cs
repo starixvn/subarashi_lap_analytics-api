@@ -229,12 +229,12 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
         private DistributionVM ToDistributionVM<T>(IEnumerable<T> dtos, IEnumerable<(string topDistributionId, string topDistributionName)> topDistributions, string name)
             where T : DistributionDTO
         {
-            var list = dtos.ToList();
-            var sumItem = list.FirstOrDefault(_ => _.IsSum);
-            list.Remove(sumItem);
+            var listDto = dtos.ToList();
+            var sumItem = listDto.FirstOrDefault(_ => _.IsSum);
+            listDto.Remove(sumItem);
 
-            var sumAbs = list.Sum(_ => Math.Abs(_.Total));
-            var dtoDic = list.ToDictionary(_ => _.Id, _ => _);
+            var sumAbs = listDto.Sum(_ => Math.Abs(_.Total));
+            var dtoDic = listDto.ToDictionary(_ => _.Id, _ => _);
 
             var result = new DistributionVM(topDistributions.Count() + 1)
             {

@@ -88,7 +88,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
                 summaryData,
                 growthData = new
                 {
-                    monthGrowth = new [] 
+                    monthGrowth = new[]
                     {
                         prevDetailMonthGrowth,
                         currentDetailMonthGrowth

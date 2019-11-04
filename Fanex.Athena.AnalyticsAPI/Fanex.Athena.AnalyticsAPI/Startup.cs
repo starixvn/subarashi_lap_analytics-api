@@ -142,6 +142,7 @@ namespace Fanex.Athena.AnalyticsAPI
                 app.UseErrorHandler();
                 app.UseOneAuth();
             }
+
             app.UseUM();
             app.UseMvc();
         }
