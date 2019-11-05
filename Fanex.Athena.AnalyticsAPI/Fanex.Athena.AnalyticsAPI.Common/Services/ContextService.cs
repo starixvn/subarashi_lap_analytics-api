@@ -50,7 +50,6 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
                     //nothing
                 }
 
-
                 return msg;
             }
         }

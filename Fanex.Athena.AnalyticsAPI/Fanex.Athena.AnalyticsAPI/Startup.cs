@@ -1,7 +1,7 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
 using Fanex.Athena.AnalyticsAPI.Core.Extensions;
 using Fanex.Athena.AnalyticsAPI.Core.Models.Configuration;
-using Fanex.Athena.ExtService.Common.Models.DTO;
+using Fanex.Athena.ExtService.Common.Configuration;
 using Fanex.Data;
 using Fanex.Data.SqlServer;
 using Fanex.Logging;
@@ -111,7 +111,7 @@ namespace Fanex.Athena.AnalyticsAPI
                     new ConnectionConfiguration("DBEXT.bodb_dwrs.bodbLicenseeNet",
                         Configuration.GetConnectionString("DBEXT.bodb_dwrs.bodbLicenseeNet"))
                 }
-            };
+            };                                                 
             return connectionStrings;
         }
 

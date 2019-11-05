@@ -5,18 +5,17 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
     public class CalculationService : ICalculationService
     {
         private static int Round_Floating_Point = 2;
-        private static int Thousand_Unit = 1000;
 
-        public double CalculateDistribution(double? itemValue, double total)
+        public double CalculateDistribution(double? value, double total)
         {
-            itemValue = itemValue ?? 0;
+            value = value ?? 0;
 
-            if (itemValue == 0 || total == 0)
+            if (value == 0 || total == 0)
             {
                 return 0;
             }
 
-            var result = (itemValue.Value / Math.Abs(total)) * 100;
+            var result = (value.Value / Math.Abs(total)) * 100;
             result = ToRound(result);
 
             return result;
@@ -38,30 +37,9 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
             return result;
         }
 
-        public double CalculatePercent(double value, double total)
-        {
-            if (total == 0)
-            {
-                return 0;
-            }
-
-            var result = (value / total) * 100;
-
-            result = ToRound(result);
-
-            return result;
-        }
-
         public double ToRound(double? value, int numberOfRound = 2)
         {
             return Math.Round(value ?? 0, numberOfRound);
-        }
-
-        public double ToThousandUnit(double? value)
-        {
-            value = value ?? 0;
-
-            return Math.Round(value.Value / Thousand_Unit, Round_Floating_Point);
         }
     }
 }

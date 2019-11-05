@@ -1,44 +1,17 @@
 ﻿using AutoFixture;
 using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
-using Fanex.Athena.AnalyticsAPI.Common.Repositories;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.LGAPI.SSAS.Bridge.Services;
 using Fanex.Data.Repository;
 using Microsoft.Extensions.Options;
 using Moq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.UnitTest.Repositories
 {
-    internal class BaseRepositoryTestable : BaseRepository
-    {
-        public BaseRepositoryTestable(
-            IOptions<SSASSetting> setting,
-            IDaxQueryContentService daxQueryService,
-            ISsasBridgeService bridgeService
-            )
-            : base(setting, daxQueryService, bridgeService)
-        {
-        }
-
-        protected override string ModuleId => string.Empty;
-    }
-
-    internal class CriteriaTest : ICriteria
-    {
-        public string GetSettingKey()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public bool IsValid()
-        {
-            throw new System.NotImplementedException();
-        }
-    }
-
     public class BaseRepository_QueryAsync_Test
     {
         private readonly Fixture _fixture;
@@ -78,6 +51,21 @@ namespace Fanex.Athena.AnalyticsAPI.Common.UnitTest.Repositories
         }
 
         [Fact]
+        public async Task QueryAsync_CriteriaParam_WhenCall_DaxQueryServiceCallWithCorrectCriteria()
+        {
+            //Arrange
+            var criteria = new Mock<ICriteria>().Object;
+
+            _baseRepository = new BaseRepositoryTestable(_mockSetting.Object, _mockDaxQueryService.Object, _mockBridgeService.Object);
+
+            //Act
+            await _baseRepository.QueryAsync<object>(criteria);
+
+            //Assert
+            _mockDaxQueryService.Verify(_ => _.GetDaxQuery(criteria), Times.Once);
+        }
+
+        [Fact]
         public async Task QueryAsync_CriteriaParam_WhenCall_BridgeServiceCallWithCorrectQuery()
         {
             //Arrange
@@ -92,35 +80,10 @@ namespace Fanex.Athena.AnalyticsAPI.Common.UnitTest.Repositories
             _baseRepository = new BaseRepositoryTestable(_mockSetting.Object, _mockDaxQueryService.Object, _mockBridgeService.Object);
 
             //Act
-            var actual = await _baseRepository.QueryAsync<object>(_fixture.Create<CriteriaTest>());
+            var actual = await _baseRepository.QueryAsync<object>(new Mock<ICriteria>().Object);
 
             //Assert
             Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public async Task QueryAsync_CriteriaParam_WhenCall_DaxQueryServiceCallWithCorrectCriteria()
-        {
-            //Arrange
-            var criteria = _fixture.Create<CriteriaTest>();
-            var called = false;
-
-            _mockDaxQueryService.Setup(_ => _.GetDaxQuery(It.IsAny<ICriteria>()))
-                .Callback<ICriteria>(_ =>
-                {
-                    if (_.Equals(criteria))
-                    {
-                        called = true;
-                    }
-                });
-
-            _baseRepository = new BaseRepositoryTestable(_mockSetting.Object, _mockDaxQueryService.Object, _mockBridgeService.Object);
-
-            //Act
-            await _baseRepository.QueryAsync<object>(criteria);
-
-            //Assert
-            Assert.True(called);
         }
     }
 }

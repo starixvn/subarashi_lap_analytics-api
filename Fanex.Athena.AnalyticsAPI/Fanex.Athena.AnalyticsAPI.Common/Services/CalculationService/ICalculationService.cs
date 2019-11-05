@@ -4,11 +4,7 @@
     {
         double CalculateGrowth(double? current, double? previous);
 
-        double CalculatePercent(double value, double total);
-
-        double CalculateDistribution(double? itemValue, double total);
-
-        double ToThousandUnit(double? value);
+        double CalculateDistribution(double? value, double total);
 
         double ToRound(double? value, int numberOfRound = 2);
     }

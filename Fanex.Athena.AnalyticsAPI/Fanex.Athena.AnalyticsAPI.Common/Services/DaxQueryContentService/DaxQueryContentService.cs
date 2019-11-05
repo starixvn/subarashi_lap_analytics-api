@@ -1,5 +1,4 @@
-﻿using Fanex.Data;
-using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,22 +7,19 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
     public class DaxQueryContentService : IDaxQueryContentService
     {
-        private const string DAX_Query_Output_Name = "DAX_Query";
+        private const string DAX_QUERY_OUTPUT_NAME = "DAX_Query";
+        private readonly ISqlService _sqlService;
+
+        public DaxQueryContentService(ISqlService sqlService)
+        {
+            _sqlService = sqlService;
+        }
 
         public async Task<string> GetDaxQuery<T>(T criteria)
             where T : ICriteria
         {
-            var query = string.Empty;
-            using (var db = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
-            {
-                await db.ExecuteNonQueryAsync(criteria);
-                var output = db.GetOutputParams();
-                if (output != null && output.ContainsKey(DAX_Query_Output_Name))
-                {
-                    query = output[DAX_Query_Output_Name]?.ToString();
-                }
-            }
-
+            var output = await _sqlService.ExecuteNonQueryWithOutput(criteria, DAX_QUERY_OUTPUT_NAME);
+            var query = output?.ToString() ?? string.Empty;
             return query;
         }
 

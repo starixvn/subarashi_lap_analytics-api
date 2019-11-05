@@ -32,11 +32,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
                 {
                     return value ?? 0;
                 });
-            _calculationService.Setup(_ => _.ToThousandUnit(It.IsAny<double?>()))
-                .Returns((double? value) =>
-                {
-                    return value ?? 0;
-                });
             _calculationService.Setup(_ => _.CalculateGrowth(It.IsAny<double?>(), It.IsAny<double?>()))
                 .Returns((double? current, double? previous) =>
                 {
