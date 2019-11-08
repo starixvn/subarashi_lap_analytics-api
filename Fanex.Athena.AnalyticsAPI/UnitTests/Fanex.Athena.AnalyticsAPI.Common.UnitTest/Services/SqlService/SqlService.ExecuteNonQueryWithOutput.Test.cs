@@ -54,7 +54,6 @@ namespace Fanex.Athena.AnalyticsAPI.Common.UnitTest.Services
         public async Task ExecuteNonQueryWithOutput_WhenCall_ExecuteNonQueryAsyncWithCorrectCriteria()
         {
             //Arrange
-
             var criteria = new Mock<ICriteria>();
             criteria.Setup(_ => _.IsValid()).Returns(true);
 

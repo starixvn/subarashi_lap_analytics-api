@@ -21,7 +21,7 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.Extensions
                         throw new KeyNotFoundException($"{nameof(cubeMappingAttr.MapColumn)} {cubeMappingAttr.MapColumn} is invalid");
                     }
 
-                    if(source[cubeMappingAttr.MapColumn] != null)
+                    if (source[cubeMappingAttr.MapColumn] != null)
                     {
                         prop.SetValue(objDTO, Convert.ChangeType(source[cubeMappingAttr.MapColumn], prop.PropertyType));
                     }

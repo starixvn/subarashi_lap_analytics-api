@@ -1,6 +1,5 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.LGAPI.SSAS.Bridge.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,13 +22,14 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
         {
             services.AddTransient<IContextService, ContextService>();
             services.AddSingleton<IDaxQueryContentService, DaxQueryContentService>();
+            services.AddTransient<IHttpClientService, HttpClientService>();
             services.AddTransient<ISsasBridgeService, SsasBridgeService>();
             services.AddSingleton<ICalculationService, CalculationService>();
             services.AddSingleton<ISqlService, SqlService>();
 
             var setting = new SSASSetting();
             configuration.GetSection("SSASSetting").Bind(setting);
-            services.AddHttpClient<ISsasBridgeService, SsasBridgeService>(client =>
+            services.AddHttpClient<IHttpClientService, HttpClientService>(client =>
             {
                 client.BaseAddress = new Uri(setting.BridgeHost);
                 client.DefaultRequestHeaders.Add(BRIDGE_TOKEN_KEY, setting.AuthKey);

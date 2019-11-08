@@ -15,7 +15,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
         protected readonly IPerformanceRepository _performanceRepository;
 
-        protected PerformanceService(
+        public PerformanceService(
             IContextService context,
             IPerformanceRepository performanceRepository
             )

@@ -11,7 +11,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Models.Criteria
 
         public override bool IsValid()
         {
-            return true;
+            return string.IsNullOrWhiteSpace(SiteName);
         }
     }
 }
