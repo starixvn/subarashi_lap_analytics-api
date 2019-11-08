@@ -1,4 +1,5 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Helpers;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Extensions;
+using Fanex.Athena.AnalyticsAPI.Common.Helpers;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Mappers;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria;
@@ -47,7 +48,9 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCurrencyPerformanceCriteria<CurrencyMeasurementComparisonCriteria, CurrenyPerformanceFilterMetaModel>(filter);
             var taskCurrentPeriod = _performanceRepository.QueryAsync<CurrencyMeasurementComparisonDTO>(criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToMeasurementComparisonVM(await taskPrevPeriod, await taskCurrentPeriod, MapToTopDistributions(filter.TopDistributions));
+            var (prevPeriodData, currentPeriodData) = await TaskExtension.WhenAllAsync(taskPrevPeriod, taskCurrentPeriod);
+
+            var result = _viewModelMapper.ToMeasurementComparisonVM(prevPeriodData, currentPeriodData, MapToTopDistributions(filter.TopDistributions));
 
             return result;
         }
