@@ -6,6 +6,8 @@
 
         double CalculateDistribution(double? value, double total);
 
+        double ToPercentUnit(double? value);
+
         double ToRound(double? value, int numberOfRound = 2);
     }
 }

@@ -7,6 +7,9 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
         [SsasColumn("[Measurement]")]
         public double Total { get; set; }
 
+        [SsasColumn("[MeasurementMargin]")]
+        public double Distribution { get; set; }
+
         [SsasColumn("[IsTotal]")]
         public bool IsSum { get; set; }
 

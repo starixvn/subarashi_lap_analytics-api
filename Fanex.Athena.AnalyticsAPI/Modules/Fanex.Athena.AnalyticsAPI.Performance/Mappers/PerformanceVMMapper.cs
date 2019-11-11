@@ -235,6 +235,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
 
             var sumAbs = listDto.Sum(_ => Math.Abs(_.Total));
             var dtoDic = listDto.ToDictionary(_ => _.Id, _ => _);
+            var calculatedDistribution = listDto.Exists(_ => !_.Distribution.Equals(default));
 
             var result = new DistributionVM(topDistributions.Count() + 1)
             {
@@ -259,12 +260,13 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
 
                 if (dtoDic.TryGetValue(topDistributionId, out T distributionDto))
                 {
-                    distributionItem.Percent = _calculationService.CalculateDistribution(distributionDto.Total, sumAbs);
+                    distributionItem.Percent = calculatedDistribution ?
+                        _calculationService.ToPercentUnit(distributionDto.Distribution) : _calculationService.CalculateDistribution(distributionDto.Total, sumAbs);
                     dtoDic.Remove(topDistributionId);
                 }
                 else
                 {
-                    distributionItem.Percent = _calculationService.CalculateDistribution(0, sumAbs);
+                    distributionItem.Percent = 0;
                 }
 
                 result.Distributions.Add(distributionItem);
@@ -276,7 +278,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                 {
                     Id = DISTRIBUTION_OTHERS_ID,
                     Name = DISTRIBUTION_OTHERS_NAME,
-                    Percent = _calculationService.CalculateDistribution(dtoDic.Sum(_ => _.Value.Total), sumAbs)
+                    Percent = calculatedDistribution ? _calculationService.ToPercentUnit(dtoDic.Sum(_ => _.Value.Distribution))
+                    : _calculationService.CalculateDistribution(dtoDic.Sum(_ => _.Value.Total), sumAbs)
                 });
             }
 

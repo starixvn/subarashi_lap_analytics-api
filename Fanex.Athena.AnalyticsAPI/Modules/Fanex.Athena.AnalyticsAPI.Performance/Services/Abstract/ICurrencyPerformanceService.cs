@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 {
-    public interface ICurrencyPerformanceService
+    public interface ICurrencyPerformanceService : IPerformanceService
     {
         Task<IEnumerable<DistributionVM>> GetDistributionWithComparison(CurrenyPerformanceFilterMetaModel filter);
 

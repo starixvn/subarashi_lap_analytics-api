@@ -7,8 +7,14 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
         [SsasColumn("[Turnover]")]
         public double Turnover { get; set; }
 
+        [SsasColumn("[MarginTO]")]
+        public double TurnoverDistribution { get; set; }
+
         [SsasColumn("[GrossProfit]")]
         public double GrossProfit { get; set; }
+
+        [SsasColumn("[MarginWL]")]
+        public double GrossProfitDistribution { get; set; }
 
         [SsasColumn("[Margin]")]
         public double Margin { get; set; }

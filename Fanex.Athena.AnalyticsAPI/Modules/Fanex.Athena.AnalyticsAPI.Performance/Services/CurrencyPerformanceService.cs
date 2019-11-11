@@ -131,14 +131,11 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             return result;
         }
 
-        public async Task<IEnumerable<(string topDistributionId, string topDistributionName)>> GetTopDistributions(PerformanceFilterMetaModel filter)
+        protected override async Task<IEnumerable<DistributionDTO>> GetDistributionData(PerformanceFilterMetaModel filter)
         {
             var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<CurrencyDistributionCriteria, PerformanceFilterMetaModel>(filter);
-            var dtos = await _performanceRepository.QueryAsync<CurrencyDistributionDTO>(criteriaCurrentPeriod);
-
-            var result = GetTopDistributions(dtos);
-
-            return result;
+            var distributionData = await _performanceRepository.QueryAsync<CurrencyDistributionDTO>(criteriaCurrentPeriod);
+            return distributionData;
         }
     }
 }

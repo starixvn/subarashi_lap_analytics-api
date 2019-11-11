@@ -19,6 +19,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Extensions
         {
             services.AddTransient<ICurrencyPerformanceService, CurrencyPerformanceService>();
             services.AddTransient<IOverviewPerformanceService, OverviewPerformanceService>();
+            services.AddTransient<IProductPerformanceService, ProductPerformanceService>();
 
             return services;
         }
@@ -34,6 +35,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Extensions
         {
             services.AddTransient<IOverviewPerformanceVMMapper, OverviewPerformanceVMMapper>();
             services.AddTransient<ICurrencyPerformanceVMMapper, CurrencyPerformanceVMMapper>();
+            services.AddTransient<IProductPerformanceVMMapper, ProductPerformanceVMMapper>();
 
             return services;
         }

@@ -37,6 +37,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
             return result;
         }
 
+        public double ToPercentUnit(double? value)
+        {
+            value = value ?? 0;
+            var result = value.Value * 100;
+            result = ToRound(result);
+
+            return result;
+        }
+
         public double ToRound(double? value, int numberOfRound = 2)
         {
             return Math.Round(value ?? 0, numberOfRound);

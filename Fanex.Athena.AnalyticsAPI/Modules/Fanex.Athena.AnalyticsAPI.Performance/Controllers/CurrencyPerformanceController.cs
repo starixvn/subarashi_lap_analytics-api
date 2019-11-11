@@ -111,7 +111,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
             });
         }
 
-        private async Task BindTopDistributionsToFilterMetaModel(CurrenyPerformanceFilterMetaModel filter)
+        private async Task BindTopDistributionsToFilterMetaModel(PerformanceFilterMetaModel filter)
         {
             var topDistributions = await _currencyService.GetTopDistributions(filter);
             filter.TopDistributions = topDistributions.Select(_ => new DistributionMetaModel

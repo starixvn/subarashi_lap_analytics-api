@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria
 {
-    internal class CurrencyPeriodGrowthCriteria : CurrencyPerformanceCriteria, IMeasurementCriteria
+    public class CurrencyPeriodGrowthCriteria : CurrencyPerformanceCriteria, IMeasurementCriteria
     {
         public int MeasurementId { get; set; }
 

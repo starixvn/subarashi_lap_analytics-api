@@ -17,4 +17,9 @@
     <Setting Key="LAP_Performance_CurrencyComparionCurrencyBySite" SpName="LAP_Performance_CurrencyComparionCurrencyBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
     <Setting Key="LAP_Performance_CurrencyComparionTimeBySite" SpName="LAP_Performance_CurrencyComparionTimeBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
   </Function>
+  <Function Name="DAX_Query_Performance_Product">
+    <Setting Key="LAP_Performance_ProductMeasureDistributionBySite" SpName="LAP_Performance_ProductMeasureDistributionBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+    <Setting Key="LAP_Performance_ProductComparionPeriodBySite" SpName="LAP_Performance_ProductComparionPeriodBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+    <Setting Key="LAP_Performance_ProductComparionBySite" SpName="LAP_Performance_ProductComparionBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+  </Function>
 </Functions>
