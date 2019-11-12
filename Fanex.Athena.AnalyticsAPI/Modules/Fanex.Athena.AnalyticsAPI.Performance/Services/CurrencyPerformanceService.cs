@@ -1,5 +1,4 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Extensions;
-using Fanex.Athena.AnalyticsAPI.Common.Helpers;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Helpers;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Mappers;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria;
@@ -43,14 +42,11 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
         public async Task<IEnumerable<MeasurementComparisonVM>> GetMeasurementDifferenceWithComparison(CurrenyPerformanceFilterMetaModel filter)
         {
             var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToCurrencyPerformanceCriteria<CurrencyMeasurementComparisonCriteria, CurrenyPerformanceFilterMetaModel>(filter, false);
-            var taskPrevPeriod = _performanceRepository.QueryAsync<CurrencyMeasurementComparisonDTO>(criteriaPrevPeriod);
-
             var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCurrencyPerformanceCriteria<CurrencyMeasurementComparisonCriteria, CurrenyPerformanceFilterMetaModel>(filter);
-            var taskCurrentPeriod = _performanceRepository.QueryAsync<CurrencyMeasurementComparisonDTO>(criteriaCurrentPeriod);
 
-            var (prevPeriodData, currentPeriodData) = await TaskExtension.WhenAllAsync(taskPrevPeriod, taskCurrentPeriod);
+            var dtos = await _performanceRepository.QueryMultipleAsync<CurrencyMeasurementComparisonDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToMeasurementComparisonVM(prevPeriodData, currentPeriodData, MapToTopDistributions(filter.TopDistributions));
+            var result = _viewModelMapper.ToMeasurementComparisonVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), MapToTopDistributions(filter.TopDistributions));
 
             return result;
         }
@@ -109,8 +105,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
                        DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.ToMonth)
                        );
 
-                result.Add(GetFieldNameOfMonthGrowthObject(topDistribution.DisplayName, filter.PreviousPeriod), prevPeriodResult);
-                result.Add(GetFieldNameOfMonthGrowthObject(topDistribution.DisplayName, filter.CurrentPeriod), currentPeriodResult);
+                result.Add(GetFieldNameOfMonthGrowthObject(topDistribution.DisplayId, filter.PreviousPeriod), prevPeriodResult);
+                result.Add(GetFieldNameOfMonthGrowthObject(topDistribution.DisplayId, filter.CurrentPeriod), currentPeriodResult);
             }
 
             return result;

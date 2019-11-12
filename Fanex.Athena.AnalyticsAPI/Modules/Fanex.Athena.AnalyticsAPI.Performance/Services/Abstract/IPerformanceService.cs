@@ -6,6 +6,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 {
     public interface IPerformanceService
     {
-        Task<IEnumerable<(string topDistributionId, string topDistributionName)>> GetTopDistributions(PerformanceFilterMetaModel filter);
+        Task<IEnumerable<(string topDistributionId, string topDistributionName)>> GetTopDistributions(PerformanceFilterMetaModel filter, int numberOfTop = 5);
     }
 }

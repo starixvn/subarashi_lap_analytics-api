@@ -25,10 +25,10 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             _performanceRepository = performanceRepository;
         }
 
-        public async Task<IEnumerable<(string topDistributionId, string topDistributionName)>> GetTopDistributions(PerformanceFilterMetaModel filter)
+        public async Task<IEnumerable<(string topDistributionId, string topDistributionName)>> GetTopDistributions(PerformanceFilterMetaModel filter, int numberOfTop = 5)
         {
             var distributionData = await GetDistributionData(filter);
-            var result = GetTopDistributions(distributionData);
+            var result = GetTopDistributions(distributionData, numberOfTop);
             return result;
         }
 
@@ -37,17 +37,16 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             throw new NotImplementedException(nameof(GetDistributionData));
         }
 
-        protected static IEnumerable<(string topDistributionId, string topDistributionName)> GetTopDistributions<T>(IEnumerable<T> dtos, int numberOfTop = 5)
+        protected static IEnumerable<(string topDistributionId, string topDistributionName)> GetTopDistributions<T>(IEnumerable<T> elements, int numberOfTop)
             where T : DistributionDTO
         {
-            dtos = dtos.Where(_ => !_.IsSum);
-            var numberOfElement = dtos.Count();
-            var sortedByDistribution = dtos.FirstOrDefault(_ => !_.Distribution.Equals(default)) != null;
-            dtos = sortedByDistribution ? dtos.Take(numberOfTop) : dtos.OrderByDescending(_ => Math.Abs(_.Total)).Take(numberOfTop);
+            var topDistributions = elements
+                .Where(_ => !_.IsSum)
+                .OrderByDescending(_ => Math.Abs(_.Total))
+                .Take(numberOfTop)
+                .Select(_ => (_.Id, _.Name));
 
-            var topDistributions = dtos.Select(_ => (_.Id, _.Name));
-
-            if (numberOfElement > numberOfTop)
+            if (elements.Count() > numberOfTop)
             {
                 topDistributions = topDistributions.Append(("0", "Others"));
             }

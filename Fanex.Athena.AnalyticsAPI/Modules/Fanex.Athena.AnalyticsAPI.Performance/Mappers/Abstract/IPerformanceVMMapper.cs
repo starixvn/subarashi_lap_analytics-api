@@ -29,6 +29,12 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             IEnumerable<(string topDistributionId, string topDistributionName)> topDistributions)
             where T : MeasurementComparisonDTO;
 
+        IEnumerable<MeasurementComparisonVM> ToMeasurementComparisonVMV2<T>(
+           IEnumerable<T> prevPeriodDtos,
+           IEnumerable<T> currentPeriodDtos,
+           IEnumerable<(string topDistributionId, string topDistributionName)> topDistributions)
+           where T : MeasurementComparisonDTO;
+
         IEnumerable<OverallMeasurementVM> ToOverallMeasurement<T>(T prevPeriodDto, T currentPeriodDto)
             where T : TotalDTO;
     }

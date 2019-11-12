@@ -45,7 +45,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToProductPerformanceCriteria<ProductMeasurementComparisonCriteria, ProductPerformanceFilterMetaModel>(filter);
 
             var dtos = await _performanceRepository.QueryMultipleAsync<ProductMeasurementComparisonDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
-            var result = _viewModelMapper.ToMeasurementComparisonVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), MapToTopDistributions(filter.TopDistributions));
+            var result = _viewModelMapper.ToMeasurementComparisonVMV2(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), MapToTopDistributions(filter.TopDistributions));
 
             return result;
         }
@@ -93,7 +93,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
                 cloneFilter.Products = topDistribution.CurrentPeriodDistributions.Select(_ => _.Id);
                 var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToProductPerformanceCriteria<ProductGrowthCriteria, ProductPerformanceFilterMetaModel>(cloneFilter);
-                criteriaPrevPeriod.GroupBy = GroupByConst.MONTH_GROUP;
+                criteriaCurrentPeriod.GroupBy = GroupByConst.MONTH_GROUP;
 
                 var dtos = await _performanceRepository.QueryMultipleAsync<MeasurementTimeDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 
@@ -107,8 +107,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
                        DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.ToMonth)
                        );
 
-                result.Add(GetFieldNameOfMonthGrowthObject(topDistribution.DisplayName, filter.PreviousPeriod), prevPeriodResult);
-                result.Add(GetFieldNameOfMonthGrowthObject(topDistribution.DisplayName, filter.CurrentPeriod), currentPeriodResult);
+                result.Add(GetFieldNameOfMonthGrowthObject(topDistribution.DisplayId, filter.PreviousPeriod), prevPeriodResult);
+                result.Add(GetFieldNameOfMonthGrowthObject(topDistribution.DisplayId, filter.CurrentPeriod), currentPeriodResult);
             }
 
             return result;
