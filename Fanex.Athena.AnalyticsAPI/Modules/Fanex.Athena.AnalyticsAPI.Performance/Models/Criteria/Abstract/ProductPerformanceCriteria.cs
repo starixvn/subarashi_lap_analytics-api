@@ -2,9 +2,9 @@
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria
 {
-    public abstract class ProductPerformanceCriteria : AnalyticCriteria, IMeasurementCriteria
+    public abstract class PlatformPerformanceCriteria : AnalyticCriteria, IMeasurementCriteria
     {
-        public string ListProduct { get; set; }
+        public string ListPlatform { get; set; }
         public byte SortByMeasurement { get; set; } = SortByMeasurementConst.NONE_SORT;
         public int MeasurementId { get; set; }
     }

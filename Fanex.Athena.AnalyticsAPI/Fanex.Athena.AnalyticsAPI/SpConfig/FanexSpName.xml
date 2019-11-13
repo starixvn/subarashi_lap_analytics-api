@@ -22,4 +22,9 @@
     <Setting Key="LAP_Performance_ProductComparionPeriodBySite" SpName="LAP_Performance_ProductComparionPeriodBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
     <Setting Key="LAP_Performance_ProductComparionBySite" SpName="LAP_Performance_ProductComparionBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
   </Function>
+  <Function Name="DAX_Query_Performance_Platform">
+    <Setting Key="LAP_Performance_PlatformMeasureDistributionBySite" SpName="LAP_Performance_PlatformMeasureDistributionBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+    <Setting Key="LAP_Performance_PlatformComparionPeriodBySite" SpName="LAP_Performance_PlatformComparionPeriodBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+    <Setting Key="LAP_Performance_PlatformComparionBySite" SpName="LAP_Performance_PlatformComparionBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+  </Function>
 </Functions>

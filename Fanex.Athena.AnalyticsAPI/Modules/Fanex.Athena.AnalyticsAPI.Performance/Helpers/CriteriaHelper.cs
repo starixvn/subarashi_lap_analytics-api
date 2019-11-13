@@ -39,5 +39,15 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Helpers
 
             return criteria;
         }
+
+        public static TCriteria ToPlatformPerformanceCriteria<TCriteria, TMetalModel>(TMetalModel metaModel, bool isCurrentPeriod = true)
+            where TCriteria : PlatformPerformanceCriteria, new()
+            where TMetalModel : PlatformPerformanceFilterMetaModel
+        {
+            var criteria = ToPerformanceCriteria<TCriteria, TMetalModel>(metaModel, isCurrentPeriod);
+            criteria.ListPlatform = string.Join(',', metaModel.Platforms?.Select(_ => _.ToString()) ?? Enumerable.Empty<string>());
+
+            return criteria;
+        }
     }
 }

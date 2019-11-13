@@ -54,9 +54,9 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             return topDistributions;
         }
 
-        protected static string GetFieldNameOfMonthGrowthObject(string name, MonthRangeMetaModel period)
+        protected static string GetFieldNameOfMonthGrowthObject(string key, MonthRangeMetaModel period)
         {
-            return $"{name}_{period.FromMonth}_{period.ToMonth}";
+            return $"{key}_{period.FromMonth}_{period.ToMonth}";
         }
 
         protected static IEnumerable<(string topDistributionId, string topDistributionName)> MapToTopDistributions(IEnumerable<DistributionMetaModel> topDistributions)
