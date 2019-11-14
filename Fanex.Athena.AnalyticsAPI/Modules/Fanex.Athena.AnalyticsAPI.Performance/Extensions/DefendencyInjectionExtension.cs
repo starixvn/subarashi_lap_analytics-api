@@ -21,6 +21,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Extensions
             services.AddTransient<IOverviewPerformanceService, OverviewPerformanceService>();
             services.AddTransient<IProductPerformanceService, ProductPerformanceService>();
             services.AddTransient<IPlatformPerformanceService, PlatformPerformanceService>();
+            services.AddTransient<IBettypePerformanceService, BettypePerformanceService>();
 
             return services;
         }
@@ -38,6 +39,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Extensions
             services.AddTransient<ICurrencyPerformanceVMMapper, CurrencyPerformanceVMMapper>();
             services.AddTransient<IProductPerformanceVMMapper, ProductPerformanceVMMapper>();
             services.AddTransient<IPlatformPerformanceVMMapper, PlatformPerformanceVMMapper>();
+            services.AddTransient<IBettypePerformanceVMMapper, BettypePerformanceVMMapper>();
 
             return services;
         }

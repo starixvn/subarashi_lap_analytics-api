@@ -4,6 +4,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels
 {
     public class PlatformPerformanceFilterMetaModel : PerformanceFilterMetaModel
     {
-        public IEnumerable<int> Platforms { get; set; }
+        public IEnumerable<string> Platforms { get; set; }
     }
 }

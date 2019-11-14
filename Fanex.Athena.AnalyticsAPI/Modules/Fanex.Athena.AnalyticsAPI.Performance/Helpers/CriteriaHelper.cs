@@ -49,5 +49,15 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Helpers
 
             return criteria;
         }
+
+        public static TCriteria ToBettypePerformanceCriteria<TCriteria, TMetalModel>(TMetalModel metaModel, bool isCurrentPeriod = true)
+            where TCriteria : BettypePerformanceCriteria, new()
+            where TMetalModel : BettypePerformanceFilterMetaModel
+        {
+            var criteria = ToPerformanceCriteria<TCriteria, TMetalModel>(metaModel, isCurrentPeriod);
+            criteria.ListCombineBettype = string.Join(',', metaModel.CombineIds?.Select(_ => _.ToString()) ?? Enumerable.Empty<string>());
+
+            return criteria;
+        }
     }
 }

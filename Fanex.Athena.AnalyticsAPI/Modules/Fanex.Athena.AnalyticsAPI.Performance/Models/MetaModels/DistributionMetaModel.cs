@@ -7,7 +7,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels
     {
         public string DisplayId { get; set; }
         public string DisplayName { get; set; }
-        public IEnumerable<SelectMetaModel> PreviousPeriodDistributions { get; set; }
-        public IEnumerable<SelectMetaModel> CurrentPeriodDistributions { get; set; }
+        public IEnumerable<IdentityMetaModel> PreviousPeriodDistributions { get; set; }
+        public IEnumerable<IdentityMetaModel> CurrentPeriodDistributions { get; set; }
     }
 }
