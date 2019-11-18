@@ -45,7 +45,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToProductPerformanceCriteria<ProductMeasurementComparisonCriteria, ProductPerformanceFilterMetaModel>(filter);
 
             var dtos = await _performanceRepository.QueryMultipleAsync<ProductMeasurementComparisonDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
-            var result = _viewModelMapper.ToMeasurementComparisonVMV2(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), MapToTopDistributions(filter.TopDistributions));
+            var result = _viewModelMapper.ToMeasurementComparisonVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), MapToTopDistributions(filter.TopDistributions));
 
             return result;
         }

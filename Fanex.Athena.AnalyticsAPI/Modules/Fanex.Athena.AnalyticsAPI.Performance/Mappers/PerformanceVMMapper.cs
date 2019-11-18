@@ -46,34 +46,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             return result;
         }
 
-        public IEnumerable<MeasurementGrowthVM> ToMeasurementGrowthPeriodVM(
-            IEnumerable<TotalDTO> prevPeriodOfPrevDtos,
-            IEnumerable<TotalDTO> prevPeriodDtos,
-            IEnumerable<TotalDTO> currentPeriodDtos)
-        {
-            var prevPeriodOfPrevData = prevPeriodOfPrevDtos.FirstOrDefault();
-            var prevPeriodData = prevPeriodDtos.FirstOrDefault();
-            var currentPeriodData = currentPeriodDtos.FirstOrDefault();
-
-            var result = new List<MeasurementGrowthVM>
-            {
-                new MeasurementGrowthVM
-                {
-                    Name = PREVIOUS_PERIOD_NAME,
-                    Total = _calculationService.ToRound(prevPeriodData?.Total),
-                    GrowthPercent = _calculationService.CalculateGrowth(prevPeriodData?.Total, prevPeriodOfPrevData?.Total)
-                },
-                new MeasurementGrowthVM
-                {
-                    Name = CURRENT_PERIOD_NAME,
-                    Total = _calculationService.ToRound(currentPeriodData?.Total),
-                    GrowthPercent = _calculationService.CalculateGrowth(currentPeriodData?.Total, prevPeriodData?.Total)
-                }
-            };
-
-            return result;
-        }
-
         public IEnumerable<DistributionVM> ToDistributionVM<T>(
             IEnumerable<T> prevPeriodDtos,
             IEnumerable<T> currentPeriodDtos,
@@ -103,75 +75,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                     Total = _calculationService.ToRound(currentPeriodDto?.Total)
                 }
             };
-        }
-
-        public IEnumerable<MeasurementComparisonVM> ToMeasurementComparisonVM<T>(
-            IEnumerable<T> prevPeriodDtos,
-            IEnumerable<T> currentPeriodDtos,
-            IEnumerable<(string topDistributionId, string topDistributionName)> topDistributions)
-            where T : MeasurementComparisonDTO
-        {
-            var result = new List<MeasurementComparisonVM>(topDistributions.Count());
-
-            var prevPeriodDtoDic = prevPeriodDtos.ToDictionary(_ => _.Id, _ => _);
-            var currentPeriodDtoDic = currentPeriodDtos.ToDictionary(_ => _.Id, _ => _);
-
-            var sumAbsPeriodTurnover = ValueTuple.Create(prevPeriodDtos.Sum(_ => Math.Abs(_.Turnover)), currentPeriodDtos.Sum(_ => Math.Abs(_.Turnover)));
-            var sumAbsPeriodGrossProfit = ValueTuple.Create(prevPeriodDtos.Sum(_ => Math.Abs(_.GrossProfit)), currentPeriodDtos.Sum(_ => Math.Abs(_.GrossProfit)));
-
-            var sumCurrentPeriod = ValueTuple.Create(0.00, 0.00, 0.00);
-            var sumPrevPeriod = ValueTuple.Create(0.00, 0.00, 0.00);
-
-            var hasOthers = HasOthers(topDistributions);
-
-            foreach (var topDistribution in topDistributions)
-            {
-                (string topDistributionId, string topDistributionName) = topDistribution;
-
-                if (topDistributionId == DISTRIBUTION_OTHERS_ID)
-                {
-                    continue;
-                }
-
-                if (currentPeriodDtoDic.TryGetValue(topDistributionId, out T currentPeriodDto))
-                {
-                    var prevPeriodDto = prevPeriodDtoDic.ContainsKey(topDistributionId) ? prevPeriodDtoDic[topDistributionId] : null;
-                    var vmItem = CreateMeasurementComparisonVM(topDistributionName, prevPeriodDto, currentPeriodDto, sumAbsPeriodTurnover, sumAbsPeriodGrossProfit);
-                    if (hasOthers)
-                    {
-                        sumPrevPeriod = UpdateSumCurrentMeasurement(sumPrevPeriod, prevPeriodDto);
-                        sumCurrentPeriod = UpdateSumCurrentMeasurement(sumCurrentPeriod, currentPeriodDto);
-                    }
-
-                    result.Add(vmItem);
-                }
-            }
-
-            if (hasOthers)
-            {
-                (double sumPrevPeriodTurnover, double sumPrevPeriodGrossProfit, double sumPrevPeriodMargin) = sumPrevPeriod;
-                (double sumCurrentPeriodTurnover, double sumCurrentPeriodGrossProfit, double sumCurrentPeriodMargin) = sumCurrentPeriod;
-
-                sumCurrentPeriodTurnover = currentPeriodDtos.Sum(_ => _.Turnover) - sumCurrentPeriodTurnover;
-                sumCurrentPeriodGrossProfit = currentPeriodDtos.Sum(_ => _.GrossProfit) - sumCurrentPeriodGrossProfit;
-                sumCurrentPeriodMargin = currentPeriodDtos.Sum(_ => _.Margin) - sumCurrentPeriodMargin;
-
-                sumPrevPeriodTurnover = prevPeriodDtos.Sum(_ => _.Turnover) - sumPrevPeriodTurnover;
-                sumPrevPeriodGrossProfit = prevPeriodDtos.Sum(_ => _.GrossProfit) - sumPrevPeriodGrossProfit;
-                sumPrevPeriodMargin = prevPeriodDtos.Sum(_ => _.Margin) - sumPrevPeriodMargin;
-
-                var vmItem = new MeasurementComparisonVM
-                {
-                    Name = DISTRIBUTION_OTHERS_NAME,
-                    DifferenceTurnover = CreateDifferenceMeasurement(sumPrevPeriodTurnover, sumCurrentPeriodTurnover, sumAbsPeriodTurnover),
-                    DifferenceGrossProfit = CreateDifferenceMeasurement(sumPrevPeriodGrossProfit, sumCurrentPeriodGrossProfit, sumAbsPeriodGrossProfit),
-                    DifferenceMargin = CreateDifferenceMeasurement(sumPrevPeriodMargin, sumCurrentPeriodMargin, (0, 0))
-                };
-
-                result.Add(vmItem);
-            }
-
-            return result;
         }
 
         public IEnumerable<MeasurementPeriodComparisonGrowthVM> ToMeasurementGrowthPeriodVM<T>(
@@ -233,9 +136,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             var sumItem = listDto.FirstOrDefault(_ => _.IsSum);
             listDto.Remove(sumItem);
 
-            var sumAbs = listDto.Sum(_ => Math.Abs(_.Total));
             var dtoDic = listDto.ToDictionary(_ => _.Id, _ => _);
-            var calculatedDistribution = listDto.Exists(_ => !_.Distribution.Equals(default));
 
             var result = new DistributionVM(topDistributions.Count() + 1)
             {
@@ -260,8 +161,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
 
                 if (dtoDic.TryGetValue(topDistributionId, out T distributionDto))
                 {
-                    distributionItem.Percent = calculatedDistribution ?
-                        _calculationService.ToPercentUnit(distributionDto.Distribution) : _calculationService.CalculateDistribution(distributionDto.Total, sumAbs);
+                    distributionItem.Percent = _calculationService.ToPercentUnit(distributionDto.Distribution);
                     dtoDic.Remove(topDistributionId);
                 }
                 else
@@ -278,8 +178,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                 {
                     Id = DISTRIBUTION_OTHERS_ID,
                     Name = DISTRIBUTION_OTHERS_NAME,
-                    Percent = calculatedDistribution ? _calculationService.ToPercentUnit(dtoDic.Sum(_ => _.Value.Distribution))
-                    : _calculationService.CalculateDistribution(dtoDic.Sum(_ => _.Value.Total), sumAbs)
+                    Percent = _calculationService.ToPercentUnit(dtoDic.Sum(_ => _.Value.Distribution))
                 });
             }
 
@@ -306,43 +205,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             };
         }
 
-        private MeasurementComparisonVM CreateMeasurementComparisonVM(
-            in string name,
-            MeasurementComparisonDTO prevPeriodDto,
-            MeasurementComparisonDTO currentPeriodDto,
-            in ValueTuple<double, double> sumAbsPeriodTurnover,
-            in ValueTuple<double, double> sumAbsPeriodGrossProfit
-            )
-        {
-            (double sumAbsPrevPeriodTurnover, double sumAbsCurrentPeriodTurnover) = sumAbsPeriodTurnover;
-            (double sumAbsPrevPeriodGrossProfit, double sumAbsCurrentPeriodGrossProfit) = sumAbsPeriodGrossProfit;
-
-            return new MeasurementComparisonVM
-            {
-                Name = name,
-                DifferenceTurnover = CreateDifferenceMeasurement(prevPeriodDto?.Turnover, currentPeriodDto.Turnover, (sumAbsPrevPeriodTurnover, sumAbsCurrentPeriodTurnover)),
-                DifferenceGrossProfit = CreateDifferenceMeasurement(prevPeriodDto?.GrossProfit, currentPeriodDto.GrossProfit, (sumAbsPrevPeriodGrossProfit, sumAbsCurrentPeriodGrossProfit)),
-                DifferenceMargin = CreateDifferenceMeasurement(prevPeriodDto?.Margin, currentPeriodDto.Margin, (0, 0))
-            };
-        }
-
-        private DifferenceMeasurement CreateDifferenceMeasurement(
-            double? prevPeriodMeasurement,
-            double currentPeriodMeasurement,
-            in ValueTuple<double, double> sumAbsPeriodMeasurement
-            )
-        {
-            (double sumAbsPrevPeriodMeasurement, double sumAbsCurrentPeriodMeasurement) = sumAbsPeriodMeasurement;
-
-            return new DifferenceMeasurement
-            {
-                DifferenceTotal = _calculationService.ToRound(currentPeriodMeasurement - (prevPeriodMeasurement ?? 0)),
-                DifferenceDistribution = _calculationService.ToRound(_calculationService.CalculateDistribution(currentPeriodMeasurement, sumAbsCurrentPeriodMeasurement)
-                        - _calculationService.CalculateDistribution(prevPeriodMeasurement, sumAbsPrevPeriodMeasurement)),
-            };
-        }
-
-        public IEnumerable<MeasurementComparisonVM> ToMeasurementComparisonVMV2<T>(
+        public IEnumerable<MeasurementComparisonVM> ToMeasurementComparisonVM<T>(
             IEnumerable<T> prevPeriodDtos,
             IEnumerable<T> currentPeriodDtos,
             IEnumerable<(string topDistributionId, string topDistributionName)> topDistributions)
@@ -367,7 +230,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                 if (currentPeriodDtoDic.TryGetValue(topDistributionId, out T currentPeriodDto))
                 {
                     var prevPeriodDto = prevPeriodDtoDic.ContainsKey(topDistributionId) ? prevPeriodDtoDic[topDistributionId] : null;
-                    var vmItem = CreateMeasurementComparisonVM2(topDistributionName, prevPeriodDto, currentPeriodDto);
+                    var vmItem = CreateMeasurementComparisonVM(topDistributionName, prevPeriodDto, currentPeriodDto);
 
                     result.Add(vmItem);
                 }
@@ -389,9 +252,9 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                 var vmItem = new MeasurementComparisonVM
                 {
                     Name = DISTRIBUTION_OTHERS_NAME,
-                    DifferenceTurnover = CreateDifferenceMeasurementV2(prevPeriodTunover, currentPeriodTunover, prevPeriodTunoverDistribution, currentPeriodTunoverDistribution),
-                    DifferenceGrossProfit = CreateDifferenceMeasurementV2(prevPeriodGrossProfit, currentPeriodGrossProfit, prevPeriodGrossProfitDistribution, currentPeriodGrossProfitDistribution),
-                    DifferenceMargin = CreateDifferenceMeasurementV2(prevPeriodMargin, currentPeriodMargin, 0, 0)
+                    DifferenceTurnover = CreateDifferenceMeasurement(prevPeriodTunover, currentPeriodTunover, prevPeriodTunoverDistribution, currentPeriodTunoverDistribution),
+                    DifferenceGrossProfit = CreateDifferenceMeasurement(prevPeriodGrossProfit, currentPeriodGrossProfit, prevPeriodGrossProfitDistribution, currentPeriodGrossProfitDistribution),
+                    DifferenceMargin = CreateDifferenceMeasurement(prevPeriodMargin, currentPeriodMargin, 0, 0)
                 };
 
                 result.Add(vmItem);
@@ -400,19 +263,19 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             return result;
         }
 
-        private MeasurementComparisonVM CreateMeasurementComparisonVM2(in string name, MeasurementComparisonDTO prevPeriodDto, MeasurementComparisonDTO currentPeriodDto)
+        private MeasurementComparisonVM CreateMeasurementComparisonVM(in string name, MeasurementComparisonDTO prevPeriodDto, MeasurementComparisonDTO currentPeriodDto)
         {
             return new MeasurementComparisonVM
             {
                 Name = name,
-                DifferenceTurnover = CreateDifferenceMeasurementV2(prevPeriodDto?.Turnover, currentPeriodDto.Turnover, prevPeriodDto?.TurnoverDistribution, currentPeriodDto.TurnoverDistribution),
-                DifferenceGrossProfit = CreateDifferenceMeasurementV2(prevPeriodDto?.GrossProfit, currentPeriodDto.GrossProfit,
+                DifferenceTurnover = CreateDifferenceMeasurement(prevPeriodDto?.Turnover, currentPeriodDto.Turnover, prevPeriodDto?.TurnoverDistribution, currentPeriodDto.TurnoverDistribution),
+                DifferenceGrossProfit = CreateDifferenceMeasurement(prevPeriodDto?.GrossProfit, currentPeriodDto.GrossProfit,
                     prevPeriodDto?.GrossProfitDistribution, currentPeriodDto.GrossProfitDistribution),
-                DifferenceMargin = CreateDifferenceMeasurementV2(prevPeriodDto?.Margin, currentPeriodDto.Margin, 0, 0)
+                DifferenceMargin = CreateDifferenceMeasurement(prevPeriodDto?.Margin, currentPeriodDto.Margin, 0, 0)
             };
         }
 
-        private DifferenceMeasurement CreateDifferenceMeasurementV2(
+        private DifferenceMeasurement CreateDifferenceMeasurement(
             double? prevPeriodMeasurement,
             double currentPeriodMeasurement,
             double? prevPeriodDistribution,
@@ -423,16 +286,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                 DifferenceTotal = _calculationService.ToRound(currentPeriodMeasurement - (prevPeriodMeasurement ?? 0)),
                 DifferenceDistribution = _calculationService.ToPercentUnit(currentPeriodDistribution - (prevPeriodDistribution ?? 0))
             };
-        }
-
-        private static ValueTuple<double, double, double> UpdateSumCurrentMeasurement(in ValueTuple<double, double, double> measurements, MeasurementComparisonDTO dto)
-        {
-            (double sumTurnover, double sumGrossProfit, double sumMargin) = measurements;
-            sumTurnover += dto?.Turnover ?? 0;
-            sumGrossProfit += dto?.GrossProfit ?? 0;
-            sumMargin += dto?.Margin ?? 0;
-
-            return (sumTurnover, sumGrossProfit, sumMargin);
         }
 
         private static (double turnover, double turnoverDistribution, double grossProfit, double grossProfitDistribution, double margin) SumFromListOf<T>(IEnumerable<T> items)

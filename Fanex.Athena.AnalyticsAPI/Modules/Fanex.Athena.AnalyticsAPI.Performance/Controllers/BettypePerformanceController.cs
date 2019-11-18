@@ -1,5 +1,6 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Attributes;
 using Fanex.Athena.AnalyticsAPI.Common.Controllers;
+using Fanex.Athena.AnalyticsAPI.Common.Extensions;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels.Constant;
@@ -31,7 +32,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [AutoBindMetaModel]
         public async Task<JsonResult> GetDistribution([FromBody]BettypePerformanceFilterMetaModel filter)
         {
-            await BindTopDistributionsToFilterMetaModel(filter);
             var result = await _bettypeService.GetDistributionWithComparison(filter);
             return ToResult(result);
         }
@@ -41,7 +41,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [AutoBindMetaModel]
         public async Task<JsonResult> GetDiffences([FromBody]BettypePerformanceFilterMetaModel filter)
         {
-            await BindTopDistributionsToFilterMetaModel(filter);
             var result = await _bettypeService.GetMeasurementDifferenceWithComparison(filter);
             return ToResult(result);
         }
@@ -51,8 +50,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [AutoBindMetaModel]
         public async Task<JsonResult> GetPeriodGrowth([FromBody]BettypePerformanceFilterMetaModel filter)
         {
-            await BindTopDistributionsToFilterMetaModel(filter);
-
             var result = await _bettypeService.GetPeriodGrowthWithComparison(filter);
             return ToResult(result);
         }
@@ -62,8 +59,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [AutoBindMetaModel]
         public async Task<JsonResult> GetMonthGrowth([FromBody]BettypePerformanceFilterMetaModel filter)
         {
-            await BindTopDistributionsToFilterMetaModel(filter);
-
             var result = await _bettypeService.GetDetailMonthGrowthWithComparison(filter);
             return ToResult(result);
         }
@@ -112,7 +107,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
                 GrowthData = new
                 {
                     PeriodGrowth = await taskPeriodGrowth,
-                    MonthGrowth = new { }
+                    MonthGrowth = new {}
                 }
             });
         }

@@ -110,7 +110,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
             var dtos = await _performanceRepository.QueryMultipleAsync<BettypeMeasurementComparisonDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToMeasurementComparisonVMV2(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), MapToTopDistributions(filter.TopDistributions));
+            var result = _viewModelMapper.ToMeasurementComparisonVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), MapToTopDistributions(filter.TopDistributions));
 
             return result;
         }
@@ -137,7 +137,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPlatformPerformanceCriteria<PlatformMeasurementComparisonCriteria, PlatformPerformanceFilterMetaModel>(filter);
 
             var dtos = await _performanceRepository.QueryMultipleAsync<PlatformMeasurementComparisonDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
-            var result = _viewModelMapper.ToMeasurementComparisonVMV2(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), MapToTopDistributions(filter.TopDistributions));
+            var result = _viewModelMapper.ToMeasurementComparisonVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), MapToTopDistributions(filter.TopDistributions));
 
             return result;
         }

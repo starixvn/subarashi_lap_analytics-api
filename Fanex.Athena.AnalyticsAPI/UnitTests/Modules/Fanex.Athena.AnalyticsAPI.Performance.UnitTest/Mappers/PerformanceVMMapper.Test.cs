@@ -21,37 +21,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
             _calculationService = new Mock<ICalculationService>();
         }
 
-        [Fact]
-        public void ToViewModel_PeriodGrowth_EmptyDto_ReturnCorrectResult()
-        {
-            //Arrange
-            _calculationService.Setup(_ => _.ToRound(It.IsAny<double?>(), It.IsAny<int>()))
-                .Returns((double? value, int round) =>
-                {
-                    return value ?? 0;
-                });
-            _calculationService.Setup(_ => _.CalculateGrowth(It.IsAny<double?>(), It.IsAny<double?>()))
-                .Returns((double? current, double? previous) =>
-                {
-                    return !current.HasValue && !previous.HasValue ? 0 : 1;
-                });
-
-            _target = new PerformanceVMMapper(_calculationService.Object);
-
-            //Act
-            var result = _target.ToMeasurementGrowthPeriodVM(Enumerable.Empty<TotalDTO>(), Enumerable.Empty<TotalDTO>(), Enumerable.Empty<TotalDTO>());
-
-            //Assert
-            Assert.Equal(2, result.Count());
-            for (int i = 0; i < 2; i++)
-            {
-                var _ = result.ElementAt(i);
-                Assert.Equal(labels[i], _.Name);
-                Assert.Equal(0, _.GrowthPercent);
-                Assert.Equal(0, _.Total);
-            }
-        }
-
         private static string[] labels = new string[] { "Previous Period", "Current Period" };
     }
 }

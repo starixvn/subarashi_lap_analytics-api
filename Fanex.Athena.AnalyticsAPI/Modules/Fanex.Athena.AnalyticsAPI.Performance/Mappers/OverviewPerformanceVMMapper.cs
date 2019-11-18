@@ -18,6 +18,34 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
         {
         }
 
+        public IEnumerable<MeasurementGrowthVM> ToMeasurementGrowthPeriodVM(
+            IEnumerable<TotalDTO> prevPeriodOfPrevDtos,
+            IEnumerable<TotalDTO> prevPeriodDtos,
+            IEnumerable<TotalDTO> currentPeriodDtos)
+        {
+            var prevPeriodOfPrevData = prevPeriodOfPrevDtos.FirstOrDefault();
+            var prevPeriodData = prevPeriodDtos.FirstOrDefault();
+            var currentPeriodData = currentPeriodDtos.FirstOrDefault();
+
+            var result = new List<MeasurementGrowthVM>
+            {
+                new MeasurementGrowthVM
+                {
+                    Name = PREVIOUS_PERIOD_NAME,
+                    Total = _calculationService.ToRound(prevPeriodData?.Total),
+                    GrowthPercent = _calculationService.CalculateGrowth(prevPeriodData?.Total, prevPeriodOfPrevData?.Total)
+                },
+                new MeasurementGrowthVM
+                {
+                    Name = CURRENT_PERIOD_NAME,
+                    Total = _calculationService.ToRound(currentPeriodData?.Total),
+                    GrowthPercent = _calculationService.CalculateGrowth(currentPeriodData?.Total, prevPeriodData?.Total)
+                }
+            };
+
+            return result;
+        }
+
         public IEnumerable<TopChangeVM> ToTopChangeVM<TDto, TKey>(
             IEnumerable<TDto> prevPeriodDtos,
             IEnumerable<TDto> currentPeriodDtos,

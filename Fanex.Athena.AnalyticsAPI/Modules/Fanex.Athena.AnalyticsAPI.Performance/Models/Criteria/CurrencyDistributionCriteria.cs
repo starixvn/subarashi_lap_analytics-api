@@ -1,9 +1,7 @@
 ﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria
 {
-    public class CurrencyDistributionCriteria : CurrencyPerformanceCriteria, IMeasurementCriteria
+    public class CurrencyDistributionCriteria : CurrencyPerformanceCriteria
     {
-        public int MeasurementId { get; set; }
-
         public byte DrillDown { get; set; } = DrillDownConst.DRILL_DOWN;
 
         public override string GetSettingKey()
