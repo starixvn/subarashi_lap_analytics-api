@@ -138,9 +138,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             criteriaCurrentPeriod.SortByMeasurement = SortByMeasurementConst.SORT;
             var distributionData = await _performanceRepository.QueryAsync<PlatformDistributionDTO>(criteriaCurrentPeriod);
 
-            PlatformDistributionDTO specialDistribution = null;
-            if ((specialDistribution = distributionData.FirstOrDefault(_ => _.Id == PLATFORM_SPECIAL_ID)) != null
-                && distributionData.Count() > NUMBER_OF_TOP_DISTRIBUTION)
+            var specialDistribution = distributionData.FirstOrDefault(_ => _.Id == PLATFORM_SPECIAL_ID);
+            if (specialDistribution != null && distributionData.Count() > NUMBER_OF_TOP_DISTRIBUTION)
             {
                 specialDistribution.Distribution = -1;
             }

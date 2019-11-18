@@ -12,6 +12,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 {
     public class PerformanceService : IPerformanceService
     {
+        protected const int NUMBER_OF_TOP_DISTRIBUTION = 5;
+
         protected readonly IContextService _context;
 
         protected readonly IPerformanceRepository _performanceRepository;
@@ -42,7 +44,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
         {
             var topDistributions = elements
                 .Where(_ => !_.IsSum)
-                .OrderByDescending(_ => Math.Abs(_.Total))
+                .OrderByDescending(_ => _.Distribution)
                 .Take(numberOfTop)
                 .Select(_ => (_.Id, _.Name));
 

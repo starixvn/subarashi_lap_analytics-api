@@ -7,7 +7,6 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Mappers
 {
     public class ViewModelMapper
     {
-        protected const int NUMBER_OF_TOP = 5;
         protected const string DISTRIBUTION_OTHERS_ID = "0";
         protected const string DISTRIBUTION_OTHERS_NAME = "Others";
         protected const string CURRENT_PERIOD_NAME = "Current Period";
