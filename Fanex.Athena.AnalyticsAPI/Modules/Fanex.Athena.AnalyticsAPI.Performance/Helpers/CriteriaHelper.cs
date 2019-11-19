@@ -35,7 +35,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Helpers
             where TMetalModel : ProductPerformanceFilterMetaModel
         {
             var criteria = ToPerformanceCriteria<TCriteria, TMetalModel>(metaModel, isCurrentPeriod);
-            criteria.ListProduct = string.Join(',', metaModel.Products?.Select(_ => _.ToString()) ?? Enumerable.Empty<string>());
+            criteria.ListProduct = string.Join(',', metaModel.Products?.Select(_ => _) ?? Enumerable.Empty<string>());
 
             return criteria;
         }
@@ -45,7 +45,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Helpers
             where TMetalModel : PlatformPerformanceFilterMetaModel
         {
             var criteria = ToPerformanceCriteria<TCriteria, TMetalModel>(metaModel, isCurrentPeriod);
-            criteria.ListPlatform = string.Join(',', metaModel.Platforms?.Select(_ => _.ToString()) ?? Enumerable.Empty<string>());
+            criteria.ListPlatform = string.Join(',', metaModel.Platforms?.Select(_ => _) ?? Enumerable.Empty<string>());
 
             return criteria;
         }
@@ -55,7 +55,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Helpers
             where TMetalModel : BettypePerformanceFilterMetaModel
         {
             var criteria = ToPerformanceCriteria<TCriteria, TMetalModel>(metaModel, isCurrentPeriod);
-            criteria.ListCombineBettype = string.Join(',', metaModel.CombineIds?.Select(_ => _.ToString()) ?? Enumerable.Empty<string>());
+            criteria.ListCombineBettype = string.Join(',', metaModel.CombineIds?.Select(_ => _) ?? Enumerable.Empty<string>());
 
             return criteria;
         }

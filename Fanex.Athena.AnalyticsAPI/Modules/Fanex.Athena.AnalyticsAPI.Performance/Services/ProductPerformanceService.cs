@@ -132,7 +132,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
         protected override async Task<IEnumerable<DistributionDTO>> GetDistributionData(PerformanceFilterMetaModel filter)
         {
             var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<ProductDistributionCriteria, PerformanceFilterMetaModel>(filter);
-            criteriaCurrentPeriod.SortByMeasurement = SortByMeasurementConst.SORT;
             var distributionData = await _performanceRepository.QueryAsync<ProductDistributionDTO>(criteriaCurrentPeriod);
             return distributionData;
         }

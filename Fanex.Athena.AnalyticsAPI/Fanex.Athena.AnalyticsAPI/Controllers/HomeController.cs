@@ -16,7 +16,7 @@ namespace Fanex.Athena.AnalyticsAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Index()
         {
             return ToResult(new { Name = "", _env.EnvironmentName });
         }

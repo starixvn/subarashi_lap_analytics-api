@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 
 using Newtonsoft.Json;
 using System;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
@@ -40,7 +41,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
             context.Response.StatusCode = ServerErrorCode;
             context.Response.ContentType = "application/json";
             var errorMsg = $"Msg={error.Message}\n Stacktrace={error.StackTrace}" +
-                $"\n Path={context.Request.Path}\n Query={context.Request.QueryString}";
+                $"\n Path={context.Request.Path}\n Query={context.Request.QueryString}\n CultureName={CultureInfo.CurrentCulture.Name}";
             Logging.Logger.Log.Error(errorMsg);
             await context.Response.WriteAsync(JsonConvert.SerializeObject(new
             {
