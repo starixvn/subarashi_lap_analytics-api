@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<coverage line-rate="0.1693" branch-rate="0.1641" version="1.9" timestamp="1574390862" lines-covered="31" lines-valid="183" branches-covered="11" branches-valid="67">
+<coverage line-rate="0.164" branch-rate="0.1549" version="1.9" timestamp="1574420310" lines-covered="31" lines-valid="189" branches-covered="11" branches-valid="71">
   <sources>
     <source></source>
   </sources>
   <packages>
-    <package name="Fanex.Athena.AnalyticsAPI.Core" line-rate="0.1693" branch-rate="0.1641" complexity="82">
+    <package name="Fanex.Athena.AnalyticsAPI.Core" line-rate="0.164" branch-rate="0.1549" complexity="84">
       <classes>
         <class name="Fanex.Athena.AnalyticsAPI.Common.Middleware.IPFilter" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Core\Middleware\IPFilter.cs" line-rate="0" branch-rate="1" complexity="1">
           <methods>
@@ -646,7 +646,7 @@
             <line number="82" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Fanex.Athena.AnalyticsAPI.Core.Extensions.MiddlewareExtensions" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Core\Extensions\MiddlewareExtensions.cs" line-rate="0" branch-rate="0" complexity="7">
+        <class name="Fanex.Athena.AnalyticsAPI.Core.Extensions.MiddlewareExtensions" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Core\Extensions\MiddlewareExtensions.cs" line-rate="0" branch-rate="0" complexity="9">
           <methods>
             <method name="UseErrorHandler" signature="(Microsoft.AspNetCore.Builder.IApplicationBuilder)" line-rate="0" branch-rate="1">
               <lines>
@@ -669,10 +669,14 @@
                 <line number="29" hits="0" branch="False" />
               </lines>
             </method>
-            <method name="AddSwaggerDoc" signature="(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.AspNetCore.Hosting.IHostingEnvironment,System.String)" line-rate="0" branch-rate="1">
+            <method name="AddSwaggerDoc" signature="(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.AspNetCore.Hosting.IHostingEnvironment,System.String)" line-rate="0" branch-rate="0">
               <lines>
                 <line number="32" hits="0" branch="False" />
-                <line number="33" hits="0" branch="False" />
+                <line number="33" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="22" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
                 <line number="34" hits="0" branch="False" />
                 <line number="35" hits="0" branch="False" />
                 <line number="36" hits="0" branch="False" />
@@ -683,40 +687,50 @@
                 <line number="41" hits="0" branch="False" />
                 <line number="42" hits="0" branch="False" />
                 <line number="43" hits="0" branch="False" />
+                <line number="44" hits="0" branch="False" />
                 <line number="45" hits="0" branch="False" />
                 <line number="46" hits="0" branch="False" />
+                <line number="48" hits="0" branch="False" />
+                <line number="49" hits="0" branch="False" />
               </lines>
             </method>
-            <method name="UseSwaggerDoc" signature="(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,System.String)" line-rate="0" branch-rate="1">
+            <method name="UseSwaggerDoc" signature="(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,System.String)" line-rate="0" branch-rate="0">
               <lines>
-                <line number="49" hits="0" branch="False" />
-                <line number="50" hits="0" branch="False" />
-                <line number="51" hits="0" branch="False" />
                 <line number="52" hits="0" branch="False" />
-                <line number="53" hits="0" branch="False" />
+                <line number="53" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="22" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
                 <line number="54" hits="0" branch="False" />
                 <line number="55" hits="0" branch="False" />
+                <line number="56" hits="0" branch="False" />
                 <line number="57" hits="0" branch="False" />
                 <line number="58" hits="0" branch="False" />
+                <line number="59" hits="0" branch="False" />
+                <line number="60" hits="0" branch="False" />
+                <line number="61" hits="0" branch="False" />
+                <line number="62" hits="0" branch="False" />
+                <line number="63" hits="0" branch="False" />
               </lines>
             </method>
             <method name="UseUM" signature="(Microsoft.AspNetCore.Builder.IApplicationBuilder)" line-rate="0" branch-rate="0">
               <lines>
-                <line number="61" hits="0" branch="False" />
-                <line number="62" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="66" hits="0" branch="False" />
+                <line number="67" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="8" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="63" hits="0" branch="False" />
-                <line number="64" hits="0" branch="False" />
-                <line number="65" hits="0" branch="False" />
-                <line number="66" hits="0" branch="False" />
-                <line number="67" hits="0" branch="False" />
                 <line number="68" hits="0" branch="False" />
                 <line number="69" hits="0" branch="False" />
+                <line number="70" hits="0" branch="False" />
                 <line number="71" hits="0" branch="False" />
                 <line number="72" hits="0" branch="False" />
+                <line number="73" hits="0" branch="False" />
+                <line number="74" hits="0" branch="False" />
+                <line number="76" hits="0" branch="False" />
+                <line number="77" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
@@ -731,7 +745,11 @@
             <line number="28" hits="0" branch="False" />
             <line number="29" hits="0" branch="False" />
             <line number="32" hits="0" branch="False" />
-            <line number="33" hits="0" branch="False" />
+            <line number="33" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="22" type="jump" coverage="0%" />
+              </conditions>
+            </line>
             <line number="34" hits="0" branch="False" />
             <line number="35" hits="0" branch="False" />
             <line number="36" hits="0" branch="False" />
@@ -742,32 +760,42 @@
             <line number="41" hits="0" branch="False" />
             <line number="42" hits="0" branch="False" />
             <line number="43" hits="0" branch="False" />
+            <line number="44" hits="0" branch="False" />
             <line number="45" hits="0" branch="False" />
             <line number="46" hits="0" branch="False" />
+            <line number="48" hits="0" branch="False" />
             <line number="49" hits="0" branch="False" />
-            <line number="50" hits="0" branch="False" />
-            <line number="51" hits="0" branch="False" />
             <line number="52" hits="0" branch="False" />
-            <line number="53" hits="0" branch="False" />
+            <line number="53" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="22" type="jump" coverage="0%" />
+              </conditions>
+            </line>
             <line number="54" hits="0" branch="False" />
             <line number="55" hits="0" branch="False" />
+            <line number="56" hits="0" branch="False" />
             <line number="57" hits="0" branch="False" />
             <line number="58" hits="0" branch="False" />
+            <line number="59" hits="0" branch="False" />
+            <line number="60" hits="0" branch="False" />
             <line number="61" hits="0" branch="False" />
-            <line number="62" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="62" hits="0" branch="False" />
+            <line number="63" hits="0" branch="False" />
+            <line number="66" hits="0" branch="False" />
+            <line number="67" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="8" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="63" hits="0" branch="False" />
-            <line number="64" hits="0" branch="False" />
-            <line number="65" hits="0" branch="False" />
-            <line number="66" hits="0" branch="False" />
-            <line number="67" hits="0" branch="False" />
             <line number="68" hits="0" branch="False" />
             <line number="69" hits="0" branch="False" />
+            <line number="70" hits="0" branch="False" />
             <line number="71" hits="0" branch="False" />
             <line number="72" hits="0" branch="False" />
+            <line number="73" hits="0" branch="False" />
+            <line number="74" hits="0" branch="False" />
+            <line number="76" hits="0" branch="False" />
+            <line number="77" hits="0" branch="False" />
           </lines>
         </class>
       </classes>

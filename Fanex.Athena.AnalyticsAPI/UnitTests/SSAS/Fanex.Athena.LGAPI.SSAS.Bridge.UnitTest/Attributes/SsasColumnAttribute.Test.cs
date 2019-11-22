@@ -27,7 +27,7 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.UnitTest.Attributes
         }
 
         [Fact]
-        public void AssignToMapColumn_Assias_CorrectMapColumn()
+        public void AssignToMapColumn_Assign_CorrectMapColumn()
         {
             //Arrange
             var mapColumn = _fixture.Create<string>();

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<coverage line-rate="0.955" branch-rate="0.9285" version="1.9" timestamp="1574390862" lines-covered="85" lines-valid="89" branches-covered="39" branches-valid="42">
+<coverage line-rate="0.955" branch-rate="0.9285" version="1.9" timestamp="1574420310" lines-covered="85" lines-valid="89" branches-covered="39" branches-valid="42">
   <sources>
     <source></source>
   </sources>

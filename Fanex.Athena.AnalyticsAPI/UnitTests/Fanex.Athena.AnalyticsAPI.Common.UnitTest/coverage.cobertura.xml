@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<coverage line-rate="0.3069" branch-rate="0.3017" version="1.9" timestamp="1574390863" lines-covered="124" lines-valid="404" branches-covered="51" branches-valid="169">
+<coverage line-rate="0.3217" branch-rate="0.3136" version="1.9" timestamp="1574420311" lines-covered="130" lines-valid="404" branches-covered="53" branches-valid="169">
   <sources>
     <source></source>
   </sources>
   <packages>
-    <package name="Fanex.Athena.AnalyticsAPI.Common" line-rate="0.3841" branch-rate="0.4285" complexity="168">
+    <package name="Fanex.Athena.AnalyticsAPI.Common" line-rate="0.4031" branch-rate="0.4453" complexity="168">
       <classes>
         <class name="Fanex.Athena.ExtService.Common.Configuration.AppSettings" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Models\Configuration\AppSettings.cs" line-rate="0" branch-rate="1" complexity="5">
           <methods>
@@ -98,7 +98,7 @@
             <line number="20" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Fanex.Athena.AnalyticsAPI.Common.Services.CalculationService" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Services\CalculationService\CalculationService.cs" line-rate="0.7931" branch-rate="0.875" complexity="17">
+        <class name="Fanex.Athena.AnalyticsAPI.Common.Services.CalculationService" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Services\CalculationService\CalculationService.cs" line-rate="1" branch-rate="1" complexity="17">
           <methods>
             <method name="CalculateDistribution" signature="(System.Nullable`1&lt;System.Double&gt;,System.Double)" line-rate="1" branch-rate="1">
               <lines>
@@ -148,29 +148,29 @@
                 <line number="38" hits="15" branch="False" />
               </lines>
             </method>
-            <method name="ToPercentUnit" signature="(System.Nullable`1&lt;System.Double&gt;)" line-rate="0" branch-rate="0">
+            <method name="ToPercentUnit" signature="(System.Nullable`1&lt;System.Double&gt;)" line-rate="1" branch-rate="1">
               <lines>
-                <line number="41" hits="0" branch="False" />
-                <line number="42" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="41" hits="4" branch="False" />
+                <line number="42" hits="4" branch="True" condition-coverage="100% (2/2)">
                   <conditions>
-                    <condition number="12" type="jump" coverage="0%" />
+                    <condition number="12" type="jump" coverage="100%" />
                   </conditions>
                 </line>
-                <line number="43" hits="0" branch="False" />
-                <line number="44" hits="0" branch="False" />
-                <line number="46" hits="0" branch="False" />
-                <line number="47" hits="0" branch="False" />
+                <line number="43" hits="4" branch="False" />
+                <line number="44" hits="4" branch="False" />
+                <line number="46" hits="4" branch="False" />
+                <line number="47" hits="4" branch="False" />
               </lines>
             </method>
             <method name="ToRound" signature="(System.Nullable`1&lt;System.Double&gt;,System.Int32)" line-rate="1" branch-rate="1">
               <lines>
-                <line number="50" hits="16" branch="False" />
-                <line number="51" hits="16" branch="True" condition-coverage="100% (2/2)">
+                <line number="50" hits="20" branch="False" />
+                <line number="51" hits="20" branch="True" condition-coverage="100% (2/2)">
                   <conditions>
                     <condition number="10" type="jump" coverage="100%" />
                   </conditions>
                 </line>
-                <line number="52" hits="16" branch="False" />
+                <line number="52" hits="20" branch="False" />
               </lines>
             </method>
             <method name=".cctor" signature="()" line-rate="1" branch-rate="1">
@@ -220,23 +220,23 @@
             <line number="35" hits="9" branch="False" />
             <line number="37" hits="9" branch="False" />
             <line number="38" hits="15" branch="False" />
-            <line number="41" hits="0" branch="False" />
-            <line number="42" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="41" hits="4" branch="False" />
+            <line number="42" hits="4" branch="True" condition-coverage="100% (2/2)">
               <conditions>
-                <condition number="12" type="jump" coverage="0%" />
+                <condition number="12" type="jump" coverage="100%" />
               </conditions>
             </line>
-            <line number="43" hits="0" branch="False" />
-            <line number="44" hits="0" branch="False" />
-            <line number="46" hits="0" branch="False" />
-            <line number="47" hits="0" branch="False" />
-            <line number="50" hits="16" branch="False" />
-            <line number="51" hits="16" branch="True" condition-coverage="100% (2/2)">
+            <line number="43" hits="4" branch="False" />
+            <line number="44" hits="4" branch="False" />
+            <line number="46" hits="4" branch="False" />
+            <line number="47" hits="4" branch="False" />
+            <line number="50" hits="20" branch="False" />
+            <line number="51" hits="20" branch="True" condition-coverage="100% (2/2)">
               <conditions>
                 <condition number="10" type="jump" coverage="100%" />
               </conditions>
             </line>
-            <line number="52" hits="16" branch="False" />
+            <line number="52" hits="20" branch="False" />
             <line number="7" hits="1" branch="False" />
           </lines>
         </class>
