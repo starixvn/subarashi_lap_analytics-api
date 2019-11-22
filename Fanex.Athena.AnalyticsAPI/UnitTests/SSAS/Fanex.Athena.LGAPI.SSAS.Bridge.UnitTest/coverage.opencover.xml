@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CoverageSession>
-  <Summary numSequencePoints="100" visitedSequencePoints="65" numBranchPoints="40" visitedBranchPoints="28" sequenceCoverage="65" branchCoverage="70" maxCyclomaticComplexity="53" minCyclomaticComplexity="53" visitedClasses="9" numClasses="11" visitedMethods="10" numMethods="19" />
+  <Summary numSequencePoints="89" visitedSequencePoints="85" numBranchPoints="42" visitedBranchPoints="39" sequenceCoverage="95.5" branchCoverage="92.85" maxCyclomaticComplexity="51" minCyclomaticComplexity="51" visitedClasses="10" numClasses="10" visitedMethods="13" numMethods="15" />
   <Modules>
-    <Module hash="51E17DFB-0A25-4BF5-9543-2ED38FB25FA1">
+    <Module hash="980B03BF-9A7E-431C-9912-0750436A6061">
       <ModulePath>Fanex.Athena.LGAPI.SSAS.Bridge.dll</ModulePath>
-      <ModuleTime>2019-11-11T03:44:58</ModuleTime>
+      <ModuleTime>2019-11-22T02:47:42</ModuleTime>
       <ModuleName>Fanex.Athena.LGAPI.SSAS.Bridge</ModuleName>
       <Files>
         <File uid="1" fullPath="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\SSAS\Fanex.Athena.LGAPI.SSAS.Bridge\Services\HttpClientService.cs" />
@@ -13,7 +13,6 @@
         <File uid="4" fullPath="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\SSAS\Fanex.Athena.LGAPI.SSAS.Bridge\Helpers\JsonHelper.cs" />
         <File uid="5" fullPath="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\SSAS\Fanex.Athena.LGAPI.SSAS.Bridge\Extensions\MappingExtensions.cs" />
         <File uid="6" fullPath="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\SSAS\Fanex.Athena.LGAPI.SSAS.Bridge\Attributes\SsasColumnAttribute.cs" />
-        <File uid="7" fullPath="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\SSAS\Fanex.Athena.LGAPI.SSAS.Bridge\Attributes\SsasParamAttribute.cs" />
       </Files>
       <Classes>
         <Class>
@@ -273,148 +272,93 @@
           </Methods>
         </Class>
         <Class>
-          <Summary numSequencePoints="19" visitedSequencePoints="6" numBranchPoints="10" visitedBranchPoints="1" sequenceCoverage="31.57" branchCoverage="10" maxCyclomaticComplexity="10" minCyclomaticComplexity="10" visitedClasses="1" numClasses="1" visitedMethods="1" numMethods="1" />
+          <Summary numSequencePoints="18" visitedSequencePoints="18" numBranchPoints="12" visitedBranchPoints="12" sequenceCoverage="100" branchCoverage="100" maxCyclomaticComplexity="12" minCyclomaticComplexity="12" visitedClasses="1" numClasses="1" visitedMethods="1" numMethods="1" />
           <FullName>Fanex.Athena.LGAPI.SSAS.Bridge.Extensions.MappingExtensions</FullName>
           <Methods>
-            <Method cyclomaticComplexity="10" nPathComplexity="0" sequenceCoverage="31.57" branchCoverage="10" isConstructor="False" isGetter="False" isSetter="False" isStatic="True">
-              <Summary numSequencePoints="19" visitedSequencePoints="6" numBranchPoints="10" visitedBranchPoints="1" sequenceCoverage="31.57" branchCoverage="10" maxCyclomaticComplexity="10" minCyclomaticComplexity="10" visitedClasses="0" numClasses="0" visitedMethods="1" numMethods="1" />
+            <Method cyclomaticComplexity="12" nPathComplexity="0" sequenceCoverage="100" branchCoverage="100" isConstructor="False" isGetter="False" isSetter="False" isStatic="True">
+              <Summary numSequencePoints="18" visitedSequencePoints="18" numBranchPoints="12" visitedBranchPoints="12" sequenceCoverage="100" branchCoverage="100" maxCyclomaticComplexity="12" minCyclomaticComplexity="12" visitedClasses="0" numClasses="0" visitedMethods="1" numMethods="1" />
               <MetadataToken />
               <Name>TResult Fanex.Athena.LGAPI.SSAS.Bridge.Extensions.MappingExtensions::ToObject(System.Collections.Generic.IDictionary`2&lt;System.String,System.Object&gt;)</Name>
               <FileRef uid="5" />
               <SequencePoints>
-                <SequencePoint vc="10" uspid="11" ordinal="0" sl="11" sc="1" el="11" ec="2" bec="0" bev="0" fileid="5" />
-                <SequencePoint vc="10" uspid="12" ordinal="1" sl="12" sc="1" el="12" ec="2" bec="0" bev="0" fileid="5" />
-                <SequencePoint vc="10" uspid="13" ordinal="2" sl="13" sc="1" el="13" ec="2" bec="0" bev="0" fileid="5" />
-                <SequencePoint vc="30" uspid="14" ordinal="3" sl="14" sc="1" el="14" ec="2" bec="0" bev="0" fileid="5" />
-                <SequencePoint vc="0" uspid="15" ordinal="4" sl="15" sc="1" el="15" ec="2" bec="0" bev="0" fileid="5" />
-                <SequencePoint vc="0" uspid="16" ordinal="5" sl="16" sc="1" el="16" ec="2" bec="0" bev="0" fileid="5" />
-                <SequencePoint vc="0" uspid="17" ordinal="6" sl="17" sc="1" el="17" ec="2" bec="0" bev="0" fileid="5" />
-                <SequencePoint vc="0" uspid="18" ordinal="7" sl="18" sc="1" el="18" ec="2" bec="0" bev="0" fileid="5" />
-                <SequencePoint vc="0" uspid="19" ordinal="8" sl="19" sc="1" el="19" ec="2" bec="0" bev="0" fileid="5" />
-                <SequencePoint vc="0" uspid="20" ordinal="9" sl="20" sc="1" el="20" ec="2" bec="0" bev="0" fileid="5" />
-                <SequencePoint vc="0" uspid="21" ordinal="10" sl="21" sc="1" el="21" ec="2" bec="0" bev="0" fileid="5" />
-                <SequencePoint vc="0" uspid="24" ordinal="11" sl="24" sc="1" el="24" ec="2" bec="0" bev="0" fileid="5" />
-                <SequencePoint vc="0" uspid="25" ordinal="12" sl="25" sc="1" el="25" ec="2" bec="0" bev="0" fileid="5" />
-                <SequencePoint vc="0" uspid="26" ordinal="13" sl="26" sc="1" el="26" ec="2" bec="0" bev="0" fileid="5" />
-                <SequencePoint vc="0" uspid="27" ordinal="14" sl="27" sc="1" el="27" ec="2" bec="0" bev="0" fileid="5" />
-                <SequencePoint vc="0" uspid="28" ordinal="15" sl="28" sc="1" el="28" ec="2" bec="0" bev="0" fileid="5" />
-                <SequencePoint vc="0" uspid="29" ordinal="16" sl="29" sc="1" el="29" ec="2" bec="0" bev="0" fileid="5" />
-                <SequencePoint vc="10" uspid="31" ordinal="17" sl="31" sc="1" el="31" ec="2" bec="0" bev="0" fileid="5" />
-                <SequencePoint vc="10" uspid="32" ordinal="18" sl="32" sc="1" el="32" ec="2" bec="0" bev="0" fileid="5" />
+                <SequencePoint vc="14" uspid="11" ordinal="0" sl="11" sc="1" el="11" ec="2" bec="0" bev="0" fileid="5" />
+                <SequencePoint vc="14" uspid="12" ordinal="1" sl="12" sc="1" el="12" ec="2" bec="0" bev="0" fileid="5" />
+                <SequencePoint vc="1" uspid="13" ordinal="2" sl="13" sc="1" el="13" ec="2" bec="0" bev="0" fileid="5" />
+                <SequencePoint vc="1" uspid="14" ordinal="3" sl="14" sc="1" el="14" ec="2" bec="0" bev="0" fileid="5" />
+                <SequencePoint vc="13" uspid="17" ordinal="4" sl="17" sc="1" el="17" ec="2" bec="0" bev="0" fileid="5" />
+                <SequencePoint vc="13" uspid="18" ordinal="5" sl="18" sc="1" el="18" ec="2" bec="0" bev="0" fileid="5" />
+                <SequencePoint vc="63" uspid="19" ordinal="6" sl="19" sc="1" el="19" ec="2" bec="0" bev="0" fileid="5" />
+                <SequencePoint vc="12" uspid="20" ordinal="7" sl="20" sc="1" el="20" ec="2" bec="0" bev="0" fileid="5" />
+                <SequencePoint vc="12" uspid="21" ordinal="8" sl="21" sc="1" el="21" ec="2" bec="0" bev="0" fileid="5" />
+                <SequencePoint vc="12" uspid="22" ordinal="9" sl="22" sc="1" el="22" ec="2" bec="0" bev="0" fileid="5" />
+                <SequencePoint vc="12" uspid="23" ordinal="10" sl="23" sc="1" el="23" ec="2" bec="0" bev="0" fileid="5" />
+                <SequencePoint vc="12" uspid="24" ordinal="11" sl="24" sc="1" el="24" ec="2" bec="0" bev="0" fileid="5" />
+                <SequencePoint vc="4" uspid="25" ordinal="12" sl="25" sc="1" el="25" ec="2" bec="0" bev="0" fileid="5" />
+                <SequencePoint vc="4" uspid="26" ordinal="13" sl="26" sc="1" el="26" ec="2" bec="0" bev="0" fileid="5" />
+                <SequencePoint vc="4" uspid="27" ordinal="14" sl="27" sc="1" el="27" ec="2" bec="0" bev="0" fileid="5" />
+                <SequencePoint vc="12" uspid="28" ordinal="15" sl="28" sc="1" el="28" ec="2" bec="0" bev="0" fileid="5" />
+                <SequencePoint vc="13" uspid="30" ordinal="16" sl="30" sc="1" el="30" ec="2" bec="0" bev="0" fileid="5" />
+                <SequencePoint vc="14" uspid="31" ordinal="17" sl="31" sc="1" el="31" ec="2" bec="0" bev="0" fileid="5" />
               </SequencePoints>
               <BranchPoints>
-                <BranchPoint vc="0" uspid="14" ordinal="9" path="1" offset="219" offsetend="36" sl="14" fileid="5" />
-                <BranchPoint vc="0" uspid="17" ordinal="0" path="0" offset="68" offsetend="70" sl="17" fileid="5" />
-                <BranchPoint vc="0" uspid="17" ordinal="1" path="1" offset="68" offsetend="87" sl="17" fileid="5" />
-                <BranchPoint vc="0" uspid="17" ordinal="2" path="0" offset="92" offsetend="94" sl="17" fileid="5" />
-                <BranchPoint vc="0" uspid="19" ordinal="4" path="0" offset="115" offsetend="117" sl="19" fileid="5" />
-                <BranchPoint vc="0" uspid="19" ordinal="5" path="1" offset="115" offsetend="146" sl="19" fileid="5" />
-                <BranchPoint vc="0" uspid="24" ordinal="6" path="0" offset="166" offsetend="168" sl="24" fileid="5" />
-                <BranchPoint vc="0" uspid="24" ordinal="7" path="1" offset="166" offsetend="209" sl="24" fileid="5" />
-                <BranchPoint vc="0" uspid="17" ordinal="3" path="1" offset="92" offsetend="210" sl="17" fileid="5" />
-                <BranchPoint vc="10" uspid="14" ordinal="8" path="0" offset="219" offsetend="224" sl="14" fileid="5" />
+                <BranchPoint vc="1" uspid="12" ordinal="0" path="0" offset="7" offsetend="9" sl="12" fileid="5" />
+                <BranchPoint vc="13" uspid="12" ordinal="1" path="1" offset="7" offsetend="26" sl="12" fileid="5" />
+                <BranchPoint vc="12" uspid="19" ordinal="11" path="1" offset="221" offsetend="63" sl="19" fileid="5" />
+                <BranchPoint vc="9" uspid="22" ordinal="2" path="0" offset="97" offsetend="99" sl="22" fileid="5" />
+                <BranchPoint vc="3" uspid="22" ordinal="3" path="1" offset="97" offsetend="116" sl="22" fileid="5" />
+                <BranchPoint vc="9" uspid="23" ordinal="4" path="0" offset="121" offsetend="123" sl="23" fileid="5" />
+                <BranchPoint vc="4" uspid="23" ordinal="6" path="0" offset="136" offsetend="138" sl="23" fileid="5" />
+                <BranchPoint vc="8" uspid="23" ordinal="5" path="1" offset="121" offsetend="156" sl="23" fileid="5" />
+                <BranchPoint vc="8" uspid="23" ordinal="7" path="1" offset="136" offsetend="156" sl="23" fileid="5" />
+                <BranchPoint vc="4" uspid="24" ordinal="8" path="0" offset="165" offsetend="167" sl="24" fileid="5" />
+                <BranchPoint vc="12" uspid="24" ordinal="9" path="1" offset="165" offsetend="208" sl="24" fileid="5" />
+                <BranchPoint vc="13" uspid="19" ordinal="10" path="0" offset="221" offsetend="226" sl="19" fileid="5" />
               </BranchPoints>
-              <MethodPoint vc="6" uspid="0" p8:type="SequencePoint" ordinal="0" offset="0" sc="0" sl="11" ec="1" el="32" bec="0" bev="0" fileid="5" xmlns:p8="xsi" />
+              <MethodPoint vc="18" uspid="0" p8:type="SequencePoint" ordinal="0" offset="0" sc="0" sl="11" ec="1" el="31" bec="0" bev="0" fileid="5" xmlns:p8="xsi" />
             </Method>
           </Methods>
         </Class>
         <Class>
-          <Summary numSequencePoints="8" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0" branchCoverage="100" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" visitedClasses="0" numClasses="1" visitedMethods="0" numMethods="3" />
+          <Summary numSequencePoints="8" visitedSequencePoints="8" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100" branchCoverage="100" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" visitedClasses="1" numClasses="1" visitedMethods="3" numMethods="3" />
           <FullName>Fanex.Athena.LGAPI.SSAS.Bridge.Attributes.SsasColumnAttribute</FullName>
           <Methods>
-            <Method cyclomaticComplexity="1" nPathComplexity="0" sequenceCoverage="0" branchCoverage="100" isConstructor="False" isGetter="True" isSetter="False" isStatic="True">
-              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0" branchCoverage="100" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+            <Method cyclomaticComplexity="1" nPathComplexity="0" sequenceCoverage="100" branchCoverage="100" isConstructor="False" isGetter="True" isSetter="False" isStatic="True">
+              <Summary numSequencePoints="1" visitedSequencePoints="1" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100" branchCoverage="100" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" visitedClasses="0" numClasses="0" visitedMethods="1" numMethods="1" />
               <MetadataToken />
               <Name>System.String Fanex.Athena.LGAPI.SSAS.Bridge.Attributes.SsasColumnAttribute::get_MapColumn()</Name>
               <FileRef uid="6" />
               <SequencePoints>
-                <SequencePoint vc="0" uspid="17" ordinal="0" sl="17" sc="1" el="17" ec="2" bec="0" bev="0" fileid="6" />
+                <SequencePoint vc="39" uspid="17" ordinal="0" sl="17" sc="1" el="17" ec="2" bec="0" bev="0" fileid="6" />
               </SequencePoints>
               <BranchPoints />
-              <MethodPoint vc="0" uspid="0" p8:type="SequencePoint" ordinal="0" offset="0" sc="0" sl="17" ec="1" el="17" bec="0" bev="0" fileid="6" xmlns:p8="xsi" />
+              <MethodPoint vc="1" uspid="0" p8:type="SequencePoint" ordinal="0" offset="0" sc="0" sl="17" ec="1" el="17" bec="0" bev="0" fileid="6" xmlns:p8="xsi" />
             </Method>
-            <Method cyclomaticComplexity="1" nPathComplexity="0" sequenceCoverage="0" branchCoverage="100" isConstructor="True" isGetter="False" isSetter="False" isStatic="True">
-              <Summary numSequencePoints="4" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0" branchCoverage="100" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+            <Method cyclomaticComplexity="1" nPathComplexity="0" sequenceCoverage="100" branchCoverage="100" isConstructor="True" isGetter="False" isSetter="False" isStatic="True">
+              <Summary numSequencePoints="4" visitedSequencePoints="4" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100" branchCoverage="100" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" visitedClasses="0" numClasses="0" visitedMethods="1" numMethods="1" />
               <MetadataToken />
               <Name>System.Void Fanex.Athena.LGAPI.SSAS.Bridge.Attributes.SsasColumnAttribute::.ctor(System.String)</Name>
               <FileRef uid="6" />
               <SequencePoints>
-                <SequencePoint vc="0" uspid="8" ordinal="0" sl="8" sc="1" el="8" ec="2" bec="0" bev="0" fileid="6" />
-                <SequencePoint vc="0" uspid="9" ordinal="1" sl="9" sc="1" el="9" ec="2" bec="0" bev="0" fileid="6" />
-                <SequencePoint vc="0" uspid="10" ordinal="2" sl="10" sc="1" el="10" ec="2" bec="0" bev="0" fileid="6" />
-                <SequencePoint vc="0" uspid="11" ordinal="3" sl="11" sc="1" el="11" ec="2" bec="0" bev="0" fileid="6" />
+                <SequencePoint vc="10" uspid="8" ordinal="0" sl="8" sc="1" el="8" ec="2" bec="0" bev="0" fileid="6" />
+                <SequencePoint vc="10" uspid="9" ordinal="1" sl="9" sc="1" el="9" ec="2" bec="0" bev="0" fileid="6" />
+                <SequencePoint vc="10" uspid="10" ordinal="2" sl="10" sc="1" el="10" ec="2" bec="0" bev="0" fileid="6" />
+                <SequencePoint vc="10" uspid="11" ordinal="3" sl="11" sc="1" el="11" ec="2" bec="0" bev="0" fileid="6" />
               </SequencePoints>
               <BranchPoints />
-              <MethodPoint vc="0" uspid="0" p8:type="SequencePoint" ordinal="1" offset="1" sc="0" sl="8" ec="1" el="11" bec="0" bev="0" fileid="6" xmlns:p8="xsi" />
+              <MethodPoint vc="4" uspid="0" p8:type="SequencePoint" ordinal="1" offset="1" sc="0" sl="8" ec="1" el="11" bec="0" bev="0" fileid="6" xmlns:p8="xsi" />
             </Method>
-            <Method cyclomaticComplexity="1" nPathComplexity="0" sequenceCoverage="0" branchCoverage="100" isConstructor="True" isGetter="False" isSetter="False" isStatic="True">
-              <Summary numSequencePoints="3" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0" branchCoverage="100" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+            <Method cyclomaticComplexity="1" nPathComplexity="0" sequenceCoverage="100" branchCoverage="100" isConstructor="True" isGetter="False" isSetter="False" isStatic="True">
+              <Summary numSequencePoints="3" visitedSequencePoints="3" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100" branchCoverage="100" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" visitedClasses="0" numClasses="0" visitedMethods="1" numMethods="1" />
               <MetadataToken />
               <Name>System.Void Fanex.Athena.LGAPI.SSAS.Bridge.Attributes.SsasColumnAttribute::.ctor()</Name>
               <FileRef uid="6" />
               <SequencePoints>
-                <SequencePoint vc="0" uspid="13" ordinal="0" sl="13" sc="1" el="13" ec="2" bec="0" bev="0" fileid="6" />
-                <SequencePoint vc="0" uspid="14" ordinal="1" sl="14" sc="1" el="14" ec="2" bec="0" bev="0" fileid="6" />
-                <SequencePoint vc="0" uspid="15" ordinal="2" sl="15" sc="1" el="15" ec="2" bec="0" bev="0" fileid="6" />
+                <SequencePoint vc="1" uspid="13" ordinal="0" sl="13" sc="1" el="13" ec="2" bec="0" bev="0" fileid="6" />
+                <SequencePoint vc="1" uspid="14" ordinal="1" sl="14" sc="1" el="14" ec="2" bec="0" bev="0" fileid="6" />
+                <SequencePoint vc="1" uspid="15" ordinal="2" sl="15" sc="1" el="15" ec="2" bec="0" bev="0" fileid="6" />
               </SequencePoints>
               <BranchPoints />
-              <MethodPoint vc="0" uspid="0" p8:type="SequencePoint" ordinal="2" offset="2" sc="0" sl="13" ec="1" el="15" bec="0" bev="0" fileid="6" xmlns:p8="xsi" />
-            </Method>
-          </Methods>
-        </Class>
-        <Class>
-          <Summary numSequencePoints="10" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0" branchCoverage="100" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" visitedClasses="0" numClasses="1" visitedMethods="0" numMethods="4" />
-          <FullName>Fanex.Athena.LGAPI.SSAS.Bridge.Attributes.SsasParamAttribute</FullName>
-          <Methods>
-            <Method cyclomaticComplexity="1" nPathComplexity="0" sequenceCoverage="0" branchCoverage="100" isConstructor="False" isGetter="True" isSetter="False" isStatic="True">
-              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0" branchCoverage="100" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
-              <MetadataToken />
-              <Name>System.String Fanex.Athena.LGAPI.SSAS.Bridge.Attributes.SsasParamAttribute::get_ParamName()</Name>
-              <FileRef uid="7" />
-              <SequencePoints>
-                <SequencePoint vc="0" uspid="18" ordinal="0" sl="18" sc="1" el="18" ec="2" bec="0" bev="0" fileid="7" />
-              </SequencePoints>
-              <BranchPoints />
-              <MethodPoint vc="0" uspid="0" p8:type="SequencePoint" ordinal="0" offset="0" sc="0" sl="18" ec="1" el="18" bec="0" bev="0" fileid="7" xmlns:p8="xsi" />
-            </Method>
-            <Method cyclomaticComplexity="1" nPathComplexity="0" sequenceCoverage="0" branchCoverage="100" isConstructor="False" isGetter="True" isSetter="False" isStatic="True">
-              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0" branchCoverage="100" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
-              <MetadataToken />
-              <Name>System.Boolean Fanex.Athena.LGAPI.SSAS.Bridge.Attributes.SsasParamAttribute::get_NoneParam()</Name>
-              <FileRef uid="7" />
-              <SequencePoints>
-                <SequencePoint vc="0" uspid="19" ordinal="0" sl="19" sc="1" el="19" ec="2" bec="0" bev="0" fileid="7" />
-              </SequencePoints>
-              <BranchPoints />
-              <MethodPoint vc="0" uspid="0" p8:type="SequencePoint" ordinal="1" offset="1" sc="0" sl="19" ec="1" el="19" bec="0" bev="0" fileid="7" xmlns:p8="xsi" />
-            </Method>
-            <Method cyclomaticComplexity="1" nPathComplexity="0" sequenceCoverage="0" branchCoverage="100" isConstructor="True" isGetter="False" isSetter="False" isStatic="True">
-              <Summary numSequencePoints="5" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0" branchCoverage="100" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
-              <MetadataToken />
-              <Name>System.Void Fanex.Athena.LGAPI.SSAS.Bridge.Attributes.SsasParamAttribute::.ctor(System.String,System.Boolean)</Name>
-              <FileRef uid="7" />
-              <SequencePoints>
-                <SequencePoint vc="0" uspid="8" ordinal="0" sl="8" sc="1" el="8" ec="2" bec="0" bev="0" fileid="7" />
-                <SequencePoint vc="0" uspid="9" ordinal="1" sl="9" sc="1" el="9" ec="2" bec="0" bev="0" fileid="7" />
-                <SequencePoint vc="0" uspid="10" ordinal="2" sl="10" sc="1" el="10" ec="2" bec="0" bev="0" fileid="7" />
-                <SequencePoint vc="0" uspid="11" ordinal="3" sl="11" sc="1" el="11" ec="2" bec="0" bev="0" fileid="7" />
-                <SequencePoint vc="0" uspid="12" ordinal="4" sl="12" sc="1" el="12" ec="2" bec="0" bev="0" fileid="7" />
-              </SequencePoints>
-              <BranchPoints />
-              <MethodPoint vc="0" uspid="0" p8:type="SequencePoint" ordinal="2" offset="2" sc="0" sl="8" ec="1" el="12" bec="0" bev="0" fileid="7" xmlns:p8="xsi" />
-            </Method>
-            <Method cyclomaticComplexity="1" nPathComplexity="0" sequenceCoverage="0" branchCoverage="100" isConstructor="True" isGetter="False" isSetter="False" isStatic="True">
-              <Summary numSequencePoints="3" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0" branchCoverage="100" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
-              <MetadataToken />
-              <Name>System.Void Fanex.Athena.LGAPI.SSAS.Bridge.Attributes.SsasParamAttribute::.ctor()</Name>
-              <FileRef uid="7" />
-              <SequencePoints>
-                <SequencePoint vc="0" uspid="14" ordinal="0" sl="14" sc="1" el="14" ec="2" bec="0" bev="0" fileid="7" />
-                <SequencePoint vc="0" uspid="15" ordinal="1" sl="15" sc="1" el="15" ec="2" bec="0" bev="0" fileid="7" />
-                <SequencePoint vc="0" uspid="16" ordinal="2" sl="16" sc="1" el="16" ec="2" bec="0" bev="0" fileid="7" />
-              </SequencePoints>
-              <BranchPoints />
-              <MethodPoint vc="0" uspid="0" p8:type="SequencePoint" ordinal="3" offset="3" sc="0" sl="14" ec="1" el="16" bec="0" bev="0" fileid="7" xmlns:p8="xsi" />
+              <MethodPoint vc="3" uspid="0" p8:type="SequencePoint" ordinal="2" offset="2" sc="0" sl="13" ec="1" el="15" bec="0" bev="0" fileid="6" xmlns:p8="xsi" />
             </Method>
           </Methods>
         </Class>

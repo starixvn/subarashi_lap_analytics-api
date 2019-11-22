@@ -40,7 +40,6 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.UnitTest.Services
         [Fact]
         public async Task QueryMultipleAsync_WhenCall_HttpClientServiceCallWithCorrectParams()
         {
-
             //Arrange
             var url = null as string;
             var body = null as object;

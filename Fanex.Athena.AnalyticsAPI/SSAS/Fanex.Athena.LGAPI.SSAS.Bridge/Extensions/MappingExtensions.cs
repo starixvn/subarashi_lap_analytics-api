@@ -9,6 +9,11 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.Extensions
         public static TResult ToObject<TResult>(this IDictionary<string, object> source)
             where TResult : new()
         {
+            if (source == null)
+            {
+                return default(TResult);
+            }
+
             var objDTO = Activator.CreateInstance<TResult>();
             var props = objDTO.GetType().GetProperties();
             foreach (var prop in props)
