@@ -11,7 +11,6 @@ using LAP.ONEBook.Security.StorageProvider.SqlServer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
@@ -19,7 +18,6 @@ using Microsoft.Extensions.DependencyInjection;
 using ONEbook.UM.Configurations;
 using ONEbook.UM.Extensions;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO.Compression;
 using System.Security.Claims;
 using System.Security.Principal;
@@ -42,13 +40,6 @@ namespace Fanex.Athena.AnalyticsAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<RequestLocalizationOptions>(options =>
-            {
-                options.DefaultRequestCulture = new RequestCulture("en-US");
-                options.SupportedCultures = new List<CultureInfo> { new CultureInfo("en-US") };
-            });
-            services.AddLocalization();
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddSwaggerDoc(Env, API_NAME);
@@ -133,7 +124,6 @@ namespace Fanex.Athena.AnalyticsAPI
             app.UseStaticFiles();
             app.UseCors("DefaultPolicy");
             app.UseResponseCompression();
-            app.UseRequestLocalization();
             app.UseSwaggerDoc(Env, API_NAME);
             if (Env.IsDevelopment())
             {

@@ -30,30 +30,35 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
 
         public static IServiceCollection AddSwaggerDoc(this IServiceCollection services, IHostingEnvironment env, string apiName)
         {
-            services.AddSwaggerGen(c =>
+            if (env.IsDevelopment())
             {
-                c.SwaggerDoc("v1", new Info
+                services.AddSwaggerGen(c =>
                 {
-                    Version = "v1",
-                    Title = apiName,
-                });
+                    c.SwaggerDoc("v1", new Info
+                    {
+                        Version = "v1",
+                        Title = apiName,
+                    });
 
-                c.DescribeStringEnumsInCamelCase();
-                c.DescribeAllEnumsAsStrings();
-            });
+                    c.DescribeStringEnumsInCamelCase();
+                    c.DescribeAllEnumsAsStrings();
+                });
+            }
 
             return services;
         }
 
         public static IApplicationBuilder UseSwaggerDoc(this IApplicationBuilder builder, IHostingEnvironment env, string apiName)
         {
-            builder.UseSwagger();
-            builder.UseSwaggerUI(c =>
+            if (env.IsDevelopment())
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", $"{apiName} V1");
-                c.RoutePrefix = string.Empty;
-            });
-
+                builder.UseSwagger();
+                builder.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", $"{apiName} V1");
+                    c.RoutePrefix = string.Empty;
+                });
+            }
             return builder;
         }
 
