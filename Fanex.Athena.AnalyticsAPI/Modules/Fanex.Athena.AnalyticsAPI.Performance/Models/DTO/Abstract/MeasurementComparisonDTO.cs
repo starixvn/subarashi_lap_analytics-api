@@ -20,6 +20,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
         public double Margin { get; set; }
 
         public abstract string Id { get; }
+
         public abstract string Name { get; }
     }
 }

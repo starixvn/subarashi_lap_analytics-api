@@ -2,6 +2,7 @@
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Mappers;
 using Moq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
@@ -19,21 +20,44 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
             _fixture = new Fixture();
             _calculationService = new Mock<ICalculationService>();
             _target = new PerformanceVMMapper(_calculationService.Object);
+
+            _calculationService.Setup(_ => _.ToRound(It.IsAny<double?>(), 2))
+                .Returns((double? value, int numberOfRound) => value ?? 0);
+            _calculationService.Setup(_ => _.ToPercentUnit(It.IsAny<double?>()))
+               .Returns((double? value) => value ?? 0);
         }
 
         [Fact]
-        public void ToDistributionVM_WhenCall_ReturnTwoElement()
+        public void ToDistributionVM_WhenCall_ReturnCorrect_TwoElement_NameElement()
         {
             //Arrange
+            var prevDtos = _fixture.CreateMany<DistributionDtoTestClass>();
+            var currentDtos = _fixture.CreateMany<DistributionDtoTestClass>();
+            var topDistributions = Enumerable.Empty<ValueTuple<string, string>>();
+
             //Act
-            var result = _target.ToDistributionVM(_fixture.CreateMany<DistributionTestClass>(),
-                _fixture.CreateMany<DistributionTestClass>(),
-                  _fixture.CreateMany<(string topDistributionId, string topDistributionName)>());
+            var result = _target.ToDistributionVM(prevDtos, currentDtos, topDistributions);
 
             //Assert
             Assert.Equal(2, result.Count());
             Assert.Equal("Previous Period", result.ElementAtOrDefault(0)?.Name);
             Assert.Equal("Current Period", result.ElementAtOrDefault(1)?.Name);
+        }
+
+        [Fact]
+        public void ToDistributionVM_TopDistributionIsEmpty_ReturnDistributionsAsEmpty()
+        {
+            //Arrange
+            var prevDtos = FakePreviousDistributionDTOs();
+            var currentDtos = FakeCurrentDistributionDTOs();
+            var topDistributions = Enumerable.Empty<ValueTuple<string, string>>();
+
+            //Act
+            var result = _target.ToDistributionVM(prevDtos, currentDtos, topDistributions);
+
+            //Assert
+            Assert.Empty(result.ElementAtOrDefault(0).Distributions);
+            Assert.Empty(result.ElementAtOrDefault(1).Distributions);
         }
 
         [Fact]
@@ -43,11 +67,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
             var prevDtos = FakePreviousDistributionDTOs();
             var currentDtos = FakeCurrentDistributionDTOs();
             var topDistributions = FakeTopDistributions();
-
-            _calculationService.Setup(_ => _.ToRound(It.IsAny<double>(), 2))
-                .Returns((double value, int numberOfRound) => value);
-            _calculationService.Setup(_ => _.ToPercentUnit(It.IsAny<double>()))
-               .Returns((double? value) => value ?? 0);
 
             //Act
             var result = _target.ToDistributionVM(prevDtos, currentDtos, topDistributions);
@@ -65,7 +84,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
             Assert.Equal(0.5, currentVM.Distributions.FirstOrDefault(_ => _.Id == "0")?.Percent);
         }
 
-        public static IEnumerable<(string topDistributionId, string topDistributionName)> FakeTopDistributions()
+        internal static IEnumerable<(string topDistributionId, string topDistributionName)> FakeTopDistributions()
         {
             return new List<(string topDistributionId, string topDistributionName)>
             {
@@ -78,31 +97,31 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
             };
         }
 
-        public static IEnumerable<DistributionTestClass> FakePreviousDistributionDTOs()
+        internal static IEnumerable<DistributionDtoTestClass> FakePreviousDistributionDTOs()
         {
-            return new List<DistributionTestClass>
+            return new List<DistributionDtoTestClass>
             {
-                new DistributionTestClass
+                new DistributionDtoTestClass
                 {
                     IsSum = true,
                     Total = 9500.50
                 },
-                new DistributionTestClass
+                new DistributionDtoTestClass
                 {
                     Distribution = 0.35,
                     TestId = "1"
                 },
-                new DistributionTestClass
+                new DistributionDtoTestClass
                 {
                     Distribution = 0.2,
                     TestId = "2"
                 },
-                new DistributionTestClass
+                new DistributionDtoTestClass
                 {
                     Distribution = 0.1,
                     TestId = "3"
                 },
-                new DistributionTestClass
+                new DistributionDtoTestClass
                 {
                     Distribution = 0.65,
                     TestId = "7"
@@ -110,46 +129,46 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
             };
         }
 
-        public static IEnumerable<DistributionTestClass> FakeCurrentDistributionDTOs()
+        internal static IEnumerable<DistributionDtoTestClass> FakeCurrentDistributionDTOs()
         {
-            return new List<DistributionTestClass>
+            return new List<DistributionDtoTestClass>
             {
-                new DistributionTestClass
+                new DistributionDtoTestClass
                 {
                     IsSum = true,
                     Total = 9900.50
                 },
-                new DistributionTestClass
+                new DistributionDtoTestClass
                 {
                     Distribution = 0.35,
                     TestId = "1"
                 },
-                new DistributionTestClass
+                new DistributionDtoTestClass
                 {
                     Distribution = 0.2,
                     TestId = "2"
                 },
-                new DistributionTestClass
+                new DistributionDtoTestClass
                 {
                     Distribution = 0.1,
                     TestId = "3"
                 },
-                new DistributionTestClass
+                new DistributionDtoTestClass
                 {
                     Distribution = 0.3,
                     TestId = "4"
                 },
-                new DistributionTestClass
+                new DistributionDtoTestClass
                 {
                     Distribution = 0.5,
                     TestId = "5"
                 },
-                new DistributionTestClass
+                new DistributionDtoTestClass
                 {
                     Distribution = 0.3,
                     TestId = "6"
                 },
-                new DistributionTestClass
+                new DistributionDtoTestClass
                 {
                     Distribution = 0.2,
                     TestId = "7"

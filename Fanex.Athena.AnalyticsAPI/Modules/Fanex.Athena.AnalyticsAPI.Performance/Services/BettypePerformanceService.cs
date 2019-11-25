@@ -152,7 +152,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
             var dtos = await _performanceRepository.QueryMultipleAsync<TotalDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToOverallMeasurement(dtos.ElementAtOrDefault(0)?.FirstOrDefault(), dtos.ElementAtOrDefault(1)?.FirstOrDefault());
+            var result = _viewModelMapper.ToOverallMeasurementVM(dtos.ElementAtOrDefault(0)?.FirstOrDefault(), dtos.ElementAtOrDefault(1)?.FirstOrDefault());
 
             return result;
         }

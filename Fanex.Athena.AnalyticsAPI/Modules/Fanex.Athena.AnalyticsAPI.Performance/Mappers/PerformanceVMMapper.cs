@@ -59,7 +59,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             };
         }
 
-        public IEnumerable<OverallMeasurementVM> ToOverallMeasurement<T>(T prevPeriodDto, T currentPeriodDto)
+        public IEnumerable<OverallMeasurementVM> ToOverallMeasurementVM<T>(T prevPeriodDto, T currentPeriodDto)
             where T : TotalDTO
         {
             return new List<OverallMeasurementVM>
@@ -185,26 +185,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             return result;
         }
 
-        private MeasurementPeriodComparisonGrowthVM CreateMeasurementPeriodComparisonGrowthVM(
-            in string id,
-            in string name,
-            double prevPeriodTotal,
-            double currentPeriodTotal,
-            IEnumerable<IdentifyVM> previousPeriodIdentifies = null,
-            IEnumerable<IdentifyVM> currentPeriodIdentifies = null)
-        {
-            return new MeasurementPeriodComparisonGrowthVM
-            {
-                Id = id,
-                Name = name,
-                PreviousPeriodTotal = _calculationService.ToRound(prevPeriodTotal),
-                CurrentPeriodTotal = _calculationService.ToRound(currentPeriodTotal),
-                GrowthPercent = _calculationService.CalculateGrowth(currentPeriodTotal, prevPeriodTotal),
-                PreviousPeriodDistributions = previousPeriodIdentifies ?? new List<IdentifyVM> { new IdentifyVM { Id = id, Name = name } },
-                CurrentPeriodDistributions = currentPeriodIdentifies ?? new List<IdentifyVM> { new IdentifyVM { Id = id, Name = name } }
-            };
-        }
-
         public IEnumerable<MeasurementComparisonVM> ToMeasurementComparisonVM<T>(
             IEnumerable<T> prevPeriodDtos,
             IEnumerable<T> currentPeriodDtos,
@@ -261,6 +241,26 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             }
 
             return result;
+        }
+
+        private MeasurementPeriodComparisonGrowthVM CreateMeasurementPeriodComparisonGrowthVM(
+           in string id,
+           in string name,
+           double prevPeriodTotal,
+           double currentPeriodTotal,
+           IEnumerable<IdentifyVM> previousPeriodIdentifies = null,
+           IEnumerable<IdentifyVM> currentPeriodIdentifies = null)
+        {
+            return new MeasurementPeriodComparisonGrowthVM
+            {
+                Id = id,
+                Name = name,
+                PreviousPeriodTotal = _calculationService.ToRound(prevPeriodTotal),
+                CurrentPeriodTotal = _calculationService.ToRound(currentPeriodTotal),
+                GrowthPercent = _calculationService.CalculateGrowth(currentPeriodTotal, prevPeriodTotal),
+                PreviousPeriodDistributions = previousPeriodIdentifies ?? new List<IdentifyVM> { new IdentifyVM { Id = id, Name = name } },
+                CurrentPeriodDistributions = currentPeriodIdentifies ?? new List<IdentifyVM> { new IdentifyVM { Id = id, Name = name } }
+            };
         }
 
         private MeasurementComparisonVM CreateMeasurementComparisonVM(in string name, MeasurementComparisonDTO prevPeriodDto, MeasurementComparisonDTO currentPeriodDto)

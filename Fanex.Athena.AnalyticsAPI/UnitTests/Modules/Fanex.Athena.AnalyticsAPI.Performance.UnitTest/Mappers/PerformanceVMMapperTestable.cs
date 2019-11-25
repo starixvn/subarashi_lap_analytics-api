@@ -1,9 +1,8 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
-using System.Collections.Generic;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
 {
-    public class DistributionTestClass : DistributionDTO
+    internal class DistributionDtoTestClass : DistributionDTO
     {
         public string TestId { get; set; }
 
@@ -14,10 +13,25 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
         public override string Name => TestName;
     }
 
-    public class MeasurementPeriodDTOTestClass : MeasurementPeriodDTO
+    internal class MeasurementPerioddDtoTestClass : MeasurementPeriodDTO
     {
-        public override string Id => throw new System.NotImplementedException();
+        public string TestId { get; set; }
 
-        public override string Name => throw new System.NotImplementedException();
+        public string TestName { get; set; }
+
+        public override string Id => TestId;
+
+        public override string Name => TestName;
+    }
+
+    internal class MeasurementComparisonDtoTestClass : MeasurementComparisonDTO
+    {
+        public string TestId { get; set; }
+
+        public string TestName { get; set; }
+
+        public override string Id => TestId;
+
+        public override string Name => TestName;
     }
 }
