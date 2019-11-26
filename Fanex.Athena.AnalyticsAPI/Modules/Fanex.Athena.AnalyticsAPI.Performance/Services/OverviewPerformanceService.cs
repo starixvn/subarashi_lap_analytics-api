@@ -88,7 +88,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
             var dtos = await _performanceRepository.QueryMultipleAsync<CurrencyTopChangeDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToTopChangeVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), _ => _.CurrencyId, _ => _.CurrencyName);
+            var result = _viewModelMapper.ToTopChangeVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1));
 
             return result;
         }
@@ -97,19 +97,18 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
         {
             var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter, false);
             criteriaPrevPeriod.Dimension = DimensionConst.BETTYPE;
-            var taskPrevPeriod = _performanceRepository.QueryAsync<BettypeTopChangeDTO>(criteriaPrevPeriod);
 
             var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<OverviewTopChangeCriteria, PerformanceFilterMetaModel>(filter);
             criteriaCurrentPeriod.Dimension = DimensionConst.BETTYPE;
-            var taskCurrentPeriod = _performanceRepository.QueryAsync<BettypeTopChangeDTO>(criteriaCurrentPeriod);
 
-            var prevPeriodDtos = await taskPrevPeriod;
-            var currentPeriodDtos = await taskCurrentPeriod;
+            var data = await _performanceRepository.QueryMultipleAsync<BettypeTopChangeDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
+            var prevPeriodDtos = data.ElementAtOrDefault(0);
+            var currentPeriodDtos = data.ElementAtOrDefault(1);
 
-            prevPeriodDtos = prevPeriodDtos.GroupTo(_ => _.Key, BettypeTopChangeDTOSelector);
-            currentPeriodDtos = currentPeriodDtos.GroupTo(_ => _.Key, BettypeTopChangeDTOSelector);
+            prevPeriodDtos = prevPeriodDtos.GroupTo(_ => _.Id, BettypeTopChangeDTOSelector);
+            currentPeriodDtos = currentPeriodDtos.GroupTo(_ => _.Id, BettypeTopChangeDTOSelector);
 
-            var result = _viewModelMapper.ToTopChangeVM(prevPeriodDtos, currentPeriodDtos, _ => _.Key, _ => _.DisplayName);
+            var result = _viewModelMapper.ToTopChangeVM(prevPeriodDtos, currentPeriodDtos);
 
             return result;
         }
@@ -124,7 +123,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
             var dtos = await _performanceRepository.QueryMultipleAsync<PlatformTopChangeDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToTopChangeVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), _ => _.PlatformId, _ => _.PlatformName);
+            var result = _viewModelMapper.ToTopChangeVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1));
 
             return result;
         }
@@ -139,7 +138,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
             var dtos = await _performanceRepository.QueryMultipleAsync<ProductTopChangeDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToTopChangeVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), _ => _.ProductId, _ => _.ProductName);
+            var result = _viewModelMapper.ToTopChangeVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1));
 
             return result;
         }

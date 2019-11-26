@@ -90,22 +90,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             return result;
         }
 
-        public async Task<IEnumerable<MeasurementGrowthVM>> GetDetailMonthGrowthWithComparison(PlatformPerformanceFilterMetaModel filter)
-        {
-            var newFilter = MetaModelHelper.BackToPeriodByMonth(filter, 1);
-
-            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPlatformPerformanceCriteria<PlatformGrowthCriteria, PlatformPerformanceFilterMetaModel>(newFilter);
-            criteriaCurrentPeriod.GroupBy = GroupByConst.MONTH_GROUP;
-            var currentPeriodData = await _performanceRepository.QueryAsync<MeasurementTimeDTO>(criteriaCurrentPeriod);
-
-            var result = _viewModelMapper.ToMeasurementGrowthTimeVM(currentPeriodData,
-                DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.FromMonth),
-                DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.ToMonth)
-                );
-
-            return result;
-        }
-
         public async Task<IEnumerable<MeasurementComparisonVM>> GetMeasurementDifferenceWithComparison(PlatformPerformanceFilterMetaModel filter)
         {
             var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToPlatformPerformanceCriteria<PlatformMeasurementComparisonCriteria, PlatformPerformanceFilterMetaModel>(filter, false);

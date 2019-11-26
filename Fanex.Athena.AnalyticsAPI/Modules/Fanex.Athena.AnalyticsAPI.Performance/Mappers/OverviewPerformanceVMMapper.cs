@@ -46,17 +46,15 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             return result;
         }
 
-        public IEnumerable<TopChangeVM> ToTopChangeVM<TDto, TKey>(
+        public IEnumerable<TopChangeVM> ToTopChangeVM<TDto>(
             IEnumerable<TDto> prevPeriodDtos,
-            IEnumerable<TDto> currentPeriodDtos,
-            Func<TDto, TKey> keySelector,
-            Func<TDto, string> displayer)
+            IEnumerable<TDto> currentPeriodDtos)
             where TDto : TopChangeDTO
         {
-            var prevPeriodData = prevPeriodDtos.ToDictionary(_ => keySelector(_));
-            var currentPeriodData = currentPeriodDtos.ToDictionary(_ => keySelector(_));
+            var prevPeriodData = prevPeriodDtos.ToDictionary(_ => _.Id);
+            var currentPeriodData = currentPeriodDtos.ToDictionary(_ => _.Id);
 
-            var distinctList = Enumerable.Union(currentPeriodDtos.Select(_ => keySelector(_)), prevPeriodDtos.Select(_ => keySelector(_)));
+            var distinctList = Enumerable.Union(currentPeriodDtos.Select(_ => _.Id), prevPeriodDtos.Select(_ => _.Id));
 
             var result = distinctList
                 .Select(_ =>
@@ -65,7 +63,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                             currentPeriodData.TryGetValue(_, out TDto current) ? current.Total : 0,
                             prevPeriodData.TryGetValue(_, out TDto prev) ? prev.Total : 0
                         );
-                    var perspectiveName = displayer(current ?? prev);
+                    var perspectiveName = (current ?? prev)?.Name;
                     var total = _calculationService.ToRound(current?.Total);
 
                     return new TopChangeVM

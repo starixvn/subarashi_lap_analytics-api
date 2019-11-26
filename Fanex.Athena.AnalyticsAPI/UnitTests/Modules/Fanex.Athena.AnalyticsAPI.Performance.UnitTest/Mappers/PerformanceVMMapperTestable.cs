@@ -34,4 +34,15 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
 
         public override string Name => TestName;
     }
+
+    internal class TopChangeDtoTestClass : TopChangeDTO
+    {
+        public string TestId { get; set; }
+
+        public string TestName { get; set; }
+
+        public override string Id => TestId;
+
+        public override string Name => TestName;
+    }
 }

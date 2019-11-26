@@ -54,15 +54,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         }
 
         [HttpPost]
-        [Route("api/performance/platform/month-growth")]
-        [AutoBindMetaModel]
-        public async Task<JsonResult> GetMonthGrowth([FromBody]PlatformPerformanceFilterMetaModel filter)
-        {
-            var result = await _platformService.GetDetailMonthGrowthWithComparison(filter);
-            return ToResult(result);
-        }
-
-        [HttpPost]
         [Route("api/performance/platform/month-growth-all")]
         [AutoBindMetaModel]
         public async Task<JsonResult> GetAllMonthGrowth([FromBody]PlatformPerformanceFilterMetaModel filter)

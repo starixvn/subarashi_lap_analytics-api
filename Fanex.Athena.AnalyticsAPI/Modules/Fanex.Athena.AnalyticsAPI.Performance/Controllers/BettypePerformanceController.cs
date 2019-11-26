@@ -55,15 +55,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         }
 
         [HttpPost]
-        [Route("api/performance/bettype/month-growth")]
-        [AutoBindMetaModel]
-        public async Task<JsonResult> GetMonthGrowth([FromBody]BettypePerformanceFilterMetaModel filter)
-        {
-            var result = await _bettypeService.GetDetailMonthGrowthWithComparison(filter);
-            return ToResult(result);
-        }
-
-        [HttpPost]
         [Route("api/performance/bettype/month-growth-all")]
         [AutoBindMetaModel]
         public async Task<JsonResult> GetAllMonthGrowth([FromBody]BettypePerformanceFilterMetaModel filter)

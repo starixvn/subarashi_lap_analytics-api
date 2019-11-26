@@ -50,22 +50,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             return result;
         }
 
-        public async Task<IEnumerable<MeasurementGrowthVM>> GetDetailMonthGrowthWithComparison(BettypePerformanceFilterMetaModel filter)
-        {
-            var newFilter = MetaModelHelper.BackToPeriodByMonth(filter, 1);
-
-            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToBettypePerformanceCriteria<BettypeGrowthCriteria, BettypePerformanceFilterMetaModel>(newFilter);
-            criteriaCurrentPeriod.GroupBy = GroupByConst.MONTH_GROUP;
-            var currentPeriodData = await _performanceRepository.QueryAsync<MeasurementTimeDTO>(criteriaCurrentPeriod);
-
-            var result = _viewModelMapper.ToMeasurementGrowthTimeVM(currentPeriodData,
-                DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.FromMonth),
-                DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.ToMonth)
-                );
-
-            return result;
-        }
-
         public async Task<IDictionary<string, object>> GetAllDetailMonthGrowthWithComparison(BettypePerformanceFilterMetaModel filter)
         {
             var result = new Dictionary<string, object>(filter.TopDistributions.Count());

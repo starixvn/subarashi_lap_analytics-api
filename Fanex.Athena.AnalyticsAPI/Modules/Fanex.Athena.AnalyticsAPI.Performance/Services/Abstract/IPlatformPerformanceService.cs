@@ -11,8 +11,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
         Task<IEnumerable<MeasurementPeriodComparisonGrowthVM>> GetPeriodGrowthWithComparison(PlatformPerformanceFilterMetaModel filter);
 
-        Task<IEnumerable<MeasurementGrowthVM>> GetDetailMonthGrowthWithComparison(PlatformPerformanceFilterMetaModel filter);
-
         Task<IDictionary<string, object>> GetAllDetailMonthGrowthWithComparison(PlatformPerformanceFilterMetaModel filter);
 
         Task<IEnumerable<OverallMeasurementVM>> GetOverallMeasurement(PerformanceFilterMetaModel filter);

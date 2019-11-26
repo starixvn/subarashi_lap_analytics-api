@@ -1,0 +1,73 @@
+﻿using AutoFixture;
+using Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria;
+using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
+using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
+using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
+using Fanex.Data.Repository;
+using Moq;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
+using Xunit;
+
+namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Services
+{
+    public class CurrencyPerformanceService_GetAllDetailMonthGrowthWithComparison_Test : CurrencyPerformanceServiceTestBase
+    {
+        [Fact]
+        public async Task GetAllDetailMonthGrowthWithComparison_WhenCall_CorrectNumberOfCriteria_GroupByIsMonthGroup()
+        {
+            //Arrange
+            var filter = FakeCurrencyPerformanceFilterMetaModel;
+            var cloneFilter = filter;
+            cloneFilter.TopDistributions = _fixture.CreateMany<DistributionMetaModel>();
+
+            var listCriteria = new List<CurrencyGrowthCriteria>(cloneFilter.TopDistributions.Count() * 2);
+
+            _repositoryMock.Setup(_ => _.QueryMultipleAsync<MeasurementTimeDTO>(It.IsAny<ICriteria>(), It.IsAny<ICriteria>()))
+                .Callback<ICriteria[]>(_listCriteria =>
+                {
+                    listCriteria.AddRange(_listCriteria.Select(_ => _ as CurrencyGrowthCriteria));
+                });
+
+            //Act
+            await _target.GetAllDetailMonthGrowthWithComparison(filter);
+
+            //Assert
+            Assert.Equal(cloneFilter.TopDistributions.Count() * 2, listCriteria.Count);
+            Assert.True(listCriteria.All(_ => _.GroupBy == GroupByConst.MONTH_GROUP));
+        }
+
+        [Fact]
+        public async Task GetAllDetailMonthGrowthWithComparison_WhenCall_MapperShouldCallCorrectParams()
+        {
+            //Arrange
+            var filter = FakeCurrencyPerformanceFilterMetaModel;
+            filter.TopDistributions = _fixture.CreateMany<DistributionMetaModel>();
+
+            var data = new List<IEnumerable<MeasurementTimeDTO>> { _fixture.CreateMany<MeasurementTimeDTO>(), _fixture.CreateMany<MeasurementTimeDTO>() };
+
+            var (prevPeriodFromDate, prevPeriodToDate) = (
+                 DateTime.ParseExact(filter.PreviousPeriod.FromMonth, "MM/dd/yyyy", new CultureInfo("en-US")),
+                 DateTime.ParseExact(filter.PreviousPeriod.ToMonth, "MM/dd/yyyy", new CultureInfo("en-US"))
+                );
+
+            var (currentPeriodFromDate, currentPeriodToDate) = (
+                DateTime.ParseExact(filter.CurrentPeriod.FromMonth, "MM/dd/yyyy", new CultureInfo("en-US")),
+                DateTime.ParseExact(filter.CurrentPeriod.ToMonth, "MM/dd/yyyy", new CultureInfo("en-US"))
+                );
+
+            _repositoryMock.Setup(_ => _.QueryMultipleAsync<MeasurementTimeDTO>(It.IsAny<ICriteria>(), It.IsAny<ICriteria>()))
+                .ReturnsAsync(data);
+
+            //Act
+            await _target.GetAllDetailMonthGrowthWithComparison(filter);
+
+            //Assert
+            _mapperMock.Verify(_ => _.ToMeasurementGrowthTimeVM(data.ElementAt(0), prevPeriodFromDate, prevPeriodToDate), Times.Exactly(filter.TopDistributions.Count()));
+            _mapperMock.Verify(_ => _.ToMeasurementGrowthTimeVM(data.ElementAt(1), currentPeriodFromDate, currentPeriodToDate), Times.Exactly(filter.TopDistributions.Count()));
+        }
+    }
+}

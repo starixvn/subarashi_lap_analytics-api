@@ -4,9 +4,9 @@ using Fanex.Athena.AnalyticsAPI.Performance.Services;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Services
 {
-    public class PerformanceServiceTestable : PerformanceService                                                                                                    
+    public class PerformanceServiceTestable : PerformanceService
     {
-        PerformanceServiceTestable(
+        private PerformanceServiceTestable(
             IContextService context,
             IPerformanceRepository performanceRepository
         )

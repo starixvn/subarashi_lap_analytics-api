@@ -2,10 +2,14 @@
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
 {
-    public class TopChangeDTO
+    public abstract class TopChangeDTO : IIdentifiable
     {
         [SsasColumn("[Measurement]")]
         public double Total { get; set; }
+
+        public abstract string Id { get; }
+
+        public abstract string Name { get; }
     }
 
     public class CurrencyTopChangeDTO : TopChangeDTO
@@ -15,6 +19,10 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
 
         [SsasColumn("DimCurrency[CurrencyName]")]
         public string CurrencyName { get; set; }
+
+        public override string Id => CurrencyId.ToString();
+
+        public override string Name => CurrencyName;
     }
 
     public class BettypeTopChangeDTO : TopChangeDTO
@@ -31,9 +39,9 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
         [SsasColumn("DimSportBettypeMatrix[ProductName]")]
         public string ProductName { get; set; }
 
-        public string Key => $"{ProductId}_{BetTypeDisplayID}";
+        public override string Id => $"{ProductId}_{BetTypeDisplayID}";
 
-        public string DisplayName => $"{BetTypeDisplayName} ({ProductName})";
+        public override string Name => $"{BetTypeDisplayName} ({ProductName})";
     }
 
     public class PlatformTopChangeDTO : TopChangeDTO
@@ -43,6 +51,10 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
 
         [SsasColumn("DimPlatForm[Platform]")]
         public string PlatformName { get; set; }
+
+        public override string Id => PlatformId.ToString();
+
+        public override string Name => PlatformName;
     }
 
     public class ProductTopChangeDTO : TopChangeDTO
@@ -52,5 +64,9 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
 
         [SsasColumn("DimSportBettypeMatrix[ProductName]")]
         public string ProductName { get; set; }
+
+        public override string Id => ProductId.ToString();
+
+        public override string Name => ProductName;
     }
 }

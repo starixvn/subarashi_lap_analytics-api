@@ -1,39 +1,50 @@
 ﻿using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Performance.Mappers;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Performance.Repositories;
-using Fanex.Athena.AnalyticsAPI.Performance.Services;
+using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
+using Fanex.Data.Repository;
 using Moq;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Xunit;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Services
 {
-    public class OverviewPerformanceService_GetSummaryWithComparison_Test
+    public class OverviewPerformanceService_GetSummaryWithComparison_Test : OverviewPerformanceServiceTestBase
     {
-        private readonly OverviewPerformanceService _targetService;
-        private readonly Mock<IContextService> _contextMock;
-        private readonly Mock<IPerformanceRepository> _repoMock;
-        private readonly Mock<IOverviewPerformanceVMMapper> _viewModelMapperMock;
-        private readonly Fixture _fixture;
-
-        public OverviewPerformanceService_GetSummaryWithComparison_Test()
-        {
-            _contextMock = new Mock<IContextService>();
-            _repoMock = new Mock<IPerformanceRepository>();
-            _viewModelMapperMock = new Mock<IOverviewPerformanceVMMapper>();
-            _targetService = new OverviewPerformanceService(_contextMock.Object, _repoMock.Object, _viewModelMapperMock.Object);
-
-            _fixture = new Fixture();
-        }
-
-        public void GetSummaryWithComparison_WhenCall_ReturnCorrectResult()
+        [Fact]
+        public async Task GetSummaryWithComparison_WhenCall_MapperShouldCallCorrectParams()
         {
             //Arrange
+            var filter = FakePerformanceFilterMetaModel;
+            var data = new List<IEnumerable<SummaryDTO>> { _fixture.CreateMany<SummaryDTO>(), _fixture.CreateMany<SummaryDTO>() };
+
+            _repositoryMock.Setup(_ => _.QueryMultipleAsync<SummaryDTO>(It.IsAny<ICriteria>(), It.IsAny<ICriteria>()))
+                .ReturnsAsync(data);
 
             //Act
 
+            await _target.GetSummaryWithComparison(filter);
+
             //Assert
+            _mapperMock.Verify(_ => _.ToSummaryVM(data[0], data[1]), Times.Once);
+        }
+
+        [Fact]
+        public async Task GetSummaryWithComparison_WhenCall_ServiceResultIsMapperResult()
+        {
+            //Arrange
+            var filter = FakePerformanceFilterMetaModel;
+            var expected = _fixture.CreateMany<SummaryVM>();
+
+            _mapperMock.Setup(_ => _.ToSummaryVM(It.IsAny<IEnumerable<SummaryDTO>>(), It.IsAny<IEnumerable<SummaryDTO>>()))
+                .Returns(expected);
+
+            //Act
+
+            var result = await _target.GetSummaryWithComparison(filter);
+
+            //Assert
+            Assert.Equal(expected, result);
         }
     }
 }

@@ -2,9 +2,9 @@
 <CoverageSession>
   <Summary numSequencePoints="189" visitedSequencePoints="31" numBranchPoints="71" visitedBranchPoints="11" sequenceCoverage="16.4" branchCoverage="15.49" maxCyclomaticComplexity="84" minCyclomaticComplexity="84" visitedClasses="3" numClasses="15" visitedMethods="3" numMethods="25" />
   <Modules>
-    <Module hash="B3ED7341-890F-4332-971D-5335066331C9">
+    <Module hash="3E451624-4ACC-41AF-BD18-8BE30D2DD8BF">
       <ModulePath>Fanex.Athena.AnalyticsAPI.Core.dll</ModulePath>
-      <ModuleTime>2019-11-25T11:12:08</ModuleTime>
+      <ModuleTime>2019-11-26T11:28:15</ModuleTime>
       <ModuleName>Fanex.Athena.AnalyticsAPI.Core</ModuleName>
       <Files>
         <File uid="1" fullPath="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Core\Middleware\IPFilter.cs" />
