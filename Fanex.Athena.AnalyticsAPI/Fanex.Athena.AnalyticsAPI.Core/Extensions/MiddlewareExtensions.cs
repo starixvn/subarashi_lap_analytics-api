@@ -1,5 +1,4 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Middleware;
-using Fanex.Athena.AnalyticsAPI.Core.Middleware;
+﻿using Fanex.Athena.AnalyticsAPI.Core.Middleware;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -16,11 +15,6 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
         public static IApplicationBuilder UseErrorHandler(this IApplicationBuilder builder)
         {
             return builder.UseMiddleware<ErrorHandler>();
-        }
-
-        public static IApplicationBuilder UseIPFilter(this IApplicationBuilder builder)
-        {
-            return builder.UseMiddleware<IPFilter>();
         }
 
         public static IApplicationBuilder UseOneAuth(this IApplicationBuilder builder)

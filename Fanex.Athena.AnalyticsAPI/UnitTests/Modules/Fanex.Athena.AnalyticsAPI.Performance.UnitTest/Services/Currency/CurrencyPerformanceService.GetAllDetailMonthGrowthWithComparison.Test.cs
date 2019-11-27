@@ -69,5 +69,47 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Services
             _mapperMock.Verify(_ => _.ToMeasurementGrowthTimeVM(data.ElementAt(0), prevPeriodFromDate, prevPeriodToDate), Times.Exactly(filter.TopDistributions.Count()));
             _mapperMock.Verify(_ => _.ToMeasurementGrowthTimeVM(data.ElementAt(1), currentPeriodFromDate, currentPeriodToDate), Times.Exactly(filter.TopDistributions.Count()));
         }
+
+        [Fact]
+        public async Task GetAllDetailMonthGrowthWithComparison_WhenCall_ReturnCorrectResult()
+        {
+            //Arrange
+            var filter = FakeCurrencyPerformanceFilterMetaModel;
+            filter.TopDistributions = _fixture.CreateMany<DistributionMetaModel>();
+
+            var dataVM = new List<IEnumerable<MeasurementGrowthVM>> { _fixture.CreateMany<MeasurementGrowthVM>(), _fixture.CreateMany<MeasurementGrowthVM>() };
+
+            var (prevPeriodFromDate, prevPeriodToDate) = (
+                 DateTime.ParseExact(filter.PreviousPeriod.FromMonth, "MM/dd/yyyy", new CultureInfo("en-US")),
+                 DateTime.ParseExact(filter.PreviousPeriod.ToMonth, "MM/dd/yyyy", new CultureInfo("en-US"))
+                );
+
+            var (currentPeriodFromDate, currentPeriodToDate) = (
+                DateTime.ParseExact(filter.CurrentPeriod.FromMonth, "MM/dd/yyyy", new CultureInfo("en-US")),
+                DateTime.ParseExact(filter.CurrentPeriod.ToMonth, "MM/dd/yyyy", new CultureInfo("en-US"))
+                );
+
+            _mapperMock.Setup(_ => _.ToMeasurementGrowthTimeVM(It.IsAny<IEnumerable<MeasurementTimeDTO>>(), prevPeriodFromDate, prevPeriodToDate))
+                .Returns(dataVM[0]);
+
+            _mapperMock.Setup(_ => _.ToMeasurementGrowthTimeVM(It.IsAny<IEnumerable<MeasurementTimeDTO>>(), currentPeriodFromDate, currentPeriodToDate))
+                .Returns(dataVM[1]);
+
+            var prevPeriodSuffixFieldName = $"{filter.PreviousPeriod.FromMonth }_{filter.PreviousPeriod.ToMonth}";
+            var currentPeriodSuffixFieldName = $"{filter.CurrentPeriod.FromMonth }_{filter.CurrentPeriod.ToMonth}";
+
+            //Act
+            var result = await _target.GetAllDetailMonthGrowthWithComparison(filter);
+
+            //Assert
+
+            var prevPeriodResults = result.Where(_ => _.Key.Contains(prevPeriodSuffixFieldName));
+            Assert.Equal(filter.TopDistributions.Count(), prevPeriodResults.Count());
+            Assert.True(prevPeriodResults.All(_ => _.Value.Equals(dataVM[0])));
+
+            var currentPeriodResults = result.Where(_ => _.Key.Contains(currentPeriodSuffixFieldName));
+            Assert.Equal(filter.TopDistributions.Count(), currentPeriodResults.Count());
+            Assert.True(currentPeriodResults.All(_ => _.Value.Equals(dataVM[1])));
+        }
     }
 }

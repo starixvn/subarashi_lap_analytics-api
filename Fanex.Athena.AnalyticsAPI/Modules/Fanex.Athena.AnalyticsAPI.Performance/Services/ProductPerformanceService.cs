@@ -70,6 +70,16 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             cloneFilter = MetaModelHelper.BackToPeriodByMonth(cloneFilter, 1);
             cloneFilter = MetaModelHelper.BackToPeriodByMonth(cloneFilter, 1, false);
 
+            var (prevPeriodFromDate, prevPeriodToDate) = (
+                DateTimeHelper.ParseFromFormatDateToDate(filter.PreviousPeriod.FromMonth),
+                DateTimeHelper.ParseFromFormatDateToDate(filter.PreviousPeriod.ToMonth)
+                );
+
+            var (currentPeriodFromDate, currentPeriodToDate) = (
+                DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.FromMonth),
+                DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.ToMonth)
+                );
+
             foreach (var topDistribution in filter.TopDistributions)
             {
                 cloneFilter.Products = topDistribution.PreviousPeriodDistributions.Select(_ => _.Id);
@@ -80,17 +90,10 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
                 var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToProductPerformanceCriteria<ProductGrowthCriteria, ProductPerformanceFilterMetaModel>(cloneFilter);
                 criteriaCurrentPeriod.GroupBy = GroupByConst.MONTH_GROUP;
 
-                var dtos = await _performanceRepository.QueryMultipleAsync<MeasurementTimeDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
+                var data = await _performanceRepository.QueryMultipleAsync<MeasurementTimeDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 
-                var prevPeriodResult = _viewModelMapper.ToMeasurementGrowthTimeVM(dtos.ElementAtOrDefault(0),
-                        DateTimeHelper.ParseFromFormatDateToDate(filter.PreviousPeriod.FromMonth),
-                        DateTimeHelper.ParseFromFormatDateToDate(filter.PreviousPeriod.ToMonth)
-                        );
-
-                var currentPeriodResult = _viewModelMapper.ToMeasurementGrowthTimeVM(dtos.ElementAtOrDefault(1),
-                       DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.FromMonth),
-                       DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.ToMonth)
-                       );
+                var prevPeriodResult = _viewModelMapper.ToMeasurementGrowthTimeVM(data.ElementAtOrDefault(0), prevPeriodFromDate, prevPeriodToDate);
+                var currentPeriodResult = _viewModelMapper.ToMeasurementGrowthTimeVM(data.ElementAtOrDefault(1), currentPeriodFromDate, currentPeriodToDate);
 
                 result.Add(GetFieldNameOfMonthGrowthObject(topDistribution.DisplayId, filter.PreviousPeriod), prevPeriodResult);
                 result.Add(GetFieldNameOfMonthGrowthObject(topDistribution.DisplayId, filter.CurrentPeriod), currentPeriodResult);

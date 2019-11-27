@@ -15,10 +15,17 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.Services
             _httpClient = httpClient;
         }
 
+#pragma warning disable S3994
+
         public async Task<TResult> PostAsync<TResult>(string url, object body)
         {
+#pragma warning restore S3994
+
+#pragma warning disable S4005
             using (var requestMessage = new HttpRequestMessage(HttpMethod.Post, url))
             {
+#pragma warning restore S4005
+
                 requestMessage.Content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json");
 
                 using (var response = await _httpClient.SendAsync(requestMessage, HttpCompletionOption.ResponseHeadersRead))

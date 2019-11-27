@@ -7,11 +7,11 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Helpers
 {
     public static class CriteriaHelper
     {
-        public static TCriteria ToPerformanceCriteria<TCriteria, TMetalModel>(TMetalModel metaModel, bool isCurrentPeriod = true)
+        public static TCriteria ToPerformanceCriteria<TCriteria, TMetaModel>(TMetaModel metaModel, bool isCurrentPeriod = true)
             where TCriteria : AnalyticCriteria, new()
-            where TMetalModel : PerformanceFilterMetaModel
+            where TMetaModel : PerformanceFilterMetaModel
         {
-            var criteria = Common.Helpers.CriteriaHelper.ToCriteria<TCriteria, TMetalModel>(metaModel, isCurrentPeriod);
+            var criteria = Common.Helpers.CriteriaHelper.ToCriteria<TCriteria, TMetaModel>(metaModel, isCurrentPeriod);
             if (criteria is IMeasurementCriteria measurementCriteria)
             {
                 measurementCriteria.MeasurementId = metaModel.Measurement.Id;
@@ -20,41 +20,41 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Helpers
             return criteria;
         }
 
-        public static TCriteria ToCurrencyPerformanceCriteria<TCriteria, TMetalModel>(TMetalModel metaModel, bool isCurrentPeriod = true)
+        public static TCriteria ToCurrencyPerformanceCriteria<TCriteria, TMetaModel>(TMetaModel metaModel, bool isCurrentPeriod = true)
             where TCriteria : CurrencyPerformanceCriteria, new()
-            where TMetalModel : CurrenyPerformanceFilterMetaModel
+            where TMetaModel : CurrenyPerformanceFilterMetaModel
         {
-            var criteria = ToPerformanceCriteria<TCriteria, TMetalModel>(metaModel, isCurrentPeriod);
+            var criteria = ToPerformanceCriteria<TCriteria, TMetaModel>(metaModel, isCurrentPeriod);
             criteria.ListCurrency = string.Join(',', metaModel.Currencies ?? Enumerable.Empty<string>());
 
             return criteria;
         }
 
-        public static TCriteria ToProductPerformanceCriteria<TCriteria, TMetalModel>(TMetalModel metaModel, bool isCurrentPeriod = true)
+        public static TCriteria ToProductPerformanceCriteria<TCriteria, TMetaModel>(TMetaModel metaModel, bool isCurrentPeriod = true)
             where TCriteria : ProductPerformanceCriteria, new()
-            where TMetalModel : ProductPerformanceFilterMetaModel
+            where TMetaModel : ProductPerformanceFilterMetaModel
         {
-            var criteria = ToPerformanceCriteria<TCriteria, TMetalModel>(metaModel, isCurrentPeriod);
+            var criteria = ToPerformanceCriteria<TCriteria, TMetaModel>(metaModel, isCurrentPeriod);
             criteria.ListProduct = string.Join(',', metaModel.Products?.Select(_ => _) ?? Enumerable.Empty<string>());
 
             return criteria;
         }
 
-        public static TCriteria ToPlatformPerformanceCriteria<TCriteria, TMetalModel>(TMetalModel metaModel, bool isCurrentPeriod = true)
+        public static TCriteria ToPlatformPerformanceCriteria<TCriteria, TMetaModel>(TMetaModel metaModel, bool isCurrentPeriod = true)
             where TCriteria : PlatformPerformanceCriteria, new()
-            where TMetalModel : PlatformPerformanceFilterMetaModel
+            where TMetaModel : PlatformPerformanceFilterMetaModel
         {
-            var criteria = ToPerformanceCriteria<TCriteria, TMetalModel>(metaModel, isCurrentPeriod);
+            var criteria = ToPerformanceCriteria<TCriteria, TMetaModel>(metaModel, isCurrentPeriod);
             criteria.ListPlatform = string.Join(',', metaModel.Platforms?.Select(_ => _) ?? Enumerable.Empty<string>());
 
             return criteria;
         }
 
-        public static TCriteria ToBettypePerformanceCriteria<TCriteria, TMetalModel>(TMetalModel metaModel, bool isCurrentPeriod = true)
+        public static TCriteria ToBettypePerformanceCriteria<TCriteria, TMetaModel>(TMetaModel metaModel, bool isCurrentPeriod = true)
             where TCriteria : BettypePerformanceCriteria, new()
-            where TMetalModel : BettypePerformanceFilterMetaModel
+            where TMetaModel : BettypePerformanceFilterMetaModel
         {
-            var criteria = ToPerformanceCriteria<TCriteria, TMetalModel>(metaModel, isCurrentPeriod);
+            var criteria = ToPerformanceCriteria<TCriteria, TMetaModel>(metaModel, isCurrentPeriod);
             criteria.ListCombineBettype = string.Join(',', metaModel.CombineIds?.Select(_ => _) ?? Enumerable.Empty<string>());
 
             return criteria;

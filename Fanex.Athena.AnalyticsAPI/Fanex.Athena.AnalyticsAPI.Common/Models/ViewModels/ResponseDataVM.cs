@@ -16,7 +16,7 @@
         public ResponseDataVM(bool isSuccess, string msg)
         {
             IsSuccess = isSuccess;
-            Msg = msg;
+            Msg = msg ?? string.Empty;
         }
 
         public bool IsSuccess { get; set; }

@@ -25,11 +25,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.LGAPI.SSAS.Bri
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SSAS", "SSAS", "{DF0CCD3F-442A-41DA-9D55-2C000793C042}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.AnalyticsAPI.Performance.UnitTest", "UnitTests\Modules\Fanex.Athena.AnalyticsAPI.Performance.UnitTest\Fanex.Athena.AnalyticsAPI.Performance.UnitTest.csproj", "{459BB707-564D-4C21-A815-25946AAC3820}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.AnalyticsAPI.Performance.UnitTest", "UnitTests\Modules\Fanex.Athena.AnalyticsAPI.Performance.UnitTest\Fanex.Athena.AnalyticsAPI.Performance.UnitTest.csproj", "{459BB707-564D-4C21-A815-25946AAC3820}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.LGAPI.SSAS.Bridge.UnitTest", "UnitTests\SSAS\Fanex.Athena.LGAPI.SSAS.Bridge.UnitTest\Fanex.Athena.LGAPI.SSAS.Bridge.UnitTest.csproj", "{8979CAE6-CC42-439B-9454-D6C4441FF717}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.LGAPI.SSAS.Bridge.UnitTest", "UnitTests\SSAS\Fanex.Athena.LGAPI.SSAS.Bridge.UnitTest\Fanex.Athena.LGAPI.SSAS.Bridge.UnitTest.csproj", "{8979CAE6-CC42-439B-9454-D6C4441FF717}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.AnalyticsAPI.Common.UnitTest", "UnitTests\Fanex.Athena.AnalyticsAPI.Common.UnitTest\Fanex.Athena.AnalyticsAPI.Common.UnitTest.csproj", "{7D73803E-433E-418F-9343-1E04286EE5D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.AnalyticsAPI.Common.UnitTest", "UnitTests\Fanex.Athena.AnalyticsAPI.Common.UnitTest\Fanex.Athena.AnalyticsAPI.Common.UnitTest.csproj", "{7D73803E-433E-418F-9343-1E04286EE5D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

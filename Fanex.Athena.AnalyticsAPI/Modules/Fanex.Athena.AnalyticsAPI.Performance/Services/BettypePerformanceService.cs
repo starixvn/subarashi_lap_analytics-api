@@ -58,6 +58,16 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             cloneFilter = MetaModelHelper.BackToPeriodByMonth(cloneFilter, 1);
             cloneFilter = MetaModelHelper.BackToPeriodByMonth(cloneFilter, 1, false);
 
+            var (prevPeriodFromDate, prevPeriodToDate) = (
+                DateTimeHelper.ParseFromFormatDateToDate(filter.PreviousPeriod.FromMonth),
+                DateTimeHelper.ParseFromFormatDateToDate(filter.PreviousPeriod.ToMonth)
+                );
+
+            var (currentPeriodFromDate, currentPeriodToDate) = (
+                DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.FromMonth),
+                DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.ToMonth)
+                );
+
             foreach (var topDistribution in filter.TopDistributions)
             {
                 cloneFilter.CombineIds = topDistribution.PreviousPeriodDistributions.Select(_ => _.Id);
@@ -68,17 +78,10 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
                 var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToBettypePerformanceCriteria<BettypeGrowthCriteria, BettypePerformanceFilterMetaModel>(cloneFilter);
                 criteriaCurrentPeriod.GroupBy = GroupByConst.MONTH_GROUP;
 
-                var dtos = await _performanceRepository.QueryMultipleAsync<MeasurementTimeDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
+                var data = await _performanceRepository.QueryMultipleAsync<MeasurementTimeDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 
-                var prevPeriodResult = _viewModelMapper.ToMeasurementGrowthTimeVM(dtos.ElementAtOrDefault(0),
-                        DateTimeHelper.ParseFromFormatDateToDate(filter.PreviousPeriod.FromMonth),
-                        DateTimeHelper.ParseFromFormatDateToDate(filter.PreviousPeriod.ToMonth)
-                        );
-
-                var currentPeriodResult = _viewModelMapper.ToMeasurementGrowthTimeVM(dtos.ElementAtOrDefault(1),
-                       DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.FromMonth),
-                       DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.ToMonth)
-                       );
+                var prevPeriodResult = _viewModelMapper.ToMeasurementGrowthTimeVM(data.ElementAtOrDefault(0), prevPeriodFromDate, prevPeriodToDate);
+                var currentPeriodResult = _viewModelMapper.ToMeasurementGrowthTimeVM(data.ElementAtOrDefault(1), currentPeriodFromDate, currentPeriodToDate);
 
                 result.Add(GetFieldNameOfMonthGrowthObject(topDistribution.DisplayId, filter.PreviousPeriod), prevPeriodResult);
                 result.Add(GetFieldNameOfMonthGrowthObject(topDistribution.DisplayId, filter.CurrentPeriod), currentPeriodResult);
@@ -94,33 +97,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
             var dtos = await _performanceRepository.QueryMultipleAsync<BettypeMeasurementComparisonDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToMeasurementComparisonVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), MapToTopDistributions(filter.TopDistributions));
-
-            return result;
-        }
-
-        public async Task<IEnumerable<MeasurementGrowthVM>> GetDetailMonthGrowthWithComparison(PlatformPerformanceFilterMetaModel filter)
-        {
-            var newFilter = MetaModelHelper.BackToPeriodByMonth(filter, 1);
-
-            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPlatformPerformanceCriteria<PlatformGrowthCriteria, PlatformPerformanceFilterMetaModel>(newFilter);
-            criteriaCurrentPeriod.GroupBy = GroupByConst.MONTH_GROUP;
-            var currentPeriodData = await _performanceRepository.QueryAsync<MeasurementTimeDTO>(criteriaCurrentPeriod);
-
-            var result = _viewModelMapper.ToMeasurementGrowthTimeVM(currentPeriodData,
-                DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.FromMonth),
-                DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.ToMonth)
-                );
-
-            return result;
-        }
-
-        public async Task<IEnumerable<MeasurementComparisonVM>> GetMeasurementDifferenceWithComparison(PlatformPerformanceFilterMetaModel filter)
-        {
-            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToPlatformPerformanceCriteria<PlatformMeasurementComparisonCriteria, PlatformPerformanceFilterMetaModel>(filter, false);
-            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPlatformPerformanceCriteria<PlatformMeasurementComparisonCriteria, PlatformPerformanceFilterMetaModel>(filter);
-
-            var dtos = await _performanceRepository.QueryMultipleAsync<PlatformMeasurementComparisonDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
             var result = _viewModelMapper.ToMeasurementComparisonVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), MapToTopDistributions(filter.TopDistributions));
 
             return result;

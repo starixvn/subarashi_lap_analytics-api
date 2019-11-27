@@ -5,6 +5,8 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
 {
     public static class DateTimeHelper
     {
+        private const int NUMBER_OF_MONTHS_OF_YEAR = 12;
+
         public const string DATE_FORMAT = "MM/dd/yyyy";
         public const string MONTH_FORMAT = "MM/yyyy";
 
@@ -44,7 +46,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
 
         public static int GetDistanceBetweenTwoDate(DateTime from, DateTime to)
         {
-            return 12 * (to.Year - from.Year) + (to.Month - from.Month);
+            return NUMBER_OF_MONTHS_OF_YEAR * (to.Year - from.Year) + (to.Month - from.Month);
         }
 
         private static bool IsMonthFormat(string date)

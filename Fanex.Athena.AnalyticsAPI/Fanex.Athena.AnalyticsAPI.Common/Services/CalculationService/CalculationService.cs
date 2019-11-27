@@ -10,7 +10,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
         {
             value = value ?? 0;
 
-            if (value == 0 || total == 0)
+            if (value.Value.CompareTo(0) == 0 || total.CompareTo(0) == 0)
             {
                 return 0;
             }
@@ -26,7 +26,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
             current = current ?? 0;
             previous = previous ?? 0;
 
-            if (previous == 0)
+            if (previous.Value.CompareTo(0) == 0)
             {
                 return 0;
             }

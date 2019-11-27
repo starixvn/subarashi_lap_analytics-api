@@ -65,7 +65,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
         public async Task<IDictionary<string, object>> GetAllDetailMonthGrowthWithComparison(CurrenyPerformanceFilterMetaModel filter)
         {
-            var result = new Dictionary<string, object>(filter.TopDistributions.Count());
+            var result = new Dictionary<string, object>(filter.TopDistributions.Count() * 2);
 
             var cloneFilter = MetaModelHelper.Clone(filter);
             cloneFilter = MetaModelHelper.BackToPeriodByMonth(cloneFilter, 1);

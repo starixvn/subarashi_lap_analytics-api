@@ -62,7 +62,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [HttpPost]
         [Route("api/performance/overview")]
         [AutoBindMetaModel]
-        public async Task<JsonResult> GetCombineData(PerformanceFilterMetaModel filter)
+        public async Task<JsonResult> GetCombineData([FromBody]PerformanceFilterMetaModel filter)
         {
             var topChangeTask = _getTopChange(filter);
             var summaryTask = _overviewService.GetSummaryWithComparison(filter);
@@ -71,15 +71,14 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
             var filterClone = MetaModelHelper.Clone(filter);
             filterClone.CurrentPeriod = filter.PreviousPeriod;
             var prevDetailMonthGrowthTask = _overviewService.GetDetailMonthGrowthWithComparison(filterClone);
-
             var currentDetailMonthGrowthTask = _overviewService.GetDetailMonthGrowthWithComparison(filter);
 
             var topChangeData = await topChangeTask;
             var summaryData = await summaryTask;
-            var periodGrowth = await periodGrowthTask;
+            var periodGrowthData = await periodGrowthTask;
 
-            var prevDetailMonthGrowth = await prevDetailMonthGrowthTask;
-            var currentDetailMonthGrowth = await currentDetailMonthGrowthTask;
+            var prevPeriodMonthGrowthData = await prevDetailMonthGrowthTask;
+            var currentPeriodMonthGrowthData = await currentDetailMonthGrowthTask;
 
             return ToResult(new
             {
@@ -90,10 +89,10 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
                 {
                     monthGrowth = new[]
                     {
-                        prevDetailMonthGrowth,
-                        currentDetailMonthGrowth
+                        prevPeriodMonthGrowthData,
+                        currentPeriodMonthGrowthData
                     },
-                    periodGrowth
+                    periodGrowth = periodGrowthData
                 },
                 topChangeData
             });

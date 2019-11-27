@@ -5,9 +5,9 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
 {
     public static class CriteriaHelper
     {
-        public static TCriteria ToCriteria<TCriteria, TMetalModel>(TMetalModel metaModel, bool isCurrentPeriod = true)
+        public static TCriteria ToCriteria<TCriteria, TMetaModel>(TMetaModel metaModel, bool isCurrentPeriod = true)
             where TCriteria : AnalyticCriteria, new()
-            where TMetalModel : GeneralFilterMetaModel
+            where TMetaModel : GeneralFilterMetaModel
         {
             var period = isCurrentPeriod ? metaModel.CurrentPeriod : metaModel.PreviousPeriod;
             var criteria = new TCriteria
