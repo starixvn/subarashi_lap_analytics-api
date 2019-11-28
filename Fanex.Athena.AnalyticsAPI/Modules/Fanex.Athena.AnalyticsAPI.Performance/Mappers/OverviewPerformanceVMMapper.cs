@@ -1,4 +1,5 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
+using Fanex.Athena.AnalyticsAPI.Performance.Constants;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
 using System;
@@ -63,14 +64,17 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                             currentPeriodData.TryGetValue(_, out TDto current) ? current.Total : 0,
                             prevPeriodData.TryGetValue(_, out TDto prev) ? prev.Total : 0
                         );
+
+                    var perspectiveId = (current ?? prev)?.Id;
                     var perspectiveName = (current ?? prev)?.Name;
                     var total = _calculationService.ToRound(current?.Total);
 
                     return new TopChangeVM
                     {
-                        ChangePercent = percentChange,
+                        PerspectiveId = perspectiveId,
                         PerspectiveName = perspectiveName,
-                        Total = total
+                        Total = total,
+                        ChangePercent = percentChange,
                     };
                 })
                 .OrderByDescending(_ => Math.Abs(_.ChangePercent))
@@ -88,19 +92,19 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             {
                 new SummaryVM
                 {
-                    MeasurementId = 1,
+                    MeasurementId = MeasurementConst.TURNOVER,
                     Total = _calculationService.ToRound(currentPeriodData?.Turnover),
                     ChangePercent = _calculationService.CalculateGrowth(currentPeriodData?.Turnover, prevPeriodData?.Turnover)
                 },
                 new SummaryVM
                 {
-                    MeasurementId = 2,
+                    MeasurementId = MeasurementConst.GROSS_PROFIT,
                     Total = _calculationService.ToRound(currentPeriodData?.GrossProfit),
                     ChangePercent = _calculationService.CalculateGrowth(currentPeriodData?.GrossProfit, prevPeriodData?.GrossProfit)
                 },
                 new SummaryVM
                 {
-                    MeasurementId = 3,
+                    MeasurementId = MeasurementConst.MARGIN,
                     Total = _calculationService.ToRound(currentPeriodData?.Margin),
                     ChangePercent = _calculationService.CalculateGrowth(currentPeriodData?.Margin, prevPeriodData?.Margin)
                 }

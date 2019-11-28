@@ -1,4 +1,4 @@
-﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels.Constant
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Constants
 {
     public static class MeasurementConst
     {

@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CoverageSession>
-  <Summary numSequencePoints="1839" visitedSequencePoints="1157" numBranchPoints="643" visitedBranchPoints="332" sequenceCoverage="62.91" branchCoverage="51.63" maxCyclomaticComplexity="605" minCyclomaticComplexity="59" visitedClasses="130" numClasses="202" visitedMethods="252" numMethods="414" />
+  <Summary numSequencePoints="1838" visitedSequencePoints="1156" numBranchPoints="643" visitedBranchPoints="332" sequenceCoverage="62.89" branchCoverage="51.63" maxCyclomaticComplexity="605" minCyclomaticComplexity="59" visitedClasses="130" numClasses="202" visitedMethods="251" numMethods="413" />
   <Modules>
-    <Module hash="EEC517EA-1FB0-4B27-AB51-951846EDD819">
+    <Module hash="AF9DEC7B-525B-4AAD-9796-85FB0C9EDA46">
       <ModulePath>Fanex.Athena.AnalyticsAPI.Common.dll</ModulePath>
-      <ModuleTime>2019-11-27T11:30:30</ModuleTime>
+      <ModuleTime>2019-11-28T03:11:29</ModuleTime>
       <ModuleName>Fanex.Athena.AnalyticsAPI.Common</ModuleName>
       <Files>
         <File uid="1" fullPath="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Models\Configuration\AppSettings.cs" />
@@ -729,7 +729,7 @@
           </Methods>
         </Class>
         <Class>
-          <Summary numSequencePoints="5" visitedSequencePoints="5" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100" branchCoverage="100" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" visitedClasses="1" numClasses="1" visitedMethods="5" numMethods="5" />
+          <Summary numSequencePoints="4" visitedSequencePoints="4" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100" branchCoverage="100" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" visitedClasses="1" numClasses="1" visitedMethods="4" numMethods="4" />
           <FullName>Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels.GeneralFilterMetaModel</FullName>
           <Methods>
             <Method cyclomaticComplexity="1" nPathComplexity="0" sequenceCoverage="100" branchCoverage="100" isConstructor="False" isGetter="True" isSetter="False" isStatic="True">
@@ -775,17 +775,6 @@
               </SequencePoints>
               <BranchPoints />
               <MethodPoint vc="1" uspid="0" p8:type="SequencePoint" ordinal="3" offset="3" sc="0" sl="11" ec="1" el="11" bec="0" bev="0" fileid="9" xmlns:p8="xsi" />
-            </Method>
-            <Method cyclomaticComplexity="1" nPathComplexity="0" sequenceCoverage="100" branchCoverage="100" isConstructor="False" isGetter="True" isSetter="False" isStatic="True">
-              <Summary numSequencePoints="1" visitedSequencePoints="1" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100" branchCoverage="100" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" visitedClasses="0" numClasses="0" visitedMethods="1" numMethods="1" />
-              <MetadataToken />
-              <Name>System.String Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels.GeneralFilterMetaModel::get_Language()</Name>
-              <FileRef uid="9" />
-              <SequencePoints>
-                <SequencePoint vc="80" uspid="13" ordinal="0" sl="13" sc="1" el="13" ec="2" bec="0" bev="0" fileid="9" />
-              </SequencePoints>
-              <BranchPoints />
-              <MethodPoint vc="1" uspid="0" p8:type="SequencePoint" ordinal="4" offset="4" sc="0" sl="13" ec="1" el="13" bec="0" bev="0" fileid="9" xmlns:p8="xsi" />
             </Method>
           </Methods>
         </Class>
@@ -1497,9 +1486,9 @@
         </Class>
       </Classes>
     </Module>
-    <Module hash="8A2B5AFA-43F7-4F50-A3BE-7E91D6847D8D">
+    <Module hash="9BFB2F30-748E-4C55-B8AD-214B3F962F41">
       <ModulePath>Fanex.Athena.AnalyticsAPI.Core.dll</ModulePath>
-      <ModuleTime>2019-11-27T11:30:30</ModuleTime>
+      <ModuleTime>2019-11-28T03:11:29</ModuleTime>
       <ModuleName>Fanex.Athena.AnalyticsAPI.Core</ModuleName>
       <Files>
         <File uid="23" fullPath="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Core\Services\AuthService.cs" />
@@ -2044,9 +2033,9 @@
         </Class>
       </Classes>
     </Module>
-    <Module hash="61B9DAE9-2F2B-4638-B553-B6F5760F9537">
+    <Module hash="5BB7493C-0D78-4941-AC77-1CA83E20A3A2">
       <ModulePath>Fanex.Athena.AnalyticsAPI.Performance.dll</ModulePath>
-      <ModuleTime>2019-11-27T11:30:30</ModuleTime>
+      <ModuleTime>2019-11-28T03:11:29</ModuleTime>
       <ModuleName>Fanex.Athena.AnalyticsAPI.Performance</ModuleName>
       <Files>
         <File uid="29" fullPath="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Modules\Fanex.Athena.AnalyticsAPI.Performance\Services\BettypePerformanceService.cs" />
@@ -7724,9 +7713,9 @@
         </Class>
       </Classes>
     </Module>
-    <Module hash="B731A7ED-B3B7-4058-B3B7-3291F1F12ED3">
+    <Module hash="31B3B2F7-EAC0-4327-8F9B-FA9DC1616ECD">
       <ModulePath>Fanex.Athena.LGAPI.SSAS.Bridge.dll</ModulePath>
-      <ModuleTime>2019-11-27T11:30:30</ModuleTime>
+      <ModuleTime>2019-11-28T03:11:29</ModuleTime>
       <ModuleName>Fanex.Athena.LGAPI.SSAS.Bridge</ModuleName>
       <Files>
         <File uid="101" fullPath="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\SSAS\Fanex.Athena.LGAPI.SSAS.Bridge\Services\HttpClientService.cs" />

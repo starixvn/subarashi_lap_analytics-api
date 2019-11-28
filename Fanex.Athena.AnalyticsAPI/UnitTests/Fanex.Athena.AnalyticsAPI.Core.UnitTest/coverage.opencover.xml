@@ -2,9 +2,9 @@
 <CoverageSession>
   <Summary numSequencePoints="171" visitedSequencePoints="31" numBranchPoints="63" visitedBranchPoints="11" sequenceCoverage="18.12" branchCoverage="17.46" maxCyclomaticComplexity="73" minCyclomaticComplexity="73" visitedClasses="3" numClasses="12" visitedMethods="3" numMethods="21" />
   <Modules>
-    <Module hash="C434658D-7505-428C-AC5C-E0B269865772">
+    <Module hash="BFCF096F-45EC-47B0-B4BA-CBEEE31BF8B7">
       <ModulePath>Fanex.Athena.AnalyticsAPI.Core.dll</ModulePath>
-      <ModuleTime>2019-11-27T11:30:28</ModuleTime>
+      <ModuleTime>2019-11-28T03:11:26</ModuleTime>
       <ModuleName>Fanex.Athena.AnalyticsAPI.Core</ModuleName>
       <Files>
         <File uid="1" fullPath="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Core\Services\AuthService.cs" />

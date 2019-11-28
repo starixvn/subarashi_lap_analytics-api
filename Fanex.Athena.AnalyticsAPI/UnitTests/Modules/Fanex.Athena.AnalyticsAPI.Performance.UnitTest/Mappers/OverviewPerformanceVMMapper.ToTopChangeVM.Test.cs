@@ -54,30 +54,35 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
             {
                 new TopChangeVM
                 {
+                    PerspectiveId = "4",
                     PerspectiveName = "name4",
                     Total = -80000,
                     ChangePercent = -80000
                 },
                 new TopChangeVM
                 {
+                    PerspectiveId = "6",
                     PerspectiveName = "name6",
                     Total = 19999,
                     ChangePercent = 19999
                 },
                 new TopChangeVM
                 {
+                    PerspectiveId = "5",
                     PerspectiveName = "name5",
                     Total = 1000,
                     ChangePercent = 9100
                 },
                 new TopChangeVM
                 {
+                    PerspectiveId = "1",
                     PerspectiveName = "name1",
                     Total = 400.25,
                     ChangePercent = -9000
                 },
                 new TopChangeVM
                 {
+                    PerspectiveId = "2",
                     PerspectiveName = "name2",
                     Total = 0,
                     ChangePercent = 0

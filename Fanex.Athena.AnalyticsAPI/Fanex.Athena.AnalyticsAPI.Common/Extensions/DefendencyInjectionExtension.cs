@@ -26,6 +26,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
             services.AddTransient<ISsasBridgeService, SsasBridgeService>();
             services.AddSingleton<ICalculationService, CalculationService>();
             services.AddSingleton<ISqlService, SqlService>();
+            services.AddSingleton<ITranslationService, TranslationService>();
 
             var setting = new SSASSetting();
             configuration.GetSection("SSASSetting").Bind(setting);

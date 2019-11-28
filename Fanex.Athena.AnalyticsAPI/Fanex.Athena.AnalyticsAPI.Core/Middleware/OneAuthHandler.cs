@@ -47,8 +47,10 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
                 if (ValidateToken(authInfo, context.Request.Path))
                 {
                     context.User = new GenericPrincipal(new ClaimsIdentity(new[] {
-                        new Claim(ClaimTypes.Name, authInfo.SiteName) }),
-                        new[] { "" });
+                        new Claim(ClaimTypes.Name, authInfo.SiteName),
+                        new Claim("language", authInfo.Language),
+                    }),
+                    new[] { "" });
                 }
                 else
                 {

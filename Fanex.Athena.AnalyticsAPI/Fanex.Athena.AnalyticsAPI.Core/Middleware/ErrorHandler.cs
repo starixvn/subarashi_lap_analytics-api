@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
-
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Globalization;
@@ -12,9 +12,11 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
     {
         private const int ServerErrorCode = 500;
         private readonly RequestDelegate _next;
-        public ErrorHandler(RequestDelegate next)
+        private readonly ILogger _logger;
+        public ErrorHandler(RequestDelegate next, ILogger<ErrorHandler> logger)
         {
             _next = next;
+            _logger = logger;
         }
         public async Task Invoke(HttpContext context)
         {
@@ -36,13 +38,13 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
             }
         }
 
-        private static async Task HandleError(HttpContext context, Exception error)
+        private async Task HandleError(HttpContext context, Exception error)
         {
             context.Response.StatusCode = ServerErrorCode;
             context.Response.ContentType = "application/json";
             var errorMsg = $"Msg={error.Message}\n Stacktrace={error.StackTrace}" +
                 $"\n Path={context.Request.Path}\n Query={context.Request.QueryString}\n CultureName={CultureInfo.CurrentCulture.Name}";
-            Logging.Logger.Log.Error(errorMsg);
+            _logger.LogCritical(error, errorMsg);
             await context.Response.WriteAsync(JsonConvert.SerializeObject(new
             {
                 state = "Internal Server Error",

@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CoverageSession>
-  <Summary numSequencePoints="405" visitedSequencePoints="130" numBranchPoints="171" visitedBranchPoints="53" sequenceCoverage="32.09" branchCoverage="30.99" maxCyclomaticComplexity="170" minCyclomaticComplexity="59" visitedClasses="12" numClasses="40" visitedMethods="26" numMethods="95" />
+  <Summary numSequencePoints="404" visitedSequencePoints="130" numBranchPoints="171" visitedBranchPoints="53" sequenceCoverage="32.17" branchCoverage="30.99" maxCyclomaticComplexity="169" minCyclomaticComplexity="59" visitedClasses="12" numClasses="40" visitedMethods="26" numMethods="94" />
   <Modules>
-    <Module hash="47EB492E-C9C6-4B2A-8645-B0697F7D33CF">
+    <Module hash="66FCF429-AE0A-4BFE-934E-CF2D1A0A3D85">
       <ModulePath>Fanex.Athena.AnalyticsAPI.Common.dll</ModulePath>
-      <ModuleTime>2019-11-27T11:30:29</ModuleTime>
+      <ModuleTime>2019-11-28T03:11:26</ModuleTime>
       <ModuleName>Fanex.Athena.AnalyticsAPI.Common</ModuleName>
       <Files>
         <File uid="1" fullPath="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Models\Configuration\AppSettings.cs" />
@@ -713,7 +713,7 @@
           </Methods>
         </Class>
         <Class>
-          <Summary numSequencePoints="5" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0" branchCoverage="100" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" visitedClasses="0" numClasses="1" visitedMethods="0" numMethods="5" />
+          <Summary numSequencePoints="4" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0" branchCoverage="100" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" visitedClasses="0" numClasses="1" visitedMethods="0" numMethods="4" />
           <FullName>Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels.GeneralFilterMetaModel</FullName>
           <Methods>
             <Method cyclomaticComplexity="1" nPathComplexity="0" sequenceCoverage="0" branchCoverage="100" isConstructor="False" isGetter="True" isSetter="False" isStatic="True">
@@ -759,17 +759,6 @@
               </SequencePoints>
               <BranchPoints />
               <MethodPoint vc="0" uspid="0" p8:type="SequencePoint" ordinal="3" offset="3" sc="0" sl="11" ec="1" el="11" bec="0" bev="0" fileid="9" xmlns:p8="xsi" />
-            </Method>
-            <Method cyclomaticComplexity="1" nPathComplexity="0" sequenceCoverage="0" branchCoverage="100" isConstructor="False" isGetter="True" isSetter="False" isStatic="True">
-              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0" branchCoverage="100" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
-              <MetadataToken />
-              <Name>System.String Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels.GeneralFilterMetaModel::get_Language()</Name>
-              <FileRef uid="9" />
-              <SequencePoints>
-                <SequencePoint vc="0" uspid="13" ordinal="0" sl="13" sc="1" el="13" ec="2" bec="0" bev="0" fileid="9" />
-              </SequencePoints>
-              <BranchPoints />
-              <MethodPoint vc="0" uspid="0" p8:type="SequencePoint" ordinal="4" offset="4" sc="0" sl="13" ec="1" el="13" bec="0" bev="0" fileid="9" xmlns:p8="xsi" />
             </Method>
           </Methods>
         </Class>
@@ -1481,9 +1470,9 @@
         </Class>
       </Classes>
     </Module>
-    <Module hash="26FE77EA-9777-4617-9E86-F3CC8A68290F">
+    <Module hash="DE73D55C-AF08-4419-A208-CC1F3C5D7F5A">
       <ModulePath>Fanex.Athena.LGAPI.SSAS.Bridge.dll</ModulePath>
-      <ModuleTime>2019-11-27T11:30:29</ModuleTime>
+      <ModuleTime>2019-11-28T03:11:26</ModuleTime>
       <ModuleName>Fanex.Athena.LGAPI.SSAS.Bridge</ModuleName>
       <Files>
         <File uid="23" fullPath="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\SSAS\Fanex.Athena.LGAPI.SSAS.Bridge\Services\HttpClientService.cs" />

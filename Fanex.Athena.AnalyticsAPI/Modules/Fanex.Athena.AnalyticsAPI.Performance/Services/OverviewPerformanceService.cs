@@ -105,8 +105,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             var prevPeriodDtos = data.ElementAtOrDefault(0);
             var currentPeriodDtos = data.ElementAtOrDefault(1);
 
-            prevPeriodDtos = prevPeriodDtos.GroupTo(_ => _.Id, BettypeTopChangeDTOSelector);
-            currentPeriodDtos = currentPeriodDtos.GroupTo(_ => _.Id, BettypeTopChangeDTOSelector);
+            prevPeriodDtos = prevPeriodDtos.GroupTo(_ => _.Id, bettypeTopChangeDTOSelector);
+            currentPeriodDtos = currentPeriodDtos.GroupTo(_ => _.Id, bettypeTopChangeDTOSelector);
 
             var result = _viewModelMapper.ToTopChangeVM(prevPeriodDtos, currentPeriodDtos);
 
@@ -143,7 +143,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             return result;
         }
 
-        private static Func<IGrouping<string, BettypeTopChangeDTO>, BettypeTopChangeDTO> BettypeTopChangeDTOSelector = _ =>
+        private static Func<IGrouping<string, BettypeTopChangeDTO>, BettypeTopChangeDTO> bettypeTopChangeDTOSelector = _ =>
         {
             var first = _.First();
             return new BettypeTopChangeDTO

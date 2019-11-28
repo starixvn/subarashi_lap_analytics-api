@@ -1,4 +1,5 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Constants;
+using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
 using Fanex.Athena.AnalyticsAPI.Core.Extensions;
 using Fanex.Athena.AnalyticsAPI.Core.Models.Configuration;
 using Fanex.Athena.ExtService.Common.Configuration;
@@ -6,6 +7,7 @@ using Fanex.Data;
 using Fanex.Data.SqlServer;
 using Fanex.Logging;
 using Fanex.Logging.RabbitMQ;
+using Fanex.RemotingRef;
 using LAP.ONEBook.Security;
 using LAP.ONEBook.Security.StorageProvider.SqlServer;
 using Microsoft.AspNetCore.Builder;
@@ -17,6 +19,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ONEbook.UM.Configurations;
 using ONEbook.UM.Extensions;
+using System;
 using System.Collections.Generic;
 using System.IO.Compression;
 using System.Security.Claims;
@@ -28,6 +31,7 @@ namespace Fanex.Athena.AnalyticsAPI
     {
         private const string API_NAME = "LAP - Analytics API";
         private const string DEFAULT_SITE_NAME = "12Bet"; //only development
+        private const string DEFAULT_LANG_CODE = LangCodeConst.EnUS; //only development
 
         public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
@@ -40,7 +44,14 @@ namespace Fanex.Athena.AnalyticsAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            RefDataTypeContainer
+                .ConnectTo(new Uri(Configuration["Fanex.RemotingRef.Service.Url"]))
+                .FromApplication("LAP_Analytics_API");
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.Configure<IConfiguration>(Configuration);
+            services.AddSingleton<IRemotingRefService, RemotingRefService>();
 
             services.AddSwaggerDoc(Env, API_NAME);
 
@@ -131,7 +142,8 @@ namespace Fanex.Athena.AnalyticsAPI
                 app.Use(async (context, next) =>
                 {
                     context.User = new GenericPrincipal(new ClaimsIdentity(new[] {
-                        new Claim(ClaimTypes.Name, DEFAULT_SITE_NAME) }),
+                        new Claim(ClaimTypes.Name, DEFAULT_SITE_NAME),
+                        new Claim("language", DEFAULT_LANG_CODE) }),
                            new[] { "" });
 
                     await next.Invoke();
@@ -142,6 +154,7 @@ namespace Fanex.Athena.AnalyticsAPI
                 app.UseErrorHandler();
                 app.UseOneAuth();
             }
+            app.UseOneAuth();
             app.UseUM();
 
             app.UseMvc();

@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<coverage line-rate="0.6291" branch-rate="0.5163" version="1.9" timestamp="1574854230" lines-covered="1157" lines-valid="1839" branches-covered="332" branches-valid="643">
+<coverage line-rate="0.6289" branch-rate="0.5163" version="1.9" timestamp="1574910689" lines-covered="1156" lines-valid="1838" branches-covered="332" branches-valid="643">
   <sources>
     <source></source>
   </sources>
   <packages>
-    <package name="Fanex.Athena.AnalyticsAPI.Common" line-rate="0.4208" branch-rate="0.1459" complexity="186">
+    <package name="Fanex.Athena.AnalyticsAPI.Common" line-rate="0.419" branch-rate="0.1459" complexity="185">
       <classes>
         <class name="Fanex.Athena.ExtService.Common.Configuration.AppSettings" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Models\Configuration\AppSettings.cs" line-rate="0" branch-rate="1" complexity="5">
           <methods>
@@ -812,7 +812,7 @@
             <line number="32" hits="277" branch="False" />
           </lines>
         </class>
-        <class name="Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels.GeneralFilterMetaModel" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Models\MetaModels\GeneralFilterMetaModel.cs" line-rate="1" branch-rate="1" complexity="5">
+        <class name="Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels.GeneralFilterMetaModel" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Models\MetaModels\GeneralFilterMetaModel.cs" line-rate="1" branch-rate="1" complexity="4">
           <methods>
             <method name="get_SiteName" signature="()" line-rate="1" branch-rate="1">
               <lines>
@@ -834,18 +834,12 @@
                 <line number="11" hits="305" branch="False" />
               </lines>
             </method>
-            <method name="get_Language" signature="()" line-rate="1" branch-rate="1">
-              <lines>
-                <line number="13" hits="80" branch="False" />
-              </lines>
-            </method>
           </methods>
           <lines>
             <line number="5" hits="279" branch="False" />
             <line number="7" hits="467" branch="False" />
             <line number="9" hits="440" branch="False" />
             <line number="11" hits="305" branch="False" />
-            <line number="13" hits="80" branch="False" />
           </lines>
         </class>
         <class name="Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels.IdentityMetaModel" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Models\MetaModels\IdentityMetaModel.cs" line-rate="1" branch-rate="1" complexity="2">
