@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
-using System.Globalization;
 using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
@@ -12,12 +10,12 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
     {
         private const int ServerErrorCode = 500;
         private readonly RequestDelegate _next;
-        private readonly ILogger _logger;
-        public ErrorHandler(RequestDelegate next, ILogger<ErrorHandler> logger)
+
+        public ErrorHandler(RequestDelegate next)
         {
             _next = next;
-            _logger = logger;
         }
+
         public async Task Invoke(HttpContext context)
         {
             var error = context.Features[typeof(IExceptionHandlerFeature)] as IExceptionHandlerFeature;
@@ -30,7 +28,6 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
             try
             {
                 await _next.Invoke(context);
-
             }
             catch (Exception exception)
             {
@@ -43,8 +40,10 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
             context.Response.StatusCode = ServerErrorCode;
             context.Response.ContentType = "application/json";
             var errorMsg = $"Msg={error.Message}\n Stacktrace={error.StackTrace}" +
-                $"\n Path={context.Request.Path}\n Query={context.Request.QueryString}\n CultureName={CultureInfo.CurrentCulture.Name}";
-            _logger.LogCritical(error, errorMsg);
+                $"\n Path={context.Request.Path}\n Query={context.Request.QueryString}\n";
+
+            Logging.Logger.Log.Error(errorMsg);
+
             await context.Response.WriteAsync(JsonConvert.SerializeObject(new
             {
                 state = "Internal Server Error",

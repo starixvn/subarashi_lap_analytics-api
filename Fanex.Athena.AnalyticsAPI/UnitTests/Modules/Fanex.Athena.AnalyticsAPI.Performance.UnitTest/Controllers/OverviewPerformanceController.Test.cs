@@ -17,7 +17,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Controllers
         private readonly OverviewPerformanceController _target;
         private readonly Mock<IContextService> _contextServiceMock;
         private readonly Mock<IOverviewPerformanceService> _overviewServiceMock;
-
         private readonly Fixture _fixture;
 
         public OverviewPerformanceController_Test()

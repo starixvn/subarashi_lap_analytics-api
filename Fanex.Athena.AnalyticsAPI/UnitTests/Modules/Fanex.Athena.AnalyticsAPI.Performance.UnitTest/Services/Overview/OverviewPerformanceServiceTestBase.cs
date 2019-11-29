@@ -13,6 +13,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Services
         protected readonly Mock<IContextService> _contextServiceMock;
         protected readonly Mock<IPerformanceRepository> _repositoryMock;
         protected readonly Mock<IOverviewPerformanceVMMapper> _mapperMock;
+        protected readonly Mock<ITranslationService> _translationServiceMock;
 
         protected readonly Fixture _fixture;
 
@@ -24,15 +25,16 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Services
             _contextServiceMock = new Mock<IContextService>();
             _repositoryMock = new Mock<IPerformanceRepository>();
             _mapperMock = new Mock<IOverviewPerformanceVMMapper>();
+            _translationServiceMock = new Mock<ITranslationService>();
 
-            _target = new OverviewPerformanceService(_contextServiceMock.Object, _repositoryMock.Object, _mapperMock.Object);
+            _target = new OverviewPerformanceService(_contextServiceMock.Object, _repositoryMock.Object, _mapperMock.Object, _translationServiceMock.Object);
         }
 
         protected static PerformanceFilterMetaModel FakePerformanceFilterMetaModel => new PerformanceFilterMetaModel
         {
-              CurrentPeriod = new Common.Models.MetaModels.MonthRangeMetaModel { FromMonth = "01/2019", ToMonth = "12/2019" },
-              PreviousPeriod = new Common.Models.MetaModels.MonthRangeMetaModel { FromMonth = "01/2018", ToMonth = "12/2019" },
-              Measurement = new Common.Models.MetaModels.SelectMetaModel()
+            CurrentPeriod = new Common.Models.MetaModels.MonthRangeMetaModel { FromMonth = "01/2019", ToMonth = "12/2019" },
+            PreviousPeriod = new Common.Models.MetaModels.MonthRangeMetaModel { FromMonth = "01/2018", ToMonth = "12/2019" },
+            Measurement = new Common.Models.MetaModels.SelectMetaModel()
         };
     }
 }

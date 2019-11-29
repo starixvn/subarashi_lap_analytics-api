@@ -1,64 +1,63 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Constants;
-using Fanex.Athena.AnalyticsAPI.Common.Resources.Lang;
-using Fanex.RemotingRef;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Attributes;
+using System;
 using System.Collections.Generic;
-using System.Resources;
+using System.Linq;
+using System.Reflection;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
     public class TranslationService : ITranslationService
     {
-        private static IDictionary<string, ResourceManager> resourceFactory = new Dictionary<string, ResourceManager>
-        {
-            { LangCodeConst.EnUS, LangEnUS.ResourceManager },
-            { LangCodeConst.ZhCN, LangZhCN.ResourceManager },
-            { LangCodeConst.ZhHans, LangZhHans.ResourceManager },
-            { LangCodeConst.ZhTW, LangZhTW.ResourceManager }
-        };
+        private readonly ILangResourceService _translationService;
 
-        private readonly IRemotingRefService _remotingRefService;
-
-        public TranslationService(IRemotingRefService remotingRefService)
+        public TranslationService(ILangResourceService translationService)
         {
-            _remotingRefService = remotingRefService;
+            _translationService = translationService;
         }
 
-        public string GetDisplayBetTypeName(string betTypeId, string langCode, string defaultValue)
+        public void Translate<T>(IEnumerable<T> originalItems, string langCode, string translationType = null)
+            where T : class
         {
-            var result = _remotingRefService.GetDisplayedBetTypeName(betTypeId, langCode);
-            if (string.IsNullOrWhiteSpace(result))
+            if (originalItems == null || !originalItems.Any())
             {
-                result = defaultValue;
-            }
-            return result;
-        }
-
-        public string GetPlatformName(string platformId, string langCode, string defaultValue)
-        {
-            return GetValue("platform", platformId, langCode) ?? defaultValue;
-        }
-
-        public string GetProductName(string productId, string langCode, string defaultValue)
-        {
-            return GetValue("product", productId, langCode) ?? defaultValue;
-        }
-
-        private static string GetValue(string type, string id, string langCode)
-        {
-            if (!resourceFactory.ContainsKey(langCode))
-            {
-                return null;
+                return;
             }
 
-            var key = GetKey(type, id);
-            var result = resourceFactory[langCode].GetString(key);
+            var type = originalItems.ElementAt(0).GetType();
+            var props = type.GetProperties();
 
-            return result;
+            foreach (var originalItem in originalItems)
+            {
+                foreach (var prop in props)
+                {
+                    var enumerable = prop.GetValue(originalItem) as IEnumerable<object>;
+                    if (enumerable != null)
+                    {
+                        Translate(enumerable, langCode, translationType);
+                    }
+                    else
+                    {
+                        BindTranslateValue(originalItem, type, prop, langCode, translationType);
+                    }
+                }
+            }
         }
 
-        private static string GetKey(string type, string id)
+        private void BindTranslateValue<T>(T originalItem, Type type, PropertyInfo prop, string langCode, string translationType)
         {
-            return $"{type}_{id}";
+            var attributeInfo = Attribute.GetCustomAttribute(prop, typeof(TranslationAttribute)) as TranslationAttribute;
+            if (attributeInfo != null)
+            {
+                var id = type.GetProperty(attributeInfo.PropertyId)?
+                         .GetValue(originalItem)?
+                         .ToString();
+
+                var defaultValue = prop.GetValue(originalItem)?.ToString();
+                translationType = translationType ?? attributeInfo.TranslationType;
+
+                var translateValue = _translationService.GetName(translationType, id, langCode, defaultValue);
+                prop.SetValue(originalItem, translateValue);
+            }
         }
     }
 }

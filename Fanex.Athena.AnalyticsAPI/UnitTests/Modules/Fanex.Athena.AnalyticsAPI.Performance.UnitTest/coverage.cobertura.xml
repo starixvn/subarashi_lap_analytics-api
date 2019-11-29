@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<coverage line-rate="0.6289" branch-rate="0.5163" version="1.9" timestamp="1574910689" lines-covered="1156" lines-valid="1838" branches-covered="332" branches-valid="643">
+<coverage line-rate="0.5884" branch-rate="0.4962" version="1.9" timestamp="1574942108" lines-covered="1161" lines-valid="1973" branches-covered="334" branches-valid="673">
   <sources>
     <source></source>
   </sources>
   <packages>
-    <package name="Fanex.Athena.AnalyticsAPI.Common" line-rate="0.419" branch-rate="0.1459" complexity="185">
+    <package name="Fanex.Athena.AnalyticsAPI.Common" line-rate="0.3002" branch-rate="0.1226" complexity="233">
       <classes>
         <class name="Fanex.Athena.ExtService.Common.Configuration.AppSettings" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Models\Configuration\AppSettings.cs" line-rate="0" branch-rate="1" complexity="5">
           <methods>
@@ -568,6 +568,424 @@
             <line number="21" hits="0" branch="False" />
           </lines>
         </class>
+        <class name="Fanex.Athena.AnalyticsAPI.Common.Services.TranslationService" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Services\TranslationService\TranslationService.cs" line-rate="0" branch-rate="0" complexity="11">
+          <methods>
+            <method name="GetDisplayBetTypeName" signature="(System.String,System.String,System.String)" line-rate="0" branch-rate="0">
+              <lines>
+                <line number="27" hits="0" branch="False" />
+                <line number="28" hits="0" branch="False" />
+                <line number="29" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="23" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="30" hits="0" branch="False" />
+                <line number="31" hits="0" branch="False" />
+                <line number="32" hits="0" branch="False" />
+                <line number="33" hits="0" branch="False" />
+                <line number="34" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="GetPlatformName" signature="(System.String,System.String,System.String)" line-rate="0" branch-rate="0">
+              <lines>
+                <line number="37" hits="0" branch="False" />
+                <line number="38" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="14" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="39" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="GetProductName" signature="(System.String,System.String,System.String)" line-rate="0" branch-rate="0">
+              <lines>
+                <line number="42" hits="0" branch="False" />
+                <line number="43" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="14" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="44" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="GetValue" signature="(System.String,System.String,System.String)" line-rate="0" branch-rate="0">
+              <lines>
+                <line number="47" hits="0" branch="False" />
+                <line number="48" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="17" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="49" hits="0" branch="False" />
+                <line number="50" hits="0" branch="False" />
+                <line number="53" hits="0" branch="False" />
+                <line number="54" hits="0" branch="False" />
+                <line number="56" hits="0" branch="False" />
+                <line number="57" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="GetKey" signature="(System.String,System.String)" line-rate="0" branch-rate="1">
+              <lines>
+                <line number="60" hits="0" branch="False" />
+                <line number="61" hits="0" branch="False" />
+                <line number="62" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(Fanex.RemotingRef.IRemotingRefService)" line-rate="0" branch-rate="1">
+              <lines>
+                <line number="21" hits="0" branch="False" />
+                <line number="22" hits="0" branch="False" />
+                <line number="23" hits="0" branch="False" />
+                <line number="24" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name=".cctor" signature="()" line-rate="0" branch-rate="1">
+              <lines>
+                <line number="11" hits="0" branch="False" />
+                <line number="12" hits="0" branch="False" />
+                <line number="13" hits="0" branch="False" />
+                <line number="14" hits="0" branch="False" />
+                <line number="15" hits="0" branch="False" />
+                <line number="16" hits="0" branch="False" />
+                <line number="17" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="27" hits="0" branch="False" />
+            <line number="28" hits="0" branch="False" />
+            <line number="29" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="23" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="30" hits="0" branch="False" />
+            <line number="31" hits="0" branch="False" />
+            <line number="32" hits="0" branch="False" />
+            <line number="33" hits="0" branch="False" />
+            <line number="34" hits="0" branch="False" />
+            <line number="37" hits="0" branch="False" />
+            <line number="38" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="14" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="39" hits="0" branch="False" />
+            <line number="42" hits="0" branch="False" />
+            <line number="43" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="14" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="44" hits="0" branch="False" />
+            <line number="47" hits="0" branch="False" />
+            <line number="48" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="17" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="49" hits="0" branch="False" />
+            <line number="50" hits="0" branch="False" />
+            <line number="53" hits="0" branch="False" />
+            <line number="54" hits="0" branch="False" />
+            <line number="56" hits="0" branch="False" />
+            <line number="57" hits="0" branch="False" />
+            <line number="60" hits="0" branch="False" />
+            <line number="61" hits="0" branch="False" />
+            <line number="62" hits="0" branch="False" />
+            <line number="21" hits="0" branch="False" />
+            <line number="22" hits="0" branch="False" />
+            <line number="23" hits="0" branch="False" />
+            <line number="24" hits="0" branch="False" />
+            <line number="11" hits="0" branch="False" />
+            <line number="12" hits="0" branch="False" />
+            <line number="13" hits="0" branch="False" />
+            <line number="14" hits="0" branch="False" />
+            <line number="15" hits="0" branch="False" />
+            <line number="16" hits="0" branch="False" />
+            <line number="17" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="Fanex.Athena.AnalyticsAPI.Common.Resources.Lang.LangEnUS" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Resources\Lang\LangEnUS.Designer.cs" line-rate="0" branch-rate="0" complexity="9">
+          <methods>
+            <method name="get_ResourceManager" signature="()" line-rate="0" branch-rate="0">
+              <lines>
+                <line number="40" hits="0" branch="False" />
+                <line number="41" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="11" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="42" hits="0" branch="False" />
+                <line number="43" hits="0" branch="False" />
+                <line number="44" hits="0" branch="False" />
+                <line number="45" hits="0" branch="False" />
+                <line number="46" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Culture" signature="()" line-rate="0" branch-rate="1">
+              <lines>
+                <line number="55" hits="0" branch="False" />
+                <line number="56" hits="0" branch="False" />
+                <line number="57" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="set_Culture" signature="(System.Globalization.CultureInfo)" line-rate="0" branch-rate="1">
+              <lines>
+                <line number="58" hits="0" branch="False" />
+                <line number="59" hits="0" branch="False" />
+                <line number="60" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_current_period" signature="()" line-rate="0" branch-rate="1">
+              <lines>
+                <line number="67" hits="0" branch="False" />
+                <line number="68" hits="0" branch="False" />
+                <line number="69" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_previous_period" signature="()" line-rate="0" branch-rate="1">
+              <lines>
+                <line number="76" hits="0" branch="False" />
+                <line number="77" hits="0" branch="False" />
+                <line number="78" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_product_1" signature="()" line-rate="0" branch-rate="1">
+              <lines>
+                <line number="85" hits="0" branch="False" />
+                <line number="86" hits="0" branch="False" />
+                <line number="87" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_product_3" signature="()" line-rate="0" branch-rate="1">
+              <lines>
+                <line number="94" hits="0" branch="False" />
+                <line number="95" hits="0" branch="False" />
+                <line number="96" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="()" line-rate="0" branch-rate="1">
+              <lines>
+                <line number="32" hits="0" branch="False" />
+                <line number="33" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="40" hits="0" branch="False" />
+            <line number="41" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="11" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="42" hits="0" branch="False" />
+            <line number="43" hits="0" branch="False" />
+            <line number="44" hits="0" branch="False" />
+            <line number="45" hits="0" branch="False" />
+            <line number="46" hits="0" branch="False" />
+            <line number="55" hits="0" branch="False" />
+            <line number="56" hits="0" branch="False" />
+            <line number="57" hits="0" branch="False" />
+            <line number="58" hits="0" branch="False" />
+            <line number="59" hits="0" branch="False" />
+            <line number="60" hits="0" branch="False" />
+            <line number="67" hits="0" branch="False" />
+            <line number="68" hits="0" branch="False" />
+            <line number="69" hits="0" branch="False" />
+            <line number="76" hits="0" branch="False" />
+            <line number="77" hits="0" branch="False" />
+            <line number="78" hits="0" branch="False" />
+            <line number="85" hits="0" branch="False" />
+            <line number="86" hits="0" branch="False" />
+            <line number="87" hits="0" branch="False" />
+            <line number="94" hits="0" branch="False" />
+            <line number="95" hits="0" branch="False" />
+            <line number="96" hits="0" branch="False" />
+            <line number="32" hits="0" branch="False" />
+            <line number="33" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="Fanex.Athena.AnalyticsAPI.Common.Resources.Lang.LangZhCN" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Resources\Lang\LangZhCN.Designer.cs" line-rate="0" branch-rate="0" complexity="5">
+          <methods>
+            <method name="get_ResourceManager" signature="()" line-rate="0" branch-rate="0">
+              <lines>
+                <line number="40" hits="0" branch="False" />
+                <line number="41" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="11" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="42" hits="0" branch="False" />
+                <line number="43" hits="0" branch="False" />
+                <line number="44" hits="0" branch="False" />
+                <line number="45" hits="0" branch="False" />
+                <line number="46" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Culture" signature="()" line-rate="0" branch-rate="1">
+              <lines>
+                <line number="55" hits="0" branch="False" />
+                <line number="56" hits="0" branch="False" />
+                <line number="57" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="set_Culture" signature="(System.Globalization.CultureInfo)" line-rate="0" branch-rate="1">
+              <lines>
+                <line number="58" hits="0" branch="False" />
+                <line number="59" hits="0" branch="False" />
+                <line number="60" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="()" line-rate="0" branch-rate="1">
+              <lines>
+                <line number="32" hits="0" branch="False" />
+                <line number="33" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="40" hits="0" branch="False" />
+            <line number="41" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="11" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="42" hits="0" branch="False" />
+            <line number="43" hits="0" branch="False" />
+            <line number="44" hits="0" branch="False" />
+            <line number="45" hits="0" branch="False" />
+            <line number="46" hits="0" branch="False" />
+            <line number="55" hits="0" branch="False" />
+            <line number="56" hits="0" branch="False" />
+            <line number="57" hits="0" branch="False" />
+            <line number="58" hits="0" branch="False" />
+            <line number="59" hits="0" branch="False" />
+            <line number="60" hits="0" branch="False" />
+            <line number="32" hits="0" branch="False" />
+            <line number="33" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="Fanex.Athena.AnalyticsAPI.Common.Resources.Lang.LangZhHans" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Resources\Lang\LangZhHans.Designer.cs" line-rate="0" branch-rate="0" complexity="5">
+          <methods>
+            <method name="get_ResourceManager" signature="()" line-rate="0" branch-rate="0">
+              <lines>
+                <line number="40" hits="0" branch="False" />
+                <line number="41" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="11" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="42" hits="0" branch="False" />
+                <line number="43" hits="0" branch="False" />
+                <line number="44" hits="0" branch="False" />
+                <line number="45" hits="0" branch="False" />
+                <line number="46" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Culture" signature="()" line-rate="0" branch-rate="1">
+              <lines>
+                <line number="55" hits="0" branch="False" />
+                <line number="56" hits="0" branch="False" />
+                <line number="57" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="set_Culture" signature="(System.Globalization.CultureInfo)" line-rate="0" branch-rate="1">
+              <lines>
+                <line number="58" hits="0" branch="False" />
+                <line number="59" hits="0" branch="False" />
+                <line number="60" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="()" line-rate="0" branch-rate="1">
+              <lines>
+                <line number="32" hits="0" branch="False" />
+                <line number="33" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="40" hits="0" branch="False" />
+            <line number="41" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="11" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="42" hits="0" branch="False" />
+            <line number="43" hits="0" branch="False" />
+            <line number="44" hits="0" branch="False" />
+            <line number="45" hits="0" branch="False" />
+            <line number="46" hits="0" branch="False" />
+            <line number="55" hits="0" branch="False" />
+            <line number="56" hits="0" branch="False" />
+            <line number="57" hits="0" branch="False" />
+            <line number="58" hits="0" branch="False" />
+            <line number="59" hits="0" branch="False" />
+            <line number="60" hits="0" branch="False" />
+            <line number="32" hits="0" branch="False" />
+            <line number="33" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="Fanex.Athena.AnalyticsAPI.Common.Resources.Lang.LangZhTW" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Resources\Lang\LangZhTW.Designer.cs" line-rate="0" branch-rate="0" complexity="5">
+          <methods>
+            <method name="get_ResourceManager" signature="()" line-rate="0" branch-rate="0">
+              <lines>
+                <line number="40" hits="0" branch="False" />
+                <line number="41" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="11" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="42" hits="0" branch="False" />
+                <line number="43" hits="0" branch="False" />
+                <line number="44" hits="0" branch="False" />
+                <line number="45" hits="0" branch="False" />
+                <line number="46" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Culture" signature="()" line-rate="0" branch-rate="1">
+              <lines>
+                <line number="55" hits="0" branch="False" />
+                <line number="56" hits="0" branch="False" />
+                <line number="57" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="set_Culture" signature="(System.Globalization.CultureInfo)" line-rate="0" branch-rate="1">
+              <lines>
+                <line number="58" hits="0" branch="False" />
+                <line number="59" hits="0" branch="False" />
+                <line number="60" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="()" line-rate="0" branch-rate="1">
+              <lines>
+                <line number="32" hits="0" branch="False" />
+                <line number="33" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="40" hits="0" branch="False" />
+            <line number="41" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="11" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="42" hits="0" branch="False" />
+            <line number="43" hits="0" branch="False" />
+            <line number="44" hits="0" branch="False" />
+            <line number="45" hits="0" branch="False" />
+            <line number="46" hits="0" branch="False" />
+            <line number="55" hits="0" branch="False" />
+            <line number="56" hits="0" branch="False" />
+            <line number="57" hits="0" branch="False" />
+            <line number="58" hits="0" branch="False" />
+            <line number="59" hits="0" branch="False" />
+            <line number="60" hits="0" branch="False" />
+            <line number="32" hits="0" branch="False" />
+            <line number="33" hits="0" branch="False" />
+          </lines>
+        </class>
         <class name="Fanex.Athena.AnalyticsAPI.Common.Repositories.BaseRepository" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Repositories\BaseRepository.cs" line-rate="0" branch-rate="0" complexity="12">
           <methods>
             <method name="QueryAsync" signature="(System.String)" line-rate="0" branch-rate="1">
@@ -812,7 +1230,7 @@
             <line number="32" hits="277" branch="False" />
           </lines>
         </class>
-        <class name="Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels.GeneralFilterMetaModel" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Models\MetaModels\GeneralFilterMetaModel.cs" line-rate="1" branch-rate="1" complexity="4">
+        <class name="Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels.GeneralFilterMetaModel" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Models\MetaModels\GeneralFilterMetaModel.cs" line-rate="1" branch-rate="1" complexity="5">
           <methods>
             <method name="get_SiteName" signature="()" line-rate="1" branch-rate="1">
               <lines>
@@ -834,12 +1252,18 @@
                 <line number="11" hits="305" branch="False" />
               </lines>
             </method>
+            <method name="get_LangCode" signature="()" line-rate="1" branch-rate="1">
+              <lines>
+                <line number="13" hits="80" branch="False" />
+              </lines>
+            </method>
           </methods>
           <lines>
             <line number="5" hits="279" branch="False" />
             <line number="7" hits="467" branch="False" />
             <line number="9" hits="440" branch="False" />
             <line number="11" hits="305" branch="False" />
+            <line number="13" hits="80" branch="False" />
           </lines>
         </class>
         <class name="Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels.IdentityMetaModel" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Models\MetaModels\IdentityMetaModel.cs" line-rate="1" branch-rate="1" complexity="2">
@@ -1334,7 +1758,7 @@
                 <line number="26" hits="0" branch="False" />
                 <line number="27" hits="0" branch="False" />
                 <line number="28" hits="0" branch="False" />
-                <line number="30" hits="0" branch="False" />
+                <line number="29" hits="0" branch="False" />
                 <line number="31" hits="0" branch="False" />
                 <line number="32" hits="0" branch="False" />
                 <line number="33" hits="0" branch="False" />
@@ -1342,15 +1766,16 @@
                 <line number="35" hits="0" branch="False" />
                 <line number="36" hits="0" branch="False" />
                 <line number="37" hits="0" branch="False" />
-                <line number="39" hits="0" branch="False" />
+                <line number="38" hits="0" branch="False" />
                 <line number="40" hits="0" branch="False" />
+                <line number="41" hits="0" branch="False" />
               </lines>
             </method>
             <method name="AddRepositories" signature="(Microsoft.Extensions.DependencyInjection.IServiceCollection)" line-rate="0" branch-rate="1">
               <lines>
-                <line number="43" hits="0" branch="False" />
                 <line number="44" hits="0" branch="False" />
                 <line number="45" hits="0" branch="False" />
+                <line number="46" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
@@ -1367,7 +1792,7 @@
             <line number="26" hits="0" branch="False" />
             <line number="27" hits="0" branch="False" />
             <line number="28" hits="0" branch="False" />
-            <line number="30" hits="0" branch="False" />
+            <line number="29" hits="0" branch="False" />
             <line number="31" hits="0" branch="False" />
             <line number="32" hits="0" branch="False" />
             <line number="33" hits="0" branch="False" />
@@ -1375,11 +1800,12 @@
             <line number="35" hits="0" branch="False" />
             <line number="36" hits="0" branch="False" />
             <line number="37" hits="0" branch="False" />
-            <line number="39" hits="0" branch="False" />
+            <line number="38" hits="0" branch="False" />
             <line number="40" hits="0" branch="False" />
-            <line number="43" hits="0" branch="False" />
+            <line number="41" hits="0" branch="False" />
             <line number="44" hits="0" branch="False" />
             <line number="45" hits="0" branch="False" />
+            <line number="46" hits="0" branch="False" />
           </lines>
         </class>
         <class name="Fanex.Athena.AnalyticsAPI.Common.Extensions.TaskExtension/&lt;WhenAllAsync&gt;d__0`2" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Extensions\TaskExtension.cs" line-rate="0" branch-rate="0" complexity="10">
@@ -1534,46 +1960,122 @@
             <line number="14" hits="13" branch="False" />
           </lines>
         </class>
-        <class name="Fanex.Athena.AnalyticsAPI.Common.Attributes.AutoBindMetaModelAttribute" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Attributes\AutoBindMetaModel.cs" line-rate="0" branch-rate="0" complexity="4">
+        <class name="Fanex.Athena.AnalyticsAPI.Common.Constants.LangCodeConst" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Constants\LangCodeConst.cs" line-rate="0" branch-rate="1" complexity="1">
           <methods>
-            <method name="OnActionExecuting" signature="(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)" line-rate="0" branch-rate="0">
+            <method name=".cctor" signature="()" line-rate="0" branch-rate="1">
               <lines>
                 <line number="12" hits="0" branch="False" />
-                <line number="13" hits="0" branch="True" condition-coverage="0% (0/2)">
-                  <conditions>
-                    <condition number="13" type="jump" coverage="0%" />
-                  </conditions>
-                </line>
+                <line number="13" hits="0" branch="False" />
                 <line number="14" hits="0" branch="False" />
-                <line number="15" hits="0" branch="True" condition-coverage="0% (0/2)">
-                  <conditions>
-                    <condition number="63" type="jump" coverage="0%" />
-                  </conditions>
-                </line>
+                <line number="15" hits="0" branch="False" />
                 <line number="16" hits="0" branch="False" />
                 <line number="17" hits="0" branch="False" />
                 <line number="18" hits="0" branch="False" />
-                <line number="19" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
             <line number="12" hits="0" branch="False" />
-            <line number="13" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="13" hits="0" branch="False" />
+            <line number="14" hits="0" branch="False" />
+            <line number="15" hits="0" branch="False" />
+            <line number="16" hits="0" branch="False" />
+            <line number="17" hits="0" branch="False" />
+            <line number="18" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="Fanex.Athena.AnalyticsAPI.Common.Attributes.AutoBindMetaModelAttribute" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Common\Attributes\AutoBindMetaModel.cs" line-rate="0" branch-rate="0" complexity="15">
+          <methods>
+            <method name="OnActionExecuting" signature="(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)" line-rate="0" branch-rate="0">
+              <lines>
+                <line number="14" hits="0" branch="False" />
+                <line number="15" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="13" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="16" hits="0" branch="False" />
+                <line number="17" hits="0" branch="False" />
+                <line number="18" hits="0" branch="True" condition-coverage="0% (0/4)">
+                  <conditions>
+                    <condition number="70" type="jump" coverage="0%" />
+                    <condition number="81" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="19" hits="0" branch="False" />
+                <line number="20" hits="0" branch="False" />
+                <line number="21" hits="0" branch="False" />
+                <line number="22" hits="0" branch="False" />
+                <line number="23" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="BindSiteName" signature="(Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels.IBaseMetaModel,System.Security.Claims.ClaimsPrincipal)" line-rate="0" branch-rate="1">
+              <lines>
+                <line number="26" hits="0" branch="False" />
+                <line number="27" hits="0" branch="False" />
+                <line number="28" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="BindDefaultLanguage" signature="(Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels.IBaseMetaModel,System.Security.Claims.ClaimsPrincipal)" line-rate="0" branch-rate="0">
+              <lines>
+                <line number="31" hits="0" branch="False" />
+                <line number="32" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="13" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="33" hits="0" branch="True" condition-coverage="0% (0/6)">
+                  <conditions>
+                    <condition number="51" type="jump" coverage="0%" />
+                    <condition number="67" type="jump" coverage="0%" />
+                    <condition number="82" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="34" hits="0" branch="False" />
+                <line number="35" hits="0" branch="False" />
+                <line number="36" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="14" hits="0" branch="False" />
+            <line number="15" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="13" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="14" hits="0" branch="False" />
-            <line number="15" hits="0" branch="True" condition-coverage="0% (0/2)">
-              <conditions>
-                <condition number="63" type="jump" coverage="0%" />
-              </conditions>
-            </line>
             <line number="16" hits="0" branch="False" />
             <line number="17" hits="0" branch="False" />
-            <line number="18" hits="0" branch="False" />
+            <line number="18" hits="0" branch="True" condition-coverage="0% (0/4)">
+              <conditions>
+                <condition number="70" type="jump" coverage="0%" />
+                <condition number="81" type="jump" coverage="0%" />
+              </conditions>
+            </line>
             <line number="19" hits="0" branch="False" />
+            <line number="20" hits="0" branch="False" />
+            <line number="21" hits="0" branch="False" />
+            <line number="22" hits="0" branch="False" />
+            <line number="23" hits="0" branch="False" />
+            <line number="26" hits="0" branch="False" />
+            <line number="27" hits="0" branch="False" />
+            <line number="28" hits="0" branch="False" />
+            <line number="31" hits="0" branch="False" />
+            <line number="32" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="13" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="33" hits="0" branch="True" condition-coverage="0% (0/6)">
+              <conditions>
+                <condition number="51" type="jump" coverage="0%" />
+                <condition number="67" type="jump" coverage="0%" />
+                <condition number="82" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="34" hits="0" branch="False" />
+            <line number="35" hits="0" branch="False" />
+            <line number="36" hits="0" branch="False" />
           </lines>
         </class>
       </classes>
@@ -1766,160 +2268,162 @@
         </class>
         <class name="Fanex.Athena.AnalyticsAPI.Core.Middleware.ErrorHandler" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Core\Middleware\ErrorHandler.cs" line-rate="0" branch-rate="1" complexity="1">
           <methods>
-            <method name=".ctor" signature="(Microsoft.AspNetCore.Http.RequestDelegate)" line-rate="0" branch-rate="1">
+            <method name=".ctor" signature="(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILogger`1&lt;Fanex.Athena.AnalyticsAPI.Core.Middleware.ErrorHandler&gt;)" line-rate="0" branch-rate="1">
               <lines>
-                <line number="15" hits="0" branch="False" />
                 <line number="16" hits="0" branch="False" />
                 <line number="17" hits="0" branch="False" />
                 <line number="18" hits="0" branch="False" />
+                <line number="19" hits="0" branch="False" />
+                <line number="20" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="15" hits="0" branch="False" />
             <line number="16" hits="0" branch="False" />
             <line number="17" hits="0" branch="False" />
             <line number="18" hits="0" branch="False" />
+            <line number="19" hits="0" branch="False" />
+            <line number="20" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Fanex.Athena.AnalyticsAPI.Core.Middleware.ErrorHandler/&lt;Invoke&gt;d__3" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Core\Middleware\ErrorHandler.cs" line-rate="0" branch-rate="0" complexity="14">
+        <class name="Fanex.Athena.AnalyticsAPI.Core.Middleware.ErrorHandler/&lt;Invoke&gt;d__4" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Core\Middleware\ErrorHandler.cs" line-rate="0" branch-rate="0" complexity="14">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="0">
               <lines>
-                <line number="20" hits="0" branch="False" />
-                <line number="21" hits="0" branch="False" />
-                <line number="23" hits="0" branch="True" condition-coverage="0% (0/4)">
+                <line number="22" hits="0" branch="False" />
+                <line number="23" hits="0" branch="False" />
+                <line number="25" hits="0" branch="True" condition-coverage="0% (0/4)">
                   <conditions>
                     <condition number="86" type="jump" coverage="0%" />
                     <condition number="107" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="24" hits="0" branch="False" />
-                <line number="25" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="26" hits="0" branch="False" />
+                <line number="27" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
-                    <condition number="145" type="jump" coverage="0%" />
+                    <condition number="151" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="26" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="28" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
-                    <condition number="233" type="jump" coverage="0%" />
+                    <condition number="239" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="29" hits="0" branch="False" />
-                <line number="30" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="31" hits="0" branch="False" />
+                <line number="32" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
-                    <condition number="276" type="jump" coverage="0%" />
-                  </conditions>
-                </line>
-                <line number="32" hits="0" branch="False" />
-                <line number="33" hits="0" branch="True" condition-coverage="0% (0/2)">
-                  <conditions>
-                    <condition number="388" type="jump" coverage="0%" />
+                    <condition number="282" type="jump" coverage="0%" />
                   </conditions>
                 </line>
                 <line number="34" hits="0" branch="False" />
                 <line number="35" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
-                    <condition number="444" type="jump" coverage="0%" />
+                    <condition number="394" type="jump" coverage="0%" />
                   </conditions>
                 </line>
                 <line number="36" hits="0" branch="False" />
-                <line number="37" hits="0" branch="False" />
+                <line number="37" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="456" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="38" hits="0" branch="False" />
+                <line number="39" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="20" hits="0" branch="False" />
-            <line number="21" hits="0" branch="False" />
-            <line number="23" hits="0" branch="True" condition-coverage="0% (0/4)">
+            <line number="22" hits="0" branch="False" />
+            <line number="23" hits="0" branch="False" />
+            <line number="25" hits="0" branch="True" condition-coverage="0% (0/4)">
               <conditions>
                 <condition number="86" type="jump" coverage="0%" />
                 <condition number="107" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="24" hits="0" branch="False" />
-            <line number="25" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="26" hits="0" branch="False" />
+            <line number="27" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
-                <condition number="145" type="jump" coverage="0%" />
+                <condition number="151" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="26" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="28" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
-                <condition number="233" type="jump" coverage="0%" />
+                <condition number="239" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="29" hits="0" branch="False" />
-            <line number="30" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="31" hits="0" branch="False" />
+            <line number="32" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
-                <condition number="276" type="jump" coverage="0%" />
-              </conditions>
-            </line>
-            <line number="32" hits="0" branch="False" />
-            <line number="33" hits="0" branch="True" condition-coverage="0% (0/2)">
-              <conditions>
-                <condition number="388" type="jump" coverage="0%" />
+                <condition number="282" type="jump" coverage="0%" />
               </conditions>
             </line>
             <line number="34" hits="0" branch="False" />
             <line number="35" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
-                <condition number="444" type="jump" coverage="0%" />
+                <condition number="394" type="jump" coverage="0%" />
               </conditions>
             </line>
             <line number="36" hits="0" branch="False" />
-            <line number="37" hits="0" branch="False" />
+            <line number="37" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="456" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="38" hits="0" branch="False" />
+            <line number="39" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Fanex.Athena.AnalyticsAPI.Core.Middleware.ErrorHandler/&lt;HandleError&gt;d__4" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Core\Middleware\ErrorHandler.cs" line-rate="0" branch-rate="0" complexity="2">
+        <class name="Fanex.Athena.AnalyticsAPI.Core.Middleware.ErrorHandler/&lt;HandleError&gt;d__5" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Core\Middleware\ErrorHandler.cs" line-rate="0" branch-rate="0" complexity="2">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="0">
               <lines>
-                <line number="40" hits="0" branch="False" />
-                <line number="41" hits="0" branch="False" />
                 <line number="42" hits="0" branch="False" />
                 <line number="43" hits="0" branch="False" />
                 <line number="44" hits="0" branch="False" />
                 <line number="45" hits="0" branch="False" />
-                <line number="46" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="46" hits="0" branch="False" />
+                <line number="47" hits="0" branch="False" />
+                <line number="48" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
-                    <condition number="264" type="jump" coverage="0%" />
+                    <condition number="281" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="47" hits="0" branch="False" />
-                <line number="48" hits="0" branch="False" />
                 <line number="49" hits="0" branch="False" />
                 <line number="50" hits="0" branch="False" />
                 <line number="51" hits="0" branch="False" />
                 <line number="52" hits="0" branch="False" />
+                <line number="53" hits="0" branch="False" />
+                <line number="54" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="40" hits="0" branch="False" />
-            <line number="41" hits="0" branch="False" />
             <line number="42" hits="0" branch="False" />
             <line number="43" hits="0" branch="False" />
             <line number="44" hits="0" branch="False" />
             <line number="45" hits="0" branch="False" />
-            <line number="46" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="46" hits="0" branch="False" />
+            <line number="47" hits="0" branch="False" />
+            <line number="48" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
-                <condition number="264" type="jump" coverage="0%" />
+                <condition number="281" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="47" hits="0" branch="False" />
-            <line number="48" hits="0" branch="False" />
             <line number="49" hits="0" branch="False" />
             <line number="50" hits="0" branch="False" />
             <line number="51" hits="0" branch="False" />
             <line number="52" hits="0" branch="False" />
+            <line number="53" hits="0" branch="False" />
+            <line number="54" hits="0" branch="False" />
           </lines>
         </class>
         <class name="Fanex.Athena.AnalyticsAPI.Core.Middleware.OneAuthHandler" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Core\Middleware\OneAuthHandler.cs" line-rate="0" branch-rate="0" complexity="13">
           <methods>
             <method name="ValidateToken" signature="(LAP.ONEBook.Security.DefaultAuthInfo`2&lt;System.Object,System.Object&gt;,System.String)" line-rate="0" branch-rate="0">
               <lines>
-                <line number="63" hits="0" branch="False" />
-                <line number="64" hits="0" branch="True" condition-coverage="0% (0/12)">
+                <line number="65" hits="0" branch="False" />
+                <line number="66" hits="0" branch="True" condition-coverage="0% (0/12)">
                   <conditions>
                     <condition number="2" type="jump" coverage="0%" />
                     <condition number="18" type="jump" coverage="0%" />
@@ -1929,10 +2433,10 @@
                     <condition number="62" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="65" hits="0" branch="False" />
-                <line number="66" hits="0" branch="False" />
-                <line number="69" hits="0" branch="False" />
-                <line number="70" hits="0" branch="False" />
+                <line number="67" hits="0" branch="False" />
+                <line number="68" hits="0" branch="False" />
+                <line number="71" hits="0" branch="False" />
+                <line number="72" hits="0" branch="False" />
               </lines>
             </method>
             <method name=".ctor" signature="(Microsoft.AspNetCore.Http.RequestDelegate,LAP.ONEBook.Security.IStorageProvider)" line-rate="0" branch-rate="1">
@@ -1946,8 +2450,8 @@
             </method>
           </methods>
           <lines>
-            <line number="63" hits="0" branch="False" />
-            <line number="64" hits="0" branch="True" condition-coverage="0% (0/12)">
+            <line number="65" hits="0" branch="False" />
+            <line number="66" hits="0" branch="True" condition-coverage="0% (0/12)">
               <conditions>
                 <condition number="2" type="jump" coverage="0%" />
                 <condition number="18" type="jump" coverage="0%" />
@@ -1957,10 +2461,10 @@
                 <condition number="62" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="65" hits="0" branch="False" />
-            <line number="66" hits="0" branch="False" />
-            <line number="69" hits="0" branch="False" />
-            <line number="70" hits="0" branch="False" />
+            <line number="67" hits="0" branch="False" />
+            <line number="68" hits="0" branch="False" />
+            <line number="71" hits="0" branch="False" />
+            <line number="72" hits="0" branch="False" />
             <line number="20" hits="0" branch="False" />
             <line number="21" hits="0" branch="False" />
             <line number="22" hits="0" branch="False" />
@@ -2058,12 +2562,14 @@
                 <line number="50" hits="0" branch="False" />
                 <line number="51" hits="0" branch="False" />
                 <line number="52" hits="0" branch="False" />
+                <line number="53" hits="0" branch="False" />
                 <line number="54" hits="0" branch="False" />
-                <line number="55" hits="0" branch="False" />
                 <line number="56" hits="0" branch="False" />
                 <line number="57" hits="0" branch="False" />
+                <line number="58" hits="0" branch="False" />
                 <line number="59" hits="0" branch="False" />
-                <line number="60" hits="0" branch="False" />
+                <line number="61" hits="0" branch="False" />
+                <line number="62" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
@@ -2092,48 +2598,50 @@
             <line number="50" hits="0" branch="False" />
             <line number="51" hits="0" branch="False" />
             <line number="52" hits="0" branch="False" />
+            <line number="53" hits="0" branch="False" />
             <line number="54" hits="0" branch="False" />
-            <line number="55" hits="0" branch="False" />
             <line number="56" hits="0" branch="False" />
             <line number="57" hits="0" branch="False" />
+            <line number="58" hits="0" branch="False" />
             <line number="59" hits="0" branch="False" />
-            <line number="60" hits="0" branch="False" />
+            <line number="61" hits="0" branch="False" />
+            <line number="62" hits="0" branch="False" />
           </lines>
         </class>
         <class name="Fanex.Athena.AnalyticsAPI.Core.Middleware.OneAuthHandler/&lt;HandleUnAuthorizedRequest&gt;d__7" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Core\Middleware\OneAuthHandler.cs" line-rate="0" branch-rate="0" complexity="2">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="0">
               <lines>
-                <line number="73" hits="0" branch="False" />
-                <line number="74" hits="0" branch="False" />
                 <line number="75" hits="0" branch="False" />
-                <line number="77" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="76" hits="0" branch="False" />
+                <line number="77" hits="0" branch="False" />
+                <line number="79" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="116" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="78" hits="0" branch="False" />
-                <line number="79" hits="0" branch="False" />
                 <line number="80" hits="0" branch="False" />
                 <line number="81" hits="0" branch="False" />
                 <line number="82" hits="0" branch="False" />
+                <line number="83" hits="0" branch="False" />
+                <line number="84" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="73" hits="0" branch="False" />
-            <line number="74" hits="0" branch="False" />
             <line number="75" hits="0" branch="False" />
-            <line number="77" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="76" hits="0" branch="False" />
+            <line number="77" hits="0" branch="False" />
+            <line number="79" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="116" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="78" hits="0" branch="False" />
-            <line number="79" hits="0" branch="False" />
             <line number="80" hits="0" branch="False" />
             <line number="81" hits="0" branch="False" />
             <line number="82" hits="0" branch="False" />
+            <line number="83" hits="0" branch="False" />
+            <line number="84" hits="0" branch="False" />
           </lines>
         </class>
         <class name="Fanex.Athena.AnalyticsAPI.Core.Extensions.MiddlewareExtensions" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Fanex.Athena.AnalyticsAPI.Core\Extensions\MiddlewareExtensions.cs" line-rate="0" branch-rate="0" complexity="8">
@@ -2280,7 +2788,7 @@
         </class>
       </classes>
     </package>
-    <package name="Fanex.Athena.AnalyticsAPI.Performance" line-rate="0.8107" branch-rate="0.8041" complexity="605">
+    <package name="Fanex.Athena.AnalyticsAPI.Performance" line-rate="0.8113" branch-rate="0.801" complexity="610">
       <classes>
         <class name="Fanex.Athena.AnalyticsAPI.Performance.Services.BettypePerformanceService" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Modules\Fanex.Athena.AnalyticsAPI.Performance\Services\BettypePerformanceService.cs" line-rate="1" branch-rate="1" complexity="1">
           <methods>
@@ -4200,28 +4708,34 @@
             <line number="7" hits="36" branch="False" />
           </lines>
         </class>
-        <class name="Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels.TopChangeVM" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Modules\Fanex.Athena.AnalyticsAPI.Performance\Models\ViewModels\TopChangeVM.cs" line-rate="1" branch-rate="1" complexity="3">
+        <class name="Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels.TopChangeVM" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Modules\Fanex.Athena.AnalyticsAPI.Performance\Models\ViewModels\TopChangeVM.cs" line-rate="1" branch-rate="1" complexity="4">
           <methods>
-            <method name="get_PerspectiveName" signature="()" line-rate="1" branch-rate="1">
+            <method name="get_PerspectiveId" signature="()" line-rate="1" branch-rate="1">
               <lines>
                 <line number="5" hits="69" branch="False" />
               </lines>
             </method>
-            <method name="get_Total" signature="()" line-rate="1" branch-rate="1">
+            <method name="get_PerspectiveName" signature="()" line-rate="1" branch-rate="1">
               <lines>
                 <line number="6" hits="69" branch="False" />
               </lines>
             </method>
+            <method name="get_Total" signature="()" line-rate="1" branch-rate="1">
+              <lines>
+                <line number="7" hits="69" branch="False" />
+              </lines>
+            </method>
             <method name="get_ChangePercent" signature="()" line-rate="1" branch-rate="1">
               <lines>
-                <line number="7" hits="75" branch="False" />
+                <line number="8" hits="75" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
             <line number="5" hits="69" branch="False" />
             <line number="6" hits="69" branch="False" />
-            <line number="7" hits="75" branch="False" />
+            <line number="7" hits="69" branch="False" />
+            <line number="8" hits="75" branch="False" />
           </lines>
         </class>
         <class name="Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels.BettypePerformanceFilterMetaModel" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Modules\Fanex.Athena.AnalyticsAPI.Performance\Models\MetaModels\BettypePerformanceFilterMetaModel.cs" line-rate="1" branch-rate="1" complexity="1">
@@ -5472,11 +5986,11 @@
           <methods>
             <method name="ToMeasurementGrowthPeriodVM" signature="(System.Collections.Generic.IEnumerable`1&lt;Fanex.Athena.AnalyticsAPI.Performance.Models.DTO.TotalDTO&gt;,System.Collections.Generic.IEnumerable`1&lt;Fanex.Athena.AnalyticsAPI.Performance.Models.DTO.TotalDTO&gt;,System.Collections.Generic.IEnumerable`1&lt;Fanex.Athena.AnalyticsAPI.Performance.Models.DTO.TotalDTO&gt;)" line-rate="1" branch-rate="0.5">
               <lines>
-                <line number="25" hits="3" branch="False" />
                 <line number="26" hits="3" branch="False" />
                 <line number="27" hits="3" branch="False" />
                 <line number="28" hits="3" branch="False" />
-                <line number="30" hits="3" branch="True" condition-coverage="50% (6/12)">
+                <line number="29" hits="3" branch="False" />
+                <line number="31" hits="3" branch="True" condition-coverage="50% (6/12)">
                   <conditions>
                     <condition number="53" type="jump" coverage="50%" />
                     <condition number="98" type="jump" coverage="50%" />
@@ -5486,7 +6000,6 @@
                     <condition number="263" type="jump" coverage="50%" />
                   </conditions>
                 </line>
-                <line number="31" hits="3" branch="False" />
                 <line number="32" hits="3" branch="False" />
                 <line number="33" hits="3" branch="False" />
                 <line number="34" hits="3" branch="False" />
@@ -5500,62 +6013,66 @@
                 <line number="42" hits="3" branch="False" />
                 <line number="43" hits="3" branch="False" />
                 <line number="44" hits="3" branch="False" />
-                <line number="46" hits="3" branch="False" />
+                <line number="45" hits="3" branch="False" />
                 <line number="47" hits="3" branch="False" />
+                <line number="48" hits="3" branch="False" />
               </lines>
             </method>
             <method name="ToTopChangeVM" signature="(System.Collections.Generic.IEnumerable`1&lt;TDto&gt;,System.Collections.Generic.IEnumerable`1&lt;TDto&gt;)" line-rate="1" branch-rate="1">
               <lines>
-                <line number="53" hits="2" branch="False" />
-                <line number="54" hits="6" branch="True" condition-coverage="100% (2/2)">
+                <line number="54" hits="2" branch="False" />
+                <line number="55" hits="6" branch="True" condition-coverage="100% (2/2)">
                   <conditions>
                     <condition number="22" type="jump" coverage="100%" />
                   </conditions>
                 </line>
-                <line number="55" hits="8" branch="True" condition-coverage="100% (2/2)">
+                <line number="56" hits="8" branch="True" condition-coverage="100% (2/2)">
                   <conditions>
                     <condition number="65" type="jump" coverage="100%" />
                   </conditions>
                 </line>
-                <line number="57" hits="12" branch="True" condition-coverage="100% (4/4)">
+                <line number="58" hits="12" branch="True" condition-coverage="100% (4/4)">
                   <conditions>
                     <condition number="107" type="jump" coverage="100%" />
                     <condition number="144" type="jump" coverage="100%" />
                   </conditions>
                 </line>
-                <line number="59" hits="2" branch="True" condition-coverage="100% (2/2)">
+                <line number="60" hits="2" branch="True" condition-coverage="100% (2/2)">
                   <conditions>
                     <condition number="204" type="jump" coverage="100%" />
                   </conditions>
                 </line>
-                <line number="60" hits="2" branch="False" />
-                <line number="61" hits="8" branch="False" />
+                <line number="61" hits="2" branch="False" />
                 <line number="62" hits="8" branch="False" />
                 <line number="63" hits="8" branch="False" />
                 <line number="64" hits="8" branch="False" />
                 <line number="65" hits="8" branch="False" />
                 <line number="66" hits="8" branch="False" />
-                <line number="67" hits="8" branch="False" />
-                <line number="68" hits="2" branch="False" />
+                <line number="67" hits="2" branch="False" />
+                <line number="68" hits="8" branch="False" />
                 <line number="69" hits="8" branch="False" />
                 <line number="70" hits="8" branch="False" />
-                <line number="71" hits="8" branch="False" />
+                <line number="71" hits="2" branch="False" />
                 <line number="72" hits="8" branch="False" />
                 <line number="73" hits="8" branch="False" />
                 <line number="74" hits="8" branch="False" />
                 <line number="75" hits="8" branch="False" />
                 <line number="76" hits="8" branch="False" />
-                <line number="77" hits="2" branch="False" />
-                <line number="79" hits="2" branch="False" />
-                <line number="80" hits="2" branch="False" />
+                <line number="77" hits="8" branch="False" />
+                <line number="78" hits="8" branch="False" />
+                <line number="79" hits="8" branch="False" />
+                <line number="80" hits="8" branch="False" />
+                <line number="81" hits="2" branch="False" />
+                <line number="83" hits="2" branch="False" />
+                <line number="84" hits="2" branch="False" />
               </lines>
             </method>
             <method name="ToSummaryVM" signature="(System.Collections.Generic.IEnumerable`1&lt;Fanex.Athena.AnalyticsAPI.Performance.Models.DTO.SummaryDTO&gt;,System.Collections.Generic.IEnumerable`1&lt;Fanex.Athena.AnalyticsAPI.Performance.Models.DTO.SummaryDTO&gt;)" line-rate="1" branch-rate="1">
               <lines>
-                <line number="83" hits="2" branch="False" />
-                <line number="84" hits="2" branch="False" />
-                <line number="85" hits="2" branch="False" />
-                <line number="87" hits="2" branch="True" condition-coverage="100% (18/18)">
+                <line number="87" hits="2" branch="False" />
+                <line number="88" hits="2" branch="False" />
+                <line number="89" hits="2" branch="False" />
+                <line number="91" hits="2" branch="True" condition-coverage="100% (18/18)">
                   <conditions>
                     <condition number="42" type="jump" coverage="100%" />
                     <condition number="86" type="jump" coverage="100%" />
@@ -5568,10 +6085,6 @@
                     <condition number="375" type="jump" coverage="100%" />
                   </conditions>
                 </line>
-                <line number="88" hits="2" branch="False" />
-                <line number="89" hits="2" branch="False" />
-                <line number="90" hits="2" branch="False" />
-                <line number="91" hits="2" branch="False" />
                 <line number="92" hits="2" branch="False" />
                 <line number="93" hits="2" branch="False" />
                 <line number="94" hits="2" branch="False" />
@@ -5588,24 +6101,28 @@
                 <line number="105" hits="2" branch="False" />
                 <line number="106" hits="2" branch="False" />
                 <line number="107" hits="2" branch="False" />
+                <line number="108" hits="2" branch="False" />
                 <line number="109" hits="2" branch="False" />
                 <line number="110" hits="2" branch="False" />
+                <line number="111" hits="2" branch="False" />
+                <line number="113" hits="2" branch="False" />
+                <line number="114" hits="2" branch="False" />
               </lines>
             </method>
             <method name=".ctor" signature="(Fanex.Athena.AnalyticsAPI.Common.Services.ICalculationService)" line-rate="1" branch-rate="1">
               <lines>
-                <line number="17" hits="7" branch="False" />
                 <line number="18" hits="7" branch="False" />
                 <line number="19" hits="7" branch="False" />
+                <line number="20" hits="7" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="25" hits="3" branch="False" />
             <line number="26" hits="3" branch="False" />
             <line number="27" hits="3" branch="False" />
             <line number="28" hits="3" branch="False" />
-            <line number="30" hits="3" branch="True" condition-coverage="50% (6/12)">
+            <line number="29" hits="3" branch="False" />
+            <line number="31" hits="3" branch="True" condition-coverage="50% (6/12)">
               <conditions>
                 <condition number="53" type="jump" coverage="50%" />
                 <condition number="98" type="jump" coverage="50%" />
@@ -5615,7 +6132,6 @@
                 <condition number="263" type="jump" coverage="50%" />
               </conditions>
             </line>
-            <line number="31" hits="3" branch="False" />
             <line number="32" hits="3" branch="False" />
             <line number="33" hits="3" branch="False" />
             <line number="34" hits="3" branch="False" />
@@ -5629,54 +6145,58 @@
             <line number="42" hits="3" branch="False" />
             <line number="43" hits="3" branch="False" />
             <line number="44" hits="3" branch="False" />
-            <line number="46" hits="3" branch="False" />
+            <line number="45" hits="3" branch="False" />
             <line number="47" hits="3" branch="False" />
-            <line number="53" hits="2" branch="False" />
-            <line number="54" hits="6" branch="True" condition-coverage="100% (2/2)">
+            <line number="48" hits="3" branch="False" />
+            <line number="54" hits="2" branch="False" />
+            <line number="55" hits="6" branch="True" condition-coverage="100% (2/2)">
               <conditions>
                 <condition number="22" type="jump" coverage="100%" />
               </conditions>
             </line>
-            <line number="55" hits="8" branch="True" condition-coverage="100% (2/2)">
+            <line number="56" hits="8" branch="True" condition-coverage="100% (2/2)">
               <conditions>
                 <condition number="65" type="jump" coverage="100%" />
               </conditions>
             </line>
-            <line number="57" hits="12" branch="True" condition-coverage="100% (4/4)">
+            <line number="58" hits="12" branch="True" condition-coverage="100% (4/4)">
               <conditions>
                 <condition number="107" type="jump" coverage="100%" />
                 <condition number="144" type="jump" coverage="100%" />
               </conditions>
             </line>
-            <line number="59" hits="2" branch="True" condition-coverage="100% (2/2)">
+            <line number="60" hits="2" branch="True" condition-coverage="100% (2/2)">
               <conditions>
                 <condition number="204" type="jump" coverage="100%" />
               </conditions>
             </line>
-            <line number="60" hits="2" branch="False" />
-            <line number="61" hits="8" branch="False" />
+            <line number="61" hits="2" branch="False" />
             <line number="62" hits="8" branch="False" />
             <line number="63" hits="8" branch="False" />
             <line number="64" hits="8" branch="False" />
             <line number="65" hits="8" branch="False" />
             <line number="66" hits="8" branch="False" />
-            <line number="67" hits="8" branch="False" />
-            <line number="68" hits="2" branch="False" />
+            <line number="67" hits="2" branch="False" />
+            <line number="68" hits="8" branch="False" />
             <line number="69" hits="8" branch="False" />
             <line number="70" hits="8" branch="False" />
-            <line number="71" hits="8" branch="False" />
+            <line number="71" hits="2" branch="False" />
             <line number="72" hits="8" branch="False" />
             <line number="73" hits="8" branch="False" />
             <line number="74" hits="8" branch="False" />
             <line number="75" hits="8" branch="False" />
             <line number="76" hits="8" branch="False" />
-            <line number="77" hits="2" branch="False" />
-            <line number="79" hits="2" branch="False" />
-            <line number="80" hits="2" branch="False" />
+            <line number="77" hits="8" branch="False" />
+            <line number="78" hits="8" branch="False" />
+            <line number="79" hits="8" branch="False" />
+            <line number="80" hits="8" branch="False" />
+            <line number="81" hits="2" branch="False" />
             <line number="83" hits="2" branch="False" />
             <line number="84" hits="2" branch="False" />
-            <line number="85" hits="2" branch="False" />
-            <line number="87" hits="2" branch="True" condition-coverage="100% (18/18)">
+            <line number="87" hits="2" branch="False" />
+            <line number="88" hits="2" branch="False" />
+            <line number="89" hits="2" branch="False" />
+            <line number="91" hits="2" branch="True" condition-coverage="100% (18/18)">
               <conditions>
                 <condition number="42" type="jump" coverage="100%" />
                 <condition number="86" type="jump" coverage="100%" />
@@ -5689,10 +6209,6 @@
                 <condition number="375" type="jump" coverage="100%" />
               </conditions>
             </line>
-            <line number="88" hits="2" branch="False" />
-            <line number="89" hits="2" branch="False" />
-            <line number="90" hits="2" branch="False" />
-            <line number="91" hits="2" branch="False" />
             <line number="92" hits="2" branch="False" />
             <line number="93" hits="2" branch="False" />
             <line number="94" hits="2" branch="False" />
@@ -5709,14 +6225,18 @@
             <line number="105" hits="2" branch="False" />
             <line number="106" hits="2" branch="False" />
             <line number="107" hits="2" branch="False" />
+            <line number="108" hits="2" branch="False" />
             <line number="109" hits="2" branch="False" />
             <line number="110" hits="2" branch="False" />
-            <line number="17" hits="7" branch="False" />
+            <line number="111" hits="2" branch="False" />
+            <line number="113" hits="2" branch="False" />
+            <line number="114" hits="2" branch="False" />
             <line number="18" hits="7" branch="False" />
             <line number="19" hits="7" branch="False" />
+            <line number="20" hits="7" branch="False" />
           </lines>
         </class>
-        <class name="Fanex.Athena.AnalyticsAPI.Performance.Mappers.OverviewPerformanceVMMapper/&lt;&gt;c__DisplayClass3_0`1" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Modules\Fanex.Athena.AnalyticsAPI.Performance\Mappers\OverviewPerformanceVMMapper.cs" line-rate="1" branch-rate="0.6" complexity="10">
+        <class name="Fanex.Athena.AnalyticsAPI.Performance.Mappers.OverviewPerformanceVMMapper/&lt;&gt;c__DisplayClass3_0`1" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Modules\Fanex.Athena.AnalyticsAPI.Performance\Mappers\OverviewPerformanceVMMapper.cs" line-rate="1" branch-rate="0.5714" complexity="14">
           <methods />
           <lines />
         </class>
@@ -6740,150 +7260,150 @@
           <methods>
             <method name=".ctor" signature="(Fanex.Athena.AnalyticsAPI.Common.Services.IContextService,Fanex.Athena.AnalyticsAPI.Performance.Services.IBettypePerformanceService)" line-rate="1" branch-rate="1">
               <lines>
+                <line number="24" hits="3" branch="False" />
                 <line number="25" hits="3" branch="False" />
                 <line number="26" hits="3" branch="False" />
                 <line number="27" hits="3" branch="False" />
-                <line number="28" hits="3" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
+            <line number="24" hits="3" branch="False" />
             <line number="25" hits="3" branch="False" />
             <line number="26" hits="3" branch="False" />
             <line number="27" hits="3" branch="False" />
-            <line number="28" hits="3" branch="False" />
           </lines>
         </class>
         <class name="Fanex.Athena.AnalyticsAPI.Performance.Controllers.BettypePerformanceController/&lt;GetDistribution&gt;d__2" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Modules\Fanex.Athena.AnalyticsAPI.Performance\Controllers\BettypePerformanceController.cs" line-rate="0" branch-rate="0" complexity="2">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="0">
               <lines>
-                <line number="34" hits="0" branch="False" />
-                <line number="35" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="33" hits="0" branch="False" />
+                <line number="34" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="50" type="jump" coverage="0%" />
                   </conditions>
                 </line>
+                <line number="35" hits="0" branch="False" />
                 <line number="36" hits="0" branch="False" />
-                <line number="37" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="34" hits="0" branch="False" />
-            <line number="35" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="33" hits="0" branch="False" />
+            <line number="34" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="50" type="jump" coverage="0%" />
               </conditions>
             </line>
+            <line number="35" hits="0" branch="False" />
             <line number="36" hits="0" branch="False" />
-            <line number="37" hits="0" branch="False" />
           </lines>
         </class>
         <class name="Fanex.Athena.AnalyticsAPI.Performance.Controllers.BettypePerformanceController/&lt;GetDiffences&gt;d__3" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Modules\Fanex.Athena.AnalyticsAPI.Performance\Controllers\BettypePerformanceController.cs" line-rate="0" branch-rate="0" complexity="2">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="0">
               <lines>
-                <line number="43" hits="0" branch="False" />
-                <line number="44" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="42" hits="0" branch="False" />
+                <line number="43" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="50" type="jump" coverage="0%" />
                   </conditions>
                 </line>
+                <line number="44" hits="0" branch="False" />
                 <line number="45" hits="0" branch="False" />
-                <line number="46" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="43" hits="0" branch="False" />
-            <line number="44" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="42" hits="0" branch="False" />
+            <line number="43" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="50" type="jump" coverage="0%" />
               </conditions>
             </line>
+            <line number="44" hits="0" branch="False" />
             <line number="45" hits="0" branch="False" />
-            <line number="46" hits="0" branch="False" />
           </lines>
         </class>
         <class name="Fanex.Athena.AnalyticsAPI.Performance.Controllers.BettypePerformanceController/&lt;GetPeriodGrowth&gt;d__4" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Modules\Fanex.Athena.AnalyticsAPI.Performance\Controllers\BettypePerformanceController.cs" line-rate="0" branch-rate="0" complexity="2">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="0">
               <lines>
-                <line number="52" hits="0" branch="False" />
-                <line number="53" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="51" hits="0" branch="False" />
+                <line number="52" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="50" type="jump" coverage="0%" />
                   </conditions>
                 </line>
+                <line number="53" hits="0" branch="False" />
                 <line number="54" hits="0" branch="False" />
-                <line number="55" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="52" hits="0" branch="False" />
-            <line number="53" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="51" hits="0" branch="False" />
+            <line number="52" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="50" type="jump" coverage="0%" />
               </conditions>
             </line>
+            <line number="53" hits="0" branch="False" />
             <line number="54" hits="0" branch="False" />
-            <line number="55" hits="0" branch="False" />
           </lines>
         </class>
         <class name="Fanex.Athena.AnalyticsAPI.Performance.Controllers.BettypePerformanceController/&lt;GetAllMonthGrowth&gt;d__5" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Modules\Fanex.Athena.AnalyticsAPI.Performance\Controllers\BettypePerformanceController.cs" line-rate="0" branch-rate="0" complexity="2">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="0">
               <lines>
-                <line number="61" hits="0" branch="False" />
-                <line number="62" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="60" hits="0" branch="False" />
+                <line number="61" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
                     <condition number="50" type="jump" coverage="0%" />
                   </conditions>
                 </line>
+                <line number="62" hits="0" branch="False" />
                 <line number="63" hits="0" branch="False" />
-                <line number="64" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="61" hits="0" branch="False" />
-            <line number="62" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="60" hits="0" branch="False" />
+            <line number="61" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
                 <condition number="50" type="jump" coverage="0%" />
               </conditions>
             </line>
+            <line number="62" hits="0" branch="False" />
             <line number="63" hits="0" branch="False" />
-            <line number="64" hits="0" branch="False" />
           </lines>
         </class>
         <class name="Fanex.Athena.AnalyticsAPI.Performance.Controllers.BettypePerformanceController/&lt;GetCombineData&gt;d__6" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Modules\Fanex.Athena.AnalyticsAPI.Performance\Controllers\BettypePerformanceController.cs" line-rate="1" branch-rate="1" complexity="11">
           <methods>
             <method name="MoveNext" signature="()" line-rate="1" branch-rate="1">
               <lines>
-                <line number="70" hits="3" branch="False" />
-                <line number="71" hits="3" branch="True" condition-coverage="100% (1/1)">
+                <line number="69" hits="3" branch="False" />
+                <line number="70" hits="3" branch="True" condition-coverage="100% (1/1)">
                   <conditions>
                     <condition number="88" type="jump" coverage="100%" />
                   </conditions>
                 </line>
+                <line number="72" hits="3" branch="False" />
                 <line number="73" hits="3" branch="False" />
-                <line number="74" hits="3" branch="False" />
-                <line number="76" hits="3" branch="True" condition-coverage="100% (2/2)">
+                <line number="75" hits="3" branch="True" condition-coverage="100% (2/2)">
                   <conditions>
                     <condition number="202" type="jump" coverage="100%" />
                   </conditions>
                 </line>
+                <line number="76" hits="1" branch="False" />
                 <line number="77" hits="1" branch="False" />
                 <line number="78" hits="1" branch="False" />
-                <line number="79" hits="1" branch="False" />
+                <line number="80" hits="2" branch="False" />
                 <line number="81" hits="2" branch="False" />
                 <line number="82" hits="2" branch="False" />
-                <line number="83" hits="2" branch="False" />
+                <line number="84" hits="3" branch="False" />
                 <line number="85" hits="3" branch="False" />
-                <line number="86" hits="3" branch="False" />
-                <line number="88" hits="3" branch="True" condition-coverage="100% (8/8)">
+                <line number="87" hits="3" branch="True" condition-coverage="100% (8/8)">
                   <conditions>
                     <condition number="418" type="jump" coverage="100%" />
                     <condition number="440" type="jump" coverage="100%" />
@@ -6893,6 +7413,7 @@
                     <condition number="816" type="jump" coverage="100%" />
                   </conditions>
                 </line>
+                <line number="88" hits="3" branch="False" />
                 <line number="89" hits="3" branch="False" />
                 <line number="90" hits="3" branch="False" />
                 <line number="91" hits="3" branch="False" />
@@ -6908,33 +7429,32 @@
                 <line number="101" hits="3" branch="False" />
                 <line number="102" hits="3" branch="False" />
                 <line number="103" hits="3" branch="False" />
-                <line number="104" hits="3" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="70" hits="3" branch="False" />
-            <line number="71" hits="3" branch="True" condition-coverage="100% (1/1)">
+            <line number="69" hits="3" branch="False" />
+            <line number="70" hits="3" branch="True" condition-coverage="100% (1/1)">
               <conditions>
                 <condition number="88" type="jump" coverage="100%" />
               </conditions>
             </line>
+            <line number="72" hits="3" branch="False" />
             <line number="73" hits="3" branch="False" />
-            <line number="74" hits="3" branch="False" />
-            <line number="76" hits="3" branch="True" condition-coverage="100% (2/2)">
+            <line number="75" hits="3" branch="True" condition-coverage="100% (2/2)">
               <conditions>
                 <condition number="202" type="jump" coverage="100%" />
               </conditions>
             </line>
+            <line number="76" hits="1" branch="False" />
             <line number="77" hits="1" branch="False" />
             <line number="78" hits="1" branch="False" />
-            <line number="79" hits="1" branch="False" />
+            <line number="80" hits="2" branch="False" />
             <line number="81" hits="2" branch="False" />
             <line number="82" hits="2" branch="False" />
-            <line number="83" hits="2" branch="False" />
+            <line number="84" hits="3" branch="False" />
             <line number="85" hits="3" branch="False" />
-            <line number="86" hits="3" branch="False" />
-            <line number="88" hits="3" branch="True" condition-coverage="100% (8/8)">
+            <line number="87" hits="3" branch="True" condition-coverage="100% (8/8)">
               <conditions>
                 <condition number="418" type="jump" coverage="100%" />
                 <condition number="440" type="jump" coverage="100%" />
@@ -6944,6 +7464,7 @@
                 <condition number="816" type="jump" coverage="100%" />
               </conditions>
             </line>
+            <line number="88" hits="3" branch="False" />
             <line number="89" hits="3" branch="False" />
             <line number="90" hits="3" branch="False" />
             <line number="91" hits="3" branch="False" />
@@ -6959,51 +7480,50 @@
             <line number="101" hits="3" branch="False" />
             <line number="102" hits="3" branch="False" />
             <line number="103" hits="3" branch="False" />
-            <line number="104" hits="3" branch="False" />
           </lines>
         </class>
         <class name="Fanex.Athena.AnalyticsAPI.Performance.Controllers.BettypePerformanceController/&lt;&gt;c" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Modules\Fanex.Athena.AnalyticsAPI.Performance\Controllers\BettypePerformanceController.cs" line-rate="1" branch-rate="1" complexity="1">
           <methods>
             <method name="&lt;BindTopDistributionsToFilterMetaModel&gt;b__7_0" signature="(System.ValueTuple`2&lt;System.String,System.String&gt;)" line-rate="1" branch-rate="1">
               <lines>
+                <line number="109" hits="12" branch="False" />
                 <line number="110" hits="12" branch="False" />
                 <line number="111" hits="12" branch="False" />
                 <line number="112" hits="12" branch="False" />
                 <line number="113" hits="12" branch="False" />
-                <line number="114" hits="12" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
+            <line number="109" hits="12" branch="False" />
             <line number="110" hits="12" branch="False" />
             <line number="111" hits="12" branch="False" />
             <line number="112" hits="12" branch="False" />
             <line number="113" hits="12" branch="False" />
-            <line number="114" hits="12" branch="False" />
           </lines>
         </class>
         <class name="Fanex.Athena.AnalyticsAPI.Performance.Controllers.BettypePerformanceController/&lt;BindTopDistributionsToFilterMetaModel&gt;d__7" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Modules\Fanex.Athena.AnalyticsAPI.Performance\Controllers\BettypePerformanceController.cs" line-rate="1" branch-rate="1" complexity="3">
           <methods>
             <method name="MoveNext" signature="()" line-rate="1" branch-rate="1">
               <lines>
-                <line number="107" hits="3" branch="False" />
-                <line number="109" hits="3" branch="True" condition-coverage="100% (1/1)">
+                <line number="106" hits="3" branch="False" />
+                <line number="108" hits="3" branch="True" condition-coverage="100% (1/1)">
                   <conditions>
                     <condition number="52" type="jump" coverage="100%" />
                   </conditions>
                 </line>
-                <line number="115" hits="3" branch="False" />
+                <line number="114" hits="3" branch="False" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="107" hits="3" branch="False" />
-            <line number="109" hits="3" branch="True" condition-coverage="100% (1/1)">
+            <line number="106" hits="3" branch="False" />
+            <line number="108" hits="3" branch="True" condition-coverage="100% (1/1)">
               <conditions>
                 <condition number="52" type="jump" coverage="100%" />
               </conditions>
             </line>
-            <line number="115" hits="3" branch="False" />
+            <line number="114" hits="3" branch="False" />
           </lines>
         </class>
         <class name="Fanex.Athena.AnalyticsAPI.Performance.Controllers.CurrencyPerformanceController" filename="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\Modules\Fanex.Athena.AnalyticsAPI.Performance\Controllers\CurrencyPerformanceController.cs" line-rate="1" branch-rate="1" complexity="1">

@@ -44,12 +44,14 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
             {
                 new MeasurementGrowthVM
                 {
+                    Id = "previous_period",
                     Name = "Previous Period",
                     Total = total1,
                     GrowthPercent =  total1 + total0
                 },
                 new MeasurementGrowthVM
                 {
+                    Id = "current_period",
                     Name = "Current Period",
                     Total = total2,
                     GrowthPercent =  total2 + total1

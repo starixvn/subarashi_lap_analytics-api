@@ -59,5 +59,50 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 现时阶段.
+        /// </summary>
+        public static string common_current_period {
+            get {
+                return ResourceManager.GetString("common_current_period", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 前期.
+        /// </summary>
+        public static string common_previous_period {
+            get {
+                return ResourceManager.GetString("common_previous_period", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 欧元.
+        /// </summary>
+        public static string currency_6 {
+            get {
+                return ResourceManager.GetString("currency_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 体育书.
+        /// </summary>
+        public static string product_1 {
+            get {
+                return ResourceManager.GetString("product_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RNG 赌场.
+        /// </summary>
+        public static string product_7 {
+            get {
+                return ResourceManager.GetString("product_7", resourceCulture);
+            }
+        }
     }
 }

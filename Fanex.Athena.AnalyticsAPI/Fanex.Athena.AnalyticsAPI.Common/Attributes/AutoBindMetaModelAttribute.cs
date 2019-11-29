@@ -30,9 +30,9 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Attributes
         private static void BindDefaultLanguage(IBaseMetaModel metaModel, ClaimsPrincipal user)
         {
             var languageClaim = user.Claims.FirstOrDefault(_ => _.Type.Equals("language"));
-            metaModel.LangCode = LangCodeConst.Mapper.ContainsKey(languageClaim?.Value) ?
-                LangCodeConst.Mapper[languageClaim?.Value]
-                : LangCodeConst.EnUS;
+            metaModel.LangCode = TranslationConst.LangCodeMapper.ContainsKey(languageClaim?.Value) ?
+                TranslationConst.LangCodeMapper[languageClaim?.Value]
+                : TranslationConst.EnUS;
         }
     }
 }

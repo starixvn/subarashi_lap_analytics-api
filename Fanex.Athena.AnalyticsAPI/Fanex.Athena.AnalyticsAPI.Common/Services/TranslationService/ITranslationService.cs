@@ -1,11 +1,10 @@
-﻿namespace Fanex.Athena.AnalyticsAPI.Common.Services
+﻿using System.Collections.Generic;
+
+namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
     public interface ITranslationService
     {
-        string GetDisplayBetTypeName(string betTypeId, string langCode, string defaultValue);
-
-        string GetProductName(string productId, string langCode, string defaultValue);
-
-        string GetPlatformName(string platformId, string langCode, string defaultValue);
+        void Translate<T>(IEnumerable<T> originalItems, string langCode, string translationType = null)
+            where T : class;
     }
 }

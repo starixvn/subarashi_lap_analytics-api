@@ -2,9 +2,9 @@
 <CoverageSession>
   <Summary numSequencePoints="89" visitedSequencePoints="85" numBranchPoints="42" visitedBranchPoints="39" sequenceCoverage="95.5" branchCoverage="92.85" maxCyclomaticComplexity="51" minCyclomaticComplexity="51" visitedClasses="10" numClasses="10" visitedMethods="13" numMethods="15" />
   <Modules>
-    <Module hash="115BDF31-9383-4721-A753-2B35283803C6">
+    <Module hash="C6163032-9EA2-4627-AD01-F0BE8FA0E97D">
       <ModulePath>Fanex.Athena.LGAPI.SSAS.Bridge.dll</ModulePath>
-      <ModuleTime>2019-11-28T03:11:25</ModuleTime>
+      <ModuleTime>2019-11-28T11:55:06</ModuleTime>
       <ModuleName>Fanex.Athena.LGAPI.SSAS.Bridge</ModuleName>
       <Files>
         <File uid="1" fullPath="D:\Projects\Nexcel\LAP.AnalyticsAPI\Fanex.Athena.AnalyticsAPI\SSAS\Fanex.Athena.LGAPI.SSAS.Bridge\Services\HttpClientService.cs" />

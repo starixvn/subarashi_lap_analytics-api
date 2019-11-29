@@ -32,12 +32,14 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             {
                 new MeasurementGrowthVM
                 {
+                    Id = PREVIOUS_PERIOD_ID,
                     Name = PREVIOUS_PERIOD_NAME,
                     Total = _calculationService.ToRound(prevPeriodData?.Total),
                     GrowthPercent = _calculationService.CalculateGrowth(prevPeriodData?.Total, prevPeriodOfPrevData?.Total)
                 },
                 new MeasurementGrowthVM
                 {
+                    Id = CURRENT_PERIOD_ID,
                     Name = CURRENT_PERIOD_NAME,
                     Total = _calculationService.ToRound(currentPeriodData?.Total),
                     GrowthPercent = _calculationService.CalculateGrowth(currentPeriodData?.Total, prevPeriodData?.Total)
@@ -78,7 +80,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                     };
                 })
                 .OrderByDescending(_ => Math.Abs(_.ChangePercent))
-                .Take(NUMBER_OF_TOP_CHANGE);
+                .Take(NUMBER_OF_TOP_CHANGE)
+                .ToList();
 
             return result;
         }

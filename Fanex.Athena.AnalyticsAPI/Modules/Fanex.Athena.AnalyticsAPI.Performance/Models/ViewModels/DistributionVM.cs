@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Attributes;
+using System.Collections.Generic;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels
 {
@@ -17,7 +18,10 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels
     public class DistributionItemVM
     {
         public string Id { get; set; }
+
+        [Translation(nameof(Id))]
         public string Name { get; set; }
+
         public double Percent { get; set; }
     }
 }
