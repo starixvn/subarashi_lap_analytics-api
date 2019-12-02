@@ -55,8 +55,8 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Repositories
         public async Task<IEnumerable<IEnumerable<TResult>>> QueryMultipleAsync<TResult>(params ICriteria[] listCriteria)
             where TResult : new()
         {
-            var daxQuery = await _daxQueryService.GetMultipleDaxQuery(listCriteria);
-            var result = await _bridgeService.QueryMultipleAsync<TResult>(daxQuery);
+            var daxQueries = await _daxQueryService.GetMultipleDaxQuery(listCriteria);
+            var result = await _bridgeService.QueryMultipleAsync<TResult>(daxQueries);
 
             return result;
         }

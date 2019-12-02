@@ -53,7 +53,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Services
         }
 
         [Fact]
-        public async Task GetProductTopChangeWithComparison_WhenCall_TranslateServiceCallCorrectParams()
+        public async Task GetProductTopChangeWithComparison_WhenCall_ServiceResultIsMapperResult()
         {
             //Arrange
             var filter = FakePerformanceFilterMetaModel;
@@ -63,10 +63,10 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Services
                 .Returns(expected);
 
             //Act
+
             var result = await _target.GetProductTopChangeWithComparison(filter);
 
             //Assert
-            _translationServiceMock.Verify(_ => _.Translate(expected, filter.LangCode, "product"), Times.Once);
             Assert.Equal(expected, result);
         }
     }

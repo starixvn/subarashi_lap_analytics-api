@@ -54,8 +54,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
         {
             return new List<DistributionVM>
             {
-                ToDistributionVM<DistributionDTO>(prevPeriodDtos, topDistributions, PREVIOUS_PERIOD_NAME),
-                ToDistributionVM<DistributionDTO>(currentPeriodDtos, topDistributions, CURRENT_PERIOD_NAME)
+                ToDistributionVM<DistributionDTO>(prevPeriodDtos, topDistributions, PREVIOUS_PERIOD_ID, PREVIOUS_PERIOD_NAME),
+                ToDistributionVM<DistributionDTO>(currentPeriodDtos, topDistributions, CURRENT_PERIOD_ID, CURRENT_PERIOD_NAME)
             };
         }
 
@@ -66,11 +66,13 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             {
                 new OverallMeasurementVM
                 {
+                    Id = PREVIOUS_PERIOD_ID,
                     Name = PREVIOUS_PERIOD_NAME,
                     Total = _calculationService.ToRound(prevPeriodDto?.Total)
                 },
                 new OverallMeasurementVM
                 {
+                    Id = CURRENT_PERIOD_ID,
                     Name = CURRENT_PERIOD_NAME,
                     Total = _calculationService.ToRound(currentPeriodDto?.Total)
                 }
@@ -129,7 +131,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             return result;
         }
 
-        private DistributionVM ToDistributionVM<T>(IEnumerable<T> dtos, IEnumerable<(string topDistributionId, string topDistributionName)> topDistributions, string name)
+        private DistributionVM ToDistributionVM<T>(IEnumerable<T> dtos, IEnumerable<(string topDistributionId, string topDistributionName)> topDistributions, string id, string name)
             where T : DistributionDTO
         {
             var listDto = dtos.ToList();
@@ -140,6 +142,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
 
             var result = new DistributionVM(topDistributions.Count() + 1)
             {
+                Id = id,
                 Name = name,
                 Total = _calculationService.ToRound(sumItem?.Total)
             };
@@ -263,7 +266,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             };
         }
 
-        private MeasurementComparisonVM CreateMeasurementComparisonVM(in string name, MeasurementComparisonDTO prevPeriodDto, MeasurementComparisonDTO currentPeriodDto)
+        private MeasurementComparisonVM CreateMeasurementComparisonVM(string name, MeasurementComparisonDTO prevPeriodDto, MeasurementComparisonDTO currentPeriodDto)
         {
             return new MeasurementComparisonVM
             {

@@ -10,8 +10,13 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels
             Distributions = new List<DistributionItemVM>(distributionSize);
         }
 
+        public string Id { get; set; }
+
+        [Translation(nameof(Id))]
         public string Name { get; set; }
+
         public double Total { get; set; }
+
         public IList<DistributionItemVM> Distributions { get; set; }
     }
 
@@ -19,7 +24,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels
     {
         public string Id { get; set; }
 
-        [Translation(nameof(Id))]
         public string Name { get; set; }
 
         public double Percent { get; set; }

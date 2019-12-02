@@ -1,5 +1,7 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Attributes;
+using Fanex.Athena.AnalyticsAPI.Common.Constants;
 using Fanex.Athena.AnalyticsAPI.Common.Controllers;
+using Fanex.Athena.AnalyticsAPI.Common.Extensions;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Constants;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
@@ -16,14 +18,17 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
     public class CurrencyPerformanceController : ControllerBaseCustom
     {
         private readonly ICurrencyPerformanceService _currencyService;
+        private readonly ITranslationService _translationService;
 
         public CurrencyPerformanceController(
             IContextService contextService,
-            ICurrencyPerformanceService currencyService
+            ICurrencyPerformanceService currencyService,
+            ITranslationService translationService
             )
             : base(contextService)
         {
             _currencyService = currencyService;
+            _translationService = translationService;
         }
 
         [HttpPost]
@@ -69,20 +74,16 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         {
             await BindTopDistributionsToFilterMetaModel(filter);
 
-            var distributions = null as Task<IEnumerable<DistributionVM>>;
-            var overallMargin = null as Task<IEnumerable<OverallMeasurementVM>>;
+            var isMargin = filter.Measurement.Id == MeasurementConst.MARGIN;
 
-            if (filter.Measurement.Id == MeasurementConst.MARGIN)
-            {
-                overallMargin = _currencyService.GetOverallMeasurement(filter);
-            }
-            else
-            {
-                distributions = _currencyService.GetDistributionWithComparison(filter);
-            }
+            var (measurementDifferenceData, periodGrowthData, distributionData, overallMarginData) = await TaskExtension.WhenAllAsync(
+                              _currencyService.GetMeasurementDifferenceWithComparison(filter),
+                              _currencyService.GetPeriodGrowthWithComparison(filter),
+                              !isMargin ? _currencyService.GetDistributionWithComparison(filter) : Task.FromResult<IEnumerable<DistributionVM>>(null),
+                              isMargin ? _currencyService.GetOverallMeasurement(filter) : Task.FromResult<IEnumerable<OverallMeasurementVM>>(null));
 
-            var taskMeasurementDifference = _currencyService.GetMeasurementDifferenceWithComparison(filter);
-            var taskPeriodGrowth = _currencyService.GetPeriodGrowthWithComparison(filter);
+            _translationService.Translate(distributionData, filter.LangCode, TranslationConst.NormalType);
+            _translationService.Translate(overallMarginData, filter.LangCode, TranslationConst.NormalType);
 
             return ToResult(new
             {
@@ -91,12 +92,12 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
                 filter.CurrentPeriod,
                 filter.PreviousPeriod,
                 filter.TopDistributions,
-                DistributionData = distributions != null ? await distributions : null,
-                OverallMarginData = overallMargin != null ? await overallMargin : null,
-                MeasurementDifferenceData = await taskMeasurementDifference,
+                distributionData,
+                overallMarginData,
+                measurementDifferenceData,
                 GrowthData = new
                 {
-                    PeriodGrowth = await taskPeriodGrowth,
+                    PeriodGrowth = periodGrowthData,
                     MonthGrowth = new { }
                 }
             });

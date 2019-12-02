@@ -1,5 +1,7 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Attributes;
+using Fanex.Athena.AnalyticsAPI.Common.Constants;
 using Fanex.Athena.AnalyticsAPI.Common.Controllers;
+using Fanex.Athena.AnalyticsAPI.Common.Extensions;
 using Fanex.Athena.AnalyticsAPI.Common.Helpers;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
@@ -13,14 +15,17 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
     public class OverviewPerformanceController : ControllerBaseCustom
     {
         private readonly IOverviewPerformanceService _overviewService;
+        private readonly ITranslationService _translationService;
 
         public OverviewPerformanceController(
             IContextService contextService,
-            IOverviewPerformanceService overviewPerformanceService
+            IOverviewPerformanceService overviewPerformanceService,
+            ITranslationService translationService
             )
             : base(contextService)
         {
             _overviewService = overviewPerformanceService;
+            _translationService = translationService;
         }
 
         [HttpPost]
@@ -80,6 +85,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
             var prevPeriodMonthGrowthData = await prevDetailMonthGrowthTask;
             var currentPeriodMonthGrowthData = await currentDetailMonthGrowthTask;
 
+            _translationService.Translate(periodGrowthData, filter.LangCode, TranslationConst.NormalType);
+
             return ToResult(new
             {
                 baseCurrency = filter.BaseCurrencyName,
@@ -100,15 +107,17 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 
         private async Task<object> _getTopChange(PerformanceFilterMetaModel filter)
         {
-            var taskCurrency = _overviewService.GetCurrencyTopChangeWithComparison(filter);
-            var taskBettype = _overviewService.GetBettypeTopChangeWithComparison(filter);
-            var taskPlatform = _overviewService.GetPlatformTopChangeWithComparison(filter);
-            var taskProduct = _overviewService.GetProductTopChangeWithComparison(filter);
+            var (currencyTopChange, bettypeTopChange, platformTopChange, productTopChange) = await TaskExtension.WhenAllAsync(
+                     _overviewService.GetCurrencyTopChangeWithComparison(filter),
+                     _overviewService.GetBettypeTopChangeWithComparison(filter),
+                     _overviewService.GetPlatformTopChangeWithComparison(filter),
+                     _overviewService.GetProductTopChangeWithComparison(filter)
+                );
 
-            var currencyTopChange = await taskCurrency;
-            var bettypeTopChange = await taskBettype;
-            var platformTopChange = await taskPlatform;
-            var productTopChange = await taskProduct;
+            _translationService.Translate(currencyTopChange, filter.LangCode, TranslationConst.CurrencyType);
+            _translationService.Translate(bettypeTopChange, filter.LangCode, TranslationConst.BettypeType);
+            _translationService.Translate(platformTopChange, filter.LangCode, TranslationConst.PlatformType);
+            _translationService.Translate(productTopChange, filter.LangCode, TranslationConst.ProductType);
 
             return new
             {

@@ -18,6 +18,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Controllers
         private readonly CurrencyPerformanceController _target;
         private readonly Mock<IContextService> _contextServiceMock;
         private readonly Mock<ICurrencyPerformanceService> _currencyServiceMock;
+        private readonly Mock<ITranslationService> _translationServiceMock;
 
         private readonly Fixture _fixture;
 
@@ -25,8 +26,9 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Controllers
         {
             _contextServiceMock = new Mock<IContextService>();
             _currencyServiceMock = new Mock<ICurrencyPerformanceService>();
+            _translationServiceMock = new Mock<ITranslationService>();
             _fixture = new Fixture();
-            _target = new CurrencyPerformanceController(_contextServiceMock.Object, _currencyServiceMock.Object);
+            _target = new CurrencyPerformanceController(_contextServiceMock.Object, _currencyServiceMock.Object, _translationServiceMock.Object);
         }
 
         [Theory]

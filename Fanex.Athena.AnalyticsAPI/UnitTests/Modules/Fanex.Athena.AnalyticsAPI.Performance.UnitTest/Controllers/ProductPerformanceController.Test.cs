@@ -18,6 +18,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Controllers
         private readonly ProductPerformanceController _target;
         private readonly Mock<IContextService> _contextServiceMock;
         private readonly Mock<IProductPerformanceService> _productServiceMock;
+        private readonly Mock<ITranslationService> _translationServiceMock;
 
         private readonly Fixture _fixture;
 
@@ -25,8 +26,9 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Controllers
         {
             _contextServiceMock = new Mock<IContextService>();
             _productServiceMock = new Mock<IProductPerformanceService>();
+            _translationServiceMock = new Mock<ITranslationService>();
             _fixture = new Fixture();
-            _target = new ProductPerformanceController(_contextServiceMock.Object, _productServiceMock.Object);
+            _target = new ProductPerformanceController(_contextServiceMock.Object, _productServiceMock.Object, _translationServiceMock.Object);
         }
 
         [Theory]

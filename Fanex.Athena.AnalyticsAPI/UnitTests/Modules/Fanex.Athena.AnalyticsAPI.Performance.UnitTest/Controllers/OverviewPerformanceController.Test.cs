@@ -17,14 +17,16 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Controllers
         private readonly OverviewPerformanceController _target;
         private readonly Mock<IContextService> _contextServiceMock;
         private readonly Mock<IOverviewPerformanceService> _overviewServiceMock;
+        private readonly Mock<ITranslationService> _translationServiceMock;
         private readonly Fixture _fixture;
 
         public OverviewPerformanceController_Test()
         {
             _contextServiceMock = new Mock<IContextService>();
             _overviewServiceMock = new Mock<IOverviewPerformanceService>();
+            _translationServiceMock = new Mock<ITranslationService>();
             _fixture = new Fixture();
-            _target = new OverviewPerformanceController(_contextServiceMock.Object, _overviewServiceMock.Object);
+            _target = new OverviewPerformanceController(_contextServiceMock.Object, _overviewServiceMock.Object, _translationServiceMock.Object);
         }
 
         [Fact]

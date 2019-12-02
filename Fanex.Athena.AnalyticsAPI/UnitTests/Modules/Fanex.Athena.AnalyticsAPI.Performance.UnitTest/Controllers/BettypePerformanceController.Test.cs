@@ -18,6 +18,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Controllers
         private readonly BettypePerformanceController _target;
         private readonly Mock<IContextService> _contextServiceMock;
         private readonly Mock<IBettypePerformanceService> _bettypeServiceMock;
+        private readonly Mock<ITranslationService> _translationServiceMock;
 
         private readonly Fixture _fixture;
 
@@ -25,8 +26,9 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Controllers
         {
             _contextServiceMock = new Mock<IContextService>();
             _bettypeServiceMock = new Mock<IBettypePerformanceService>();
+            _translationServiceMock = new Mock<ITranslationService>();
             _fixture = new Fixture();
-            _target = new BettypePerformanceController(_contextServiceMock.Object, _bettypeServiceMock.Object);
+            _target = new BettypePerformanceController(_contextServiceMock.Object, _bettypeServiceMock.Object, _translationServiceMock.Object);
         }
 
         [Theory]

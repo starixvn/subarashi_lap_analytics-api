@@ -22,17 +22,14 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
     public class OverviewPerformanceService : PerformanceService, IOverviewPerformanceService
     {
         private readonly IOverviewPerformanceVMMapper _viewModelMapper;
-        private readonly ITranslationService _translationService;
 
         public OverviewPerformanceService(
             IContextService context,
             IPerformanceRepository performanceRepository,
-            IOverviewPerformanceVMMapper viewModelMapper,
-            ITranslationService translationService
+            IOverviewPerformanceVMMapper viewModelMapper
             ) : base(context, performanceRepository)
         {
             _viewModelMapper = viewModelMapper;
-            _translationService = translationService;
         }
 
         public async Task<IEnumerable<MeasurementGrowthVM>> GetPeriodGrowthWithComparison(PerformanceFilterMetaModel filter)
@@ -51,8 +48,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
             var result = _viewModelMapper.ToMeasurementGrowthPeriodVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), dtos.ElementAtOrDefault(2));
 
-            _translationService.Translate(result, filter.LangCode, TranslationConst.CommonType);
-
             return result;
         }
 
@@ -68,8 +63,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
                 DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.FromMonth),
                 DateTimeHelper.ParseFromFormatDateToDate(filter.CurrentPeriod.ToMonth)
                 );
-
-            _translationService.Translate(result, filter.LangCode, TranslationConst.CommonType);
 
             return result;
         }
@@ -98,7 +91,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
             var result = _viewModelMapper.ToTopChangeVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1));
 
-            _translationService.Translate(result, filter.LangCode, TranslationConst.CurrencyType);
 
             return result;
         }
@@ -119,8 +111,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             currentPeriodDtos = currentPeriodDtos.GroupTo(_ => _.Id, bettypeTopChangeDTOSelector);
             var result = _viewModelMapper.ToTopChangeVM(prevPeriodDtos, currentPeriodDtos);
 
-            _translationService.Translate(result, filter.LangCode, TranslationConst.BettypeType);
-
             return result;
         }
 
@@ -136,8 +126,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
             var result = _viewModelMapper.ToTopChangeVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1));
 
-            _translationService.Translate(result, filter.LangCode, TranslationConst.PlatformType);
-
             return result;
         }
 
@@ -152,8 +140,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             var data = await _performanceRepository.QueryMultipleAsync<ProductTopChangeDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 
             var result = _viewModelMapper.ToTopChangeVM(data.ElementAtOrDefault(0), data.ElementAtOrDefault(1));
-
-            _translationService.Translate(result, filter.LangCode, TranslationConst.ProductType);
 
             return result;
         }
