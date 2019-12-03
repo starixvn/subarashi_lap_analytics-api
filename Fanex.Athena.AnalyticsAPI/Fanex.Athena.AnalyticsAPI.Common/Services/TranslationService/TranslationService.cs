@@ -8,11 +8,11 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
     public class TranslationService : ITranslationService
     {
-        private readonly ILangResourceService _translationService;
+        private readonly ILangResourceService _langResourceService;
 
-        public TranslationService(ILangResourceService translationService)
+        public TranslationService(ILangResourceService langResourceService)
         {
-            _translationService = translationService;
+            _langResourceService = langResourceService;
         }
 
         public void Translate<T>(IEnumerable<T> originalItems, string langCode, string translationType = null)
@@ -52,12 +52,13 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
                          .GetValue(originalItem)?
                          .ToString();
 
+                id = id?.Split('@')?.LastOrDefault();
                 var defaultValue = prop.GetValue(originalItem)?.ToString();
                 translationType = translationType ?? attributeInfo.TranslationType;
 
-                var translateValue = _translationService.GetName(translationType, id, langCode, defaultValue);
-
-                prop.SetValue(originalItem, translateValue);
+                var tranlatedValue = _langResourceService.GetName(translationType, id, langCode, defaultValue);
+                //todo - bettype
+                prop.SetValue(originalItem, tranlatedValue);
             }
         }
     }

@@ -113,7 +113,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
             {
                 DisplayId = _.topDistributionId,
                 DisplayName = _.topDistributionName
-            });
+            }).ToList();
         }
     }
 }
