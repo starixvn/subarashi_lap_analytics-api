@@ -59,41 +59,5 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Current Period.
-        /// </summary>
-        public static string current_period {
-            get {
-                return ResourceManager.GetString("current_period", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Previous Period.
-        /// </summary>
-        public static string previous_period {
-            get {
-                return ResourceManager.GetString("previous_period", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sportsbook.
-        /// </summary>
-        public static string product_1 {
-            get {
-                return ResourceManager.GetString("product_1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Number Game.
-        /// </summary>
-        public static string product_3 {
-            get {
-                return ResourceManager.GetString("product_3", resourceCulture);
-            }
-        }
     }
 }

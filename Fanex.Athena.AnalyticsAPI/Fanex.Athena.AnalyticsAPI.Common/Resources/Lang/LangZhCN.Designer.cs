@@ -63,32 +63,113 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to 现时阶段.
         /// </summary>
-        public static string common_current_period {
+        public static string normal_current_period {
             get {
-                return ResourceManager.GetString("common_current_period", resourceCulture);
+                return ResourceManager.GetString("normal_current_period", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to 前期.
         /// </summary>
-        public static string common_previous_period {
+        public static string normal_previous_period {
             get {
-                return ResourceManager.GetString("common_previous_period", resourceCulture);
+                return ResourceManager.GetString("normal_previous_period", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 欧元.
+        ///   Looks up a localized string similar to 亚洲版.
         /// </summary>
-        public static string currency_6 {
+        public static string platform_1 {
             get {
-                return ResourceManager.GetString("currency_6", resourceCulture);
+                return ResourceManager.GetString("platform_1", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 体育书.
+        ///   Looks up a localized string similar to WAP.
+        /// </summary>
+        public static string platform_10 {
+            get {
+                return ResourceManager.GetString("platform_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 中国版.
+        /// </summary>
+        public static string platform_2 {
+            get {
+                return ResourceManager.GetString("platform_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deep Link.
+        /// </summary>
+        public static string platform_3 {
+            get {
+                return ResourceManager.GetString("platform_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 欧洲版.
+        /// </summary>
+        public static string platform_4 {
+            get {
+                return ResourceManager.GetString("platform_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 手机.
+        /// </summary>
+        public static string platform_5 {
+            get {
+                return ResourceManager.GetString("platform_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 手机 App.
+        /// </summary>
+        public static string platform_6 {
+            get {
+                return ResourceManager.GetString("platform_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 手机轻量版.
+        /// </summary>
+        public static string platform_7 {
+            get {
+                return ResourceManager.GetString("platform_7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 新亚洲版.
+        /// </summary>
+        public static string platform_8 {
+            get {
+                return ResourceManager.GetString("platform_8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 平板.
+        /// </summary>
+        public static string platform_9 {
+            get {
+                return ResourceManager.GetString("platform_9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 体育博彩.
         /// </summary>
         public static string product_1 {
             get {
@@ -97,11 +178,218 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RNG 赌场.
+        ///   Looks up a localized string similar to Playtech Casino.
+        /// </summary>
+        public static string product_10 {
+            get {
+                return ResourceManager.GetString("product_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AG Casino.
+        /// </summary>
+        public static string product_11 {
+            get {
+                return ResourceManager.GetString("product_11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gold Deluxe.
+        /// </summary>
+        public static string product_12 {
+            get {
+                return ResourceManager.GetString("product_12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Macau.
+        /// </summary>
+        public static string product_13 {
+            get {
+                return ResourceManager.GetString("product_13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Colossus Bets.
+        /// </summary>
+        public static string product_16 {
+            get {
+                return ResourceManager.GetString("product_16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cock Fighting.
+        /// </summary>
+        public static string product_20 {
+            get {
+                return ResourceManager.GetString("product_20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allbet.
+        /// </summary>
+        public static string product_22 {
+            get {
+                return ResourceManager.GetString("product_22", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 百练赛 2.
+        /// </summary>
+        public static string product_24 {
+            get {
+                return ResourceManager.GetString("product_24", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fishing World.
+        /// </summary>
+        public static string product_25 {
+            get {
+                return ResourceManager.GetString("product_25", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 即时兑现.
+        /// </summary>
+        public static string product_26 {
+            get {
+                return ResourceManager.GetString("product_26", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 虚拟运动 2.
+        /// </summary>
+        public static string product_28 {
+            get {
+                return ResourceManager.GetString("product_28", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lottery.
+        /// </summary>
+        public static string product_29 {
+            get {
+                return ResourceManager.GetString("product_29", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 百练赛.
+        /// </summary>
+        public static string product_3 {
+            get {
+                return ResourceManager.GetString("product_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bullfighting.
+        /// </summary>
+        public static string product_31 {
+            get {
+                return ResourceManager.GetString("product_31", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exchange.
+        /// </summary>
+        public static string product_32 {
+            get {
+                return ResourceManager.GetString("product_32", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pragmatic.
+        /// </summary>
+        public static string product_33 {
+            get {
+                return ResourceManager.GetString("product_33", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 嘻嘻俱乐部.
+        /// </summary>
+        public static string product_35 {
+            get {
+                return ResourceManager.GetString("product_35", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Peer to Peer.
+        /// </summary>
+        public static string product_36 {
+            get {
+                return ResourceManager.GetString("product_36", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saba Promotion.
+        /// </summary>
+        public static string product_38 {
+            get {
+                return ResourceManager.GetString("product_38", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BA.
+        /// </summary>
+        public static string product_4 {
+            get {
+                return ResourceManager.GetString("product_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 虚拟运动.
+        /// </summary>
+        public static string product_6 {
+            get {
+                return ResourceManager.GetString("product_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 快乐彩.
         /// </summary>
         public static string product_7 {
             get {
                 return ResourceManager.GetString("product_7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bingo.
+        /// </summary>
+        public static string product_8 {
+            get {
+                return ResourceManager.GetString("product_8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 快乐彩.
+        /// </summary>
+        public static string product_9 {
+            get {
+                return ResourceManager.GetString("product_9", resourceCulture);
             }
         }
     }

@@ -31,7 +31,7 @@ namespace Fanex.Athena.AnalyticsAPI
     {
         private const string API_NAME = "LAP - Analytics API";
         private const string DEFAULT_SITE_NAME = "12Bet"; //only development
-        private const string DEFAULT_LANG_CODE = "cs"; //only development
+        private const string DEFAULT_LANG_CODE = "en"; //only development
 
         public Startup(IConfiguration configuration, IHostingEnvironment env)
         {

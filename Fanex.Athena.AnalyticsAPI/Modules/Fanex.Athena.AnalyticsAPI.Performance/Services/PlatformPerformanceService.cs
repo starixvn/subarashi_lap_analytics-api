@@ -128,7 +128,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             var specialDistribution = distributionData.FirstOrDefault(_ => _.Id == PLATFORM_SPECIAL_ID);
             if (specialDistribution != null && distributionData.Count > NUMBER_OF_TOP_DISTRIBUTION)
             {
-                specialDistribution.Distribution = -1;
+                specialDistribution.Distribution = 0;
             }
             return distributionData;
         }
