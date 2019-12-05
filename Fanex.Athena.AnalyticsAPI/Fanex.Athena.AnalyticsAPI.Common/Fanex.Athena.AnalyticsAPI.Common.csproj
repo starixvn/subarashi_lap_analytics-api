@@ -28,44 +28,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Resources\Lang\LangEnUS.Designer.cs">
+    <Compile Update="Resources\Lang\ViewResource.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>LangEnUS.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\Lang\LangZhCN.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>LangZhCN.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\Lang\LangZhHans.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>LangZhHans.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\Lang\LangZhTW.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>LangZhTW.resx</DependentUpon>
+      <DependentUpon>ViewResource.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resources\Lang\LangEnUS.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>LangEnUS.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Lang\LangZhCN.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>LangZhCN.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Lang\LangZhHans.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>LangZhHans.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Lang\LangZhTW.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>LangZhTW.Designer.cs</LastGenOutput>
+    <EmbeddedResource Update="Resources\Lang\ViewResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ViewResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

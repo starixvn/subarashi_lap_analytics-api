@@ -1,5 +1,4 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Constants;
-using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Linq;
@@ -18,21 +17,12 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Attributes
             if (metaModel != null && contextUser != null)
             {
                 BindSiteName(metaModel, contextUser);
-                BindDefaultLanguage(metaModel, contextUser);
             }
         }
 
         private static void BindSiteName(IBaseMetaModel metaModel, ClaimsPrincipal user)
         {
             metaModel.SiteName = user.Identity.Name;
-        }
-
-        private static void BindDefaultLanguage(IBaseMetaModel metaModel, ClaimsPrincipal user)
-        {
-            var languageClaim = user.Claims.FirstOrDefault(_ => _.Type.Equals("language"));
-            metaModel.LangCode = TranslationConst.LangCodeMapper.ContainsKey(languageClaim?.Value) ?
-                TranslationConst.LangCodeMapper[languageClaim?.Value]
-                : TranslationConst.EnUS;
         }
     }
 }

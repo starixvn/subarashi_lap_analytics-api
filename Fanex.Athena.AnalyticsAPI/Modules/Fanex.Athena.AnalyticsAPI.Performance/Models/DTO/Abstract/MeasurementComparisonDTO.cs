@@ -16,8 +16,20 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
         [SsasColumn("[MarginWL]")]
         public double GrossProfitDistribution { get; set; }
 
+        private double _margin;
+
         [SsasColumn("[Margin]")]
-        public double Margin { get; set; }
+        public double Margin
+        {
+            get
+            {
+                return _margin;
+            }
+            set
+            {
+                _margin = value * 100;
+            }
+        }
 
         public abstract string Id { get; }
 

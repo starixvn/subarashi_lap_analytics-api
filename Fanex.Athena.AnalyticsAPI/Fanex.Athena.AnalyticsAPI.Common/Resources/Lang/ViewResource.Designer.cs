@@ -22,24 +22,24 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class LangZhCN {
+    public class ViewResource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal LangZhCN() {
+        internal ViewResource() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fanex.Athena.AnalyticsAPI.Common.Resources.Lang.LangZhCN", typeof(LangZhCN).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fanex.Athena.AnalyticsAPI.Common.Resources.Lang.ViewResource", typeof(ViewResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,27 +61,27 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 现时阶段.
+        ///   Looks up a localized string similar to Current Period.
         /// </summary>
-        public static string normal_current_period {
+        internal static string normal_current_period {
             get {
                 return ResourceManager.GetString("normal_current_period", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 前期.
+        ///   Looks up a localized string similar to Previous Period.
         /// </summary>
-        public static string normal_previous_period {
+        internal static string normal_previous_period {
             get {
                 return ResourceManager.GetString("normal_previous_period", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 亚洲版.
+        ///   Looks up a localized string similar to Asia.
         /// </summary>
-        public static string platform_1 {
+        internal static string platform_1 {
             get {
                 return ResourceManager.GetString("platform_1", resourceCulture);
             }
@@ -90,16 +90,16 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to WAP.
         /// </summary>
-        public static string platform_10 {
+        internal static string platform_10 {
             get {
                 return ResourceManager.GetString("platform_10", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 中国版.
+        ///   Looks up a localized string similar to China.
         /// </summary>
-        public static string platform_2 {
+        internal static string platform_2 {
             get {
                 return ResourceManager.GetString("platform_2", resourceCulture);
             }
@@ -108,70 +108,70 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Deep Link.
         /// </summary>
-        public static string platform_3 {
+        internal static string platform_3 {
             get {
                 return ResourceManager.GetString("platform_3", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 欧洲版.
+        ///   Looks up a localized string similar to Euro.
         /// </summary>
-        public static string platform_4 {
+        internal static string platform_4 {
             get {
                 return ResourceManager.GetString("platform_4", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 手机.
+        ///   Looks up a localized string similar to Mobile.
         /// </summary>
-        public static string platform_5 {
+        internal static string platform_5 {
             get {
                 return ResourceManager.GetString("platform_5", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 手机 App.
+        ///   Looks up a localized string similar to Mobile App.
         /// </summary>
-        public static string platform_6 {
+        internal static string platform_6 {
             get {
                 return ResourceManager.GetString("platform_6", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 手机轻量版.
+        ///   Looks up a localized string similar to Mobile Lite Version.
         /// </summary>
-        public static string platform_7 {
+        internal static string platform_7 {
             get {
                 return ResourceManager.GetString("platform_7", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 新亚洲版.
+        ///   Looks up a localized string similar to New Asia.
         /// </summary>
-        public static string platform_8 {
+        internal static string platform_8 {
             get {
                 return ResourceManager.GetString("platform_8", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 平板.
+        ///   Looks up a localized string similar to Tablet.
         /// </summary>
-        public static string platform_9 {
+        internal static string platform_9 {
             get {
                 return ResourceManager.GetString("platform_9", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 体育博彩.
+        ///   Looks up a localized string similar to Sportsbook.
         /// </summary>
-        public static string product_1 {
+        internal static string product_1 {
             get {
                 return ResourceManager.GetString("product_1", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Playtech Casino.
         /// </summary>
-        public static string product_10 {
+        internal static string product_10 {
             get {
                 return ResourceManager.GetString("product_10", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to AG Casino.
         /// </summary>
-        public static string product_11 {
+        internal static string product_11 {
             get {
                 return ResourceManager.GetString("product_11", resourceCulture);
             }
@@ -198,7 +198,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Gold Deluxe.
         /// </summary>
-        public static string product_12 {
+        internal static string product_12 {
             get {
                 return ResourceManager.GetString("product_12", resourceCulture);
             }
@@ -207,7 +207,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Macau.
         /// </summary>
-        public static string product_13 {
+        internal static string product_13 {
             get {
                 return ResourceManager.GetString("product_13", resourceCulture);
             }
@@ -216,7 +216,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Colossus Bets.
         /// </summary>
-        public static string product_16 {
+        internal static string product_16 {
             get {
                 return ResourceManager.GetString("product_16", resourceCulture);
             }
@@ -225,7 +225,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Cock Fighting.
         /// </summary>
-        public static string product_20 {
+        internal static string product_20 {
             get {
                 return ResourceManager.GetString("product_20", resourceCulture);
             }
@@ -234,16 +234,16 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Allbet.
         /// </summary>
-        public static string product_22 {
+        internal static string product_22 {
             get {
                 return ResourceManager.GetString("product_22", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 百练赛 2.
+        ///   Looks up a localized string similar to Number Game 2.
         /// </summary>
-        public static string product_24 {
+        internal static string product_24 {
             get {
                 return ResourceManager.GetString("product_24", resourceCulture);
             }
@@ -252,25 +252,25 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Fishing World.
         /// </summary>
-        public static string product_25 {
+        internal static string product_25 {
             get {
                 return ResourceManager.GetString("product_25", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 即时兑现.
+        ///   Looks up a localized string similar to Cash Out.
         /// </summary>
-        public static string product_26 {
+        internal static string product_26 {
             get {
                 return ResourceManager.GetString("product_26", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 虚拟运动 2.
+        ///   Looks up a localized string similar to Virtual Sports 2.
         /// </summary>
-        public static string product_28 {
+        internal static string product_28 {
             get {
                 return ResourceManager.GetString("product_28", resourceCulture);
             }
@@ -279,16 +279,16 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Lottery.
         /// </summary>
-        public static string product_29 {
+        internal static string product_29 {
             get {
                 return ResourceManager.GetString("product_29", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 百练赛.
+        ///   Looks up a localized string similar to Number Game.
         /// </summary>
-        public static string product_3 {
+        internal static string product_3 {
             get {
                 return ResourceManager.GetString("product_3", resourceCulture);
             }
@@ -297,7 +297,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Bullfighting.
         /// </summary>
-        public static string product_31 {
+        internal static string product_31 {
             get {
                 return ResourceManager.GetString("product_31", resourceCulture);
             }
@@ -306,7 +306,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Exchange.
         /// </summary>
-        public static string product_32 {
+        internal static string product_32 {
             get {
                 return ResourceManager.GetString("product_32", resourceCulture);
             }
@@ -315,16 +315,16 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Pragmatic.
         /// </summary>
-        public static string product_33 {
+        internal static string product_33 {
             get {
                 return ResourceManager.GetString("product_33", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 嘻嘻俱乐部.
+        ///   Looks up a localized string similar to Card Club.
         /// </summary>
-        public static string product_35 {
+        internal static string product_35 {
             get {
                 return ResourceManager.GetString("product_35", resourceCulture);
             }
@@ -333,7 +333,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Peer to Peer.
         /// </summary>
-        public static string product_36 {
+        internal static string product_36 {
             get {
                 return ResourceManager.GetString("product_36", resourceCulture);
             }
@@ -342,7 +342,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Saba Promotion.
         /// </summary>
-        public static string product_38 {
+        internal static string product_38 {
             get {
                 return ResourceManager.GetString("product_38", resourceCulture);
             }
@@ -351,25 +351,25 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to BA.
         /// </summary>
-        public static string product_4 {
+        internal static string product_4 {
             get {
                 return ResourceManager.GetString("product_4", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 虚拟运动.
+        ///   Looks up a localized string similar to Virtual Sports.
         /// </summary>
-        public static string product_6 {
+        internal static string product_6 {
             get {
                 return ResourceManager.GetString("product_6", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 快乐彩.
+        ///   Looks up a localized string similar to RNG Casino.
         /// </summary>
-        public static string product_7 {
+        internal static string product_7 {
             get {
                 return ResourceManager.GetString("product_7", resourceCulture);
             }
@@ -378,16 +378,16 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Bingo.
         /// </summary>
-        public static string product_8 {
+        internal static string product_8 {
             get {
                 return ResourceManager.GetString("product_8", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 快乐彩.
+        ///   Looks up a localized string similar to RNG Keno.
         /// </summary>
-        public static string product_9 {
+        internal static string product_9 {
             get {
                 return ResourceManager.GetString("product_9", resourceCulture);
             }

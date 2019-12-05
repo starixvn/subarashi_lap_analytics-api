@@ -9,7 +9,5 @@
         public MonthRangeMetaModel PreviousPeriod { get; set; }
 
         public string BaseCurrencyName { get; set; }
-
-        public string LangCode { get; set; }
     }
 }

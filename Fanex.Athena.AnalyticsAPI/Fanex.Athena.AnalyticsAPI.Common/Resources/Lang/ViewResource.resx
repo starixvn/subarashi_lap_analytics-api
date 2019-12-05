@@ -117,4 +117,152 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="normal_current_period" xml:space="preserve">
+    <value>Current Period</value>
+    <comment>Current Period</comment>
+  </data>
+  <data name="normal_previous_period" xml:space="preserve">
+    <value>Previous Period</value>
+    <comment>Previous Period</comment>
+  </data>
+  <data name="platform_1" xml:space="preserve">
+    <value>Asia</value>
+    <comment>Asia</comment>
+  </data>
+  <data name="platform_10" xml:space="preserve">
+    <value>WAP</value>
+    <comment>WAP</comment>
+  </data>
+  <data name="platform_2" xml:space="preserve">
+    <value>China</value>
+    <comment>China</comment>
+  </data>
+  <data name="platform_3" xml:space="preserve">
+    <value>Deep Link</value>
+    <comment>Deep Link</comment>
+  </data>
+  <data name="platform_4" xml:space="preserve">
+    <value>Euro</value>
+    <comment>Euro</comment>
+  </data>
+  <data name="platform_5" xml:space="preserve">
+    <value>Mobile</value>
+    <comment>Mobile</comment>
+  </data>
+  <data name="platform_6" xml:space="preserve">
+    <value>Mobile App</value>
+    <comment>Mobile App</comment>
+  </data>
+  <data name="platform_7" xml:space="preserve">
+    <value>Mobile Lite Version</value>
+    <comment>Mobile Lite Version</comment>
+  </data>
+  <data name="platform_8" xml:space="preserve">
+    <value>New Asia</value>
+    <comment>New Asia</comment>
+  </data>
+  <data name="platform_9" xml:space="preserve">
+    <value>Tablet</value>
+    <comment>Tablet</comment>
+  </data>
+  <data name="product_1" xml:space="preserve">
+    <value>Sportsbook</value>
+    <comment>Sportsbook</comment>
+  </data>
+  <data name="product_10" xml:space="preserve">
+    <value>Playtech Casino</value>
+    <comment>Playtech Casino</comment>
+  </data>
+  <data name="product_11" xml:space="preserve">
+    <value>AG Casino</value>
+    <comment>AG Casino</comment>
+  </data>
+  <data name="product_12" xml:space="preserve">
+    <value>Gold Deluxe</value>
+    <comment>Gold Deluxe</comment>
+  </data>
+  <data name="product_13" xml:space="preserve">
+    <value>Macau</value>
+    <comment>Macau</comment>
+  </data>
+  <data name="product_16" xml:space="preserve">
+    <value>Colossus Bets</value>
+    <comment>Colossus Bets</comment>
+  </data>
+  <data name="product_20" xml:space="preserve">
+    <value>Cock Fighting</value>
+    <comment>Cock Fighting</comment>
+  </data>
+  <data name="product_22" xml:space="preserve">
+    <value>Allbet</value>
+    <comment>Allbet</comment>
+  </data>
+  <data name="product_24" xml:space="preserve">
+    <value>Number Game 2</value>
+    <comment>Number Game 2</comment>
+  </data>
+  <data name="product_25" xml:space="preserve">
+    <value>Fishing World</value>
+    <comment>Fishing World</comment>
+  </data>
+  <data name="product_26" xml:space="preserve">
+    <value>Cash Out</value>
+    <comment>Cash Out</comment>
+  </data>
+  <data name="product_28" xml:space="preserve">
+    <value>Virtual Sports 2</value>
+    <comment>Virtual Sports 2</comment>
+  </data>
+  <data name="product_29" xml:space="preserve">
+    <value>Lottery</value>
+    <comment>Lottery</comment>
+  </data>
+  <data name="product_3" xml:space="preserve">
+    <value>Number Game</value>
+    <comment>Number Game</comment>
+  </data>
+  <data name="product_31" xml:space="preserve">
+    <value>Bullfighting</value>
+    <comment>Bullfighting</comment>
+  </data>
+  <data name="product_32" xml:space="preserve">
+    <value>Exchange</value>
+    <comment>Exchange</comment>
+  </data>
+  <data name="product_33" xml:space="preserve">
+    <value>Pragmatic</value>
+    <comment>Pragmatic</comment>
+  </data>
+  <data name="product_35" xml:space="preserve">
+    <value>Card Club</value>
+    <comment>Card Club</comment>
+  </data>
+  <data name="product_36" xml:space="preserve">
+    <value>Peer to Peer</value>
+    <comment>Peer to Peer</comment>
+  </data>
+  <data name="product_38" xml:space="preserve">
+    <value>Saba Promotion</value>
+    <comment>Saba Promotion</comment>
+  </data>
+  <data name="product_4" xml:space="preserve">
+    <value>BA</value>
+    <comment>BA</comment>
+  </data>
+  <data name="product_6" xml:space="preserve">
+    <value>Virtual Sports</value>
+    <comment>Virtual Sports</comment>
+  </data>
+  <data name="product_7" xml:space="preserve">
+    <value>RNG Casino</value>
+    <comment>RNG Casino</comment>
+  </data>
+  <data name="product_8" xml:space="preserve">
+    <value>Bingo</value>
+    <comment>Bingo</comment>
+  </data>
+  <data name="product_9" xml:space="preserve">
+    <value>RNG Keno</value>
+    <comment>RNG Keno</comment>
+  </data>
 </root>

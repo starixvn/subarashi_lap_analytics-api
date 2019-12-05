@@ -73,7 +73,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         public async Task<JsonResult> GetCombineData([FromBody]ProductPerformanceFilterMetaModel filter)
         {
             await BindTopDistributionsToFilterMetaModel(filter);
-            _translationService.Translate(filter.TopDistributions, filter.LangCode, TranslationConst.ProductType);
+            _translationService.Translate(filter.TopDistributions, TranslationConst.ProductType);
 
             var isMargin = filter.Measurement.Id == MeasurementConst.MARGIN;
 
@@ -83,8 +83,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
                               !isMargin ? _productService.GetDistributionWithComparison(filter) : Task.FromResult<IEnumerable<DistributionVM>>(null),
                               isMargin ? _productService.GetOverallMeasurement(filter) : Task.FromResult<IEnumerable<OverallMeasurementVM>>(null));
 
-            _translationService.Translate(distributionData, filter.LangCode, TranslationConst.NormalType);
-            _translationService.Translate(overallMarginData, filter.LangCode, TranslationConst.NormalType);
+            _translationService.Translate(distributionData, TranslationConst.NormalType);
+            _translationService.Translate(overallMarginData, TranslationConst.NormalType);
 
             return ToResult(new
             {

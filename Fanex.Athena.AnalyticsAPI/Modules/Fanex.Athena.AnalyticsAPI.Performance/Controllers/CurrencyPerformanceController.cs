@@ -82,8 +82,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
                               !isMargin ? _currencyService.GetDistributionWithComparison(filter) : Task.FromResult<IEnumerable<DistributionVM>>(null),
                               isMargin ? _currencyService.GetOverallMeasurement(filter) : Task.FromResult<IEnumerable<OverallMeasurementVM>>(null));
 
-            _translationService.Translate(distributionData, filter.LangCode, TranslationConst.NormalType);
-            _translationService.Translate(overallMarginData, filter.LangCode, TranslationConst.NormalType);
+            _translationService.Translate(distributionData, TranslationConst.NormalType);
+            _translationService.Translate(overallMarginData, TranslationConst.NormalType);
 
             return ToResult(new
             {

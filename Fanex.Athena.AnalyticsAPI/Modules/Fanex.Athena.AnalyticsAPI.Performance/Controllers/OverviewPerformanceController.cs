@@ -85,7 +85,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
             var prevPeriodMonthGrowthData = await prevDetailMonthGrowthTask;
             var currentPeriodMonthGrowthData = await currentDetailMonthGrowthTask;
 
-            _translationService.Translate(periodGrowthData, filter.LangCode, TranslationConst.NormalType);
+            _translationService.Translate(periodGrowthData, TranslationConst.NormalType);
 
             return ToResult(new
             {
@@ -114,10 +114,10 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
                      _overviewService.GetProductTopChangeWithComparison(filter)
                 );
 
-            _translationService.Translate(currencyTopChange, filter.LangCode, TranslationConst.CurrencyType);
-            _translationService.Translate(bettypeTopChange, filter.LangCode, TranslationConst.BettypeType);
-            _translationService.Translate(platformTopChange, filter.LangCode, TranslationConst.PlatformType);
-            _translationService.Translate(productTopChange, filter.LangCode, TranslationConst.ProductType);
+            _translationService.Translate(currencyTopChange, TranslationConst.CurrencyType);
+            _translationService.Translate(bettypeTopChange, TranslationConst.BettypeType);
+            _translationService.Translate(platformTopChange, TranslationConst.PlatformType);
+            _translationService.Translate(productTopChange, TranslationConst.ProductType);
 
             return new
             {

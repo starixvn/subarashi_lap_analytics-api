@@ -1,4 +1,5 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Attributes;
+using Fanex.Athena.AnalyticsAPI.Common.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
             _langResourceService = langResourceService;
         }
 
-        public void Translate<T>(IEnumerable<T> originalItems, string langCode, string translationType = null)
+        public void Translate<T>(IEnumerable<T> originalItems, string translationType = null)
             where T : class
         {
             if (originalItems == null || !originalItems.Any())
@@ -33,17 +34,17 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
                     var enumerable = prop.GetValue(originalItem) as IEnumerable<object>;
                     if (enumerable != null)
                     {
-                        Translate(enumerable, langCode, translationType);
+                        Translate(enumerable, translationType);
                     }
                     else
                     {
-                        BindTranslateValue(originalItem, type, prop, langCode, translationType);
+                        BindTranslateValue(originalItem, type, prop, translationType);
                     }
                 }
             }
         }
 
-        private void BindTranslateValue<T>(T originalItem, Type type, PropertyInfo prop, string langCode, string translationType)
+        private void BindTranslateValue<T>(T originalItem, Type type, PropertyInfo prop, string translationType)
         {
             var attributeInfo = Attribute.GetCustomAttribute(prop, typeof(TranslationAttribute)) as TranslationAttribute;
             if (attributeInfo != null)
@@ -56,7 +57,12 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
                 var defaultValue = prop.GetValue(originalItem)?.ToString();
                 translationType = translationType ?? attributeInfo.TranslationType;
 
-                var tranlatedValue = _langResourceService.GetName(translationType, id, langCode, defaultValue);
+                var tranlatedValue = _langResourceService.GetName(translationType, id, defaultValue);
+                if(translationType == TranslationConst.BettypeType)
+                {         
+                    return;
+                }
+
                 //todo - bettype
                 prop.SetValue(originalItem, tranlatedValue);
             }

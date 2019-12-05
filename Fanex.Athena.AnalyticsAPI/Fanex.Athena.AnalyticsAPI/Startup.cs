@@ -1,5 +1,4 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Constants;
-using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
 using Fanex.Athena.AnalyticsAPI.Core.Extensions;
 using Fanex.Athena.AnalyticsAPI.Core.Models.Configuration;
 using Fanex.Athena.ExtService.Common.Configuration;
@@ -13,6 +12,7 @@ using LAP.ONEBook.Security.StorageProvider.SqlServer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +21,7 @@ using ONEbook.UM.Configurations;
 using ONEbook.UM.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO.Compression;
 using System.Security.Claims;
 using System.Security.Principal;
@@ -31,7 +32,6 @@ namespace Fanex.Athena.AnalyticsAPI
     {
         private const string API_NAME = "LAP - Analytics API";
         private const string DEFAULT_SITE_NAME = "12Bet"; //only development
-        private const string DEFAULT_LANG_CODE = "en"; //only development
 
         public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
@@ -132,8 +132,23 @@ namespace Fanex.Athena.AnalyticsAPI
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
+
             app.UseStaticFiles();
+
             app.UseCors("DefaultPolicy");
+
+            var supportedCultures = new List<CultureInfo>
+            {
+                new CultureInfo("en-US"),
+                new CultureInfo("zh-CN")
+            };
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("en-US"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            });
+
             app.UseResponseCompression();
             app.UseSwaggerDoc(Env, API_NAME);
             if (Env.IsDevelopment())
@@ -142,9 +157,8 @@ namespace Fanex.Athena.AnalyticsAPI
                 app.Use(async (context, next) =>
                 {
                     context.User = new GenericPrincipal(new ClaimsIdentity(new[] {
-                        new Claim(ClaimTypes.Name, DEFAULT_SITE_NAME),
-                        new Claim("language", DEFAULT_LANG_CODE) }),
-                           new[] { "" });
+                        new Claim(ClaimTypes.Name, DEFAULT_SITE_NAME) }),
+                        new[] { "" });
 
                     await next.Invoke();
                 });

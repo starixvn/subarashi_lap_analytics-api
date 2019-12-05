@@ -2,6 +2,6 @@
 {
     public interface ILangResourceService
     {
-        string GetName(string type, string id, string langCode, string defaultValue);
+        string GetName(string type, string id, string defaultValue);
     }
 }

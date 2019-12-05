@@ -74,7 +74,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         {
             await BindTopDistributionsToFilterMetaModel(filter);
 
-            _translationService.Translate(filter.TopDistributions, filter.LangCode, TranslationConst.BettypeType);
+            _translationService.Translate(filter.TopDistributions, TranslationConst.BettypeType);
 
             var isMargin = filter.Measurement.Id == MeasurementConst.MARGIN;
 
@@ -84,8 +84,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
                               !isMargin ? _bettypeService.GetDistributionWithComparison(filter) : Task.FromResult<IEnumerable<DistributionVM>>(null),
                               isMargin ? _bettypeService.GetOverallMeasurement(filter) : Task.FromResult<IEnumerable<OverallMeasurementVM>>(null));
 
-            _translationService.Translate(distributionData, filter.LangCode, TranslationConst.NormalType);
-            _translationService.Translate(overallMarginData, filter.LangCode, TranslationConst.NormalType);
+            _translationService.Translate(distributionData, TranslationConst.NormalType);
+            _translationService.Translate(overallMarginData, TranslationConst.NormalType);
 
             return ToResult(new
             {
@@ -100,7 +100,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
                 GrowthData = new
                 {
                     PeriodGrowth = periodGrowthData,
-                    MonthGrowth = new { }
+                    MonthGrowth = new {}
                 }
             });
         }

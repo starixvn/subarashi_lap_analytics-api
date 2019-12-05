@@ -2,21 +2,12 @@
 using Fanex.Athena.AnalyticsAPI.Common.Resources.Lang;
 using Fanex.RemotingRef;
 using System;
-using System.Collections.Generic;
-using System.Resources;
+using System.Threading;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
     public class LangResourceService : ILangResourceService
     {
-        private static IDictionary<string, ResourceManager> resourceFactory = new Dictionary<string, ResourceManager>
-        {
-            { TranslationConst.EnUS, LangEnUS.ResourceManager },
-            { TranslationConst.ZhCN, LangZhCN.ResourceManager },
-            { TranslationConst.ZhHans, LangZhHans.ResourceManager },
-            { TranslationConst.ZhTW, LangZhTW.ResourceManager }
-        };
-
         private readonly IRemotingRefService _remotingRefService;
 
         public LangResourceService(IRemotingRefService remotingRefService)
@@ -24,35 +15,34 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
             _remotingRefService = remotingRefService;
         }
 
-        public string GetName(string type, string id, string langCode, string defaultValue)
+        public string GetName(string type, string id, string defaultValue)
         {
             if (type.Equals(TranslationConst.BettypeType, StringComparison.OrdinalIgnoreCase))
             {
-                return GetDisplayBetTypeName(id, langCode, defaultValue);
+                return GetDisplayBetTypeName(id, defaultValue);
             }
-            return GetValue(type, id, langCode) ?? defaultValue;
+
+            var result = GetValue(type, id);
+            result = string.IsNullOrEmpty(result) ? defaultValue : result;
+
+            return result;
         }
 
-        private string GetDisplayBetTypeName(string betTypeId, string langCode, string defaultValue)
+        private string GetDisplayBetTypeName(string betTypeId, string defaultValue)
         {
+            var langCode = Thread.CurrentThread.CurrentCulture.Name;
             var result = _remotingRefService.GetDisplayedBetTypeName(betTypeId, langCode);
-            if (string.IsNullOrWhiteSpace(result))
+            if (string.IsNullOrEmpty(result))
             {
                 result = defaultValue;
             }
             return result;
         }
 
-        private static string GetValue(string type, string id, string langCode)
+        private static string GetValue(string type, string id)
         {
-            if (!resourceFactory.ContainsKey(langCode))
-            {
-                return null;
-            }
-
             var key = $"{type}_{id}";
-            var result = resourceFactory[langCode].GetString(key);
-
+            var result = ViewResource.ResourceManager.GetString(key);
             return result;
         }
     }

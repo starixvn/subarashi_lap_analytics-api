@@ -26,12 +26,13 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
             current = current ?? 0;
             previous = previous ?? 0;
 
+            var baseValue = previous.Value;
             if (previous.Value.CompareTo(0) == 0)
             {
-                return 0;
+                baseValue = current.Value.CompareTo(0) == 0 ? 1 : current.Value;
             }
 
-            var result = ((current.Value - previous.Value) / Math.Abs(previous.Value)) * 100;
+            var result = ((current.Value - previous.Value) / Math.Abs(baseValue)) * 100;
             result = ToRound(result, Round_Floating_Point);
 
             return result;
