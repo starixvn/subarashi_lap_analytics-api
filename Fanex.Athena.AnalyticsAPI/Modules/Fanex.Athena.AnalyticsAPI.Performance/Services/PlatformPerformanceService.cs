@@ -23,8 +23,9 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
         public PlatformPerformanceService(
             IContextService context,
             IPerformanceRepository performanceRepository,
-            IPlatformPerformanceVMMapper viewModelMapper
-            ) : base(context, performanceRepository)
+            IPlatformPerformanceVMMapper viewModelMapper,
+            IHandleRawData handleRawData
+            ) : base(context, performanceRepository, handleRawData)
         {
             _viewModelMapper = viewModelMapper;
         }
@@ -34,9 +35,9 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToPlatformPerformanceCriteria<PlatformDistributionCriteria, PlatformPerformanceFilterMetaModel>(filter, false);
             var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPlatformPerformanceCriteria<PlatformDistributionCriteria, PlatformPerformanceFilterMetaModel>(filter);
 
-            var dtos = await _performanceRepository.QueryMultipleAsync<PlatformDistributionDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
+            var data = await _performanceRepository.QueryMultipleAsync<PlatformDistributionDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 
-            var result = _viewModelMapper.ToDistributionVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), MapToTopDistributions(filter.TopDistributions));
+            var result = _viewModelMapper.ToDistributionVM(data.ElementAtOrDefault(0), data.ElementAtOrDefault(1), MapToTopDistributions(filter.TopDistributions));
 
             return result;
         }
@@ -46,9 +47,10 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToPlatformPerformanceCriteria<PlatformGrowthCriteria, PlatformPerformanceFilterMetaModel>(filter, false);
             var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPlatformPerformanceCriteria<PlatformGrowthCriteria, PlatformPerformanceFilterMetaModel>(filter);
 
-            var dtos = await _performanceRepository.QueryMultipleAsync<PlatformMeasurementPeriodDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
+            var data = await _performanceRepository.QueryMultipleAsync<PlatformMeasurementPeriodDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
+            HandleRawData(data, filter);
 
-            var result = _viewModelMapper.ToMeasurementGrowthPeriodVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), MapToTopDistributions(filter.TopDistributions));
+            var result = _viewModelMapper.ToMeasurementGrowthPeriodVM(data.ElementAtOrDefault(0), data.ElementAtOrDefault(1), MapToTopDistributions(filter.TopDistributions));
 
             return result;
         }
@@ -82,6 +84,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
                 criteriaCurrentPeriod.GroupBy = GroupByConst.MONTH_GROUP;
 
                 var data = await _performanceRepository.QueryMultipleAsync<MeasurementTimeDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
+                HandleRawData(data, filter);
 
                 var prevPeriodResult = _viewModelMapper.ToMeasurementGrowthTimeVM(data.ElementAtOrDefault(0), prevPeriodFromDate, prevPeriodToDate);
                 var currentPeriodResult = _viewModelMapper.ToMeasurementGrowthTimeVM(data.ElementAtOrDefault(1), currentPeriodFromDate, currentPeriodToDate);
@@ -98,8 +101,10 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToPlatformPerformanceCriteria<PlatformMeasurementComparisonCriteria, PlatformPerformanceFilterMetaModel>(filter, false);
             var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPlatformPerformanceCriteria<PlatformMeasurementComparisonCriteria, PlatformPerformanceFilterMetaModel>(filter);
 
-            var dtos = await _performanceRepository.QueryMultipleAsync<PlatformMeasurementComparisonDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
-            var result = _viewModelMapper.ToMeasurementComparisonVM(dtos.ElementAtOrDefault(0), dtos.ElementAtOrDefault(1), MapToTopDistributions(filter.TopDistributions));
+            var data = await _performanceRepository.QueryMultipleAsync<PlatformMeasurementComparisonDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
+            HandleRawData(data, filter);
+
+            var result = _viewModelMapper.ToMeasurementComparisonVM(data.ElementAtOrDefault(0), data.ElementAtOrDefault(1), MapToTopDistributions(filter.TopDistributions));
 
             return result;
         }
@@ -112,9 +117,10 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<PlatformDistributionCriteria, PerformanceFilterMetaModel>(filter);
             criteriaCurrentPeriod.DrillDown = DrillDownConst.NONE_DRILL_DOWN;
 
-            var dtos = await _performanceRepository.QueryMultipleAsync<TotalDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
+            var data = await _performanceRepository.QueryMultipleAsync<TotalDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
+            HandleRawData(data, filter);
 
-            var result = _viewModelMapper.ToOverallMeasurementVM(dtos.ElementAtOrDefault(0)?.FirstOrDefault(), dtos.ElementAtOrDefault(1)?.FirstOrDefault());
+            var result = _viewModelMapper.ToOverallMeasurementVM(data.ElementAtOrDefault(0)?.FirstOrDefault(), data.ElementAtOrDefault(1)?.FirstOrDefault());
 
             return result;
         }
@@ -123,10 +129,10 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
         {
             var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<PlatformDistributionCriteria, PerformanceFilterMetaModel>(filter);
             criteriaCurrentPeriod.SortByMeasurement = SortByMeasurementConst.SORT;
-            var distributionData = (await _performanceRepository.QueryAsync<PlatformDistributionDTO>(criteriaCurrentPeriod)).ToList();
+            var distributionData = (await _performanceRepository.QueryAsync<PlatformDistributionDTO>(criteriaCurrentPeriod));
 
             var specialDistribution = distributionData.FirstOrDefault(_ => _.Id == PLATFORM_SPECIAL_ID);
-            if (specialDistribution != null && distributionData.Count > NUMBER_OF_TOP_DISTRIBUTION)
+            if (specialDistribution != null && distributionData.Count() > NUMBER_OF_TOP_DISTRIBUTION)
             {
                 specialDistribution.Distribution = 0;
             }

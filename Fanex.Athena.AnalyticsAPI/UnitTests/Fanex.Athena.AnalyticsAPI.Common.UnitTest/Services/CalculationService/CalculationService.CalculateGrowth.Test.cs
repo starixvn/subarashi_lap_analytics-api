@@ -13,16 +13,14 @@ namespace Fanex.Athena.AnalyticsAPI.Common.UnitTest.Services
         }
 
         [Theory]
-        [InlineData(-100.12, 0)]
-        [InlineData(null, 0)]
-        [InlineData(0, null)]
-        [InlineData(100.12, null)]
-        [InlineData(-100.12, null)]
-        [InlineData(null, null)]
-        public void CalculateGrowth_PreviousIsNullOrZero_ReturnZero(double? current, double? previous)
+        [InlineData(null, 0, 0)]
+        [InlineData(0, null, 0)]
+        [InlineData(null, null, 0)]
+        [InlineData(-123, null, -100)]
+        [InlineData(1235, 0, 100)]
+        public void CalculateGrowth_PreviousIsNullOrZero_ReturnCorrectResult(double? current, double? previous, double expected)
         {
             //Arrange
-            var expected = 0;
             //Act
             var actual = _targetService.CalculateGrowth(current, previous);
 

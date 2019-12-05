@@ -1,6 +1,7 @@
 ﻿using Fanex.Athena.LGAPI.SSAS.Bridge.Extensions;
 using Fanex.Athena.LGAPI.SSAS.Bridge.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Fanex.Athena.LGAPI.SSAS.Bridge.Services
@@ -21,7 +22,7 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.Services
         {
             var body = new { query, connectionKey = Setting.ConnectionKey };
             var responseData = await _httpClientService.PostAsync<IEnumerable<IDictionary<string, object>>>(bridgeUrl, body);
-            var result = responseData != null ? ParseToObjects<TResult>(responseData) : new List<TResult>();
+            var result = responseData != null ? ParseToObjects<TResult>(responseData)?.ToList() : new List<TResult>();
             return result;
         }
 
@@ -35,7 +36,7 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.Services
             {
                 foreach (var item in responseData)
                 {
-                    result.Add(ParseToObjects<TResult>(item));
+                    result.Add(ParseToObjects<TResult>(item)?.ToList());
                 }
             }
 

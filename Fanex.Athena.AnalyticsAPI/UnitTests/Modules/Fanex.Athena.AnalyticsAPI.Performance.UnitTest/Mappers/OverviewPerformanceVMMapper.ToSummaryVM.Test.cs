@@ -54,8 +54,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
                 new SummaryVM
                 {
                     MeasurementId = 3,
-                    Total = -0.5,
-                    ChangePercent = -0.5 + 1.23
+                    Total = -50,
+                    ChangePercent = -50 + 123
                 }
             };
 

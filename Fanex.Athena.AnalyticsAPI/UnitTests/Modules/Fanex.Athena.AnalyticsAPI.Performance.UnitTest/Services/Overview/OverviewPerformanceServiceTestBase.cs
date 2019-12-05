@@ -13,6 +13,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Services
         protected readonly Mock<IContextService> _contextServiceMock;
         protected readonly Mock<IPerformanceRepository> _repositoryMock;
         protected readonly Mock<IOverviewPerformanceVMMapper> _mapperMock;
+        protected readonly Mock<IHandleRawData> _handleRawDataMock;
 
         protected readonly Fixture _fixture;
 
@@ -24,8 +25,9 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Services
             _contextServiceMock = new Mock<IContextService>();
             _repositoryMock = new Mock<IPerformanceRepository>();
             _mapperMock = new Mock<IOverviewPerformanceVMMapper>();
+            _handleRawDataMock = new Mock<IHandleRawData>();
 
-            _target = new OverviewPerformanceService(_contextServiceMock.Object, _repositoryMock.Object, _mapperMock.Object);
+            _target = new OverviewPerformanceService(_contextServiceMock.Object, _repositoryMock.Object, _mapperMock.Object, _handleRawDataMock.Object);
         }
 
         protected static PerformanceFilterMetaModel FakePerformanceFilterMetaModel => new PerformanceFilterMetaModel

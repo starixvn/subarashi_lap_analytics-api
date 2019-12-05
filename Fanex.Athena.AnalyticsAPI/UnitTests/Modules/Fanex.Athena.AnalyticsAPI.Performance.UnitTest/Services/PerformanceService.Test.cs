@@ -3,6 +3,7 @@ using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Repositories;
+using Fanex.Athena.AnalyticsAPI.Performance.Services;
 using Moq;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Services
         private readonly PerformanceServiceTestable _target;
         private readonly Mock<IContextService> _mockContext;
         private readonly Mock<IPerformanceRepository> _repoMock;
+        private readonly Mock<IHandleRawData> _handleRawDataMock;
         private readonly Fixture _fixture;
 
         public PerformanceService_Test()
@@ -23,7 +25,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Services
             _mockContext = new Mock<IContextService>();
             _repoMock = new Mock<IPerformanceRepository>();
             _fixture = new Fixture();
-            _target = new PerformanceServiceTestable(_mockContext.Object, _repoMock.Object);
+            _handleRawDataMock = new Mock<IHandleRawData>();
+            _target = new PerformanceServiceTestable(_mockContext.Object, _repoMock.Object, _handleRawDataMock.Object);
         }
 
         [Theory]

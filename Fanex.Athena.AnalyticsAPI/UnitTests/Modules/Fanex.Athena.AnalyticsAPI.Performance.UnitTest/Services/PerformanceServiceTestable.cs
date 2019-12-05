@@ -23,9 +23,10 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Services
     {
         public PerformanceServiceTestable(
             IContextService context,
-            IPerformanceRepository performanceRepository
+            IPerformanceRepository performanceRepository,
+            IHandleRawData handleRawData
         )
-          : base(context, performanceRepository)
+          : base(context, performanceRepository, handleRawData)
         {
         }
 

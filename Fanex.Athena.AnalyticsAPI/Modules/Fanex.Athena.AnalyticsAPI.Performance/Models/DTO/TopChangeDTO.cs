@@ -2,7 +2,7 @@
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
 {
-    public abstract class TopChangeDTO : IIdentifiable
+    public abstract class TopChangeDTO : IIdentifiable, IMeasurement
     {
         [SsasColumn("[Measurement]")]
         public double Total { get; set; }
@@ -36,12 +36,12 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
         [SsasColumn("DimSportBettypeMatrix[ProductID]")]
         public int ProductId { get; set; }
 
-        [SsasColumn("DimSportBettypeMatrix[ProductName]")]
-        public string ProductName { get; set; }
+        [SsasColumn("DimSportBettypeMatrix[ProductCode]")]
+        public string ProductCode { get; set; }
 
         public override string Id => $"{ProductId}@{BetTypeDisplayID}";
 
-        public override string Name => $"{BetTypeDisplayName} ({ProductName})";
+        public override string Name => $"{BetTypeDisplayName} ({ProductCode})";
     }
 
     public class PlatformTopChangeDTO : TopChangeDTO

@@ -57,7 +57,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
                 new MeasurementComparisonVM
                 {
                     Name = "distribution1",
-                    DifferenceMargin = new DifferenceMeasurement { DifferenceTotal = 4.7, DifferenceDistribution = 0 },
+                    DifferenceMargin = new DifferenceMeasurement { DifferenceTotal = 470, DifferenceDistribution = 0 },
                     DifferenceGrossProfit = new DifferenceMeasurement { DifferenceTotal = 983730, DifferenceDistribution = 0 },
                     DifferenceTurnover = new DifferenceMeasurement { DifferenceTotal = -8200, DifferenceDistribution = -30.000000000000004 }
                 },
@@ -69,20 +69,23 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
                     DifferenceTurnover = new DifferenceMeasurement { DifferenceTotal = -5921000, DifferenceDistribution = 20.000000000000004 }
                 },
                 new MeasurementComparisonVM
-                {   Name = "distribution3",
-                    DifferenceMargin = new DifferenceMeasurement { DifferenceTotal = 0.5, DifferenceDistribution = 0 },
+                {
+                    Name = "distribution3",
+                    DifferenceMargin = new DifferenceMeasurement { DifferenceTotal = 50, DifferenceDistribution = 0 },
                     DifferenceGrossProfit = new DifferenceMeasurement { DifferenceTotal = 8823.255, DifferenceDistribution = 12.2 },
                     DifferenceTurnover = new DifferenceMeasurement { DifferenceTotal = 91230.23, DifferenceDistribution = 39.2 }
                 },
                 new MeasurementComparisonVM
-                {   Name = "distribution4",
-                    DifferenceMargin = new DifferenceMeasurement { DifferenceTotal = 1.5, DifferenceDistribution = 0 },
+                {
+                    Name = "distribution4",
+                    DifferenceMargin = new DifferenceMeasurement { DifferenceTotal = 150, DifferenceDistribution = 0 },
                     DifferenceGrossProfit = new DifferenceMeasurement { DifferenceTotal = 3501254.255, DifferenceDistribution = 12.2 },
                     DifferenceTurnover = new DifferenceMeasurement { DifferenceTotal = 91230.23, DifferenceDistribution = 39.2 }
                 },
                 new MeasurementComparisonVM
-                {   Name = "Others",
-                    DifferenceMargin = new DifferenceMeasurement { DifferenceTotal = -5.35 },
+                {
+                    Name = "Others",
+                    DifferenceMargin = new DifferenceMeasurement { DifferenceTotal = -535 },
                     DifferenceGrossProfit = new DifferenceMeasurement { DifferenceTotal = 39923.255000000005, DifferenceDistribution = 30.200000000000006 },
                     DifferenceTurnover = new DifferenceMeasurement { DifferenceTotal = 124330.23, DifferenceDistribution = 39.2 }
                 }

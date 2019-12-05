@@ -2,7 +2,7 @@
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
 {
-    public class TotalDTO
+    public class TotalDTO : IMeasurement
     {
         [SsasColumn("[Measurement]")]
         public double Total { get; set; }

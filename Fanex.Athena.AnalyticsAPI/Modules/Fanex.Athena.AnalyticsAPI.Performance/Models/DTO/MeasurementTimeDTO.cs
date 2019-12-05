@@ -3,7 +3,7 @@ using System;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
 {
-    public class MeasurementTimeDTO
+    public class MeasurementTimeDTO : IMeasurement
     {
         [SsasColumn("DimDate[MonthKey]")]
         public DateTime Time { get; set; }
