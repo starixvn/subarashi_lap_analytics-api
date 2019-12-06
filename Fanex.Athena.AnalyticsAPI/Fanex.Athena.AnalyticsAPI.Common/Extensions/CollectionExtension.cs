@@ -16,7 +16,8 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
             }
 
             return collection.GroupBy(_ => keySelector(_))
-                .Select(_ => mapper(_));
+                .Select(_ => mapper(_))
+                .ToList();
         }
     }
 }

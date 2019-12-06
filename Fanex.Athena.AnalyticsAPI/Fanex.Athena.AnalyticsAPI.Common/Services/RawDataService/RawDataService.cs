@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Fanex.Athena.AnalyticsAPI.Performance.Services
+namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
     public class RawDataService : IHandleRawData
     {

@@ -23,8 +23,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Extensions
             services.AddTransient<IPlatformPerformanceService, PlatformPerformanceService>();
             services.AddTransient<IBettypePerformanceService, BettypePerformanceService>();
 
-            services.AddSingleton<IHandleRawData, RawDataService>();
-
             return services;
         }
 

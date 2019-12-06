@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Fanex.Athena.AnalyticsAPI.Performance.Services
+namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
     public interface IHandleRawData
     {
