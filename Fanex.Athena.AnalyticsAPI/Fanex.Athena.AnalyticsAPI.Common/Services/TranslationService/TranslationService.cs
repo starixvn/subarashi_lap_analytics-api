@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
@@ -54,18 +55,28 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
                          .ToString();
 
                 id = id?.Split('@')?.LastOrDefault();
-                var defaultValue = prop.GetValue(originalItem)?.ToString();
+                var defaultValue = prop.GetValue(originalItem)?.ToString() ?? string.Empty;
                 translationType = translationType ?? attributeInfo.TranslationType;
 
                 var tranlatedValue = _langResourceService.GetName(translationType, id, defaultValue);
-                if(translationType == TranslationConst.BettypeType)
-                {         
-                    return;
-                }
 
-                //todo - bettype
+                if (translationType == TranslationConst.BettypeType)
+                {
+                    const string includePattern = @"\s+\(\w+\)$";
+                    tranlatedValue = GetTranslateValueWithIncludePattern(defaultValue, tranlatedValue, includePattern);
+                }
                 prop.SetValue(originalItem, tranlatedValue);
             }
+        }
+
+        private static string GetTranslateValueWithIncludePattern(string defaultValue, string tranlatedValue, string includePattern)
+        {
+            var replacements = Regex.Split(defaultValue, includePattern);
+            foreach (var replacement in replacements)
+            {
+                defaultValue = string.IsNullOrEmpty(replacement) ? defaultValue : defaultValue.Replace(replacement, tranlatedValue);
+            }
+            return defaultValue;
         }
     }
 }

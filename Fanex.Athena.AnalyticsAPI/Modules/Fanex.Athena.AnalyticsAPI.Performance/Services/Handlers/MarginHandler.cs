@@ -9,12 +9,12 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
         public void HandleData<T>(T data)
         {
-            var totalObject = data as IMeasurement;
-            if (totalObject == null)
+            var measurementData = data as IMeasurement;
+            if (measurementData == null)
             {
                 return;
             }
-            totalObject.Total *= PERCENT_VALUE;
+            measurementData.Total *= PERCENT_VALUE;
         }
     }
 }

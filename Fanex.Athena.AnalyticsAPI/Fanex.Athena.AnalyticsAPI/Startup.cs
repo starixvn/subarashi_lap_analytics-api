@@ -47,7 +47,6 @@ namespace Fanex.Athena.AnalyticsAPI
             RefDataTypeContainer
                 .ConnectTo(new Uri(Configuration["Fanex.RemotingRef.Service.Url"]))
                 .FromApplication("LAP_Analytics_API");
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.Configure<IConfiguration>(Configuration);
