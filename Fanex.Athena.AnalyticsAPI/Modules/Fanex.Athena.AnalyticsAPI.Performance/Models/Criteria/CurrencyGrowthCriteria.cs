@@ -2,7 +2,7 @@
 {
     public class CurrencyGrowthCriteria : CurrencyPerformanceCriteria
     {
-        public byte GroupBy { get; set; } = GroupByConst.NONE_GROUP;
+        public byte GroupBy { get; set; } = GroupByConst.DIMENSION_GROUP;
 
         public override string GetSettingKey()
         {

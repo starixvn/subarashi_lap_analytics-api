@@ -102,7 +102,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPlatformPerformanceCriteria<PlatformMeasurementComparisonCriteria, PlatformPerformanceFilterMetaModel>(filter);
 
             var data = await _performanceRepository.QueryMultipleAsync<PlatformMeasurementComparisonDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
-            HandleRawData(data, filter);
 
             var result = _viewModelMapper.ToMeasurementComparisonVM(data.ElementAtOrDefault(0), data.ElementAtOrDefault(1), MapToTopDistributions(filter.TopDistributions));
 

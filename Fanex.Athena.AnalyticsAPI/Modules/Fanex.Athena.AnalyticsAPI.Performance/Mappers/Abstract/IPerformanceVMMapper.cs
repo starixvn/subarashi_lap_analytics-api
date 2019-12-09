@@ -1,4 +1,5 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
+using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,12 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             IEnumerable<T> prevPeriodDtos,
             IEnumerable<T> currentPeriodDtos,
             IEnumerable<(string topDistributionId, string topDistributionName)> topDistributions)
+            where T : MeasurementPeriodDTO;
+
+        IEnumerable<MeasurementPeriodComparisonGrowthVM> ToMeasurementGrowthPeriodVM1<T>(
+            IEnumerable<T> prevPeriodDtos,
+            IEnumerable<T> currentPeriodDtos,
+            IEnumerable<DistributionMetaModel> topDistributions)
             where T : MeasurementPeriodDTO;
 
         IEnumerable<MeasurementGrowthVM> ToMeasurementGrowthTimeVM(IEnumerable<MeasurementTimeDTO> periodDtos, DateTime fromMonth, DateTime toMonth);

@@ -2,6 +2,7 @@
 using Fanex.Athena.AnalyticsAPI.Common.Mappers;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
+using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -126,6 +127,37 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                         prevPeriodDtoDic.Select(_ => new IdentifyVM { Id = _.Value.Id, Name = _.Value.Name }),
                         currentPeriodDtoDic.Select(_ => new IdentifyVM { Id = _.Value.Id, Name = _.Value.Name })
                         ));
+            }
+
+            return result;
+        }
+
+        public IEnumerable<MeasurementPeriodComparisonGrowthVM> ToMeasurementGrowthPeriodVM1<T>(
+            IEnumerable<T> prevPeriodDtos,
+            IEnumerable<T> currentPeriodDtos,
+            IEnumerable<DistributionMetaModel> topDistributions
+            )
+            where T : MeasurementPeriodDTO
+        {
+            var result = new List<MeasurementPeriodComparisonGrowthVM>(topDistributions.Count());
+            var prevPeriodDtoDic = prevPeriodDtos.ToDictionary(_ => _.Id, _ => _);
+            var currentPeriodDtoDic = currentPeriodDtos.ToDictionary(_ => _.Id, _ => _);
+
+            foreach (var topDistribution in topDistributions)
+            {
+                var (topDistributionId, topDistributionName) = (topDistribution.DisplayId, topDistribution.DisplayName);
+                var currentPeriodDto = currentPeriodDtoDic[topDistribution.DisplayId];
+
+                var previousPeriodTotal = prevPeriodDtoDic.ContainsKey(topDistributionId) ? prevPeriodDtoDic[topDistributionId].Total : 0;
+                var currentPeriodTotal = currentPeriodDto.Total;
+
+                var vmItem = CreateMeasurementPeriodComparisonGrowthVM(topDistributionId, topDistributionName,
+                    previousPeriodTotal, currentPeriodTotal,
+                    topDistribution.PreviousPeriodDistributions.Select(_ => new IdentifyVM { Id = _.Id, Name = _.Name }),
+                    topDistribution.CurrentPeriodDistributions.Select(_ => new IdentifyVM { Id = _.Id, Name = _.Name })
+                    );
+
+                result.Add(vmItem);
             }
 
             return result;

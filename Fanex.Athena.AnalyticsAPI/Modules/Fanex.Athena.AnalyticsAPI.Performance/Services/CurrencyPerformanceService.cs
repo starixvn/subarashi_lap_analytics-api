@@ -1,4 +1,5 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Helpers;
+using Fanex.Athena.AnalyticsAPI.Common.Mappers;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Mappers;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria;
@@ -58,9 +59,13 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCurrencyPerformanceCriteria<CurrencyGrowthCriteria, CurrenyPerformanceFilterMetaModel>(filter);
 
             var data = await _performanceRepository.QueryMultipleAsync<CurrencyMeasurementPeriodDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
-            HandleRawData(data, filter);
 
-            var result = _viewModelMapper.ToMeasurementGrowthPeriodVM(data.ElementAtOrDefault(0), data.ElementAtOrDefault(1), MapToTopDistributions(filter.TopDistributions));
+            var (prevPeriodData, currentPeriodData) = await BindOthersData(data.ElementAtOrDefault(0), data.ElementAtOrDefault(1), filter);
+
+            HandleRawData(prevPeriodData, filter);
+            HandleRawData(currentPeriodData, filter);
+
+            var result = _viewModelMapper.ToMeasurementGrowthPeriodVM1(prevPeriodData, currentPeriodData, filter.TopDistributions);
 
             return result;
         }
@@ -123,11 +128,53 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             return result;
         }
 
+        public async Task<(IEnumerable<CurrencyDistributionDTO> prevPeriodData, IEnumerable<CurrencyDistributionDTO> currentPeriodData)> GetDistributionRawData(PerformanceFilterMetaModel filter)
+        {
+            var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<CurrencyDistributionCriteria, PerformanceFilterMetaModel>(filter, false);
+            var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<CurrencyDistributionCriteria, PerformanceFilterMetaModel>(filter);
+
+            var data = await _performanceRepository.QueryMultipleAsync<CurrencyDistributionDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
+
+            return (data.ElementAtOrDefault(0), data.ElementAtOrDefault(1));
+        }
+
         protected override async Task<IEnumerable<DistributionDTO>> GetDistributionData(PerformanceFilterMetaModel filter)
         {
             var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToPerformanceCriteria<CurrencyDistributionCriteria, PerformanceFilterMetaModel>(filter);
             var distributionData = await _performanceRepository.QueryAsync<CurrencyDistributionDTO>(criteriaCurrentPeriod);
+
             return distributionData;
+        }
+
+        private async Task<(IEnumerable<CurrencyMeasurementPeriodDTO> prevPeriodData, IEnumerable<CurrencyMeasurementPeriodDTO> currentPeriodData)> BindOthersData(
+            IEnumerable<CurrencyMeasurementPeriodDTO> prevPeriodData,
+            IEnumerable<CurrencyMeasurementPeriodDTO> currentPeriodData,
+            CurrenyPerformanceFilterMetaModel filter)
+        {
+            var otherDistribution = filter.TopDistributions.FirstOrDefault(_ => _.DisplayId == ViewModelMapper.DISTRIBUTION_OTHERS_ID);
+            if (otherDistribution != null)
+            {
+                var cloneFilter = MetaModelHelper.Clone(filter);
+                cloneFilter.Currencies = otherDistribution.PreviousPeriodDistributions?.Select(_ => _.Name);
+                var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToCurrencyPerformanceCriteria<CurrencyGrowthCriteria, CurrenyPerformanceFilterMetaModel>(cloneFilter, false);
+                criteriaPrevPeriod.GroupBy = GroupByConst.NONE_GROUP;
+
+                cloneFilter.Currencies = otherDistribution.CurrentPeriodDistributions.Select(_ => _.Name);
+                var criteriaCurrentPeriod = PerformanceHelper.CriteriaHelper.ToCurrencyPerformanceCriteria<CurrencyGrowthCriteria, CurrenyPerformanceFilterMetaModel>(cloneFilter);
+                criteriaCurrentPeriod.GroupBy = GroupByConst.NONE_GROUP;
+
+                var othersData = await _performanceRepository.QueryMultipleAsync<CurrencyMeasurementPeriodDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
+                var prevPeriodOthersData = othersData.ElementAtOrDefault(0)?.FirstOrDefault();
+                prevPeriodOthersData.CurrencyId = ViewModelMapper.DISTRIBUTION_OTHERS_ID;
+
+                var currentPeriodOthersData = othersData.ElementAtOrDefault(1)?.FirstOrDefault();
+                currentPeriodOthersData.CurrencyId = ViewModelMapper.DISTRIBUTION_OTHERS_ID;
+
+                prevPeriodData = prevPeriodOthersData != null ? prevPeriodData.Append(prevPeriodOthersData) : prevPeriodData;
+                currentPeriodData = currentPeriodOthersData != null ? currentPeriodData.Append(currentPeriodOthersData) : currentPeriodData;
+            }
+
+            return (prevPeriodData, currentPeriodData);
         }
     }
 }
