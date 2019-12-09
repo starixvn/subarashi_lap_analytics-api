@@ -6,6 +6,7 @@ using Fanex.Data;
 using Fanex.Data.SqlServer;
 using Fanex.Logging;
 using Fanex.Logging.RabbitMQ;
+using Fanex.Logging.Sentry.RavenClient;
 using Fanex.RemotingRef;
 using LAP.ONEBook.Security;
 using LAP.ONEBook.Security.StorageProvider.SqlServer;
@@ -19,6 +20,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ONEbook.UM.Configurations;
 using ONEbook.UM.Extensions;
+using SharpRaven;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -31,7 +33,6 @@ namespace Fanex.Athena.AnalyticsAPI
     public class Startup
     {
         private const string API_NAME = "LAP - Analytics API";
-        private const string DEFAULT_SITE_NAME = "12Bet"; //only development
 
         public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
@@ -47,10 +48,10 @@ namespace Fanex.Athena.AnalyticsAPI
             RefDataTypeContainer
                 .ConnectTo(new Uri(Configuration["Fanex.RemotingRef.Service.Url"]))
                 .FromApplication("LAP_Analytics_API");
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.Configure<IConfiguration>(Configuration);
-            services.AddSingleton<IRemotingRefService, RemotingRefService>();
 
             services.AddSwaggerDoc(Env, API_NAME);
 
@@ -61,7 +62,8 @@ namespace Fanex.Athena.AnalyticsAPI
             {
                 builder.AllowAnyOrigin()
                        .AllowAnyMethod()
-                       .AllowAnyHeader();
+                       .AllowAnyHeader()
+                       .AllowCredentials();
             }));
 
             services.Configure<GzipCompressionProviderOptions>(options =>
@@ -80,20 +82,8 @@ namespace Fanex.Athena.AnalyticsAPI
                 options.Providers.Add<GzipCompressionProvider>();
             });
 
-            var appSettings = Configuration.GetSection("AppSettings").Get<AppSettings>();
-            LogManager
-            .SetDefaultLogCategory(appSettings.LogCategory)
-            .Use(new List<ILogEngine>
-             {
-                new RabbitMQLogging(appSettings.RabbitMQ)
-             });
-
-            var conns = GetConnectionString();
-            DbSettingProviderManager
-              .StartNewSession()
-              .WithSqlServer(resourcePath: "~/SpConfig")
-              .Use(conns)
-              .Run();
+            SetupLogging();
+            SetupSqlProvider();
 
             Performance.Extensions.DefendencyInjectionExtension.AddDIPerformance(services);
             Common.Extensions.DefendencyInjectionExtension.AddDICommon(services, Configuration);
@@ -104,25 +94,6 @@ namespace Fanex.Athena.AnalyticsAPI
             });
 
             services.AddUMService(Configuration.GetSection("ONEbook.UM").Get<UMClientConfiguration>());
-        }
-
-        private string GetOneBookSecurityConnection()
-        {
-            var encryptedConnectionString = Configuration.GetConnectionString("LAP.OneBook");
-            return Cryptography.DecryptConnectionString(encryptedConnectionString);
-        }
-
-        private Dictionary<string, ConnectionConfiguration> GetConnectionString()
-        {
-            var connectionStrings = new Dictionary<string, ConnectionConfiguration>
-            {
-                {
-                    "DBEXT.bodb_dwrs.bodbLicenseeNet",
-                    new ConnectionConfiguration("DBEXT.bodb_dwrs.bodbLicenseeNet",
-                        Configuration.GetConnectionString("DBEXT.bodb_dwrs.bodbLicenseeNet"))
-                }
-            };
-            return connectionStrings;
         }
 
         public void Configure(IApplicationBuilder app)
@@ -150,15 +121,15 @@ namespace Fanex.Athena.AnalyticsAPI
 
             app.UseResponseCompression();
             app.UseSwaggerDoc(Env, API_NAME);
+
             if (Env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.Use(async (context, next) =>
                 {
                     context.User = new GenericPrincipal(new ClaimsIdentity(new[] {
-                        new Claim(ClaimTypes.Name, DEFAULT_SITE_NAME) }),
-                        new[] { "" });
-
+                        new Claim(ClaimTypes.Name, "12bet") }),
+                        new[] { "admin" });
                     await next.Invoke();
                 });
             }
@@ -168,8 +139,53 @@ namespace Fanex.Athena.AnalyticsAPI
                 app.UseOneAuth();
             }
             app.UseUM();
-
             app.UseMvc();
+        }
+
+        private void SetupLogging()
+        {
+            var loggingSetting = Configuration.GetSection("LoggingSetting").Get<LoggingSetting>();
+
+            var logEngines = new List<ILogEngine>(2);
+            if (loggingSetting.RabbitEngine != null)
+            {
+                logEngines.Add(new RabbitMQLogging(loggingSetting.RabbitEngine.ConnectionString));
+            }
+            if (loggingSetting.SentryEngine != null)
+            {
+                logEngines.Add(new SentryLogging(new SentryEngineOptions
+                {
+                    Dsn = new Dsn(loggingSetting.SentryEngine.BackendDsn)
+                }));
+            }
+
+            LogManager
+             .SetDefaultLogCategory(loggingSetting.Category)
+             .Use(logEngines);
+        }
+
+        private void SetupSqlProvider()
+        {
+            var connectionStrings = new Dictionary<string, ConnectionConfiguration>
+            {
+                {
+                    "DBEXT.bodb_dwrs.bodbLicenseeNet",
+                    new ConnectionConfiguration("DBEXT.bodb_dwrs.bodbLicenseeNet",
+                        Configuration.GetConnectionString("DBEXT.bodb_dwrs.bodbLicenseeNet"))
+                }
+            };
+
+            DbSettingProviderManager
+                .StartNewSession()
+                .WithSqlServer(resourcePath: "~/SpConfig")
+                .Use(connectionStrings)
+                .Run();
+        }
+
+        private string GetOneBookSecurityConnection()
+        {
+            var encryptedConnectionString = Configuration.GetConnectionString("LAP.OneBook");
+            return Cryptography.DecryptConnectionString(encryptedConnectionString);
         }
     }
 }

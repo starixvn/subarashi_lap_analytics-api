@@ -1,6 +1,7 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.LGAPI.SSAS.Bridge.Services;
+using Fanex.RemotingRef;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -29,6 +30,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
             services.AddSingleton<ILangResourceService, LangResourceService>();
             services.AddSingleton<ITranslationService, TranslationService>();
             services.AddSingleton<IHandleRawData, RawDataService>();
+            services.AddSingleton<IRemotingRefService, RemotingRefService>();
 
             var setting = new SSASSetting();
             configuration.GetSection("SSASSetting").Bind(setting);

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
@@ -37,10 +38,11 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
 
         private async Task HandleError(HttpContext context, Exception error)
         {
+            var body = GetBodyContent(context);
             context.Response.StatusCode = ServerErrorCode;
             context.Response.ContentType = "application/json";
             var errorMsg = $"Msg={error.Message}\n Stacktrace={error.StackTrace}" +
-                $"\n Path={context.Request.Path}\n Query={context.Request.QueryString}\n";
+                $"\n Path={context.Request.Path}\n Query={context.Request.QueryString}\n Body={body}";
 
             Logging.Logger.Log.Error(errorMsg);
 
@@ -50,6 +52,17 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
                 msg = "Sorry, an error occurred while processing your request.",
                 isSuccess = false
             }));
+        }
+
+        private static string GetBodyContent(HttpContext context)
+        {
+            var body = string.Empty;
+            context.Request.Body.Seek(0, SeekOrigin.Begin);
+            using (var reader = new StreamReader(context.Request.Body))
+            {
+                body = reader.ReadToEnd();
+            }
+            return body;
         }
     }
 }
