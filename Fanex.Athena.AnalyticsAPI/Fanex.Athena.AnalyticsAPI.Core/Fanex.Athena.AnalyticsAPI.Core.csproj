@@ -14,13 +14,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Models\DataDomain\**" />
     <Compile Remove="Models\DTO\**" />
     <Compile Remove="Models\ViewModel\**" />
-    <EmbeddedResource Remove="Models\DataDomain\**" />
     <EmbeddedResource Remove="Models\DTO\**" />
     <EmbeddedResource Remove="Models\ViewModel\**" />
-    <None Remove="Models\DataDomain\**" />
     <None Remove="Models\DTO\**" />
     <None Remove="Models\ViewModel\**" />
   </ItemGroup>

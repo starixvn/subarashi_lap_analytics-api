@@ -1,8 +1,10 @@
-﻿using LAP.ONEBook.Security;
+﻿using Fanex.Athena.AnalyticsAPI.Core.Models;
+using LAP.ONEBook.Security;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
 using System;
+using System.Linq;
 using System.Net;
 using System.Security.Claims;
 using System.Security.Principal;
@@ -41,15 +43,15 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
             var isAuthorized = context.Request.Headers.TryGetValue(AUTHKEY, out StringValues token);
             if (isAuthorized)
             {
-                var auth = new Auth<DefaultAuthInfo<dynamic, dynamic>>(_storageProvider);
+                var auth = new Auth<DefaultAuthInfo<Permission, dynamic>>(_storageProvider);
                 var authInfo = await auth.AuthenticateAsync(token[0]).ConfigureAwait(false);
 
                 if (ValidateToken(authInfo, context.Request.Path))
                 {
-                    context.User = new GenericPrincipal(new ClaimsIdentity(new[] {
-                        new Claim(ClaimTypes.Name, authInfo.SiteName)
-                    }),
-                    new[] { string.Empty });
+                    var roles = authInfo.Permissions.Select(_ => _.FunctionKey).ToArray();
+                    var identityClaim = new Claim(ClaimTypes.Name, authInfo.SiteName);
+
+                    context.User = new GenericPrincipal(new ClaimsIdentity(new[] { identityClaim }), roles);
                 }
                 else
                 {
@@ -60,7 +62,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
             return isAuthorized;
         }
 
-        private static bool ValidateToken(DefaultAuthInfo<dynamic, dynamic> authInfo, string actionUrl)
+        private static bool ValidateToken(DefaultAuthInfo<Permission, dynamic> authInfo, string actionUrl)
         {
             if (string.IsNullOrEmpty(authInfo?.SiteName) || string.IsNullOrEmpty(authInfo?.UserName) || authInfo?.UserSEQ <= 0)
             {

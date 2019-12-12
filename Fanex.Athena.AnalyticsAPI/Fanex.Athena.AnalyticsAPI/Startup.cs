@@ -1,4 +1,5 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
+using Fanex.Athena.AnalyticsAPI.Core.Constants;
 using Fanex.Athena.AnalyticsAPI.Core.Extensions;
 using Fanex.Athena.AnalyticsAPI.Core.Models.Configuration;
 using Fanex.Athena.ExtService.Common.Configuration;
@@ -129,7 +130,7 @@ namespace Fanex.Athena.AnalyticsAPI
                 {
                     context.User = new GenericPrincipal(new ClaimsIdentity(new[] {
                         new Claim(ClaimTypes.Name, "12bet") }),
-                        new[] { "admin" });
+                        new[] { "db_per_tab" });
                     await next.Invoke();
                 });
             }
