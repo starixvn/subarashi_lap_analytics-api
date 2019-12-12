@@ -1,10 +1,10 @@
 ﻿using AutoFixture;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Mappers;
+using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
 using Moq;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
@@ -35,7 +35,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
             //Arrange
             var prevDtos = FakePreviousMeasurementComparisonDtos();
             var currentDtos = FakeCurrentMeasurementComparisonDtos();
-            var topDistributions = Enumerable.Empty<ValueTuple<string, string>>();
+            var topDistributions = Enumerable.Empty<DistributionMetaModel>();
 
             //Act
             var result = _target.ToMeasurementComparisonVM(prevDtos, currentDtos, topDistributions);
@@ -79,13 +79,13 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
                 {
                     Name = "distribution4",
                     DifferenceMargin = new DifferenceMeasurement { DifferenceTotal = 150, DifferenceDistribution = 0 },
-                    DifferenceGrossProfit = new DifferenceMeasurement { DifferenceTotal = 3501254.255, DifferenceDistribution = 12.2 },
+                    DifferenceGrossProfit = new DifferenceMeasurement { DifferenceTotal  = 3501254.255, DifferenceDistribution = 12.2 },
                     DifferenceTurnover = new DifferenceMeasurement { DifferenceTotal = 91230.23, DifferenceDistribution = 39.2 }
                 },
-                new MeasurementComparisonVM
+                new MeasurementComparisonVM                                                 
                 {
                     Name = "Others",
-                    DifferenceMargin = new DifferenceMeasurement { DifferenceTotal = -535 },
+                    DifferenceMargin = new DifferenceMeasurement { DifferenceTotal = 10 },
                     DifferenceGrossProfit = new DifferenceMeasurement { DifferenceTotal = 39923.255000000005, DifferenceDistribution = 30.200000000000006 },
                     DifferenceTurnover = new DifferenceMeasurement { DifferenceTotal = 124330.23, DifferenceDistribution = 39.2 }
                 }
@@ -98,16 +98,16 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
             Assert.Equal(JsonConvert.SerializeObject(expected), JsonConvert.SerializeObject(result));
         }
 
-        internal static IEnumerable<(string topDistributionId, string topDistributionName)> FakeTopDistributions()
+        internal static IEnumerable<DistributionMetaModel> FakeTopDistributions()
         {
-            return new List<(string topDistributionId, string topDistributionName)>
+            return new List<DistributionMetaModel>
             {
-                ("1", "distribution1"),
-                ("2", "distribution2"),
-                ("3", "distribution3"),
-                ("4", "distribution4"),
-                ("5", "distribution5"),
-                ("0", "Others")
+                new DistributionMetaModel { DisplayId = "1", DisplayName = "distribution1" },
+                new DistributionMetaModel { DisplayId = "2", DisplayName = "distribution2" },
+                new DistributionMetaModel { DisplayId = "3", DisplayName = "distribution3" },
+                new DistributionMetaModel { DisplayId = "4", DisplayName = "distribution4" },
+                new DistributionMetaModel { DisplayId = "5", DisplayName = "distribution5" },
+                new DistributionMetaModel { DisplayId = "0", DisplayName = "Others" }
             };
         }
 
@@ -144,6 +144,13 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
                     TurnoverDistribution = 39.2,
                     GrossProfit = 68823.255,
                     GrossProfitDistribution = 22.2
+                },
+                new MeasurementComparisonDtoTestClass
+                {
+                    TestId = "0",
+                    TestName = "Others",
+                    Margin = 0.05,
+                    Turnover = 0
                 }
             };
         }
@@ -211,6 +218,12 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
                     TurnoverDistribution = 39.2,
                     GrossProfit = 8823.255,
                     GrossProfitDistribution = 12.2
+                },
+                new MeasurementComparisonDtoTestClass
+                {
+                    TestId = "0",
+                    TestName = "Others",
+                    Margin = 0.15
                 }
             };
         }

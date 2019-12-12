@@ -49,30 +49,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Services
         }
 
         [Fact]
-        public void MapToTopDistributions_InputIsNull_ReturnEmpty()
-        {
-            //Arrange
-
-            //Act
-            var result = _target.MapToTopDistributionsTestable(null);
-
-            //Assert
-            Assert.Empty(result);
-        }
-
-        [Theory]
-        [MemberData(nameof(FakeTopDistributions))]
-        public void MapToTopDistributions_WhenCall_ReturnCorrectResult(IEnumerable<DistributionMetaModel> topDistributions, IEnumerable<(string topDistributionId, string topDistributionName)> expected)
-        {
-            //Arrange
-            //Act
-            var result = _target.MapToTopDistributionsTestable(topDistributions);
-
-            //Assert
-            Assert.Equal(JsonConvert.SerializeObject(expected), JsonConvert.SerializeObject(result));
-        }
-
-        [Fact]
         public void GetTopDistributions_InputIsEmpty_ReturnEmpty()
         {
             //Arrange

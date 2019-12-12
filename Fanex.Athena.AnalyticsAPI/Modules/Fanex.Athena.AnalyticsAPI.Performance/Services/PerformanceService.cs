@@ -85,11 +85,5 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
         {
             return $"{key}_{period.FromMonth}_{period.ToMonth}";
         }
-
-        protected static IEnumerable<(string topDistributionId, string topDistributionName)> MapToTopDistributions(IEnumerable<DistributionMetaModel> topDistributions)
-        {
-            return topDistributions?.Select(_ => (_.DisplayId, _.DisplayName))
-                ?? new List<(string topDistributionId, string topDistributionName)>();
-        }
     }
 }

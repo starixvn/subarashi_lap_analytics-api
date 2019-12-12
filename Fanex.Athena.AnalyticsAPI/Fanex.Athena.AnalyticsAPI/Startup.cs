@@ -92,7 +92,7 @@ namespace Fanex.Athena.AnalyticsAPI
                 var connection = GetOneBookSecurityConnection();
                 return new SqlServerProvider(connection);
             });
-
+            
             services.AddUMService(Configuration.GetSection("ONEbook.UM").Get<UMClientConfiguration>());
         }
 

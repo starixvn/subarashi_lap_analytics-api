@@ -37,7 +37,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Services
             CurrentPeriod = new Common.Models.MetaModels.MonthRangeMetaModel { FromMonth = "01/2019", ToMonth = "12/2019" },
             PreviousPeriod = new Common.Models.MetaModels.MonthRangeMetaModel { FromMonth = "01/2018", ToMonth = "12/2019" },
             Measurement = new Common.Models.MetaModels.SelectMetaModel(),
-            Currencies = Enumerable.Empty<string>()
+            Currencies = Enumerable.Empty<string>(),
+            TopDistributions = Enumerable.Empty<DistributionMetaModel>()
         };
     }
 }

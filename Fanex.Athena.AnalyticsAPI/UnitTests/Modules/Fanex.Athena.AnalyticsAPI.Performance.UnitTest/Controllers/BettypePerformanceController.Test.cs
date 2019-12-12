@@ -1,4 +1,5 @@
 ﻿using AutoFixture;
+using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Controllers;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
@@ -7,6 +8,7 @@ using Fanex.Athena.AnalyticsAPI.Performance.Services;
 using Moq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
@@ -42,8 +44,16 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Controllers
             filter.Measurement.Id = measurementId;
 
             var topDistributionsData = _fixture.CreateMany<(string topDistributionId, string topDistributionName)>();
-            var topDistributions = topDistributionsData.Select(_ => new DistributionMetaModel { DisplayId = _.topDistributionId, DisplayName = _.topDistributionName });
+            var topDistributions = topDistributionsData.Select(_ => new DistributionMetaModel
+            {
+                DisplayId = _.topDistributionId,
+                DisplayName = _.topDistributionName,
+                CurrentPeriodDistributions = new List<IdentityMetaModel> { new IdentityMetaModel { Id = _.topDistributionId, Name = _.topDistributionName } },
+                PreviousPeriodDistributions = new List<IdentityMetaModel> { new IdentityMetaModel { Id = _.topDistributionId, Name = _.topDistributionName } }
+            }).ToList();
+
             _bettypeServiceMock.Setup(_ => _.GetTopDistributions(filter, 10)).ReturnsAsync(topDistributionsData);
+            
 
             var overallMarginData = _fixture.CreateMany<OverallMeasurementVM>();
             _bettypeServiceMock.Setup(_ => _.GetOverallMeasurement(filter)).ReturnsAsync(overallMarginData);
@@ -56,6 +66,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Controllers
 
             var periodGrowthData = _fixture.CreateMany<MeasurementPeriodComparisonGrowthVM>();
             _bettypeServiceMock.Setup(_ => _.GetPeriodGrowthWithComparison(filter)).ReturnsAsync(periodGrowthData);
+
 
             var expected = new
             {

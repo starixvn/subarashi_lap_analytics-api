@@ -40,10 +40,5 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Services
         {
             return GetFieldNameOfMonthGrowthObject(key, period);
         }
-
-        public IEnumerable<(string topDistributionId, string topDistributionName)> MapToTopDistributionsTestable(IEnumerable<DistributionMetaModel> topDistributions)
-        {
-            return MapToTopDistributions(topDistributions);
-        }
     }
 }

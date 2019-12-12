@@ -1,5 +1,6 @@
 ﻿using AutoFixture;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
+using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
 using Fanex.Data.Repository;
 using Moq;
@@ -26,7 +27,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Services
             await _target.GetMeasurementDifferenceWithComparison(filter);
 
             //Assert
-            _mapperMock.Verify(_ => _.ToMeasurementComparisonVM(data[0], data[1], It.IsAny<IEnumerable<ValueTuple<string, string>>>()), Times.Once);
+            _mapperMock.Verify(_ => _.ToMeasurementComparisonVM(data[0], data[1], It.IsAny<IEnumerable<DistributionMetaModel>>()), Times.Once);
         }
 
         [Fact]
@@ -36,7 +37,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Services
             var filter = FakBettypePerformanceFilterMetaModel;
             var expected = _fixture.CreateMany<MeasurementComparisonVM>();
 
-            _mapperMock.Setup(_ => _.ToMeasurementComparisonVM(It.IsAny<IEnumerable<BettypeMeasurementComparisonDTO>>(), It.IsAny<IEnumerable<BettypeMeasurementComparisonDTO>>(), It.IsAny<IEnumerable<ValueTuple<string, string>>>()))
+            _mapperMock.Setup(_ => _.ToMeasurementComparisonVM(It.IsAny<IEnumerable<BettypeMeasurementComparisonDTO>>(), It.IsAny<IEnumerable<BettypeMeasurementComparisonDTO>>(), It.IsAny<IEnumerable<DistributionMetaModel>>()))
                 .Returns(expected);
 
             //Act

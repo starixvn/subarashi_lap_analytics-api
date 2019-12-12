@@ -16,7 +16,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
         [SsasColumn("DimSportBettypeMatrix[ProductID]")]
         public string ProductId { get; set; }
 
-        public override string Id => $"{ProductId}@{BetTypeDisplayID}";
+        public override string Id => BetTypeDisplayID == "0" ? BetTypeDisplayID : $"{ProductId}@{BetTypeDisplayID}";
 
         public override string Name => $"{BettypeDisplayName} ({ProductCode})";
     }

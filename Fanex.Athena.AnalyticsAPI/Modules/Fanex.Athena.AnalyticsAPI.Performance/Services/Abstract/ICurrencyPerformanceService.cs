@@ -18,6 +18,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
         Task<IDictionary<string, object>> GetAllDetailMonthGrowthWithComparison(CurrenyPerformanceFilterMetaModel filter);
 
-        Task<(IEnumerable<CurrencyDistributionDTO> prevPeriodData, IEnumerable<CurrencyDistributionDTO> currentPeriodData)> GetDistributionRawData(PerformanceFilterMetaModel filter);
+        Task<(IEnumerable<DistributionDTO> prevPeriodData, IEnumerable<DistributionDTO> currentPeriodData)> GetDistributionRawData(PerformanceFilterMetaModel filter);
     }
-}
+}                                                                                       

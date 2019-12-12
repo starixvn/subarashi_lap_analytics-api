@@ -1,6 +1,8 @@
 ﻿using AutoFixture;
+using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Mappers;
+using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
 using Moq;
 using System;
@@ -34,7 +36,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
             //Arrange
             var prevDtos = FakePreviouMeasurementPeriodDTOs();
             var currentDtos = FakeCurrentMeasurementPeriodDTOs();
-            var topDistributions = Enumerable.Empty<ValueTuple<string, string>>();
+            var topDistributions = Enumerable.Empty<DistributionMetaModel>();
 
             //Act
             var result = _target.ToMeasurementGrowthPeriodVM(prevDtos, currentDtos, topDistributions);
@@ -57,9 +59,9 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
                 },
             };
 
-            var topDistributions = new List<(string topDistributionId, string topDistributionName)>
+            var topDistributions = new List<DistributionMetaModel>
             {
-                ("1", "distribution1")
+                new DistributionMetaModel { DisplayId = "1", DisplayName = "distribution1" }
             };
 
             //Act
@@ -85,72 +87,36 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
 
             foreach (var topDistribution in topDistributions)
             {
-                if (topDistribution.topDistributionId.Equals("0"))
+                if (topDistribution.DisplayId.Equals("0"))
                 {
                     continue;
                 }
 
-                var element = result.FirstOrDefault(_ => _.Id.Equals(topDistribution.topDistributionId));
-                var prevPeriodDto = prevDtos.FirstOrDefault(_ => _.Id.Equals(topDistribution.topDistributionId));
-                var currentPeriodDto = currentDtos.FirstOrDefault(_ => _.Id.Equals(topDistribution.topDistributionId));
+                var element = result.FirstOrDefault(_ => _.Id.Equals(topDistribution.DisplayId));
+                var prevPeriodDto = prevDtos.FirstOrDefault(_ => _.Id.Equals(topDistribution.DisplayId));
+                var currentPeriodDto = currentDtos.FirstOrDefault(_ => _.Id.Equals(topDistribution.DisplayId));
 
                 Assert.Equal(prevPeriodDto?.Total ?? 0, element.PreviousPeriodTotal);
                 Assert.Equal(currentPeriodDto.Total, element.CurrentPeriodTotal);
 
                 Assert.Equal(currentPeriodDto.Total + (prevPeriodDto?.Total ?? 0), element.GrowthPercent);
 
-                Assert.Single(element.CurrentPeriodDistributions);
-                Assert.Equal(element.CurrentPeriodDistributions.ElementAt(0).Id, topDistribution.topDistributionId);
+                Assert.Equal(element.CurrentPeriodDistributions.ElementAt(0).Id, topDistribution.DisplayId);
 
-                Assert.Single(element.PreviousPeriodDistributions);
-                Assert.Equal(element.PreviousPeriodDistributions.ElementAt(0).Id, topDistribution.topDistributionId);
+                Assert.Equal(element.PreviousPeriodDistributions.ElementAt(0).Id, topDistribution.DisplayId);
             }
         }
 
-        [Fact]
-        public void ToMeasurementGrowthPeriodVM_WhenCall_ReturnCorrectResult1()
+        internal static IEnumerable<DistributionMetaModel> FakeTopDistributions()
         {
-            //Arrange
-            var prevDtos = FakePreviouMeasurementPeriodDTOs();
-            var currentDtos = FakeCurrentMeasurementPeriodDTOs();
-            var topDistributions = FakeTopDistributions();
-
-            var previousPeriodDistributions = new List<IdentifyVM>
+            return new List<DistributionMetaModel>
             {
-                new IdentifyVM { Id = "7" },
-                new IdentifyVM { Id = "10" }
-            };
-
-            var currentPeriodDistributions = new List<IdentifyVM>
-            {
-                new IdentifyVM { Id = "6" },
-                new IdentifyVM { Id = "7" },
-                new IdentifyVM { Id = "8" }
-            };
-
-            //Act
-            var result = _target.ToMeasurementGrowthPeriodVM(prevDtos, currentDtos, topDistributions);
-            var others = result.FirstOrDefault(_ => _.Id.Equals("0"));
-
-            //Assert
-
-            Assert.Equal(currentPeriodDistributions.Count, others.CurrentPeriodDistributions.Count());
-            Assert.Equal(previousPeriodDistributions.Count, others.PreviousPeriodDistributions.Count());
-
-            Assert.True(others.PreviousPeriodDistributions.All(_ => previousPeriodDistributions.Any(__ => __.Id.Equals(_.Id))));
-            Assert.True(others.CurrentPeriodDistributions.All(_ => currentPeriodDistributions.Any(__ => __.Id.Equals(_.Id))));
-        }
-
-        internal static IEnumerable<(string topDistributionId, string topDistributionName)> FakeTopDistributions()
-        {
-            return new List<(string topDistributionId, string topDistributionName)>
-            {
-                ("1", "distribution1"),
-                ("2", "distribution2"),
-                ("3", "distribution3"),
-                ("4", "distribution4"),
-                ("5", "distribution5"),
-                ("0", "Others")
+                new DistributionMetaModel { DisplayId = "1", DisplayName = "distribution1", CurrentPeriodDistributions = new List<IdentityMetaModel> { new IdentityMetaModel { Id = "1", Name = "distribution1" } } },
+                new DistributionMetaModel { DisplayId = "2", DisplayName = "distribution2", CurrentPeriodDistributions =  new List<IdentityMetaModel> { new IdentityMetaModel { Id = "2", Name = "distribution2" } } },
+                new DistributionMetaModel { DisplayId = "3", DisplayName = "distribution3", CurrentPeriodDistributions =  new List<IdentityMetaModel> { new IdentityMetaModel { Id = "3", Name = "distribution3" } }},
+                new DistributionMetaModel { DisplayId = "4", DisplayName = "distribution4", CurrentPeriodDistributions =  new List<IdentityMetaModel> { new IdentityMetaModel { Id = "4", Name = "distribution4" } } },
+                new DistributionMetaModel { DisplayId = "5", DisplayName = "distribution5", CurrentPeriodDistributions =  new List<IdentityMetaModel> { new IdentityMetaModel { Id = "5", Name = "distribution5" } } },
+                new DistributionMetaModel { DisplayId = "0", DisplayName = "Others", CurrentPeriodDistributions = new List<IdentityMetaModel> { new IdentityMetaModel { Id = "0", Name = "Others" } } }
             };
         }
 
@@ -182,6 +148,11 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
                 {
                     Total = 500,
                     TestId = "10"
+                },
+                new MeasurementPerioddDtoTestClass
+                {
+                    Total = 12,
+                    TestId = "0"
                 }
             };
         }
@@ -229,6 +200,11 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
                 {
                     Total = 875.528,
                     TestId = "8"
+                },
+                new MeasurementPerioddDtoTestClass
+                {
+                    Total = 20,
+                    TestId = "0"
                 }
             };
         }

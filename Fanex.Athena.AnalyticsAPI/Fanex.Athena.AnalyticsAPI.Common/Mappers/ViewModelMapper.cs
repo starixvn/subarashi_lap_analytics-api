@@ -1,7 +1,4 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Mappers
 {
@@ -22,15 +19,6 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Mappers
             )
         {
             _calculationService = calculationService;
-        }
-
-        protected static bool HasOthers(IEnumerable<(string, string)> topDistributions)
-        {
-            if (topDistributions == null)
-            {
-                throw new ArgumentNullException(nameof(topDistributions));
-            }
-            return topDistributions.Any(_ => _.Item1 == DISTRIBUTION_OTHERS_ID);
         }
     }
 }

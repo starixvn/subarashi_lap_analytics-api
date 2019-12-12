@@ -1,6 +1,7 @@
 ﻿using AutoFixture;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Mappers;
+using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
             //Arrange
             var prevDtos = _fixture.CreateMany<DistributionDtoTestClass>();
             var currentDtos = _fixture.CreateMany<DistributionDtoTestClass>();
-            var topDistributions = Enumerable.Empty<ValueTuple<string, string>>();
+            var topDistributions = Enumerable.Empty<DistributionMetaModel>();
 
             //Act
             var result = _target.ToDistributionVM(prevDtos, currentDtos, topDistributions);
@@ -50,7 +51,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
             //Arrange
             var prevDtos = FakePreviousDistributionDTOs();
             var currentDtos = FakeCurrentDistributionDTOs();
-            var topDistributions = Enumerable.Empty<ValueTuple<string, string>>();
+            var topDistributions = Enumerable.Empty<DistributionMetaModel>();
 
             //Act
             var result = _target.ToDistributionVM(prevDtos, currentDtos, topDistributions);
@@ -84,16 +85,16 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
             Assert.Equal(0.5, currentVM.Distributions.FirstOrDefault(_ => _.Id == "0")?.Percent);
         }
 
-        internal static IEnumerable<(string topDistributionId, string topDistributionName)> FakeTopDistributions()
+        internal static IEnumerable<DistributionMetaModel> FakeTopDistributions()
         {
-            return new List<(string topDistributionId, string topDistributionName)>
+            return new List<DistributionMetaModel>
             {
-                ("1", "distribution1"),
-                ("2", "distribution2"),
-                ("3", "distribution3"),
-                ("4", "distribution4"),
-                ("5", "distribution5"),
-                ("0", "Others")
+                new DistributionMetaModel { DisplayId = "1", DisplayName = "distribution1" },
+                new DistributionMetaModel { DisplayId = "2", DisplayName = "distribution2" },
+                new DistributionMetaModel { DisplayId = "3", DisplayName = "distribution3" },
+                new DistributionMetaModel { DisplayId = "4", DisplayName = "distribution4" },
+                new DistributionMetaModel { DisplayId = "5", DisplayName = "distribution5" },
+                new DistributionMetaModel { DisplayId = "0", DisplayName = "Others" }
             };
         }
 

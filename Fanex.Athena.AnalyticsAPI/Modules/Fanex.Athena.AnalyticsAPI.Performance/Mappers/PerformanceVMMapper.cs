@@ -50,7 +50,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
         public IEnumerable<DistributionVM> ToDistributionVM<T>(
             IEnumerable<T> prevPeriodDtos,
             IEnumerable<T> currentPeriodDtos,
-            IEnumerable<(string topDistributionId, string topDistributionName)> topDistributions)
+            IEnumerable<DistributionMetaModel> topDistributions)
             where T : DistributionDTO
         {
             return new List<DistributionVM>
@@ -83,58 +83,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
         public IEnumerable<MeasurementPeriodComparisonGrowthVM> ToMeasurementGrowthPeriodVM<T>(
             IEnumerable<T> prevPeriodDtos,
             IEnumerable<T> currentPeriodDtos,
-            IEnumerable<(string topDistributionId, string topDistributionName)> topDistributions
-            )
-            where T : MeasurementPeriodDTO
-        {
-            var result = new List<MeasurementPeriodComparisonGrowthVM>(topDistributions.Count());
-            var prevPeriodDtoDic = prevPeriodDtos.ToDictionary(_ => _.Id, _ => _);
-            var currentPeriodDtoDic = currentPeriodDtos.ToDictionary(_ => _.Id, _ => _);
-
-            var hasOthers = HasOthers(topDistributions);
-
-            foreach (var topDistribution in topDistributions)
-            {
-                (string topDistributionId, string topDistributionName) = topDistribution;
-
-                if (topDistributionId == DISTRIBUTION_OTHERS_ID)
-                {
-                    continue;
-                }
-
-                var currentPeriodDto = currentPeriodDtoDic[topDistributionId];
-
-                var previousPeriodTotal = prevPeriodDtoDic.ContainsKey(topDistributionId) ? prevPeriodDtoDic[topDistributionId].Total : 0;
-                var currentPeriodTotal = currentPeriodDto.Total;
-
-                var vm = CreateMeasurementPeriodComparisonGrowthVM(topDistributionId, topDistributionName, previousPeriodTotal, currentPeriodTotal);
-                result.Add(vm);
-
-                if (hasOthers)
-                {
-                    currentPeriodDtoDic.Remove(topDistributionId);
-                    prevPeriodDtoDic.Remove(topDistributionId);
-                }
-            }
-
-            if (hasOthers)
-            {
-                result.Add(CreateMeasurementPeriodComparisonGrowthVM(
-                        DISTRIBUTION_OTHERS_ID,
-                        DISTRIBUTION_OTHERS_NAME,
-                        prevPeriodDtoDic.Sum(_ => _.Value.Total),
-                        currentPeriodDtoDic.Sum(_ => _.Value.Total),
-                        prevPeriodDtoDic.Select(_ => new IdentifyVM { Id = _.Value.Id, Name = _.Value.Name }),
-                        currentPeriodDtoDic.Select(_ => new IdentifyVM { Id = _.Value.Id, Name = _.Value.Name })
-                        ));
-            }
-
-            return result;
-        }
-
-        public IEnumerable<MeasurementPeriodComparisonGrowthVM> ToMeasurementGrowthPeriodVM1<T>(
-            IEnumerable<T> prevPeriodDtos,
-            IEnumerable<T> currentPeriodDtos,
             IEnumerable<DistributionMetaModel> topDistributions
             )
             where T : MeasurementPeriodDTO
@@ -153,7 +101,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
 
                 var vmItem = CreateMeasurementPeriodComparisonGrowthVM(topDistributionId, topDistributionName,
                     previousPeriodTotal, currentPeriodTotal,
-                    topDistribution.PreviousPeriodDistributions.Select(_ => new IdentifyVM { Id = _.Id, Name = _.Name }),
+                    topDistribution.PreviousPeriodDistributions?.Select(_ => new IdentifyVM { Id = _.Id, Name = _.Name }),
                     topDistribution.CurrentPeriodDistributions.Select(_ => new IdentifyVM { Id = _.Id, Name = _.Name })
                     );
 
@@ -163,7 +111,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             return result;
         }
 
-        private DistributionVM ToDistributionVM<T>(IEnumerable<T> dtos, IEnumerable<(string topDistributionId, string topDistributionName)> topDistributions, string id, string name)
+        private DistributionVM ToDistributionVM<T>(IEnumerable<T> dtos, IEnumerable<DistributionMetaModel> topDistributions, string id, string name)
             where T : DistributionDTO
         {
             var listDto = dtos.ToList();
@@ -181,7 +129,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
 
             foreach (var topDistribution in topDistributions)
             {
-                (string topDistributionId, string topDistributionName) = topDistribution;
+                (string topDistributionId, string topDistributionName) = (topDistribution.DisplayId, topDistribution.DisplayName);
 
                 if (topDistributionId == DISTRIBUTION_OTHERS_ID)
                 {
@@ -223,7 +171,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
         public IEnumerable<MeasurementComparisonVM> ToMeasurementComparisonVM<T>(
             IEnumerable<T> prevPeriodDtos,
             IEnumerable<T> currentPeriodDtos,
-            IEnumerable<(string topDistributionId, string topDistributionName)> topDistributions)
+            IEnumerable<DistributionMetaModel> topDistributions)
             where T : MeasurementComparisonDTO
         {
             var result = new List<MeasurementComparisonVM>(topDistributions.Count());
@@ -235,7 +183,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
 
             foreach (var topDistribution in topDistributions)
             {
-                (string topDistributionId, string topDistributionName) = topDistribution;
+                (string topDistributionId, string topDistributionName) = (topDistribution.DisplayId, topDistribution.DisplayName);
 
                 if (topDistributionId == DISTRIBUTION_OTHERS_ID)
                 {
@@ -256,13 +204,16 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
 
             if (hasOthers)
             {
+                prevPeriodDtoDic.Remove(DISTRIBUTION_OTHERS_ID, out T prevPeriodOthers);
+                currentPeriodDtoDic.Remove(DISTRIBUTION_OTHERS_ID, out T currentPeriodOthers);
+                var prevPeriodMargin = prevPeriodOthers?.Margin;
+                var currentPeriodMargin = currentPeriodOthers.Margin;
+
                 var (prevPeriodTunover, prevPeriodTunoverDistribution,
-                    prevPeriodGrossProfit, prevPeriodGrossProfitDistribution,
-                    prevPeriodMargin) = SumFromListOf<MeasurementComparisonDTO>(prevPeriodDtoDic.Select(_ => _.Value));
+                    prevPeriodGrossProfit, prevPeriodGrossProfitDistribution) = SumFromListOf<MeasurementComparisonDTO>(prevPeriodDtoDic.Select(_ => _.Value));
 
                 var (currentPeriodTunover, currentPeriodTunoverDistribution,
-                   currentPeriodGrossProfit, currentPeriodGrossProfitDistribution,
-                   currentPeriodMargin) = SumFromListOf<MeasurementComparisonDTO>(currentPeriodDtoDic.Select(_ => _.Value));
+                   currentPeriodGrossProfit, currentPeriodGrossProfitDistribution) = SumFromListOf<MeasurementComparisonDTO>(currentPeriodDtoDic.Select(_ => _.Value));
 
                 var vmItem = new MeasurementComparisonVM
                 {
@@ -279,8 +230,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
         }
 
         private MeasurementPeriodComparisonGrowthVM CreateMeasurementPeriodComparisonGrowthVM(
-           in string id,
-           in string name,
+           string id,
+           string name,
            double prevPeriodTotal,
            double currentPeriodTotal,
            IEnumerable<IdentifyVM> previousPeriodIdentifies = null,
@@ -323,14 +274,13 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             };
         }
 
-        private static (double turnover, double turnoverDistribution, double grossProfit, double grossProfitDistribution, double margin) SumFromListOf<T>(IEnumerable<T> items)
+        private static (double turnover, double turnoverDistribution, double grossProfit, double grossProfitDistribution) SumFromListOf<T>(IEnumerable<T> items)
             where T : MeasurementComparisonDTO
         {
             var turnover = 0.00;
             var turnoverDistribution = 0.00;
             var grossProfit = 0.00;
             var grossProfitDistribution = 0.00;
-            var margin = 0.00;
 
             foreach (var item in items)
             {
@@ -338,10 +288,18 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                 turnoverDistribution += item.TurnoverDistribution;
                 grossProfit += item.GrossProfit;
                 grossProfitDistribution += item.GrossProfitDistribution;
-                margin += item.Margin;
             }
 
-            return (turnover, turnoverDistribution, grossProfit, grossProfitDistribution, margin);
+            return (turnover, turnoverDistribution, grossProfit, grossProfitDistribution);
+        }
+
+        private static bool HasOthers(IEnumerable<DistributionMetaModel> topDistributions)
+        {
+            if (topDistributions == null)
+            {
+                throw new ArgumentNullException(nameof(topDistributions));
+            }
+            return topDistributions.Any(_ => _.DisplayId == DISTRIBUTION_OTHERS_ID);
         }
     }
 }

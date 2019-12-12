@@ -26,7 +26,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             IContextService context,
             IPerformanceRepository performanceRepository,
             IOverviewPerformanceVMMapper viewModelMapper,
-            IHandleRawData handleRawData
+            IHandleRawData handleRawData                                               
             ) : base(context, performanceRepository, handleRawData)
         {
             _viewModelMapper = viewModelMapper;
