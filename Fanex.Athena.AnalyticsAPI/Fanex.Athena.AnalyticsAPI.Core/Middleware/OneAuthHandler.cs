@@ -49,8 +49,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
 
                 if (ValidateToken(authInfo, context.Request.Path))
                 {
-
-                    var roles = authInfo.IsAdminstrator ? new[] { PermissionConst.SupperAdminRole } :
+                    var roles = authInfo.IsAdminstrator ? new[] { PermissionConst.SuperAdminRole } :
                         authInfo.Permissions.Select(_ => _.FunctionKey).ToArray();
 
                     var identityClaim = new Claim(ClaimTypes.Name, authInfo.SiteName);
