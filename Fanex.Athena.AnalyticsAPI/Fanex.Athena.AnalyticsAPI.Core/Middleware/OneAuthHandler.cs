@@ -1,4 +1,5 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Models;
+﻿using Fanex.Athena.AnalyticsAPI.Core.Constants;
+using Fanex.Athena.AnalyticsAPI.Core.Models;
 using LAP.ONEBook.Security;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
@@ -48,7 +49,10 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
 
                 if (ValidateToken(authInfo, context.Request.Path))
                 {
-                    var roles = authInfo.Permissions.Select(_ => _.FunctionKey).ToArray();
+
+                    var roles = authInfo.IsAdminstrator ? new[] { PermissionConst.SupperAdminRole } :
+                        authInfo.Permissions.Select(_ => _.FunctionKey).ToArray();
+
                     var identityClaim = new Claim(ClaimTypes.Name, authInfo.SiteName);
 
                     context.User = new GenericPrincipal(new ClaimsIdentity(new[] { identityClaim }), roles);
