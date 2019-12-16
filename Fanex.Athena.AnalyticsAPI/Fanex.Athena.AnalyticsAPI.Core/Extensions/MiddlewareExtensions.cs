@@ -19,7 +19,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
 
         public static IApplicationBuilder UseOneAuth(this IApplicationBuilder builder)
         {
-            return builder.UseMiddleware<OneAuthHandler>();
+            return builder.UseMiddleware<OneAuthenticationHandler>();
         }
 
         public static IServiceCollection AddSwaggerDoc(this IServiceCollection services, IHostingEnvironment env, string apiName)

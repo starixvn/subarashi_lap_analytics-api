@@ -20,6 +20,7 @@ namespace Fanex.Athena.ExtService.Core.UnitTests.Middleware
         private readonly Mock<IExceptionHandlerFeature> _mockHandlerException;
         private readonly Mock<HttpRequest> _mockRequest;
         private readonly Mock<HttpResponse> _mockResponse;
+        private readonly Mock<ILogger> _mockLogger;
 
         private Stream BodyContent;
 
@@ -34,6 +35,7 @@ namespace Fanex.Athena.ExtService.Core.UnitTests.Middleware
             _mockHttpContext = new Mock<HttpContext>();
             _mockResponse = new Mock<HttpResponse>();
             _mockRequest = new Mock<HttpRequest>();
+            _mockLogger = new Mock<ILogger>();
             _mockHttpContext.Setup(x => x.Response).Returns(_mockResponse.Object);
             _mockHttpContext.Setup(x => x.Request).Returns(_mockRequest.Object);
             _mockHandlerException = new Mock<IExceptionHandlerFeature>();
@@ -73,7 +75,7 @@ namespace Fanex.Athena.ExtService.Core.UnitTests.Middleware
             var errorHandler = new ErrorHandler(next: async (x) =>
             {
                 await Task.CompletedTask;
-            });
+            }, logger: _mockLogger.Object);
 
             //Action
             await errorHandler.Invoke(_mockHttpContext.Object).ConfigureAwait(false);
@@ -121,7 +123,7 @@ namespace Fanex.Athena.ExtService.Core.UnitTests.Middleware
             {
                 await Task.CompletedTask;
                 throw new Exception();
-            });
+            }, logger: _mockLogger.Object);
 
             //Action
             await errorHandler.Invoke(_mockHttpContext.Object).ConfigureAwait(false);

@@ -1,6 +1,6 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
-using Fanex.Athena.AnalyticsAPI.Core.Constants;
 using Fanex.Athena.AnalyticsAPI.Core.Extensions;
+using Fanex.Athena.AnalyticsAPI.Core.Models;
 using Fanex.Athena.AnalyticsAPI.Core.Models.Configuration;
 using Fanex.Athena.ExtService.Common.Configuration;
 using Fanex.Data;
@@ -83,17 +83,13 @@ namespace Fanex.Athena.AnalyticsAPI
                 options.Providers.Add<GzipCompressionProvider>();
             });
 
-            SetupLogging();
+            SetupLogging(services);
             SetupSqlProvider();
+            SetupAuthentication(services);
 
             Performance.Extensions.DefendencyInjectionExtension.AddDIPerformance(services);
             Common.Extensions.DefendencyInjectionExtension.AddDICommon(services, Configuration);
-            services.AddSingleton<IStorageProvider, SqlServerProvider>(x =>
-            {
-                var connection = GetOneBookSecurityConnection();
-                return new SqlServerProvider(connection);
-            });
-            
+
             services.AddUMService(Configuration.GetSection("ONEbook.UM").Get<UMClientConfiguration>());
         }
 
@@ -139,11 +135,12 @@ namespace Fanex.Athena.AnalyticsAPI
                 app.UseErrorHandler();
                 app.UseOneAuth();
             }
+
             app.UseUM();
             app.UseMvc();
         }
 
-        private void SetupLogging()
+        private void SetupLogging(IServiceCollection services)
         {
             var loggingSetting = Configuration.GetSection("LoggingSetting").Get<LoggingSetting>();
 
@@ -163,6 +160,7 @@ namespace Fanex.Athena.AnalyticsAPI
             LogManager
              .SetDefaultLogCategory(loggingSetting.Category)
              .Use(logEngines);
+            services.AddSingleton(_ => Logger.Log);
         }
 
         private void SetupSqlProvider()
@@ -181,6 +179,17 @@ namespace Fanex.Athena.AnalyticsAPI
                 .WithSqlServer(resourcePath: "~/SpConfig")
                 .Use(connectionStrings)
                 .Run();
+        }
+
+        private void SetupAuthentication(IServiceCollection services)
+        {
+            services.AddSingleton<IStorageProvider, SqlServerProvider>(x =>
+            {
+                var connection = GetOneBookSecurityConnection();
+                return new SqlServerProvider(connection);
+            });
+
+            services.AddSingleton<IAuth<DefaultAuthInfo<Permission, dynamic>>, Auth<DefaultAuthInfo<Permission, dynamic>>>();
         }
 
         private string GetOneBookSecurityConnection()

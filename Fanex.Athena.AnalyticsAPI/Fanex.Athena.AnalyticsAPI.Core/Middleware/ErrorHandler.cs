@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
+﻿using Fanex.Logging;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
@@ -11,10 +12,12 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
     {
         private const int ServerErrorCode = 500;
         private readonly RequestDelegate _next;
+        private readonly ILogger _logger;
 
-        public ErrorHandler(RequestDelegate next)
+        public ErrorHandler(RequestDelegate next, ILogger logger)
         {
             _next = next;
+            _logger = logger;
         }
 
         public async Task Invoke(HttpContext context)
@@ -44,7 +47,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
             var errorMsg = $"Msg={error.Message}\n Stacktrace={error.StackTrace}" +
                 $"\n Path={context.Request.Path}\n Query={context.Request.QueryString}\n Body={body}";
 
-            Logging.Logger.Log.Error(errorMsg);
+            await _logger.ErrorAsync(errorMsg);
 
             await context.Response.WriteAsync(JsonConvert.SerializeObject(new
             {

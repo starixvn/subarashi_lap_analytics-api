@@ -4,15 +4,16 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Attributes
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
-    public sealed class OneAuthorizationAttribute : Attribute, IAuthorizationFilter
+    public sealed class OneAuthorizationAttribute : Attribute, IAsyncAuthorizationFilter
     {
         public string Roles { get; set; }
 
-        public void OnAuthorization(AuthorizationFilterContext context)
+        public Task OnAuthorizationAsync(AuthorizationFilterContext context)
         {
             var user = context.HttpContext.User;
             var roles = Roles?.Split(',') ?? Enumerable.Empty<string>();
@@ -29,6 +30,8 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Attributes
 
                 context.Result = new JsonResult(content) { StatusCode = (int)HttpStatusCode.Forbidden };
             }
+
+            return Task.CompletedTask;
         }
     }
 }

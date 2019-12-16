@@ -13,17 +13,17 @@ using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
 {
-    public class OneAuthHandler
+    public class OneAuthenticationHandler
     {
         private const string AUTHKEY = "X-Auth-Token";
 
         private readonly RequestDelegate _next;
-        private readonly IStorageProvider _storageProvider;
+        private readonly IAuth<DefaultAuthInfo<Permission, dynamic>> _authService;
 
-        public OneAuthHandler(RequestDelegate next, IStorageProvider storageProvider)
+        public OneAuthenticationHandler(RequestDelegate next, IAuth<DefaultAuthInfo<Permission, dynamic>> authService)
         {
             _next = next;
-            _storageProvider = storageProvider;
+            _authService = authService;
         }
 
         public async Task Invoke(HttpContext context)
@@ -44,9 +44,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
             var isAuthorized = context.Request.Headers.TryGetValue(AUTHKEY, out StringValues token);
             if (isAuthorized)
             {
-                var auth = new Auth<DefaultAuthInfo<Permission, dynamic>>(_storageProvider);
-                var authInfo = await auth.AuthenticateAsync(token[0]).ConfigureAwait(false);
-
+                var authInfo = await _authService.AuthenticateAsync(token[0]).ConfigureAwait(false);
                 if (ValidateToken(authInfo, context.Request.Path))
                 {
                     var roles = authInfo.IsAdminstrator ? new[] { PermissionConst.SuperAdminRole } :

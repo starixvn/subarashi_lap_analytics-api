@@ -33,11 +33,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
                 foreach (var prop in props)
                 {
                     var enumerable = prop.GetValue(originalItem) as IEnumerable<object>;
-                    if (enumerable != null)
-                    {
-                        Translate(enumerable, translationType);
-                    }
-                    else
+                    if (enumerable == null)
                     {
                         BindTranslateValue(originalItem, type, prop, translationType);
                     }

@@ -56,6 +56,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
             {
                 new MeasurementComparisonVM
                 {
+                    Id = "1",
                     Name = "distribution1",
                     DifferenceMargin = new DifferenceMeasurement { DifferenceTotal = 470, DifferenceDistribution = 0 },
                     DifferenceGrossProfit = new DifferenceMeasurement { DifferenceTotal = 983730, DifferenceDistribution = 0 },
@@ -63,6 +64,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
                 },
                 new MeasurementComparisonVM
                 {
+                    Id = "2",
                     Name = "distribution2",
                     DifferenceMargin = new DifferenceMeasurement { DifferenceTotal = 0, DifferenceDistribution = 0 },
                     DifferenceGrossProfit = new DifferenceMeasurement { DifferenceTotal = -79100, DifferenceDistribution = -14.399999999999999 },
@@ -70,6 +72,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
                 },
                 new MeasurementComparisonVM
                 {
+                    Id = "3",
                     Name = "distribution3",
                     DifferenceMargin = new DifferenceMeasurement { DifferenceTotal = 50, DifferenceDistribution = 0 },
                     DifferenceGrossProfit = new DifferenceMeasurement { DifferenceTotal = 8823.255, DifferenceDistribution = 12.2 },
@@ -77,6 +80,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
                 },
                 new MeasurementComparisonVM
                 {
+                    Id = "4",
                     Name = "distribution4",
                     DifferenceMargin = new DifferenceMeasurement { DifferenceTotal = 150, DifferenceDistribution = 0 },
                     DifferenceGrossProfit = new DifferenceMeasurement { DifferenceTotal  = 3501254.255, DifferenceDistribution = 12.2 },
@@ -84,6 +88,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTest.Mappers
                 },
                 new MeasurementComparisonVM                                                 
                 {
+                    Id = "0",
                     Name = "Others",
                     DifferenceMargin = new DifferenceMeasurement { DifferenceTotal = 10 },
                     DifferenceGrossProfit = new DifferenceMeasurement { DifferenceTotal = 39923.255000000005, DifferenceDistribution = 30.200000000000006 },

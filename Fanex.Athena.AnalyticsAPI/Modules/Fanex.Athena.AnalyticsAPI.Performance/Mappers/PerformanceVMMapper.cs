@@ -193,7 +193,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                 if (currentPeriodDtoDic.TryGetValue(topDistributionId, out T currentPeriodDto))
                 {
                     var prevPeriodDto = prevPeriodDtoDic.ContainsKey(topDistributionId) ? prevPeriodDtoDic[topDistributionId] : null;
-                    var vmItem = CreateMeasurementComparisonVM(topDistributionName, prevPeriodDto, currentPeriodDto);
+                    var vmItem = CreateMeasurementComparisonVM(topDistributionId, topDistributionName, prevPeriodDto, currentPeriodDto);
 
                     result.Add(vmItem);
                 }
@@ -217,6 +217,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
 
                 var vmItem = new MeasurementComparisonVM
                 {
+                    Id = DISTRIBUTION_OTHERS_ID,
                     Name = DISTRIBUTION_OTHERS_NAME,
                     DifferenceTurnover = CreateDifferenceMeasurement(prevPeriodTunover, currentPeriodTunover, prevPeriodTunoverDistribution, currentPeriodTunoverDistribution),
                     DifferenceGrossProfit = CreateDifferenceMeasurement(prevPeriodGrossProfit, currentPeriodGrossProfit, prevPeriodGrossProfitDistribution, currentPeriodGrossProfitDistribution),
@@ -249,10 +250,11 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             };
         }
 
-        private MeasurementComparisonVM CreateMeasurementComparisonVM(string name, MeasurementComparisonDTO prevPeriodDto, MeasurementComparisonDTO currentPeriodDto)
+        private MeasurementComparisonVM CreateMeasurementComparisonVM(string id, string name, MeasurementComparisonDTO prevPeriodDto, MeasurementComparisonDTO currentPeriodDto)
         {
             return new MeasurementComparisonVM
             {
+                Id = id,
                 Name = name,
                 DifferenceTurnover = CreateDifferenceMeasurement(prevPeriodDto?.Turnover, currentPeriodDto.Turnover, prevPeriodDto?.TurnoverDistribution, currentPeriodDto.TurnoverDistribution),
                 DifferenceGrossProfit = CreateDifferenceMeasurement(prevPeriodDto?.GrossProfit, currentPeriodDto.GrossProfit,

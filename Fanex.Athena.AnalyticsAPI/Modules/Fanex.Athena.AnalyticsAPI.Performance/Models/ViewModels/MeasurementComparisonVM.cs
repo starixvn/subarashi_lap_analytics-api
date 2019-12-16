@@ -2,6 +2,7 @@
 {
     public class MeasurementComparisonVM
     {
+        public string Id { get; set; }
         public string Name { get; set; }
         public DifferenceMeasurement DifferenceTurnover { get; set; }
         public DifferenceMeasurement DifferenceGrossProfit { get; set; }
