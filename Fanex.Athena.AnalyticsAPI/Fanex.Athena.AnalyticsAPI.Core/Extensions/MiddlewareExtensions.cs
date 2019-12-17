@@ -12,9 +12,13 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
 {
     public static class MiddlewareExtensions
     {
-        public static IApplicationBuilder UseErrorHandler(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseErrorHandler(this IApplicationBuilder builder, IHostingEnvironment env)
         {
-            return builder.UseMiddleware<ErrorHandler>();
+            if (!env.IsDevelopment())
+            {
+                builder.UseMiddleware<ErrorHandler>();
+            }
+            return builder;
         }
 
         public static IApplicationBuilder UseOneAuth(this IApplicationBuilder builder)
@@ -24,7 +28,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
 
         public static IServiceCollection AddSwaggerDoc(this IServiceCollection services, IHostingEnvironment env, string apiName)
         {
-            if (env.IsDevelopment())
+            if (env.IsDevelopment() || env.IsEnvironment("UAT"))
             {
                 services.AddSwaggerGen(c =>
                 {
@@ -44,7 +48,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
 
         public static IApplicationBuilder UseSwaggerDoc(this IApplicationBuilder builder, IHostingEnvironment env, string apiName)
         {
-            if (env.IsDevelopment())
+            if (env.IsDevelopment() || env.IsEnvironment("UAT"))
             {
                 builder.UseSwagger();
                 builder.UseSwaggerUI(c =>

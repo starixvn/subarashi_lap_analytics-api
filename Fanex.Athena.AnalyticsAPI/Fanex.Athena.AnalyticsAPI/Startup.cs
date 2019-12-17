@@ -26,8 +26,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO.Compression;
-using System.Security.Claims;
-using System.Security.Principal;
 
 namespace Fanex.Athena.AnalyticsAPI
 {
@@ -100,6 +98,11 @@ namespace Fanex.Athena.AnalyticsAPI
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
 
+            if (Env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
             app.UseStaticFiles();
 
             app.UseCors("DefaultPolicy");
@@ -118,26 +121,8 @@ namespace Fanex.Athena.AnalyticsAPI
 
             app.UseResponseCompression();
             app.UseSwaggerDoc(Env, API_NAME);
-
             app.UseUM();
-
-            if (Env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.Use(async (context, next) =>
-                {
-                    context.User = new GenericPrincipal(new ClaimsIdentity(new[] {
-                        new Claim(ClaimTypes.Name, "12bet") }),
-                        new[] { "db_per_tab" });
-                    await next.Invoke();
-                });
-            }
-            else
-            {
-                app.UseErrorHandler();
-                app.UseOneAuth();
-            }
-
+            app.UseOneAuth();
             app.UseMvc();
         }
 
@@ -195,7 +180,7 @@ namespace Fanex.Athena.AnalyticsAPI
 
         private string GetOneBookSecurityConnection()
         {
-            var encryptedConnectionString = Configuration.GetConnectionString("LAP.OneBook");
+            var encryptedConnectionString = Configuration.GetConnectionString("LAP.OneBookSecurity");
             return Cryptography.DecryptConnectionString(encryptedConnectionString);
         }
     }
