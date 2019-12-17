@@ -4,8 +4,8 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Models.Configuration
 {
     public class SSASSetting
     {
-        public string BridgeHost { get; set; }
-        public string AuthKey { get; set; }
+        public string LGAPIHost { get; set; }
+        public string LGAPIToken { get; set; }
         public int ConnectionExpireTime { get; set; }
         public IList<ModuleSetting> Modules { get; set; }
     }

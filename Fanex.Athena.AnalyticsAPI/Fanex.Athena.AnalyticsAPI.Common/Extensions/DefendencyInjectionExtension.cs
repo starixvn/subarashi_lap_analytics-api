@@ -36,8 +36,8 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
             configuration.GetSection("SSASSetting").Bind(setting);
             services.AddHttpClient<IHttpClientService, HttpClientService>(client =>
             {
-                client.BaseAddress = new Uri(setting.BridgeHost);
-                client.DefaultRequestHeaders.Add(BRIDGE_TOKEN_KEY, setting.AuthKey);
+                client.BaseAddress = new Uri(setting.LGAPIHost);
+                client.DefaultRequestHeaders.Add(BRIDGE_TOKEN_KEY, setting.LGAPIToken);
             })
             .SetHandlerLifetime(TimeSpan.FromMinutes(setting.ConnectionExpireTime));
 

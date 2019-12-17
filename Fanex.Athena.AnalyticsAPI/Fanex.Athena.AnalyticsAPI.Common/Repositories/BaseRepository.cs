@@ -29,9 +29,9 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Repositories
 
             bridgeService.Setting = new BridgeSetting
             {
-                BridgeHost = _setting?.BridgeHost,
+                BridgeHost = _setting?.LGAPIHost,
                 ConnectionKey = _setting?.Modules?.FirstOrDefault(_ => _.ModuleId.Equals(ModuleId))?.ConnectionKey,
-                AuthKey = _setting?.AuthKey
+                AuthKey = _setting?.LGAPIToken
             };
 
             _bridgeService = bridgeService;
