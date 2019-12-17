@@ -119,6 +119,8 @@ namespace Fanex.Athena.AnalyticsAPI
             app.UseResponseCompression();
             app.UseSwaggerDoc(Env, API_NAME);
 
+            app.UseUM();
+
             if (Env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -136,7 +138,6 @@ namespace Fanex.Athena.AnalyticsAPI
                 app.UseOneAuth();
             }
 
-            app.UseUM();
             app.UseMvc();
         }
 
