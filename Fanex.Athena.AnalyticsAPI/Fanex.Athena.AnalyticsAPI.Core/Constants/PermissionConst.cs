@@ -2,7 +2,7 @@
 {
     public static class PermissionConst
     {
-        public const string PerformanceTabRole = "db_per_tab";
-        public const string SuperAdminRole = "super_admin";
+        public const string PERFORMANCE_TAB_ROLE = "db_per_tab";
+        public const string SUPER_ADMIN_ROLE = "super_admin";
     }
 }

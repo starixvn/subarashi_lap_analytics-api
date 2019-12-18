@@ -1,4 +1,5 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Middleware;
+﻿using Fanex.Athena.AnalyticsAPI.Core.Filters;
+using Fanex.Athena.AnalyticsAPI.Core.Middleware;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,6 +38,8 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
                         Version = "v1",
                         Title = apiName,
                     });
+
+                    c.OperationFilter<OneAuthHeaderFilter>();
 
                     c.DescribeStringEnumsInCamelCase();
                     c.DescribeAllEnumsAsStrings();

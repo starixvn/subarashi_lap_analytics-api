@@ -54,7 +54,6 @@ namespace Fanex.Athena.AnalyticsAPI
 
             services.AddSwaggerDoc(Env, API_NAME);
 
-            services.Configure<ApplicationOptions>(Configuration.GetSection("ApplicationOptions"));
             services.Configure<SSASSetting>(Configuration.GetSection("SSASSetting"));
 
             services.AddCors(o => o.AddPolicy("DefaultPolicy", builder =>

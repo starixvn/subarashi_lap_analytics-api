@@ -18,7 +18,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Attributes
             var user = context.HttpContext.User;
             var roles = Roles?.Split(',') ?? Enumerable.Empty<string>();
 
-            var isAuthorized = user.IsInRole(PermissionConst.SuperAdminRole) || roles.Any(_ => user.IsInRole(_));
+            var isAuthorized = user.IsInRole(PermissionConst.SUPER_ADMIN_ROLE) || roles.Any(_ => user.IsInRole(_));
 
             if (!isAuthorized)
             {

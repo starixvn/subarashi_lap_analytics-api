@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 {
     [ApiController]
-    [OneAuthorization(Roles = PermissionConst.PerformanceTabRole)]
+    [OneAuthorization(Roles = PermissionConst.PERFORMANCE_TAB_ROLE)]     
     public class OverviewPerformanceController : ControllerBaseCustom
     {
         private readonly IOverviewPerformanceService _overviewService;
