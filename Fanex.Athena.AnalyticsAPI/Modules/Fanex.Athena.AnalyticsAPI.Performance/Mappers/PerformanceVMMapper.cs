@@ -179,8 +179,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             var prevPeriodDtoDic = prevPeriodDtos.ToDictionary(_ => _.Id, _ => _);
             var currentPeriodDtoDic = currentPeriodDtos.ToDictionary(_ => _.Id, _ => _);
 
-            var hasOthers = HasOthers(topDistributions);
-
             foreach (var topDistribution in topDistributions)
             {
                 (string topDistributionId, string topDistributionName) = (topDistribution.DisplayId, topDistribution.DisplayName);
@@ -202,7 +200,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                 currentPeriodDtoDic.Remove(topDistributionId);
             }
 
-            if (hasOthers)
+            var distributionOthers = topDistributions.FirstOrDefault(_ => _.DisplayId == DISTRIBUTION_OTHERS_ID);
+            if (distributionOthers != null)
             {
                 prevPeriodDtoDic.Remove(DISTRIBUTION_OTHERS_ID, out T prevPeriodOthers);
                 currentPeriodDtoDic.Remove(DISTRIBUTION_OTHERS_ID, out T currentPeriodOthers);
@@ -218,7 +217,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
                 var vmItem = new MeasurementComparisonVM
                 {
                     Id = DISTRIBUTION_OTHERS_ID,
-                    Name = DISTRIBUTION_OTHERS_NAME,
+                    Name = distributionOthers.DisplayName,
                     DifferenceTurnover = CreateDifferenceMeasurement(prevPeriodTunover, currentPeriodTunover, prevPeriodTunoverDistribution, currentPeriodTunoverDistribution),
                     DifferenceGrossProfit = CreateDifferenceMeasurement(prevPeriodGrossProfit, currentPeriodGrossProfit, prevPeriodGrossProfitDistribution, currentPeriodGrossProfitDistribution),
                     DifferenceMargin = CreateDifferenceMeasurement(prevPeriodMargin, currentPeriodMargin, 0, 0)

@@ -29,7 +29,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
 
         public static IServiceCollection AddSwaggerDoc(this IServiceCollection services, IHostingEnvironment env, string apiName)
         {
-            if (env.IsDevelopment() || env.IsEnvironment("UAT"))
+            if (env.IsDevelopment())
             {
                 services.AddSwaggerGen(c =>
                 {
@@ -51,7 +51,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
 
         public static IApplicationBuilder UseSwaggerDoc(this IApplicationBuilder builder, IHostingEnvironment env, string apiName)
         {
-            if (env.IsDevelopment() || env.IsEnvironment("UAT"))
+            if (env.IsDevelopment())
             {
                 builder.UseSwagger();
                 builder.UseSwaggerUI(c =>

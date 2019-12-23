@@ -61,6 +61,24 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Others.
+        /// </summary>
+        internal static string bettype_0 {
+            get {
+                return ResourceManager.GetString("bettype_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Others.
+        /// </summary>
+        internal static string currency_0 {
+            get {
+                return ResourceManager.GetString("currency_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Period.
         /// </summary>
         internal static string normal_current_period {
@@ -75,6 +93,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         internal static string normal_previous_period {
             get {
                 return ResourceManager.GetString("normal_previous_period", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Others.
+        /// </summary>
+        internal static string platform_0 {
+            get {
+                return ResourceManager.GetString("platform_0", resourceCulture);
             }
         }
         
@@ -165,6 +192,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         internal static string platform_9 {
             get {
                 return ResourceManager.GetString("platform_9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Others.
+        /// </summary>
+        internal static string product_0 {
+            get {
+                return ResourceManager.GetString("product_0", resourceCulture);
             }
         }
         

@@ -117,7 +117,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
                      _overviewService.GetProductTopChangeWithComparison(filter)
                 );
 
-            _translationService.Translate(currencyTopChange, TranslationConst.CurrencyType);
             _translationService.Translate(bettypeTopChange, TranslationConst.BettypeType);
             _translationService.Translate(platformTopChange, TranslationConst.PlatformType);
             _translationService.Translate(productTopChange, TranslationConst.ProductType);

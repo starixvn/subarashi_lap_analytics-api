@@ -78,6 +78,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         public async Task<JsonResult> GetCombineData([FromBody]CurrenyPerformanceFilterMetaModel filter)
         {
             await BindTopDistributionsToFilterMetaModel(filter);
+            _translationService.Translate(filter.TopDistributions, TranslationConst.CurrencyType);
 
             var isMargin = filter.Measurement.Id == MeasurementConst.MARGIN;
 

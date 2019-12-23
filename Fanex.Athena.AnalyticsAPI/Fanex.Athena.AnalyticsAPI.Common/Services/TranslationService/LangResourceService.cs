@@ -2,12 +2,15 @@
 using Fanex.Athena.AnalyticsAPI.Common.Resources.Lang;
 using Fanex.RemotingRef;
 using System;
+using System.Linq;
 using System.Threading;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
     public class LangResourceService : ILangResourceService
     {
+        private static readonly string[] EXCEPTION_BETTYPE_IDs = new[] { "0" };
+
         private readonly IRemotingRefService _remotingRefService;
 
         public LangResourceService(IRemotingRefService remotingRefService)
@@ -17,7 +20,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
 
         public string GetName(string type, string id, string defaultValue)
         {
-            if (type.Equals(TranslationConst.BettypeType, StringComparison.OrdinalIgnoreCase))
+            if (type.Equals(TranslationConst.BettypeType, StringComparison.OrdinalIgnoreCase) && !EXCEPTION_BETTYPE_IDs.Any(_ => _.Equals(id)))
             {
                 return GetDisplayBetTypeName(id, defaultValue);
             }
