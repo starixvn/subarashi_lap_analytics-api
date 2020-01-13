@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="bettype_0" xml:space="preserve">
+    <value>Others</value>
+    <comment>Others</comment>
+  </data>
+  <data name="currency_0" xml:space="preserve">
+    <value>Others</value>
+    <comment>Others</comment>
+  </data>
+  <data name="normal_current_period" xml:space="preserve">
+    <value>Current Period</value>
+    <comment>Current Period</comment>
+  </data>
+  <data name="normal_previous_period" xml:space="preserve">
+    <value>Previous Period</value>
+    <comment>Previous Period</comment>
+  </data>
+  <data name="platform_0" xml:space="preserve">
+    <value>Others</value>
+    <comment>Others</comment>
+  </data>
+  <data name="platform_1" xml:space="preserve">
+    <value>Asia</value>
+    <comment>Asia</comment>
+  </data>
+  <data name="platform_10" xml:space="preserve">
+    <value>WAP</value>
+    <comment>WAP</comment>
+  </data>
+  <data name="platform_2" xml:space="preserve">
+    <value>China</value>
+    <comment>China</comment>
+  </data>
+  <data name="platform_3" xml:space="preserve">
+    <value>Deep Link</value>
+    <comment>Deep Link</comment>
+  </data>
+  <data name="platform_4" xml:space="preserve">
+    <value>Euro</value>
+    <comment>Euro</comment>
+  </data>
+  <data name="platform_5" xml:space="preserve">
+    <value>Mobile</value>
+    <comment>Mobile</comment>
+  </data>
+  <data name="platform_6" xml:space="preserve">
+    <value>Mobile App</value>
+    <comment>Mobile App</comment>
+  </data>
+  <data name="platform_7" xml:space="preserve">
+    <value>Mobile Lite Version</value>
+    <comment>Mobile Lite Version</comment>
+  </data>
+  <data name="platform_8" xml:space="preserve">
+    <value>New Asia</value>
+    <comment>New Asia</comment>
+  </data>
+  <data name="platform_9" xml:space="preserve">
+    <value>Tablet</value>
+    <comment>Tablet</comment>
+  </data>
+  <data name="product_0" xml:space="preserve">
+    <value>Others</value>
+    <comment>Others</comment>
+  </data>
+  <data name="product_1" xml:space="preserve">
+    <value>Sportsbook</value>
+    <comment>Sportsbook</comment>
+  </data>
+  <data name="product_10" xml:space="preserve">
+    <value>Playtech Casino</value>
+    <comment>Playtech Casino</comment>
+  </data>
+  <data name="product_11" xml:space="preserve">
+    <value>AG Casino</value>
+    <comment>AG Casino</comment>
+  </data>
+  <data name="product_12" xml:space="preserve">
+    <value>Gold Deluxe</value>
+    <comment>Gold Deluxe</comment>
+  </data>
+  <data name="product_13" xml:space="preserve">
+    <value>Macau</value>
+    <comment>Macau</comment>
+  </data>
+  <data name="product_16" xml:space="preserve">
+    <value>Colossus Bets</value>
+    <comment>Colossus Bets</comment>
+  </data>
+  <data name="product_20" xml:space="preserve">
+    <value>Cock Fighting</value>
+    <comment>Cock Fighting</comment>
+  </data>
+  <data name="product_22" xml:space="preserve">
+    <value>Allbet</value>
+    <comment>Allbet</comment>
+  </data>
+  <data name="product_24" xml:space="preserve">
+    <value>Number Game 2</value>
+    <comment>Number Game 2</comment>
+  </data>
+  <data name="product_25" xml:space="preserve">
+    <value>Fishing World</value>
+    <comment>Fishing World</comment>
+  </data>
+  <data name="product_26" xml:space="preserve">
+    <value>Cash Out</value>
+    <comment>Cash Out</comment>
+  </data>
+  <data name="product_28" xml:space="preserve">
+    <value>Virtual Sports 2</value>
+    <comment>Virtual Sports 2</comment>
+  </data>
+  <data name="product_29" xml:space="preserve">
+    <value>Lottery</value>
+    <comment>Lottery</comment>
+  </data>
+  <data name="product_3" xml:space="preserve">
+    <value>Number Game</value>
+    <comment>Number Game</comment>
+  </data>
+  <data name="product_31" xml:space="preserve">
+    <value>Bullfighting</value>
+    <comment>Bullfighting</comment>
+  </data>
+  <data name="product_32" xml:space="preserve">
+    <value>Exchange</value>
+    <comment>Exchange</comment>
+  </data>
+  <data name="product_33" xml:space="preserve">
+    <value>Pragmatic</value>
+    <comment>Pragmatic</comment>
+  </data>
+  <data name="product_35" xml:space="preserve">
+    <value>Card Club</value>
+    <comment>Card Club</comment>
+  </data>
+  <data name="product_36" xml:space="preserve">
+    <value>Peer to Peer</value>
+    <comment>Peer to Peer</comment>
+  </data>
+  <data name="product_38" xml:space="preserve">
+    <value>Saba Promotion</value>
+    <comment>Saba Promotion</comment>
+  </data>
+  <data name="product_4" xml:space="preserve">
+    <value>BA</value>
+    <comment>BA</comment>
+  </data>
+  <data name="product_6" xml:space="preserve">
+    <value>Virtual Sports</value>
+    <comment>Virtual Sports</comment>
+  </data>
+  <data name="product_7" xml:space="preserve">
+    <value>RNG Casino</value>
+    <comment>RNG Casino</comment>
+  </data>
+  <data name="product_8" xml:space="preserve">
+    <value>Bingo</value>
+    <comment>Bingo</comment>
+  </data>
+  <data name="product_9" xml:space="preserve">
+    <value>RNG Keno</value>
+    <comment>RNG Keno</comment>
+  </data>
+</root>

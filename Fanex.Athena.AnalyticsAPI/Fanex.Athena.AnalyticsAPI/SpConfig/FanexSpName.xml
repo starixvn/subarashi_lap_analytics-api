@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Functions SiteId="31" SiteName="LRF">
+  <Function Name="DAX_Query_Performance_Common">
+    <Setting Key="LAP_Performance_GetDateRangeSupport" SpName="LAP_Performance_GetDateRangeSupport" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+  </Function>
+  <Function Name="DAX_Query_Performance_Overview">
+    <Setting Key="LAP_Performance_OverviewSummaryBySite" SpName="LAP_Performance_OverviewSummaryBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+    <Setting Key="LAP_Performance_OverviewCurencyBySite" SpName="LAP_Performance_OverviewCurencyBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+    <Setting Key="LAP_Performance_OverviewBetypeBySite" SpName="LAP_Performance_OverviewBetypeBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+    <Setting Key="LAP_Performance_OverviewPlatFormBySite" SpName="LAP_Performance_OverviewPlatFormBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+    <Setting Key="LAP_Performance_OverviewProductBySite" SpName="LAP_Performance_OverviewProductBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+    <Setting Key="LAP_Performance_OverviewMeasurementGrowthBySite" SpName="LAP_Performance_OverviewMeasurementGrowthBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+  </Function>
+  <Function Name="DAX_Query_Performance_Currency">
+    <Setting Key="LAP_Performance_CurrencyMeasureDistributionBySite" SpName="LAP_Performance_CurrencyMeasureDistributionBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+    <Setting Key="LAP_Performance_CurrencyComparionPeriodBySite" SpName="LAP_Performance_CurrencyComparionPeriodBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+    <Setting Key="LAP_Performance_CurrencyComparionBySite" SpName="LAP_Performance_CurrencyComparionBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+  </Function>
+  <Function Name="DAX_Query_Performance_Product">
+    <Setting Key="LAP_Performance_ProductMeasureDistributionBySite" SpName="LAP_Performance_ProductMeasureDistributionBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+    <Setting Key="LAP_Performance_ProductComparionPeriodBySite" SpName="LAP_Performance_ProductComparionPeriodBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+    <Setting Key="LAP_Performance_ProductComparionBySite" SpName="LAP_Performance_ProductComparionBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+  </Function>
+  <Function Name="DAX_Query_Performance_Bettype">
+    <Setting Key="LAP_Performance_BettypeMeasureDistributionBySite" SpName="LAP_Performance_BettypeMeasureDistributionBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+    <Setting Key="LAP_Performance_BettypeComparionPeriodBySite" SpName="LAP_Performance_BettypeComparionPeriodBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+    <Setting Key="LAP_Performance_BettypeComparionBySite" SpName="LAP_Performance_BettypeComparionBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+  </Function>
+  <Function Name="DAX_Query_Performance_Platform">
+    <Setting Key="LAP_Performance_PlatformMeasureDistributionBySite" SpName="LAP_Performance_PlatformMeasureDistributionBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+    <Setting Key="LAP_Performance_PlatformComparionPeriodBySite" SpName="LAP_Performance_PlatformComparionPeriodBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+    <Setting Key="LAP_Performance_PlatformComparionBySite" SpName="LAP_Performance_PlatformComparionBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+  </Function>
+</Functions>

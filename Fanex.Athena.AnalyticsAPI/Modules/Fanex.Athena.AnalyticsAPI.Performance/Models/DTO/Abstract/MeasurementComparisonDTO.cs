@@ -1,0 +1,38 @@
+﻿using Fanex.Athena.LGAPI.SSAS.Bridge.Attributes;
+
+namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
+{
+    public abstract class MeasurementComparisonDTO : IIdentifiable
+    {
+        [SsasColumn("[Turnover]")]
+        public double Turnover { get; set; }
+
+        [SsasColumn("[MarginTO]")]
+        public double TurnoverDistribution { get; set; }
+
+        [SsasColumn("[GrossProfit]")]
+        public double GrossProfit { get; set; }
+
+        [SsasColumn("[MarginWL]")]
+        public double GrossProfitDistribution { get; set; }
+
+        private double _margin;
+
+        [SsasColumn("[Margin]")]
+        public double Margin
+        {
+            get
+            {
+                return _margin;
+            }
+            set
+            {
+                _margin = value * 100;
+            }
+        }
+
+        public abstract string Id { get; }
+
+        public abstract string Name { get; }
+    }
+}
