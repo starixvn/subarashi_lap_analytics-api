@@ -149,7 +149,18 @@
     <value>Native App</value>
     <comment>Native App</comment>
   </data>
-  <data name="platform_2" xml:space="preserve">
+  <data name="platform_12" xml:space="preserve">
+    <value>E-Sports Desktop</value>
+    <comment>E-Sports Desktop</comment>
+  </data>
+  <data name="platform_13" xml:space="preserve">
+    <value>E-Sports Mobile</value>
+    <comment>E-Sports Mobile</comment>
+  </data>
+  <data name="platform_14" xml:space="preserve">
+    <value>E-Sports App</value>
+    <comment>E-Sports App</comment>
+  </data>  <data name="platform_2" xml:space="preserve">
     <value>China</value>
     <comment>China</comment>
   </data>

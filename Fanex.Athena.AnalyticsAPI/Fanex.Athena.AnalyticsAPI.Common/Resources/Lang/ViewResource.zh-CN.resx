@@ -149,7 +149,18 @@
     <value>原生App</value>
     <comment>Native App</comment>
   </data>
-  <data name="platform_2" xml:space="preserve">
+  <data name="platform_12" xml:space="preserve">
+    <value>电子竞技 桌机</value>
+    <comment>E-Sports Desktop</comment>
+  </data>
+  <data name="platform_13" xml:space="preserve">
+    <value>电子竞技 手机</value>
+    <comment>E-Sports Mobile</comment>
+  </data>
+  <data name="platform_14" xml:space="preserve">
+    <value>电子竞技App</value>
+    <comment>E-Sports App</comment>
+  </data>  <data name="platform_2" xml:space="preserve">
     <value>中国版</value>
     <comment>China</comment>
   </data>

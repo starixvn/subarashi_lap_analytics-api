@@ -22,7 +22,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ViewResource {
+    internal class ViewResource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -124,7 +124,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Native App.
+		/// Looks up a localized string similar to Native App.
         /// </summary>
         internal static string platform_11 {
             get {
@@ -133,7 +133,33 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to China.
+        ///   Looks up a localized string similar to E-Sports Desktop.
+        /// </summary>
+        internal static string platform_12 {
+            get {
+                return ResourceManager.GetString("platform_12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-Sports Mobile.
+        /// </summary>
+        internal static string platform_13 {
+            get {
+                return ResourceManager.GetString("platform_13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-Sports App.
+        /// </summary>
+        internal static string platform_14 {
+            get {
+                return ResourceManager.GetString("platform_14", resourceCulture);
+            }
+        }
+        
+        /// <summary>        ///   Looks up a localized string similar to China.
         /// </summary>
         internal static string platform_2 {
             get {
