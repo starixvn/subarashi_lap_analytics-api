@@ -145,6 +145,10 @@
     <value>WAP</value>
     <comment>WAP</comment>
   </data>
+  <data name="platform_11" xml:space="preserve">
+    <value>原生App</value>
+    <comment>Native App</comment>
+  </data>
   <data name="platform_2" xml:space="preserve">
     <value>中国版</value>
     <comment>China</comment>
@@ -260,6 +264,10 @@
   <data name="product_38" xml:space="preserve">
     <value>Saba Promotion</value>
     <comment>Saba Promotion</comment>
+  </data>
+  <data name="product_39" xml:space="preserve">
+    <value>虚拟娱乐城</value>
+    <comment>Virtual Games</comment>
   </data>
   <data name="product_4" xml:space="preserve">
     <value>BA</value>
