@@ -124,6 +124,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Native App.
+        /// </summary>
+        internal static string platform_11 {
+            get {
+                return ResourceManager.GetString("platform_11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to China.
         /// </summary>
         internal static string platform_2 {
@@ -381,6 +390,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         internal static string product_38 {
             get {
                 return ResourceManager.GetString("product_38", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Virtual Games.
+        /// </summary>
+        internal static string product_39 {
+            get {
+                return ResourceManager.GetString("product_39", resourceCulture);
             }
         }
         
