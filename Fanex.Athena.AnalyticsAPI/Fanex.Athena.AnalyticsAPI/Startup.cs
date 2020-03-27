@@ -1,7 +1,7 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
 using Fanex.Athena.AnalyticsAPI.Core.Extensions;
+using Fanex.Athena.AnalyticsAPI.Core.Middleware;
 using Fanex.Athena.AnalyticsAPI.Core.Models;
-using Fanex.Athena.AnalyticsAPI.Core.Models.Configuration;
 using Fanex.Athena.ExtService.Common.Configuration;
 using Fanex.Data;
 using Fanex.Data.SqlServer;
@@ -80,6 +80,8 @@ namespace Fanex.Athena.AnalyticsAPI
                 options.Providers.Add<GzipCompressionProvider>();
             });
 
+            services.AddHealthChecks().AddCheck<WhoAmIHealthCheck>("WhoAmIHealthCheck");
+
             SetupLogging(services);
             SetupSqlProvider();
             SetupAuthentication(services);
@@ -103,6 +105,8 @@ namespace Fanex.Athena.AnalyticsAPI
             }
 
             app.UseStaticFiles();
+
+            app.UseWhoAmIHealthCheck();
 
             app.UseCors("DefaultPolicy");
 

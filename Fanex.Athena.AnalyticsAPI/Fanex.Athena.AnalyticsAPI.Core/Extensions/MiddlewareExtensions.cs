@@ -2,12 +2,15 @@
 using Fanex.Athena.AnalyticsAPI.Core.Middleware;
 
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using ONEbook.UM.Extensions;
 using Swashbuckle.AspNetCore.Swagger;
+using System.Linq;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
 {
@@ -20,6 +23,29 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
                 builder.UseMiddleware<ErrorHandler>();
             }
             return builder;
+        }
+
+        public static IApplicationBuilder UseWhoAmIHealthCheck(this IApplicationBuilder builder)
+        {
+            return builder.UseHealthChecks("/health", new HealthCheckOptions
+            {
+                AllowCachingResponses = false,
+                Predicate = _ => true,
+                ResponseWriter = async (context, result) =>
+                {
+                    context.Response.ContentType = "application/json";
+                    var json = new JObject(
+                         new JProperty("status", result.Status.ToString()),
+                         new JProperty("results", new JObject(result.Entries.Select(pair =>
+                             new JProperty(pair.Key, new JObject(
+                                 new JProperty("status", pair.Value.Status.ToString()),
+                                 new JProperty("description", pair.Value.Description),
+                                 new JProperty("data", new JObject(pair.Value.Data.Select(
+                                     p => new JProperty(p.Key, p.Value))))))))));
+                    await context.Response.WriteAsync(
+                        json.ToString(Formatting.Indented));
+                }
+            });
         }
 
         public static IApplicationBuilder UseOneAuth(this IApplicationBuilder builder)
