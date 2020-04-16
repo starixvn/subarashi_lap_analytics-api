@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels
 {
-    public class GeneralFilterMetaModel : IBaseMetaModel
+    public class GeneralFilterMetaModel
     {
         public string SiteName { get; set; }
 

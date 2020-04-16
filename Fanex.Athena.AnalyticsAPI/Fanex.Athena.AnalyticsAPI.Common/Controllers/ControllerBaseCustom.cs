@@ -8,6 +8,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Controllers
     public class ControllerBaseCustom : ControllerBase
     {
         protected readonly IContextService _contextService;
+
         public ControllerBaseCustom(IContextService contextService)
         {
             _contextService = contextService ?? new ContextService();
