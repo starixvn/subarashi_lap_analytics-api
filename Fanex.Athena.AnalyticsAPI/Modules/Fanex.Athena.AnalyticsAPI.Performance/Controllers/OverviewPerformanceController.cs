@@ -1,5 +1,4 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Attributes;
-using Fanex.Athena.AnalyticsAPI.Common.Constants;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Constants;
 using Fanex.Athena.AnalyticsAPI.Common.Controllers;
 using Fanex.Athena.AnalyticsAPI.Common.Extensions;
 using Fanex.Athena.AnalyticsAPI.Common.Helpers;
@@ -14,7 +13,7 @@ using System.Threading.Tasks;
 namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 {
     [ApiController]
-    [OneAuthorization(Roles = PermissionConst.PERFORMANCE_TAB_ROLE)]     
+    [ONEBookAuthorization(Permissions = PermissionConst.PERFORMANCE_TAB)]
     public class OverviewPerformanceController : ControllerBaseCustom
     {
         private readonly IOverviewPerformanceService _overviewService;
@@ -33,7 +32,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 
         [HttpPost]
         [Route("api/performance/overview/summary")]
-        [AutoBindMetaModel]
+        [AutoBindingMetaModel(bindSiteName: true)]
         public async Task<JsonResult> GetSummary([FromBody]PerformanceFilterMetaModel filter)
         {
             var result = await _overviewService.GetSummaryWithComparison(filter);
@@ -42,7 +41,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 
         [HttpPost]
         [Route("api/performance/overview/top-change")]
-        [AutoBindMetaModel]
+        [AutoBindingMetaModel(bindSiteName: true)]
         public async Task<JsonResult> GetTopChange([FromBody]PerformanceFilterMetaModel filter)
         {
             var result = await _getTopChange(filter);
@@ -51,7 +50,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 
         [HttpPost]
         [Route("api/performance/overview/period-growth")]
-        [AutoBindMetaModel]
+        [AutoBindingMetaModel(bindSiteName: true)]
         public async Task<JsonResult> GetPeriodGrowth(PerformanceFilterMetaModel filter)
         {
             var result = await _overviewService.GetPeriodGrowthWithComparison(filter);
@@ -60,7 +59,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 
         [HttpPost]
         [Route("api/performance/overview/month-growth")]
-        [AutoBindMetaModel]
+        [AutoBindingMetaModel(bindSiteName: true)]
         public async Task<JsonResult> GetMonthGrowth(PerformanceFilterMetaModel filter)
         {
             var result = await _overviewService.GetDetailMonthGrowthWithComparison(filter);
@@ -69,7 +68,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 
         [HttpPost]
         [Route("api/performance/overview")]
-        [AutoBindMetaModel]
+        [AutoBindingMetaModel(bindSiteName: true)]
         public async Task<JsonResult> GetCombineData([FromBody]PerformanceFilterMetaModel filter)
         {
             var topChangeTask = _getTopChange(filter);

@@ -1,5 +1,4 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Attributes;
-using Fanex.Athena.AnalyticsAPI.Common.Constants;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Constants;
 using Fanex.Athena.AnalyticsAPI.Common.Controllers;
 using Fanex.Athena.AnalyticsAPI.Common.Extensions;
 using Fanex.Athena.AnalyticsAPI.Common.Mappers;
@@ -19,7 +18,7 @@ using System.Threading.Tasks;
 namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 {
     [ApiController]
-    [OneAuthorization(Roles = PermissionConst.PERFORMANCE_TAB_ROLE)]
+    [ONEBookAuthorization(Permissions = PermissionConst.PERFORMANCE_TAB)]
     public class CurrencyPerformanceController : ControllerBaseCustom
     {
         private readonly ICurrencyPerformanceService _currencyService;
@@ -38,7 +37,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 
         [HttpPost]
         [Route("api/performance/currency/distribution")]
-        [AutoBindMetaModel]
+        [AutoBindingMetaModel(bindSiteName: true)]
         public async Task<JsonResult> GetDistribution([FromBody]CurrenyPerformanceFilterMetaModel filter)
         {
             var result = await _currencyService.GetDistributionWithComparison(filter);
@@ -47,7 +46,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 
         [HttpPost]
         [Route("api/performance/currency/diffences")]
-        [AutoBindMetaModel]
+        [AutoBindingMetaModel(bindSiteName: true)]
         public async Task<JsonResult> GetDiffences([FromBody]CurrenyPerformanceFilterMetaModel filter)
         {
             var result = await _currencyService.GetMeasurementDifferenceWithComparison(filter);
@@ -56,7 +55,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 
         [HttpPost]
         [Route("api/performance/currency/period-growth")]
-        [AutoBindMetaModel]
+        [AutoBindingMetaModel(bindSiteName: true)]
         public async Task<JsonResult> GetPeriodGrowth([FromBody]CurrenyPerformanceFilterMetaModel filter)
         {
             var result = await _currencyService.GetPeriodGrowthWithComparison(filter);
@@ -65,7 +64,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 
         [HttpPost]
         [Route("api/performance/currency/month-growth-all")]
-        [AutoBindMetaModel]
+        [AutoBindingMetaModel(bindSiteName: true)]
         public async Task<JsonResult> GetAllMonthGrowth([FromBody]CurrenyPerformanceFilterMetaModel filter)
         {
             var result = await _currencyService.GetAllDetailMonthGrowthWithComparison(filter);
@@ -74,7 +73,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 
         [HttpPost]
         [Route("api/performance/currency")]
-        [AutoBindMetaModel]
+        [AutoBindingMetaModel(bindSiteName: true)]
         public async Task<JsonResult> GetCombineData([FromBody]CurrenyPerformanceFilterMetaModel filter)
         {
             await BindTopDistributionsToFilterMetaModel(filter);
