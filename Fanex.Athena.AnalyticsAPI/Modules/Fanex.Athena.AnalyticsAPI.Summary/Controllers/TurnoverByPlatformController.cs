@@ -13,7 +13,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    [ONEBookAuthorization(Permissions = PermissionConst.SUMMARY_TURNOVER_BY_PLATFORM)]
+    [ONEBookAuthorize(Permissions = PermissionConst.SUMMARY_TURNOVER_BY_PLATFORM)]
     public class TurnoverByPlatformController : ControllerBaseCustom
     {
         private readonly ILicenseeDataPlatformService _licenseeDataPlatformService;

@@ -11,7 +11,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    [ONEBookAuthorization(Permissions = PermissionConst.SUMMARY_PENDING_FUND)]
+    [ONEBookAuthorize(Permissions = PermissionConst.SUMMARY_PENDING_FUND)]
     public class PendingFundController : ControllerBaseCustom
     {
         private readonly ISingleValueService _singleValueService;

@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.AnalyticsAPI.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.AnalyticsAPI.Summary", "Modules\Fanex.Athena.AnalyticsAPI.Summary\Fanex.Athena.AnalyticsAPI.Summary.csproj", "{2F76C8E4-04F0-4C92-B163-0AAFABB390D7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.AnalyticsAPI.Summary.UnitTest", "UnitTests\Modules\Fanex.Athena.AnalyticsAPI.Summary.UnitTest\Fanex.Athena.AnalyticsAPI.Summary.UnitTest.csproj", "{9857DD53-0B7E-47DD-9895-B25C8805D751}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -163,6 +165,18 @@ Global
 		{2F76C8E4-04F0-4C92-B163-0AAFABB390D7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2F76C8E4-04F0-4C92-B163-0AAFABB390D7}.Release|x86.ActiveCfg = Release|Any CPU
 		{2F76C8E4-04F0-4C92-B163-0AAFABB390D7}.Release|x86.Build.0 = Release|Any CPU
+		{9857DD53-0B7E-47DD-9895-B25C8805D751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9857DD53-0B7E-47DD-9895-B25C8805D751}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9857DD53-0B7E-47DD-9895-B25C8805D751}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9857DD53-0B7E-47DD-9895-B25C8805D751}.Debug|x86.Build.0 = Debug|Any CPU
+		{9857DD53-0B7E-47DD-9895-B25C8805D751}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{9857DD53-0B7E-47DD-9895-B25C8805D751}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{9857DD53-0B7E-47DD-9895-B25C8805D751}.Development|x86.ActiveCfg = Debug|Any CPU
+		{9857DD53-0B7E-47DD-9895-B25C8805D751}.Development|x86.Build.0 = Debug|Any CPU
+		{9857DD53-0B7E-47DD-9895-B25C8805D751}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9857DD53-0B7E-47DD-9895-B25C8805D751}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9857DD53-0B7E-47DD-9895-B25C8805D751}.Release|x86.ActiveCfg = Release|Any CPU
+		{9857DD53-0B7E-47DD-9895-B25C8805D751}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -177,6 +191,7 @@ Global
 		{8979CAE6-CC42-439B-9454-D6C4441FF717} = {DF0CCD3F-442A-41DA-9D55-2C000793C042}
 		{7D73803E-433E-418F-9343-1E04286EE5D4} = {A9165D3A-48FA-4BDD-9A03-8C0165CA23A7}
 		{2F76C8E4-04F0-4C92-B163-0AAFABB390D7} = {B1879781-A593-46DC-BF45-74924DA955B9}
+		{9857DD53-0B7E-47DD-9895-B25C8805D751} = {0EAFC1D2-C52E-417C-9022-A7B77DC2B327}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2844F816-39A8-4EE9-B75A-2348BC440BFA}

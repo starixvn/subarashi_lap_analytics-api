@@ -12,7 +12,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    [ONEBookAuthorization(Permissions = PermissionConst.SUMMARY_TODAY_WITH_DRAWAL)]
+    [ONEBookAuthorize(Permissions = PermissionConst.SUMMARY_TODAY_WITH_DRAWAL)]
     public class TodayWithdrawalController : ControllerBaseCustom
     {
         private readonly ISingleValueService _singleValueService;

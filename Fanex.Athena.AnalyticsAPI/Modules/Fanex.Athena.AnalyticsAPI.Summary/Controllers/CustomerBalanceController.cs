@@ -12,7 +12,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    [ONEBookAuthorization(Permissions = PermissionConst.SUMMARY_CUSTOMER_BALANCE)]
+    [ONEBookAuthorize(Permissions = PermissionConst.SUMMARY_CUSTOMER_BALANCE)]
     public class CustomerBalanceController : ControllerBaseCustom
     {
         private readonly ISingleValueService _singleValueService;

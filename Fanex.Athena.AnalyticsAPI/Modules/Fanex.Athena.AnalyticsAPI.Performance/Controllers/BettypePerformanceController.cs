@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 {
     [ApiController]
-    [ONEBookAuthorization(Permissions = PermissionConst.PERFORMANCE_TAB)]
+    [ONEBookAuthorize(Permissions = PermissionConst.PERFORMANCE_TAB)]
     public class BettypePerformanceController : ControllerBaseCustom
     {
         private readonly IBettypePerformanceService _bettypeService;

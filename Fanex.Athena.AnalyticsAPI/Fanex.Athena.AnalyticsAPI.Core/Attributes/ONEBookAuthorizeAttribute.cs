@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Fanex.Athena.AnalyticsAPI.Core.Attributes
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
-    public class ONEBookAuthorizationAttribute : Attribute, IAsyncAuthorizationFilter
+    public class ONEBookAuthorizeAttribute : Attribute, IAsyncAuthorizationFilter
     {
         public string Permissions { get; set; }
 
