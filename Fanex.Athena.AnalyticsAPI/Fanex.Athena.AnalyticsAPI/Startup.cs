@@ -1,7 +1,6 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
 using Fanex.Athena.AnalyticsAPI.Core.Extensions;
 using Fanex.Athena.AnalyticsAPI.Core.Middleware;
-using Fanex.Athena.AnalyticsAPI.Core.Models;
 using Fanex.Athena.ExtService.Common.Configuration;
 using Fanex.Data;
 using Fanex.Data.SqlServer;
@@ -9,13 +8,13 @@ using Fanex.Logging;
 using Fanex.Logging.RabbitMQ;
 using Fanex.Logging.Sentry.RavenClient;
 using Fanex.RemotingRef;
-using LAP.ONEBook.Security;
-using LAP.ONEBook.Security.StorageProvider.SqlServer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -48,7 +47,13 @@ namespace Fanex.Athena.AnalyticsAPI
                 .ConnectTo(new Uri(Configuration["Fanex.RemotingRef.Service.Url"]))
                 .FromApplication("LAP_Analytics_API");
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                                .RequireAuthenticatedUser()
+                                .Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.Configure<IConfiguration>(Configuration);
 
@@ -58,10 +63,13 @@ namespace Fanex.Athena.AnalyticsAPI
 
             services.AddCors(o => o.AddPolicy("DefaultPolicy", builder =>
             {
+                var preflightMaxAge30InDay = TimeSpan.FromDays(30);
+
                 builder.AllowAnyOrigin()
                        .AllowAnyMethod()
                        .AllowAnyHeader()
-                       .AllowCredentials();
+                       .AllowCredentials()
+                       .SetPreflightMaxAge(preflightMaxAge30InDay);
             }));
 
             services.Configure<GzipCompressionProviderOptions>(options =>
@@ -84,10 +92,13 @@ namespace Fanex.Athena.AnalyticsAPI
 
             SetupLogging(services);
             SetupSqlProvider();
-            SetupAuthentication(services);
+
+            services.AddONEBookAuthentication(GetOneBookSecurityConnection(), _ => { });
 
             Performance.Extensions.DefendencyInjectionExtension.AddDIPerformance(services);
+            Summary.Extensions.DefendencyInjectionExtension.AddDISummary(services);
             Common.Extensions.DefendencyInjectionExtension.AddDICommon(services, Configuration);
+            Core.Extensions.DefendencyInjectionExtension.AddDICore(services);
 
             services.AddUMService(Configuration.GetSection("ONEbook.UM").Get<UMClientConfiguration>());
         }
@@ -105,11 +116,19 @@ namespace Fanex.Athena.AnalyticsAPI
             }
 
             app.UseStaticFiles();
-
             app.UseWhoAmIHealthCheck();
-
             app.UseCors("DefaultPolicy");
+            UseRequestLocalization(app);
+            app.UseResponseCompression();
+            app.UseSwaggerDoc(Env, API_NAME);
+            app.UseUM();
+            app.UseErrorHandler(Env);
+            app.UseAuthentication();
+            app.UseMvc();
+        }
 
+        private void UseRequestLocalization(IApplicationBuilder app)
+        {
             var supportedCultures = new List<CultureInfo>
             {
                 new CultureInfo("en-US"),
@@ -121,13 +140,6 @@ namespace Fanex.Athena.AnalyticsAPI
                 SupportedCultures = supportedCultures,
                 SupportedUICultures = supportedCultures
             });
-
-            app.UseResponseCompression();
-            app.UseSwaggerDoc(Env, API_NAME);
-            app.UseUM();
-            app.UseErrorHandler(Env);
-            app.UseOneAuth();
-            app.UseMvc();
         }
 
         private void SetupLogging(IServiceCollection services)
@@ -161,6 +173,16 @@ namespace Fanex.Athena.AnalyticsAPI
                     "DBEXT.bodb_dwrs.bodbLicenseeNet",
                     new ConnectionConfiguration("DBEXT.bodb_dwrs.bodbLicenseeNet",
                         Configuration.GetConnectionString("DBEXT.bodb_dwrs.bodbLicenseeNet"))
+                },
+                {
+                    "DBEXT.bodb02.bodbLicenseeNet",
+                    new ConnectionConfiguration("DBEXT.bodb02.bodbLicenseeNet",
+                        Configuration.GetConnectionString("DBEXT.bodb02.bodbLicenseeNet"))
+                },
+                {
+                    "DBACC.bodb02.bodbLicenseeNet",
+                    new ConnectionConfiguration("DBACC.bodb02.bodbLicenseeNet",
+                        Configuration.GetConnectionString("DBACC.bodb02.bodbLicenseeNet"))
                 }
             };
 
@@ -169,17 +191,6 @@ namespace Fanex.Athena.AnalyticsAPI
                 .WithSqlServer(resourcePath: "~/SpConfig")
                 .Use(connectionStrings)
                 .Run();
-        }
-
-        private void SetupAuthentication(IServiceCollection services)
-        {
-            services.AddSingleton<IStorageProvider, SqlServerProvider>(x =>
-            {
-                var connection = GetOneBookSecurityConnection();
-                return new SqlServerProvider(connection);
-            });
-
-            services.AddSingleton<IAuth<DefaultAuthInfo<Permission, dynamic>>, Auth<DefaultAuthInfo<Permission, dynamic>>>();
         }
 
         private string GetOneBookSecurityConnection()
