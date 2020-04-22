@@ -12,9 +12,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Fanex.Athena.ExtService.Core.UnitTests.Middleware
+namespace Fanex.Athena.AnalyticsAPI.Core.UnitTest.Middleware
 {
-    public class ErrorHandlerTest : IDisposable
+    public class ErrorHandler_Test : IDisposable
     {
         private readonly Mock<HttpContext> _mockHttpContext;
         private readonly Mock<IExceptionHandlerFeature> _mockHandlerException;
@@ -24,7 +24,7 @@ namespace Fanex.Athena.ExtService.Core.UnitTests.Middleware
 
         private Stream BodyContent;
 
-        public ErrorHandlerTest()
+        public ErrorHandler_Test()
         {
             LogManager
             .SetDefaultLogCategory("TEST")
