@@ -2,6 +2,8 @@
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Core.Attributes;
 using Fanex.Athena.AnalyticsAPI.Core.Constants;
+using Fanex.Athena.AnalyticsAPI.Core.ONEBookAuth;
+using Fanex.Athena.AnalyticsAPI.Summary.Consts;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Summary.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -25,8 +27,8 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Controllers
 
         [HttpGet]
         [AutoBindingMetaModel(bindAgent: true)]
-        [ApiRequestValidation]
-        public async Task<decimal> GetData([FromQuery]SummaryBaseMetaModel metaModel)
+        [ApiRequestValidation(ResponseContent = ResponseContentConst.DefaultSingleValue)]
+        public async Task<decimal> GetData([FromQuery]BaseSummaryMetaModel metaModel)
         {
             metaModel.FromDate = DateTime.Now.Date;
             var result = await _singleValueService.GetTodayDeposit(metaModel);

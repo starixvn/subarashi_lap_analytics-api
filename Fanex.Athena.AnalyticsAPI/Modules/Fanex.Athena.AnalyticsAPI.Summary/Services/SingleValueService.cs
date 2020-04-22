@@ -16,27 +16,27 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Services
             _sqlService = sqlService;
         }
 
-        public async Task<decimal> GetCustomerBalance(SummaryBaseMetaModel metaModel)
+        public async Task<decimal> GetCustomerBalance(BaseSummaryMetaModel metaModel)
         {
             return await GetData(metaModel, "Lrf_GetCustomerBalance", "ClosingBalance").ConfigureAwait(false);
         }
 
-        public async Task<decimal> GetPendingFunds(SummaryBaseMetaModel metaModel)
+        public async Task<decimal> GetPendingFunds(BaseSummaryMetaModel metaModel)
         {
             return await GetData(metaModel, "Lrf_GetLicenseePendingFunds", "PendingFund", false).ConfigureAwait(false);
         }
 
-        public async Task<decimal> GetTodayDeposit(SummaryBaseMetaModel metaModel)
+        public async Task<decimal> GetTodayDeposit(BaseSummaryMetaModel metaModel)
         {
             return await GetData(metaModel, "Lrf_GetLicenseeTodayDeposit", "Deposit").ConfigureAwait(false);
         }
 
-        public async Task<decimal> GetTodayWithdrawal(SummaryBaseMetaModel metaModel)
+        public async Task<decimal> GetTodayWithdrawal(BaseSummaryMetaModel metaModel)
         {
             return await GetData(metaModel, "Lrf_GetLicenseeTodayWithdrawal", "Withdrawal").ConfigureAwait(false);
         }
 
-        private async Task<decimal> GetData(SummaryBaseMetaModel metaModel, string spKey, string columnName, bool hasReportDate = true)
+        private async Task<decimal> GetData(BaseSummaryMetaModel metaModel, string spKey, string columnName, bool hasReportDate = true)
         {
             if (string.IsNullOrEmpty(metaModel.AgentListXml))
             {

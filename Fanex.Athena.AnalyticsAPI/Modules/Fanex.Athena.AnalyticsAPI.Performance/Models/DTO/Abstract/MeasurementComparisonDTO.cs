@@ -4,6 +4,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
 {
     public abstract class MeasurementComparisonDTO : IIdentifiable
     {
+        private const int Percent = 100;
+
         [SsasColumn("[Turnover]")]
         public double Turnover { get; set; }
 
@@ -27,7 +29,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
             }
             set
             {
-                _margin = value * 100;
+                _margin = value * Percent;
             }
         }
 

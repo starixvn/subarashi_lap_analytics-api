@@ -6,8 +6,8 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Services
 {
     public interface ILicenseeDataPlatformService
     {
-        Task<WidgetByPlatformViewModel> GetWinLoss(SummaryBaseMetaModel metaModel);
+        Task<WidgetByPlatformViewModel> GetWinLoss(BaseSummaryMetaModel metaModel);
 
-        Task<WidgetByPlatformViewModel> GetTurnover(SummaryBaseMetaModel metaModel);
+        Task<WidgetByPlatformViewModel> GetTurnover(BaseSummaryMetaModel metaModel);
     }
 }

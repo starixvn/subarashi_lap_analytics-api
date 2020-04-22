@@ -2,6 +2,8 @@
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Core.Attributes;
 using Fanex.Athena.AnalyticsAPI.Core.Constants;
+using Fanex.Athena.AnalyticsAPI.Core.ONEBookAuth;
+using Fanex.Athena.AnalyticsAPI.Summary.Consts;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.ViewModels;
 using Fanex.Athena.AnalyticsAPI.Summary.Services;
@@ -25,9 +27,9 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Controllers
         }
 
         [HttpGet]
-        [ApiRequestValidation]
         [AutoBindingMetaModel(bindAgent: true)]
-        public async Task<WidgetByPlatformViewModel> GetData([FromQuery]SummaryBaseMetaModel metaModel)
+        [ApiRequestValidation(ResponseContent = ResponseContentConst.DefaultWidgetResult)]
+        public async Task<WidgetByPlatformViewModel> GetData([FromQuery]BaseSummaryMetaModel metaModel)
         {
             var now = DateTime.Now.Date;
             metaModel.FromDate = new DateTime(now.Year, now.Month, 1);

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels
 {
-    public class SummaryBaseMetaModel : IAgentMetaModel, IValidationMetaModel, ICurrencyIdListMetaModel
+    public class BaseSummaryMetaModel : IAgentMetaModel, IValidationMetaModel, ICurrencyIdListMetaModel
     {
         private int _currencyId;
 

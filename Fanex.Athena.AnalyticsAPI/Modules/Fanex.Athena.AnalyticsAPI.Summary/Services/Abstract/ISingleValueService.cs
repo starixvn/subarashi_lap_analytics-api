@@ -5,12 +5,12 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Services
 {
     public interface ISingleValueService
     {
-        Task<decimal> GetCustomerBalance(SummaryBaseMetaModel metaModel);
+        Task<decimal> GetCustomerBalance(BaseSummaryMetaModel metaModel);
 
-        Task<decimal> GetPendingFunds(SummaryBaseMetaModel metaModel);
+        Task<decimal> GetPendingFunds(BaseSummaryMetaModel metaModel);
 
-        Task<decimal> GetTodayDeposit(SummaryBaseMetaModel metaModel);
+        Task<decimal> GetTodayDeposit(BaseSummaryMetaModel metaModel);
 
-        Task<decimal> GetTodayWithdrawal(SummaryBaseMetaModel metaModel);
+        Task<decimal> GetTodayWithdrawal(BaseSummaryMetaModel metaModel);
     }
 }

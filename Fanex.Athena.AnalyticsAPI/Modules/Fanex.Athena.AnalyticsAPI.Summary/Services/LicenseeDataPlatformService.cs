@@ -18,21 +18,21 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Services
             _sqlService = sqlService;
         }
 
-        public async Task<WidgetByPlatformViewModel> GetTurnover(SummaryBaseMetaModel metaModel)
+        public async Task<WidgetByPlatformViewModel> GetTurnover(BaseSummaryMetaModel metaModel)
         {
             const string spKey = "Lrf_GetLicenseeTurnoverByPlatform";
             const string columnName = "Turnover";
             return await GetData(metaModel, spKey, columnName);
         }
 
-        public async Task<WidgetByPlatformViewModel> GetWinLoss(SummaryBaseMetaModel metaModel)
+        public async Task<WidgetByPlatformViewModel> GetWinLoss(BaseSummaryMetaModel metaModel)
         {
             const string spKey = "Lrf_GetLicenseeWLByPlatform";
             const string columnName = "LicenseeWL";
             return await GetData(metaModel, spKey, columnName);
         }
 
-        private async Task<WidgetByPlatformViewModel> GetData(SummaryBaseMetaModel metaModel, string spKey, string columnName)
+        private async Task<WidgetByPlatformViewModel> GetData(BaseSummaryMetaModel metaModel, string spKey, string columnName)
         {
             if (string.IsNullOrEmpty(metaModel.AgentListXml))
             {
@@ -52,6 +52,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Services
             return result;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Critical Code Smell", "S3353:Unchanged local variables should be \"const\"", Justification = "<Pending>")]
         private static Func<string, Func<IDataReader, WidgetByPlatformViewModel>> ReadHandler = winlossColumnName => reader =>
         {
             var winlossColumn = winlossColumnName;
