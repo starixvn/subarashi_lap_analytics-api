@@ -9,6 +9,6 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
     {
         Task<object> ExecuteNonQueryWithOutput(ICriteria criteria, string outputName);
 
-        Task<T> ExecuteQueryWithReadHandler<T>(string spKey, object spParams, Func<IDataReader, T> readHanlder);
+        Task<T> ExecuteQueryWithReadHandler<T>(string spKey, object spParams, Func<IDataReader, T> readHandler);
     }
 }

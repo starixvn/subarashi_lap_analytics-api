@@ -5,7 +5,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Fanex.Athena.AnalyticsAPI.Core.Attributes
+namespace Fanex.Athena.AnalyticsAPI.Core.ONEBookAuth
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
     public class ONEBookAuthorizeAttribute : Attribute, IAsyncAuthorizationFilter

@@ -22,13 +22,13 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
             return null;
         }
 
-        public async Task<T> ExecuteQueryWithReadHandler<T>(string spKey, object spParams, Func<IDataReader, T> readHanlder)
+        public async Task<T> ExecuteQueryWithReadHandler<T>(string spKey, object spParams, Func<IDataReader, T> readHandler)
         {
             using (var db = ObjectDbFactory.CreateInstance(spKey))
             {
                 using (var reader = await db.ExecuteReaderAsync(spParams))
                 {
-                    return readHanlder.Invoke(reader);
+                    return readHandler.Invoke(reader);
                 }
             }
         }

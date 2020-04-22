@@ -42,8 +42,6 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Services
 
         public string Language => AuthInfo.Language;
 
-        public string CurrencyIDList => string.Join(",", AuthInfo.Currency.Select(i => i.CurrencyId).ToArray());
-
         public IEnumerable<CurrencyAgentInfo> CurrencyAgentList => AuthInfo.Currency;
     }
 }

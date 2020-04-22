@@ -8,7 +8,6 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Services
         string SiteName { get; }
         string UserName { get; }
         int UserId { get; }
-        string CurrencyIDList { get; }
         IEnumerable<CurrencyAgentInfo> CurrencyAgentList { get; }
         string Language { get; }
     }

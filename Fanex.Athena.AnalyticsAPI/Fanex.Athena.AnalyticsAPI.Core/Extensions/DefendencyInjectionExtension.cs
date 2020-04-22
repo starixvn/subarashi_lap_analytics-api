@@ -1,13 +1,10 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Core.Attributes;
 using Fanex.Athena.AnalyticsAPI.Core.Constants;
-using Fanex.Athena.AnalyticsAPI.Core.Handlers;
-using Fanex.Athena.AnalyticsAPI.Core.Models;
-using Fanex.Athena.AnalyticsAPI.Core.Models.Configuration;
-using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
+using Fanex.Athena.AnalyticsAPI.Core.ONEBookAuth;
 using Fanex.Athena.AnalyticsAPI.Core.Services;
-using LAP.ONEBook.Security;
-using LAP.ONEBook.Security.StorageProvider.SqlServer;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Options;
 using System;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
@@ -29,21 +26,15 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
             return services;
         }
 
-        public static IServiceCollection AddONEBookAuthentication(this IServiceCollection services, string securityConnectionString, Action<ONEBookAuthenticationOptions> configureOptions)
+        public static IServiceCollection AddONEBookAuthentication(this IServiceCollection services, Action<ONEBookAuthenticationOptions> configureOptions)
         {
             services.AddAuthentication(option =>
             {
                 option.DefaultScheme = AuthConst.ONEBookScheme;
                 option.DefaultAuthenticateScheme = AuthConst.ONEBookScheme;
                 option.DefaultChallengeScheme = AuthConst.ONEBookScheme;
-            }).AddScheme<ONEBookAuthenticationOptions, ONEBookAuthenticationHandler>(AuthConst.ONEBookScheme, configureOptions);
-
-            services.AddSingleton<IStorageProvider, SqlServerProvider>(x =>
-            {
-                return new SqlServerProvider(securityConnectionString);
-            });
-
-            services.AddSingleton<IAuth<DefaultAuthInfo<Permission, CurrencyAgentInfo>>, Auth<DefaultAuthInfo<Permission, CurrencyAgentInfo>>>();
+            }).AddScheme<ONEBookAuthenticationOptions, ONEBookAuthenticationHandler>(AuthConst.ONEBookScheme, configureOptions)
+              .Services.TryAddEnumerable(ServiceDescriptor.Singleton<IPostConfigureOptions<ONEBookAuthenticationOptions>, PostConfigureONEBookAuthenticationOptions>());
 
             return services;
         }
