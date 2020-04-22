@@ -1,6 +1,8 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
 using Fanex.Athena.AnalyticsAPI.Core.Extensions;
 using Fanex.Athena.AnalyticsAPI.Core.Middleware;
+using Fanex.Athena.AnalyticsAPI.Core.Models;
+using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
 using Fanex.Athena.ExtService.Common.Configuration;
 using Fanex.Data;
 using Fanex.Data.SqlServer;
@@ -8,11 +10,11 @@ using Fanex.Logging;
 using Fanex.Logging.RabbitMQ;
 using Fanex.Logging.Sentry.RavenClient;
 using Fanex.RemotingRef;
+using LAP.ONEBook.Security;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -23,7 +25,6 @@ using ONEbook.UM.Extensions;
 using SharpRaven;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO.Compression;
 
 namespace Fanex.Athena.AnalyticsAPI
@@ -93,7 +94,21 @@ namespace Fanex.Athena.AnalyticsAPI
             SetupLogging(services);
             SetupSqlProvider();
 
-            services.AddONEBookAuthentication(GetOneBookSecurityConnection(), _ => { });
+            services.AddONEBookAuthentication(options =>
+            {
+                var isDev = Env.IsDevelopment();
+                if (isDev && Configuration.GetValue<bool>("AllowBypassAuthentication"))
+                {
+                    var section = Configuration.GetSection("FakeUserData");
+                    var fakeData = section.Get<DefaultAuthInfo<Permission, CurrencyAgentInfo>>();
+                    options.FakeData = () => fakeData;
+                    options.AllowBypass = true;
+                }
+                else
+                {
+                    options.SecurityConnectionString = GetOneBookSecurityConnection();
+                }
+            });
 
             Performance.Extensions.DefendencyInjectionExtension.AddDIPerformance(services);
             Summary.Extensions.DefendencyInjectionExtension.AddDISummary(services);
@@ -118,28 +133,14 @@ namespace Fanex.Athena.AnalyticsAPI
             app.UseStaticFiles();
             app.UseWhoAmIHealthCheck();
             app.UseCors("DefaultPolicy");
-            UseRequestLocalization(app);
+            app.UseLocalization();
             app.UseResponseCompression();
             app.UseSwaggerDoc(Env, API_NAME);
             app.UseUM();
+            app.UseStatusCodeResponse();
             app.UseErrorHandler(Env);
             app.UseAuthentication();
             app.UseMvc();
-        }
-
-        private void UseRequestLocalization(IApplicationBuilder app)
-        {
-            var supportedCultures = new List<CultureInfo>
-            {
-                new CultureInfo("en-US"),
-                new CultureInfo("zh-CN")
-            };
-            app.UseRequestLocalization(new RequestLocalizationOptions
-            {
-                DefaultRequestCulture = new RequestCulture("en-US"),
-                SupportedCultures = supportedCultures,
-                SupportedUICultures = supportedCultures
-            });
         }
 
         private void SetupLogging(IServiceCollection services)
