@@ -1,6 +1,5 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Core.Constants;
 using Fanex.Athena.AnalyticsAPI.Core.Models;
-using Fanex.Athena.AnalyticsAPI.Core.Models.Configuration;
 using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
 using LAP.ONEBook.Security;
 using Microsoft.AspNetCore.Authentication;

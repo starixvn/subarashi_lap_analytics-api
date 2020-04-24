@@ -14,7 +14,7 @@ using System.Security.Principal;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Fanex.Athena.AnalyticsAPI.Core.UnitTest.Attributes
+namespace Fanex.Athena.AnalyticsAPI.Core.UnitTest.ONEBookAuth
 {
     public class ONEBookAuthorizeAttribute_Test
     {

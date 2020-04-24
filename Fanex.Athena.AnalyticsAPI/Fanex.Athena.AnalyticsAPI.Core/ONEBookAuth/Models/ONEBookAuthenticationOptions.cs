@@ -48,6 +48,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.ONEBookAuth
 
         public Func<HttpRequest, string> TokenRetrieval { get; set; } = AccessTokenFromDefault;
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S112:General exceptions should never be thrown", Justification = "It's OK - Howard")]
         public override void Validate()
         {
             base.Validate();
