@@ -19,8 +19,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
 
         private static IServiceCollection AddServices(this IServiceCollection services)
         {
-            services.AddTransient<AutoBindingMetaModelAttribute>();
-            services.AddScoped<IAuthInfoService, AuthInfoService>();
+            services.AddTransient<IAuthInfoService, AuthInfoService>();
             services.AddSingleton<IMetaModelBindingService, MetaModelBindingService>();
 
             return services;

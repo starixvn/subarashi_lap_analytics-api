@@ -44,7 +44,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.ONEBookAuth
             }
         }
 
-        public Lazy<IAuth<DefaultAuthInfo<Permission, CurrencyAgentInfo>>> AuthClient { get; private set; }
+        public Lazy<IAuth<DefaultAuthInfo<Permission, CurrencyAgentInfo>>> AuthClient { get; set; }
 
         public Func<HttpRequest, string> TokenRetrieval { get; set; } = AccessTokenFromDefault;
 
@@ -52,6 +52,10 @@ namespace Fanex.Athena.AnalyticsAPI.Core.ONEBookAuth
         public override void Validate()
         {
             base.Validate();
+            if (AllowBypass)
+            {
+                return;
+            }
 
             if (string.IsNullOrEmpty(SecurityConnectionString))
             {
