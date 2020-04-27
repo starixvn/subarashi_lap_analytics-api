@@ -26,8 +26,4 @@
     <ProjectReference Include="..\..\..\Modules\Fanex.Athena.AnalyticsAPI.Summary\Fanex.Athena.AnalyticsAPI.Summary.csproj" />
     <ProjectReference Include="..\..\Fanex.Athena.AnalyticsAPI.UnitTests.Utils\Fanex.Athena.AnalyticsAPI.UnitTests.Utils.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
 </Project>
