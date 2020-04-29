@@ -4,7 +4,6 @@ using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
 using Fanex.Data.Repository;
 using Moq;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;

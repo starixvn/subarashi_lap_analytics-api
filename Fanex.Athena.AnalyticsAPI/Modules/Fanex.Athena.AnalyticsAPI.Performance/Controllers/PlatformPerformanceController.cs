@@ -1,5 +1,4 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Attributes;
-using Fanex.Athena.AnalyticsAPI.Common.Constants;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Constants;
 using Fanex.Athena.AnalyticsAPI.Common.Controllers;
 using Fanex.Athena.AnalyticsAPI.Common.Extensions;
 using Fanex.Athena.AnalyticsAPI.Common.Mappers;
@@ -7,6 +6,7 @@ using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Core.Attributes;
 using Fanex.Athena.AnalyticsAPI.Core.Constants;
+using Fanex.Athena.AnalyticsAPI.Core.ONEBookAuth;
 using Fanex.Athena.AnalyticsAPI.Performance.Constants;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 {
     [ApiController]
-    [OneAuthorization(Roles = PermissionConst.PERFORMANCE_TAB_ROLE)]
+    [ONEBookAuthorize(Permissions = PermissionConst.PERFORMANCE_TAB)]
     public class PlatformPerformanceController : ControllerBaseCustom
     {
         private readonly IPlatformPerformanceService _platformService;
@@ -38,7 +38,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 
         [HttpPost]
         [Route("api/performance/platform/distribution")]
-        [AutoBindMetaModel]
+        [AutoBindingMetaModel(bindSiteName: true)]
         public async Task<JsonResult> GetDistribution([FromBody]PlatformPerformanceFilterMetaModel filter)
         {
             var result = await _platformService.GetDistributionWithComparison(filter);
@@ -47,7 +47,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 
         [HttpPost]
         [Route("api/performance/platform/diffences")]
-        [AutoBindMetaModel]
+        [AutoBindingMetaModel(bindSiteName: true)]
         public async Task<JsonResult> GetDiffences([FromBody]PlatformPerformanceFilterMetaModel filter)
         {
             var result = await _platformService.GetMeasurementDifferenceWithComparison(filter);
@@ -56,7 +56,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 
         [HttpPost]
         [Route("api/performance/platform/period-growth")]
-        [AutoBindMetaModel]
+        [AutoBindingMetaModel(bindSiteName: true)]
         public async Task<JsonResult> GetPeriodGrowth([FromBody]PlatformPerformanceFilterMetaModel filter)
         {
             var result = await _platformService.GetPeriodGrowthWithComparison(filter);
@@ -65,7 +65,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 
         [HttpPost]
         [Route("api/performance/platform/month-growth-all")]
-        [AutoBindMetaModel]
+        [AutoBindingMetaModel(bindSiteName: true)]
         public async Task<JsonResult> GetAllMonthGrowth([FromBody]PlatformPerformanceFilterMetaModel filter)
         {
             var result = await _platformService.GetAllDetailMonthGrowthWithComparison(filter);
@@ -74,7 +74,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 
         [HttpPost]
         [Route("api/performance/platform")]
-        [AutoBindMetaModel]
+        [AutoBindingMetaModel(bindSiteName: true)]
         public async Task<JsonResult> GetCombineData([FromBody]PlatformPerformanceFilterMetaModel filter)
         {
             await BindTopDistributionsToFilterMetaModel(filter);

@@ -25,12 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="deploy.bat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="deploy.LOCAL.bat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="SpConfig\FanexSpName.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -51,6 +45,7 @@
     <ProjectReference Include="..\Fanex.Athena.AnalyticsAPI.Common\Fanex.Athena.AnalyticsAPI.Common.csproj" />
     <ProjectReference Include="..\Fanex.Athena.AnalyticsAPI.Core\Fanex.Athena.AnalyticsAPI.Core.csproj" />
     <ProjectReference Include="..\Modules\Fanex.Athena.AnalyticsAPI.Performance\Fanex.Athena.AnalyticsAPI.Performance.csproj" />
+    <ProjectReference Include="..\Modules\Fanex.Athena.AnalyticsAPI.Summary\Fanex.Athena.AnalyticsAPI.Summary.csproj" />
   </ItemGroup>
 
 </Project>

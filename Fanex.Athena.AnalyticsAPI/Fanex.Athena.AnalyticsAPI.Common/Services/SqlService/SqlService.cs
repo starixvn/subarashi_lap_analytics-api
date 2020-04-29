@@ -1,5 +1,7 @@
 ﻿using Fanex.Data;
 using Fanex.Data.Repository;
+using System;
+using System.Data;
 using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Services
@@ -18,6 +20,17 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
                 }
             }
             return null;
+        }
+
+        public async Task<T> ExecuteQueryWithReadHandler<T>(string spKey, object spParams, Func<IDataReader, T> readHandler)
+        {
+            using (var db = ObjectDbFactory.CreateInstance(spKey))
+            {
+                using (var reader = await db.ExecuteReaderAsync(spParams))
+                {
+                    return readHandler.Invoke(reader);
+                }
+            }
         }
     }
 }

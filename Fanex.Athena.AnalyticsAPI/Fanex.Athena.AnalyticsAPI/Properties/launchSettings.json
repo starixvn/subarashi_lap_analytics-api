@@ -1,6 +1,13 @@
 {
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:5001"
+    }
+  },
   "profiles": {
-    "Fanex.Athena.AnalyticsAPI": {
+    "Kestrel.Fanex.Athena.AnalyticsAPI": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "index.html",
@@ -9,10 +16,14 @@
       },
       "applicationUrl": "http://localhost:5001"
     },
-    "Docker": {
+    "Docker.Fanex.Athena.AnalyticsAPI": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/index.html"
+      "launchUrl": "index.html",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:5001"
     }
   }
 }

@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Attributes\**" />
+    <EmbeddedResource Remove="Attributes\**" />
+    <None Remove="Attributes\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoFixture" Version="4.11.0" />
     <PackageReference Include="coverlet.msbuild" Version="2.7.0">
       <PrivateAssets>all</PrivateAssets>
@@ -22,10 +28,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Fanex.Athena.AnalyticsAPI.Common\Fanex.Athena.AnalyticsAPI.Common.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Attributes\" />
   </ItemGroup>
 
 </Project>

@@ -1,8 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions SiteId="31" SiteName="LRF">
-  <Function Name="DAX_Query_Performance_Common">
-    <Setting Key="LAP_Performance_GetDateRangeSupport" SpName="LAP_Performance_GetDateRangeSupport" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+  <!--Summary-->
+  <Function Name="SQL_Summary">
+    <Setting Key="Lrf_GetLicenseeTurnoverByPlatform" SpName="Lrf_GetLicenseeTurnoverByPlatform" DbName="DBEXT.bodb02.bodbLicenseeNet" />
+    <Setting Key="Lrf_GetLicenseeWLByPlatform" SpName="Lrf_GetLicenseeWLByPlatform" DbName="DBEXT.bodb02.bodbLicenseeNet" />
+    <Setting Key="Lrf_GetLicenseeTodayDeposit" SpName="Lrf_GetLicenseeTodayDeposit" DbName="DBACC.bodb02.bodbLicenseeNet" />
+    <Setting Key="Lrf_GetLicenseeTodayWithdrawal" SpName="Lrf_GetLicenseeTodayWithdrawal" DbName="DBACC.bodb02.bodbLicenseeNet" />
+    <Setting Key="Lrf_GetLicenseePendingFunds" SpName="Lrf_GetLicenseePendingFunds" DbName="DBACC.bodb02.bodbLicenseeNet" />
+    <Setting Key="Lrf_GetCustomerBalance" SpName="Lrf_GetCustomerBalance" DbName="DBACC.bodb02.bodbLicenseeNet" />
   </Function>
+  <!--Performance-->
   <Function Name="DAX_Query_Performance_Overview">
     <Setting Key="LAP_Performance_OverviewSummaryBySite" SpName="LAP_Performance_OverviewSummaryBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
     <Setting Key="LAP_Performance_OverviewCurencyBySite" SpName="LAP_Performance_OverviewCurencyBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />

@@ -5,6 +5,7 @@ using Fanex.RemotingRef;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Net.Http;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
 {
@@ -38,6 +39,10 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
             {
                 client.BaseAddress = new Uri(setting.LGAPIHost);
                 client.DefaultRequestHeaders.Add(BRIDGE_TOKEN_KEY, setting.LGAPIToken);
+            })
+            .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+            {
+                UseProxy = false
             })
             .SetHandlerLifetime(TimeSpan.FromMinutes(setting.ConnectionExpireTime));
 

@@ -5,11 +5,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ONEbook.UM.Extensions;
 using Swashbuckle.AspNetCore.Swagger;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
@@ -22,6 +25,41 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
             {
                 builder.UseMiddleware<ErrorHandler>();
             }
+            return builder;
+        }
+
+        public static IApplicationBuilder UseStatusCodeResponse(this IApplicationBuilder builder)
+        {
+            builder.UseStatusCodePages(async context =>
+            {
+                var response = context.HttpContext.Response;
+                response.ContentType = "application/json";
+                var errorObject = new
+                {
+                    msg = $"{response.StatusCode} error",
+                    isSuccess = false
+                };
+                await response.WriteAsync(JsonConvert.SerializeObject(errorObject));
+            });
+
+            return builder;
+        }
+
+        public static IApplicationBuilder UseLocalization(this IApplicationBuilder builder)
+        {
+            var supportedCultures = new List<CultureInfo>
+            {
+                new CultureInfo("en-US"),
+                new CultureInfo("zh-CN")
+            };
+
+            builder.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("en-US"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            });
+
             return builder;
         }
 
@@ -46,11 +84,6 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
                         json.ToString(Formatting.Indented));
                 }
             });
-        }
-
-        public static IApplicationBuilder UseOneAuth(this IApplicationBuilder builder)
-        {
-            return builder.UseMiddleware<OneAuthenticationHandler>();
         }
 
         public static IServiceCollection AddSwaggerDoc(this IServiceCollection services, IHostingEnvironment env, string apiName)
