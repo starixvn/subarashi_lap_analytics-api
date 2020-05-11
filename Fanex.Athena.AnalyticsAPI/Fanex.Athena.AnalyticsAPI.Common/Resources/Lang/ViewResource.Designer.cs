@@ -457,16 +457,33 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SA Gaming.
+		///   Looks up a localized string similar to SA Gaming.
         /// </summary>
         internal static string product_40 {
             get {
                 return ResourceManager.GetString("product_40", resourceCulture);
             }
         }
+
+ 		/// <summary>
+        ///   Looks up a localized string similar to Indo 4D.
+        /// </summary>
+        internal static string product_44 {
+            get {
+                return ResourceManager.GetString("product_44", resourceCulture);
+            }
+        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Virtual Sports.
+		/// <summary>
+        ///   Looks up a localized string similar to Sexy Gaming.
+        /// </summary>
+        internal static string product_46 {
+            get {
+                return ResourceManager.GetString("product_46", resourceCulture);
+            }
+        }
+        
+        /// <summary>        ///   Looks up a localized string similar to Virtual Sports.
         /// </summary>
         internal static string product_6 {
             get {
