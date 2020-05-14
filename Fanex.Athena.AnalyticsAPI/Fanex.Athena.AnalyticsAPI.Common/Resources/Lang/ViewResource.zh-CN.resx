@@ -160,7 +160,8 @@
   <data name="platform_14" xml:space="preserve">
     <value>电子竞技App</value>
     <comment>E-Sports App</comment>
-  </data>  <data name="platform_2" xml:space="preserve">
+  </data>
+  <data name="platform_2" xml:space="preserve">
     <value>中国版</value>
     <comment>China</comment>
   </data>
@@ -225,7 +226,7 @@
     <comment>Cock Fighting</comment>
   </data>
   <data name="product_22" xml:space="preserve">
-    <value>Allbet</value>
+    <value>欧博</value>
     <comment>Allbet</comment>
   </data>
   <data name="product_24" xml:space="preserve">
