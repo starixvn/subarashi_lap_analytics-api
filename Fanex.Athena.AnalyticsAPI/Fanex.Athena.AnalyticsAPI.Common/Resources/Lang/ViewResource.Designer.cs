@@ -124,7 +124,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
-		/// Looks up a localized string similar to Native App.
+        ///   Looks up a localized string similar to Native App.
         /// </summary>
         internal static string platform_11 {
             get {
@@ -159,7 +159,8 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
             }
         }
         
-        /// <summary>        ///   Looks up a localized string similar to China.
+        /// <summary>
+        ///   Looks up a localized string similar to China.
         /// </summary>
         internal static string platform_2 {
             get {
@@ -312,6 +313,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Macau Games.
+        /// </summary>
+        internal static string product_23 {
+            get {
+                return ResourceManager.GetString("product_23", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number Game 2.
         /// </summary>
         internal static string product_24 {
@@ -411,6 +421,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SG.
+        /// </summary>
+        internal static string product_37 {
+            get {
+                return ResourceManager.GetString("product_37", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Saba Promotion.
         /// </summary>
         internal static string product_38 {
@@ -434,6 +453,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         internal static string product_4 {
             get {
                 return ResourceManager.GetString("product_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SA Gaming.
+        /// </summary>
+        internal static string product_40 {
+            get {
+                return ResourceManager.GetString("product_40", resourceCulture);
             }
         }
         

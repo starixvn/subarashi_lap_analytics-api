@@ -210,7 +210,7 @@
     <comment>AG Casino</comment>
   </data>
   <data name="product_12" xml:space="preserve">
-    <value>Gold Deluxe</value>
+    <value>GD真人娱乐场</value>
     <comment>Gold Deluxe</comment>
   </data>
   <data name="product_13" xml:space="preserve">
@@ -229,12 +229,16 @@
     <value>欧博</value>
     <comment>Allbet</comment>
   </data>
+  <data name="product_23" xml:space="preserve">
+    <value>澳门电子娱乐城</value>
+    <comment>Macau Games</comment>
+  </data>
   <data name="product_24" xml:space="preserve">
     <value>百练赛 2</value>
     <comment>Number Game 2</comment>
   </data>
   <data name="product_25" xml:space="preserve">
-    <value>Fishing World</value>
+    <value>GG捕鱼</value>
     <comment>Fishing World</comment>
   </data>
   <data name="product_26" xml:space="preserve">
@@ -246,7 +250,7 @@
     <comment>Virtual Sports 2</comment>
   </data>
   <data name="product_29" xml:space="preserve">
-    <value>Lottery</value>
+    <value>彩票</value>
     <comment>Lottery</comment>
   </data>
   <data name="product_3" xml:space="preserve">
@@ -262,7 +266,7 @@
     <comment>Exchange</comment>
   </data>
   <data name="product_33" xml:space="preserve">
-    <value>Pragmatic</value>
+    <value>PP王者电子</value>
     <comment>Pragmatic</comment>
   </data>
   <data name="product_35" xml:space="preserve">
@@ -272,6 +276,10 @@
   <data name="product_36" xml:space="preserve">
     <value>Peer to Peer</value>
     <comment>Peer to Peer</comment>
+  </data>
+  <data name="product_37" xml:space="preserve">
+    <value>新霸电子</value>
+    <comment>SG</comment>
   </data>
   <data name="product_38" xml:space="preserve">
     <value>Saba Promotion</value>
@@ -284,6 +292,10 @@
   <data name="product_4" xml:space="preserve">
     <value>BA</value>
     <comment>BA</comment>
+  </data>
+  <data name="product_40" xml:space="preserve">
+    <value>SA真人娱乐场</value>
+    <comment>SA Gaming</comment>
   </data>
   <data name="product_6" xml:space="preserve">
     <value>虚拟运动</value>
