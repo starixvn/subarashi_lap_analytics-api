@@ -160,7 +160,8 @@
   <data name="platform_14" xml:space="preserve">
     <value>E-Sports App</value>
     <comment>E-Sports App</comment>
-  </data>  <data name="platform_2" xml:space="preserve">
+  </data>
+  <data name="platform_2" xml:space="preserve">
     <value>China</value>
     <comment>China</comment>
   </data>
@@ -228,6 +229,10 @@
     <value>Allbet</value>
     <comment>Allbet</comment>
   </data>
+  <data name="product_23" xml:space="preserve">
+    <value>Macau Games</value>
+    <comment>Macau Games</comment>
+  </data>
   <data name="product_24" xml:space="preserve">
     <value>Number Game 2</value>
     <comment>Number Game 2</comment>
@@ -272,6 +277,10 @@
     <value>Peer to Peer</value>
     <comment>Peer to Peer</comment>
   </data>
+  <data name="product_37" xml:space="preserve">
+    <value>SG</value>
+    <comment>SG</comment>
+  </data>
   <data name="product_38" xml:space="preserve">
     <value>Saba Promotion</value>
     <comment>Saba Promotion</comment>
@@ -283,6 +292,10 @@
   <data name="product_4" xml:space="preserve">
     <value>BA</value>
     <comment>BA</comment>
+  </data>
+  <data name="product_40" xml:space="preserve">
+    <value>SA Gaming</value>
+    <comment>SA Gaming</comment>
   </data>
   <data name="product_6" xml:space="preserve">
     <value>Virtual Sports</value>
