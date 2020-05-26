@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
     <ApplicationIcon />
     <OutputType>Exe</OutputType>
     <StartupObject />
@@ -47,5 +46,4 @@
     <ProjectReference Include="..\Modules\Fanex.Athena.AnalyticsAPI.Performance\Fanex.Athena.AnalyticsAPI.Performance.csproj" />
     <ProjectReference Include="..\Modules\Fanex.Athena.AnalyticsAPI.Summary\Fanex.Athena.AnalyticsAPI.Summary.csproj" />
   </ItemGroup>
-
 </Project>

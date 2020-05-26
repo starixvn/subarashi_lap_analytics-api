@@ -69,7 +69,6 @@ namespace Fanex.Athena.AnalyticsAPI
                 builder.AllowAnyOrigin()
                        .AllowAnyMethod()
                        .AllowAnyHeader()
-                       .AllowCredentials()
                        .SetPreflightMaxAge(preflightMaxAge30InDay);
             }));
 
