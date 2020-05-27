@@ -1,16 +1,16 @@
-﻿using Fanex.Logging;
+﻿using Fanex.Athena.AnalyticsAPI.Core.Helpers;
+using Fanex.Logging;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
-using System.IO;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
 {
     public class ErrorHandler
     {
-        private const int ServerErrorCode = 500;
         private readonly RequestDelegate _next;
         private readonly ILogger _logger;
 
@@ -23,31 +23,30 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
         public async Task Invoke(HttpContext context)
         {
             var error = context.Features[typeof(IExceptionHandlerFeature)] as IExceptionHandlerFeature;
-
             if (error != null && error.Error != null)
             {
                 await HandleError(context, error.Error);
             }
-
-            try
+            else
             {
-                await _next.Invoke(context);
-            }
-            catch (Exception exception)
-            {
-                await HandleError(context, exception);
+                try
+                {
+                    await _next.Invoke(context);
+                }
+                catch (Exception exception)
+                {
+                    await HandleError(context, exception);
+                }
             }
         }
 
         private async Task HandleError(HttpContext context, Exception error)
         {
-            var body = GetBodyContent(context);
-            context.Response.StatusCode = ServerErrorCode;
-            context.Response.ContentType = "application/json";
-            var errorMsg = $"Msg={error.Message}\n Stacktrace={error.StackTrace}" +
-                $"\n Path={context.Request.Path}\n Query={context.Request.QueryString}\n Body={body}";
-
+            var errorMsg = ErrorMessageHelper.GenerateMessage(context, error);
             await _logger.ErrorAsync(errorMsg);
+
+            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            context.Response.ContentType = "application/json";
 
             await context.Response.WriteAsync(JsonConvert.SerializeObject(new
             {
@@ -55,17 +54,6 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
                 msg = "Sorry, an error occurred while processing your request.",
                 isSuccess = false
             }));
-        }
-
-        private static string GetBodyContent(HttpContext context)
-        {
-            var body = string.Empty;
-            context.Request.Body.Seek(0, SeekOrigin.Begin);
-            using (var reader = new StreamReader(context.Request.Body))
-            {
-                body = reader.ReadToEnd();
-            }
-            return body;
         }
     }
 }
