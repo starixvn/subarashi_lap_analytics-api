@@ -21,6 +21,7 @@ namespace Fanex.Athena.AnalyticsAPI
                    config.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
                    config.AddEnvironmentVariables();
                })
-              .UseStartup<Startup>();
+              .UseStartup<Startup>()
+              .UseUrls("http://*:5029");
     }
 }
