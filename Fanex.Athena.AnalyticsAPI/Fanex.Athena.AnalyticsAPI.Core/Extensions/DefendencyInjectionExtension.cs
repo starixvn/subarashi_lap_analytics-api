@@ -1,5 +1,4 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Attributes;
-using Fanex.Athena.AnalyticsAPI.Core.Constants;
+﻿using Fanex.Athena.AnalyticsAPI.Core.Constants;
 using Fanex.Athena.AnalyticsAPI.Core.ONEBookAuth;
 using Fanex.Athena.AnalyticsAPI.Core.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,6 +20,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
         {
             services.AddTransient<IAuthInfoService, AuthInfoService>();
             services.AddSingleton<IMetaModelBindingService, MetaModelBindingService>();
+            services.AddSingleton<IClientService, ClientService>();
 
             return services;
         }
