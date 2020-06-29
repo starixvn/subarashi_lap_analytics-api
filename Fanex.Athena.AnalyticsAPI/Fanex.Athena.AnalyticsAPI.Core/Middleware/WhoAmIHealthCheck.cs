@@ -48,7 +48,8 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
         {
             result.Add("Local Ip", _clientService.Context.Connection.LocalIpAddress.ToString());
             result.Add("Local Port", _clientService.Context.Connection.LocalPort);
-            result.Add("Client Ip", _clientService.RealClientIP.ToString());
+            result.Add("Client Ip - From Header Forward", _clientService.RealClientIP.ToString());
+            result.Add("Client Ip - From Remote IpAddress", _clientService.Context.Connection.RemoteIpAddress.ToString());
         }
     }
 }
