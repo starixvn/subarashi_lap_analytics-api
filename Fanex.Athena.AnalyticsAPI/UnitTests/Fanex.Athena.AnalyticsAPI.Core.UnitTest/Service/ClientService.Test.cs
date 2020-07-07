@@ -42,34 +42,36 @@ namespace Fanex.Athena.AnalyticsAPI.Core.UnitTest.Service
             _mockConnection.Setup(_ => _.RemoteIpAddress).Returns(IPAddress.Parse(requestIP));
 
             //Act
-            var expectedIp = _target.RealClientIP;
+            var actualIP = _target.RealClientIP;
 
             //Assert
-            Assert.Equal(expectedIp.ToString(), requestIP);
+            Assert.Equal(requestIP, actualIP.ToString());
         }
 
-        [Fact]
-        public void RealClientIP_HeaderHasValue_ReturnResultFromForwardedHeader()
+        [Theory]
+        [InlineData("209.200.18.10", "209.200.18.10")]
+        [InlineData("209.200.18.11,209.200.18.12", "209.200.18.12")]
+        [InlineData("209.200.18.11, 209.200.18.12 ", "209.200.18.12")]
+        public void RealClientIP_HeaderHasValue_ReturnResultFromForwardedHeader(string requestIPString, string expectedIPString)
         {
             //Arrange
-            const string requestIP = "209.200.18.10";
-
             var mockRequest = new Mock<HttpRequest>();
             var mockHeaders = new Mock<IHeaderDictionary>();
 
-            var expectedValue = new StringValues(new[] { requestIP });
+            var requestIP = new StringValues(new[] { requestIPString });
 
-            mockHeaders.Setup(_ => _.TryGetValue("X-Forwarded-For", out expectedValue)).Returns(true);
+            mockHeaders.Setup(_ => _.TryGetValue("X-Forwarded-For", out requestIP)).Returns(true);
             mockRequest.Setup(_ => _.Headers).Returns(mockHeaders.Object);
 
             _mockHttpContext.Setup(_ => _.Request).Returns(mockRequest.Object);
-            _mockConnection.Setup(_ => _.RemoteIpAddress).Returns(IPAddress.Parse(requestIP));
+
+            var expectedIP = IPAddress.Parse(expectedIPString);
 
             //Act
-            var expectedIp = _target.RealClientIP;
+            var actualIP = _target.RealClientIP;
 
             //Assert
-            Assert.Equal(expectedIp.ToString(), requestIP);
+            Assert.Equal(expectedIP, actualIP);
         }
     }
 }

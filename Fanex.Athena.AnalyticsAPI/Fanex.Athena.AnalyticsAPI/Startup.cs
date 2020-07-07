@@ -128,6 +128,10 @@ namespace Fanex.Athena.AnalyticsAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseHsts();
+            }
 
             app.UseStaticFiles();
             app.UseWhoAmIHealthCheck();

@@ -21,7 +21,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Services
             get
             {
                 if (Context.Request.Headers.TryGetValue(ForwardedForHeader, out StringValues values)
-                    && IPAddress.TryParse(values.FirstOrDefault(), out IPAddress address))
+                    && IPAddress.TryParse(GetFirstIP(values), out IPAddress address))
                 {
                     return address;
                 }
@@ -30,5 +30,15 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Services
         }
 
         public HttpContext Context => _httpContextAccessor.HttpContext;
+
+        private static string GetFirstIP(StringValues values)
+        {
+            var firstIP = values.FirstOrDefault()?
+                .Split(',')
+                .LastOrDefault()?
+                .Trim();
+
+            return firstIP;
+        }
     }
 }
