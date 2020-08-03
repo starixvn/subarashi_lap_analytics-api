@@ -20,7 +20,6 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
         {
             services.AddTransient<IAuthInfoService, AuthInfoService>();
             services.AddSingleton<IMetaModelBindingService, MetaModelBindingService>();
-            services.AddSingleton<IClientService, ClientService>();
 
             return services;
         }

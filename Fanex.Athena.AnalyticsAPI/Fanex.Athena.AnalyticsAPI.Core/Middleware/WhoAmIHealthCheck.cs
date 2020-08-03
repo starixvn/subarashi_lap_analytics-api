@@ -1,4 +1,4 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Services;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,11 +10,11 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
 {
     public class WhoAmIHealthCheck : IHealthCheck
     {
-        private readonly IClientService _clientService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public WhoAmIHealthCheck(IClientService clientService)
+        public WhoAmIHealthCheck(IHttpContextAccessor httpContextAccessor)
         {
-            _clientService = clientService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<HealthCheckResult> CheckHealthAsync(
@@ -22,7 +22,6 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
         CancellationToken cancellationToken = default)
         {
             IDictionary<string, object> result = new Dictionary<string, object>();
-
             await AddServerIPInfo(result);
             AddExtraServerInfo(result);
 
@@ -46,10 +45,10 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
 
         private void AddExtraServerInfo(IDictionary<string, object> result)
         {
-            result.Add("Local Ip", _clientService.Context.Connection.LocalIpAddress.ToString());
-            result.Add("Local Port", _clientService.Context.Connection.LocalPort);
-            result.Add("Client Ip - From Header Forward", _clientService.RealClientIP.ToString());
-            result.Add("Client Ip - From Remote IpAddress", _clientService.Context.Connection.RemoteIpAddress.ToString());
+            var connection = _httpContextAccessor.HttpContext.Connection;
+            result.Add("Local Ip", connection.LocalIpAddress.ToString());
+            result.Add("Local Port", connection.LocalPort);
+            result.Add("Client Ip", connection.RemoteIpAddress.ToString());
         }
     }
 }
