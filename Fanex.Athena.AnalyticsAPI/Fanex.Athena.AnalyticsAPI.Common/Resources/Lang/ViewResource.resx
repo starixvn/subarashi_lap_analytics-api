@@ -302,9 +302,10 @@
     <comment>I4D</comment>
   </data>
   <data name="product_46" xml:space="preserve">
-    <value>Sexy Gaming</value>
+    <value>AE Casino</value>
     <comment>SXG</comment>
-  </data>  <data name="product_6" xml:space="preserve">
+  </data>
+  <data name="product_6" xml:space="preserve">
     <value>Virtual Sports</value>
     <comment>Virtual Sports</comment>
   </data>
