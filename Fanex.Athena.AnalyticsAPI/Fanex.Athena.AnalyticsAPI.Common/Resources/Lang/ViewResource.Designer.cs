@@ -403,7 +403,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Card Club.
+        ///   Looks up a localized string similar to Arcadia Gaming.
         /// </summary>
         internal static string product_35 {
             get {
