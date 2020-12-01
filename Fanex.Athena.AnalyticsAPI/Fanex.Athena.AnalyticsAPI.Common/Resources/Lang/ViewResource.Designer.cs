@@ -466,6 +466,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Saba.club.
+        /// </summary>
+        internal static string product_43 {
+            get {
+                return ResourceManager.GetString("product_43", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Indo 4D.
         /// </summary>
         internal static string product_44 {
@@ -480,6 +489,24 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         internal static string product_46 {
             get {
                 return ResourceManager.GetString("product_46", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PG Soft.
+        /// </summary>
+        internal static string product_56 {
+            get {
+                return ResourceManager.GetString("product_56", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Joker.
+        /// </summary>
+        internal static string product_57 {
+            get {
+                return ResourceManager.GetString("product_57", resourceCulture);
             }
         }
         
