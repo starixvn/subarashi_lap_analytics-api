@@ -297,6 +297,10 @@
     <value>SA真人娱乐场</value>
     <comment>SA Gaming</comment>
   </data>
+  <data name="product_43" xml:space="preserve">
+    <value>Saba.club</value>
+    <comment>Saba.club</comment>
+  </data>
   <data name="product_44" xml:space="preserve">
     <value>Indo 4D</value>
     <comment>I4D - Indo 4D</comment>
@@ -304,6 +308,14 @@
   <data name="product_46" xml:space="preserve">
     <value>AE真人</value>
     <comment>SXG - Sexy Gaming</comment>
+  </data>
+  <data name="product_56" xml:space="preserve">
+    <value>PG Soft</value>
+    <comment>PG Soft</comment>
+  </data>
+  <data name="product_57" xml:space="preserve">
+    <value>Joker</value>
+    <comment>Joker</comment>
   </data>
   <data name="product_6" xml:space="preserve">
     <value>虚拟运动</value>
