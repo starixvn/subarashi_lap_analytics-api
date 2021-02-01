@@ -321,6 +321,10 @@
     <value>Virtual Sports</value>
     <comment>Virtual Sports</comment>
   </data>
+  <data name="product_60" xml:space="preserve">
+    <value>GDG</value>
+    <comment>GDG</comment>
+  </data>
   <data name="product_7" xml:space="preserve">
     <value>RNG Casino</value>
     <comment>RNG Casino</comment>
