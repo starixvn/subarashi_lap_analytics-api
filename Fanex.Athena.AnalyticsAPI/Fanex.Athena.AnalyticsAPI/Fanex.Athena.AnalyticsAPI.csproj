@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <AdditionalFiles Include="..\.sonarlint\sparta_lap.analyticsapi\CSharp\SonarLint.xml" Link="SonarLint.xml" />
     <Content Include="SpConfig\FanexSpName.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -45,6 +46,7 @@
     <ProjectReference Include="..\Fanex.Athena.AnalyticsAPI.Common\Fanex.Athena.AnalyticsAPI.Common.csproj" />
     <ProjectReference Include="..\Fanex.Athena.AnalyticsAPI.Core\Fanex.Athena.AnalyticsAPI.Core.csproj" />
     <ProjectReference Include="..\Modules\Fanex.Athena.AnalyticsAPI.Performance\Fanex.Athena.AnalyticsAPI.Performance.csproj" />
+    <ProjectReference Include="..\Modules\Fanex.Athena.AnalyticsAPI.Sportsbook\Fanex.Athena.AnalyticsAPI.Sportsbook.csproj" />
     <ProjectReference Include="..\Modules\Fanex.Athena.AnalyticsAPI.Summary\Fanex.Athena.AnalyticsAPI.Summary.csproj" />
   </ItemGroup>
 </Project>
