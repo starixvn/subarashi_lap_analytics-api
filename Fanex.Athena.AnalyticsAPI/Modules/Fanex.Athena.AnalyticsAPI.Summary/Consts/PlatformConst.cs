@@ -34,6 +34,8 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Consts
 
         public const int ESportsApp = 14;
 
+        public const int MobileEuro = 15;
+
         public const int BetfromOthers = 88;
 
         public static readonly IDictionary<int, string> MapPlatformKeys = new Dictionary<int, string>
@@ -53,7 +55,8 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Consts
             { NativeApp, nameof(NativeApp) },
             { ESportsDesktop, nameof(ESportsDesktop) },
             { ESportsMobile, nameof(ESportsMobile) },
-            { ESportsApp, nameof(ESportsApp) }
+            { ESportsApp, nameof(ESportsApp) },
+            { MobileEuro, nameof(MobileEuro) }
         };
     }
 }

@@ -160,6 +160,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mobile Euro.
+        /// </summary>
+        internal static string platform_15 {
+            get {
+                return ResourceManager.GetString("platform_15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to China.
         /// </summary>
         internal static string platform_2 {
