@@ -161,6 +161,10 @@
     <value>电子竞技App</value>
     <comment>E-Sports App</comment>
   </data>
+  <data name="platform_15" xml:space="preserve">
+    <value>手机欧洲版</value>
+    <comment>Mobile Euro</comment>
+  </data>
   <data name="platform_2" xml:space="preserve">
     <value>中国版</value>
     <comment>China</comment>

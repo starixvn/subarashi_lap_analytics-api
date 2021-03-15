@@ -161,6 +161,10 @@
     <value>E-Sports App</value>
     <comment>E-Sports App</comment>
   </data>
+  <data name="platform_15" xml:space="preserve">
+    <value>Mobile Euro</value>
+    <comment>Mobile Euro</comment>
+  </data>
   <data name="platform_2" xml:space="preserve">
     <value>China</value>
     <comment>China</comment>
