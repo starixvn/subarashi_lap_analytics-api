@@ -329,6 +329,9 @@
     <value>GDG</value>
     <comment>GDG</comment>
   </data>
+  <data name="product_64" xml:space="preserve">
+    <value>Sports Lottery</value>
+  </data>
   <data name="product_7" xml:space="preserve">
     <value>RNG Casino</value>
     <comment>RNG Casino</comment>
