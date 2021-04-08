@@ -1,4 +1,5 @@
-﻿using Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers;
+﻿using Fanex.Athena.AnalyticsAPI.Sportsbook.Constants;
+using Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Models;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Repositories;
 using MediatR;
@@ -19,8 +20,8 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Handlers
             var rawData = await GetRawData(request);
             return new ByPlatformResponse
             {
-                ByTurnover = _sportsbookMapper.ToTurnoverResponse(rawData, includeOther: true),
-                ByWinloss = _sportsbookMapper.ToWinlossResponse(rawData, includeOther: true)
+                ByTurnover = _sportsbookMapper.ToTurnoverResponse(rawData, excludedFromTopData: DomainData.ExcludedPlatformsFromTop, includeOther: true),
+                ByWinloss = _sportsbookMapper.ToWinlossResponse(rawData, excludedFromTopData: DomainData.ExcludedPlatformsFromTop, includeOther: true)
             };
         }
     }

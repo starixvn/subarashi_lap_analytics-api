@@ -18,44 +18,34 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers
         }
 
         public IEnumerable<DimDistributionResponse> ToTurnoverResponse(IEnumerable<SportsbookDTO> fullItems, bool includeOther,
-            IReadOnlyDictionary<int, IEnumerable<bool>> supportedData = null, bool includeSabaName = false)
-        {
-            var topItems = supportedData == null || !supportedData.Any() ? fullItems.OrderByDescending(_ => _.Turnover).Take(NUMBER_OF_TOP)
-                : fullItems.Where(x => supportedData.ContainsKey(x.Id) && supportedData[x.Id].Any(y => y == x.IsSaba));
-
-            var sumTurnoverAll = fullItems.Sum(_ => _.Turnover);
-
-            var result = topItems
-                .Select(_ => ToDimDistributionResponse(_, sumTurnoverAll, __ => __.Turnover, includeSabaName))
-                .ToList();
-
-            if (includeOther && ToDimDistributionOtherResponse(fullItems, topItems, sumTurnoverAll, _ => _.Turnover) is DimDistributionResponse otherItem)
-            {
-                result.Add(otherItem);
-            }
-
-            return result.OrderByDescending(_ => _.Distribution);
-        }
+            IReadOnlyDictionary<int, IEnumerable<bool>> onlySupportedData = null, IEnumerable<int> excludedFromTopData = null, bool includeSabaName = false)
+            => ToResponse(fullItems, _ => _.Turnover, includeOther, onlySupportedData, excludedFromTopData ?? Enumerable.Empty<int>(), includeSabaName);
 
         public IEnumerable<DimDistributionResponse> ToWinlossResponse(IEnumerable<SportsbookDTO> fullItems, bool includeOther,
-            IReadOnlyDictionary<int, IEnumerable<bool>> supportedData = null, bool includeSabaName = false)
-        {
-            var topItems = supportedData == null || !supportedData.Any() ? fullItems.OrderByDescending(_ => _.Winloss).Take(NUMBER_OF_TOP)
-                          : fullItems.Where(x => supportedData.ContainsKey(x.Id) && supportedData[x.Id].Any(y => y == x.IsSaba));
+            IReadOnlyDictionary<int, IEnumerable<bool>> onlySupportedData = null, IEnumerable<int> excludedFromTopData = null, bool includeSabaName = false)
+            => ToResponse(fullItems, _ => _.Winloss, includeOther, onlySupportedData, excludedFromTopData ?? Enumerable.Empty<int>(), includeSabaName);
 
-            var sumWinlossAll = fullItems.Sum(_ => _.Winloss);
+        private IEnumerable<DimDistributionResponse> ToResponse(IEnumerable<SportsbookDTO> fullItems, Func<SportsbookDTO, double> dimensionValueFunc, bool includeOther,
+           IReadOnlyDictionary<int, IEnumerable<bool>> onlySupportedData, IEnumerable<int> excludedFromTopData, bool includeSabaName)
+        {
+            var topItems = onlySupportedData == null || !onlySupportedData.Any() ?
+                fullItems.Where(_ => !excludedFromTopData.Contains(_.Id)).OrderByDescending(dimensionValueFunc).Take(NUMBER_OF_TOP) 
+                : fullItems.Where(x => onlySupportedData.ContainsKey(x.Id) && onlySupportedData[x.Id].Any(y => y == x.IsSaba));
+
+            var sumDimensionAll = fullItems.Sum(dimensionValueFunc);
 
             var result = topItems
-                .Select(_ => ToDimDistributionResponse(_, sumWinlossAll, __ => __.Winloss, includeSabaName))
+                .Select(_ => ToDimDistributionResponse(_, sumDimensionAll, dimensionValueFunc, includeSabaName))
                 .ToList();
 
-            if (includeOther && ToDimDistributionOtherResponse(fullItems, topItems, sumWinlossAll, _ => _.Winloss) is DimDistributionResponse otherItem)
+            if (includeOther && ToDimDistributionOtherResponse(fullItems, topItems, sumDimensionAll, dimensionValueFunc) is DimDistributionResponse otherItem)
             {
                 result.Add(otherItem);
             }
 
             return result.OrderByDescending(_ => _.Distribution);
         }
+
 
         private DimDistributionResponse ToDimDistributionResponse(SportsbookDTO rawData, double sumAll, Func<SportsbookDTO, double> valueFunc, bool includeSabaName = false)
         {
@@ -67,7 +57,7 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers
                 Value = dimValue,
                 Distribution = _calculationService.CalculateDistribution(dimValue, sumAll),
                 IsSaba = rawData.IsSaba,
-                Margin = _calculationService.ToPercentUnit(rawData.Winloss / rawData.TurnoverNoDraw)
+                Margin = _calculationService.CalculateMargin(rawData.Winloss, rawData.TurnoverNoDraw)
             };
         }
 

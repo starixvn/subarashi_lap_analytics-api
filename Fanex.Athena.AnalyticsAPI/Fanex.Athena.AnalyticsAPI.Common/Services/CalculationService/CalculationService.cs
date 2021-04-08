@@ -21,6 +21,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
             return result;
         }
 
+        public double CalculateMargin(double profit, double turnover)
+        {
+            if (turnover.CompareTo(0) == 0)
+            {
+                return 0.0;
+            }
+            return ToPercentUnit(profit / turnover);
+        }
+
         public double CalculateGrowth(double? current, double? previous)
         {
             current = current ?? 0;

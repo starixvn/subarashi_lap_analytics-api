@@ -12,5 +12,10 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Constants
             { 5, new [] { false } }, //Tennis
             { -2, new [] { false } } //Parlay
         };
+
+        public static readonly IEnumerable<int> ExcludedPlatformsFromTop = new[] 
+        { 
+            -1  //Other Platform
+        };  
     }
 }

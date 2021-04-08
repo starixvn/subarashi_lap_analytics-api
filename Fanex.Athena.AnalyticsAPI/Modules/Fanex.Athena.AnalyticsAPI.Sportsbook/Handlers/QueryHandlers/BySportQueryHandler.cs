@@ -20,8 +20,8 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Handlers
             var rawData = await GetRawData(request);
             return new BySportResponse
             {
-                ByTurnover = _sportsbookMapper.ToTurnoverResponse(rawData, includeOther: true, supportedData: DomainData.SupportedSports, true),
-                ByWinloss = _sportsbookMapper.ToWinlossResponse(rawData, includeOther: true, supportedData: DomainData.SupportedSports, true)
+                ByTurnover = _sportsbookMapper.ToTurnoverResponse(rawData, includeOther: true, onlySupportedData: DomainData.SupportedSports, includeSabaName: true),
+                ByWinloss = _sportsbookMapper.ToWinlossResponse(rawData, includeOther: true, onlySupportedData: DomainData.SupportedSports, includeSabaName: true)
             };
         }
     }
