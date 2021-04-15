@@ -3,6 +3,8 @@ using Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Models;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Repositories;
 using MediatR;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -17,12 +19,41 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Handlers
 
         public async Task<BySportResponse> Handle(BySportRequest request, CancellationToken cancellationToken)
         {
-            var rawData = await GetRawData(request);
+            var rawData = (await GetRawData(request)).ToList();
+            CombineParlay(rawData);
+
             return new BySportResponse
             {
                 ByTurnover = _sportsbookMapper.ToTurnoverResponse(rawData, includeOther: true, onlySupportedData: DomainData.SupportedSports, includeSabaName: true),
                 ByWinloss = _sportsbookMapper.ToWinlossResponse(rawData, includeOther: true, onlySupportedData: DomainData.SupportedSports, includeSabaName: true)
             };
+        }
+
+        private void CombineParlay(IList<SportsbookDTO> rawData)
+        {
+            var sabaParlay = rawData.FirstOrDefault(_ => _.Id == DomainData.ParlaySportId && _.IsSaba);
+            if (sabaParlay == null)
+            {
+                return;
+            }
+            rawData.Remove(sabaParlay);
+
+            var nonSabaParlay = rawData.FirstOrDefault(_ => _.Id == DomainData.ParlaySportId && !_.IsSaba);
+            if (nonSabaParlay == null)
+            {
+                nonSabaParlay = new SportsbookDTO
+                {
+                    Id = DomainData.ParlaySportId,
+                    Name = sabaParlay.Name,
+                    IsSaba = false
+                };
+
+                rawData.Add(nonSabaParlay);
+            }
+
+            nonSabaParlay.Turnover += sabaParlay.Turnover;
+            nonSabaParlay.Winloss += sabaParlay.Winloss;
+            nonSabaParlay.TurnoverNoDraw += sabaParlay.TurnoverNoDraw;
         }
     }
 }
