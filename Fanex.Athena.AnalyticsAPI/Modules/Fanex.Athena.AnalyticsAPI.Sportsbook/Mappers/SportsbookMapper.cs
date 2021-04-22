@@ -32,7 +32,7 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers
                 fullItems.Where(_ => !excludedFromTopData.Contains(_.Id)).OrderByDescending(dimensionValueFunc).Take(NUMBER_OF_TOP) 
                 : fullItems.Where(x => onlySupportedData.ContainsKey(x.Id) && onlySupportedData[x.Id].Any(y => y == x.IsSaba));
 
-            var sumDimensionAll = fullItems.Sum(dimensionValueFunc);
+            var sumDimensionAll = fullItems.Sum(_ => Math.Abs(dimensionValueFunc(_)));
 
             var result = topItems
                 .Select(_ => ToDimDistributionResponse(_, sumDimensionAll, dimensionValueFunc, includeSabaName))

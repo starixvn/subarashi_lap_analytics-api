@@ -142,6 +142,7 @@ namespace Fanex.Athena.AnalyticsAPI
             else
             {
                 app.UseHsts();
+                app.UseHttpsRedirection();
             }
 
             app.UseStaticFiles();
