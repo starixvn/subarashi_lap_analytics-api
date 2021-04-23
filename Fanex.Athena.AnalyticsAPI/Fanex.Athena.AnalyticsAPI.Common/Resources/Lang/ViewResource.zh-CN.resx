@@ -125,6 +125,30 @@
     <value>其他</value>
     <comment>Others</comment>
   </data>
+  <data name="league_0" xml:space="preserve">
+    <value>其他</value>
+  </data>
+  <data name="league_13" xml:space="preserve">
+    <value>欧冠</value>
+  </data>
+  <data name="league_245" xml:space="preserve">
+    <value>NBA</value>
+  </data>
+  <data name="league_3" xml:space="preserve">
+    <value>英超</value>
+  </data>
+  <data name="league_4" xml:space="preserve">
+    <value>义甲</value>
+  </data>
+  <data name="league_43" xml:space="preserve">
+    <value>西甲</value>
+  </data>
+  <data name="league_5" xml:space="preserve">
+    <value>德甲</value>
+  </data>
+  <data name="league_7507" xml:space="preserve">
+    <value>CBA</value>
+  </data>
   <data name="normal_current_period" xml:space="preserve">
     <value>现时阶段</value>
     <comment>Current Period</comment>
@@ -146,7 +170,7 @@
     <comment>WAP</comment>
   </data>
   <data name="platform_11" xml:space="preserve">
-    <value>原生App</value>
+    <value>原生 APP</value>
     <comment>Native App</comment>
   </data>
   <data name="platform_12" xml:space="preserve">
@@ -158,16 +182,28 @@
     <comment>E-Sports Mobile</comment>
   </data>
   <data name="platform_14" xml:space="preserve">
-    <value>电子竞技App</value>
+    <value>电子竞技 APP</value>
     <comment>E-Sports App</comment>
   </data>
   <data name="platform_15" xml:space="preserve">
     <value>手机欧洲版</value>
     <comment>Mobile Euro</comment>
   </data>
+  <data name="platform_16" xml:space="preserve">
+    <value>桌机其他</value>
+    <comment>Desktop Others</comment>
+  </data>
+  <data name="platform_17" xml:space="preserve">
+    <value>手机經典版</value>
+    <comment>Mobile Standard</comment>
+  </data>
+  <data name="platform_18" xml:space="preserve">
+    <value>手机其他</value>
+    <comment>Mobile Others</comment>
+  </data>
   <data name="platform_2" xml:space="preserve">
-    <value>中国版</value>
-    <comment>China</comment>
+    <value>桌机新亚洲版</value>
+    <comment>Desktop China</comment>
   </data>
   <data name="platform_3" xml:space="preserve">
     <value>深度鏈結</value>
@@ -182,16 +218,16 @@
     <comment>Mobile</comment>
   </data>
   <data name="platform_6" xml:space="preserve">
-    <value>手机 App</value>
+    <value>手机 APP</value>
     <comment>Mobile App</comment>
   </data>
   <data name="platform_7" xml:space="preserve">
     <value>手机轻量版</value>
-    <comment>Mobile Lite Version</comment>
+    <comment>Mobile Compact</comment>
   </data>
   <data name="platform_8" xml:space="preserve">
-    <value>新亚洲版</value>
-    <comment>New Asia</comment>
+    <value>桌机新亚洲版</value>
+    <comment>Desktop New Asia</comment>
   </data>
   <data name="platform_9" xml:space="preserve">
     <value>平板</value>
@@ -345,6 +381,12 @@
     <comment>RNG Keno</comment>
   </data>
   <data name="Saba" xml:space="preserve">
-    <value>Saba</value>
+    <value>沙巴</value>
+  </data>
+  <data name="sport_-2" xml:space="preserve">
+    <value>串关</value>
+  </data>
+  <data name="sport_0" xml:space="preserve">
+    <value>其他</value>
   </data>
 </root>

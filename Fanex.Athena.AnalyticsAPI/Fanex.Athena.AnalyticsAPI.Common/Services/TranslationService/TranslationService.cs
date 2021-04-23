@@ -1,5 +1,7 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Attributes;
 using Fanex.Athena.AnalyticsAPI.Common.Constants;
+using Fanex.Athena.AnalyticsAPI.Common.Models.DataDomain;
+using Fanex.Athena.AnalyticsAPI.Common.Resources.Lang;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,11 +48,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
             var attributeInfo = Attribute.GetCustomAttribute(prop, typeof(TranslationAttribute)) as TranslationAttribute;
             if (attributeInfo != null)
             {
-                var id = type.GetProperty(attributeInfo.PropertyId)?
-                         .GetValue(originalItem)?
-                         .ToString();
-
-                id = id?.Split('@')?.LastOrDefault();
+                var id = GetTranslationId(originalItem, type, attributeInfo);
                 var defaultValue = prop.GetValue(originalItem)?.ToString() ?? string.Empty;
                 translationType = translationType ?? attributeInfo.TranslationType;
 
@@ -61,8 +59,25 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
                     const string includePattern = @"\s+\(\w+\)$";
                     tranlatedValue = GetTranslateValueWithIncludePattern(defaultValue, tranlatedValue, includePattern);
                 }
+
+                if (translationType == TranslationConst.SportType
+                    && originalItem is ISabaAble sabaModel
+                    && sabaModel.IsSaba)
+                {
+                    tranlatedValue = $"{ViewResource.Saba}{tranlatedValue}";
+                }
+
                 prop.SetValue(originalItem, tranlatedValue);
             }
+        }
+
+        private static string GetTranslationId<T>(T originalItem, Type type, TranslationAttribute attributeInfo)
+        {
+            var id = type.GetProperty(attributeInfo.PropertyId)?
+                      .GetValue(originalItem)?
+                      .ToString();
+            id = id?.Split('@')?.LastOrDefault();
+            return id;
         }
 
         private static string GetTranslateValueWithIncludePattern(string defaultValue, string tranlatedValue, string includePattern)

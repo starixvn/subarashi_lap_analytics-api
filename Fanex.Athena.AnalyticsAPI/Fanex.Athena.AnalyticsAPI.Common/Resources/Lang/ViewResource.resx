@@ -125,6 +125,30 @@
     <value>Others</value>
     <comment>Others</comment>
   </data>
+  <data name="league_0" xml:space="preserve">
+    <value>Others</value>
+  </data>
+  <data name="league_13" xml:space="preserve">
+    <value>UEFA Champions League</value>
+  </data>
+  <data name="league_245" xml:space="preserve">
+    <value>NBA</value>
+  </data>
+  <data name="league_3" xml:space="preserve">
+    <value>ENGLISH PREMIER LEAGUE</value>
+  </data>
+  <data name="league_4" xml:space="preserve">
+    <value>ITALY SERIE A</value>
+  </data>
+  <data name="league_43" xml:space="preserve">
+    <value>SPAIN PRIMERA LALIGA</value>
+  </data>
+  <data name="league_5" xml:space="preserve">
+    <value>GERMANY-BUNDESLIGA I</value>
+  </data>
+  <data name="league_7507" xml:space="preserve">
+    <value>CBA</value>
+  </data>
   <data name="normal_current_period" xml:space="preserve">
     <value>Current Period</value>
     <comment>Current Period</comment>
@@ -146,7 +170,7 @@
     <comment>WAP</comment>
   </data>
   <data name="platform_11" xml:space="preserve">
-    <value>Native App</value>
+    <value>Native APP</value>
     <comment>Native App</comment>
   </data>
   <data name="platform_12" xml:space="preserve">
@@ -158,16 +182,25 @@
     <comment>E-Sports Mobile</comment>
   </data>
   <data name="platform_14" xml:space="preserve">
-    <value>E-Sports App</value>
+    <value>E-Sports APP</value>
     <comment>E-Sports App</comment>
   </data>
   <data name="platform_15" xml:space="preserve">
     <value>Mobile Euro</value>
     <comment>Mobile Euro</comment>
   </data>
+  <data name="platform_16" xml:space="preserve">
+    <value>Desktop Others</value>
+  </data>
+  <data name="platform_17" xml:space="preserve">
+    <value>Mobile Standard</value>
+  </data>
+  <data name="platform_18" xml:space="preserve">
+    <value>Mobile Others</value>
+  </data>
   <data name="platform_2" xml:space="preserve">
-    <value>China</value>
-    <comment>China</comment>
+    <value>Desktop China</value>
+    <comment>Desktop China</comment>
   </data>
   <data name="platform_3" xml:space="preserve">
     <value>Deep Link</value>
@@ -182,16 +215,16 @@
     <comment>Mobile</comment>
   </data>
   <data name="platform_6" xml:space="preserve">
-    <value>Mobile App</value>
+    <value>Mobile APP</value>
     <comment>Mobile App</comment>
   </data>
   <data name="platform_7" xml:space="preserve">
-    <value>Mobile Lite Version</value>
-    <comment>Mobile Lite Version</comment>
+    <value>Mobile Compact</value>
+    <comment>Mobile Compact</comment>
   </data>
   <data name="platform_8" xml:space="preserve">
-    <value>New Asia</value>
-    <comment>New Asia</comment>
+    <value>Desktop New Asia</value>
+    <comment>Desktop New Asia</comment>
   </data>
   <data name="platform_9" xml:space="preserve">
     <value>Tablet</value>
@@ -345,6 +378,12 @@
     <comment>RNG Keno</comment>
   </data>
   <data name="Saba" xml:space="preserve">
-    <value>Saba</value>
+    <value>Saba </value>
+  </data>
+  <data name="sport_-2" xml:space="preserve">
+    <value>Parlay</value>
+  </data>
+  <data name="sport_0" xml:space="preserve">
+    <value>Others</value>
   </data>
 </root>

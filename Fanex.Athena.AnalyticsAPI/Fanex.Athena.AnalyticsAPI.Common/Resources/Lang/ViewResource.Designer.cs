@@ -79,6 +79,78 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Others.
+        /// </summary>
+        public static string league_0 {
+            get {
+                return ResourceManager.GetString("league_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UEFA Champions League.
+        /// </summary>
+        public static string league_13 {
+            get {
+                return ResourceManager.GetString("league_13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NBA.
+        /// </summary>
+        public static string league_245 {
+            get {
+                return ResourceManager.GetString("league_245", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ENGLISH PREMIER LEAGUE.
+        /// </summary>
+        public static string league_3 {
+            get {
+                return ResourceManager.GetString("league_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ITALY SERIE A.
+        /// </summary>
+        public static string league_4 {
+            get {
+                return ResourceManager.GetString("league_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SPAIN PRIMERA LALIGA.
+        /// </summary>
+        public static string league_43 {
+            get {
+                return ResourceManager.GetString("league_43", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GERMANY-BUNDESLIGA I.
+        /// </summary>
+        public static string league_5 {
+            get {
+                return ResourceManager.GetString("league_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CBA.
+        /// </summary>
+        public static string league_7507 {
+            get {
+                return ResourceManager.GetString("league_7507", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Period.
         /// </summary>
         public static string normal_current_period {
@@ -124,7 +196,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Native App.
+        ///   Looks up a localized string similar to Native APP.
         /// </summary>
         public static string platform_11 {
             get {
@@ -151,7 +223,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Sports App.
+        ///   Looks up a localized string similar to E-Sports APP.
         /// </summary>
         public static string platform_14 {
             get {
@@ -162,14 +234,41 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Mobile Euro.
         /// </summary>
-        internal static string platform_15 {
+        public static string platform_15 {
             get {
                 return ResourceManager.GetString("platform_15", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to China.
+        ///   Looks up a localized string similar to Desktop Others.
+        /// </summary>
+        public static string platform_16 {
+            get {
+                return ResourceManager.GetString("platform_16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mobile Standard.
+        /// </summary>
+        public static string platform_17 {
+            get {
+                return ResourceManager.GetString("platform_17", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mobile Others.
+        /// </summary>
+        public static string platform_18 {
+            get {
+                return ResourceManager.GetString("platform_18", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Desktop China.
         /// </summary>
         public static string platform_2 {
             get {
@@ -205,7 +304,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mobile App.
+        ///   Looks up a localized string similar to Mobile APP.
         /// </summary>
         public static string platform_6 {
             get {
@@ -214,7 +313,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mobile Lite Version.
+        ///   Looks up a localized string similar to Mobile Compact.
         /// </summary>
         public static string platform_7 {
             get {
@@ -223,7 +322,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New Asia.
+        ///   Looks up a localized string similar to Desktop New Asia.
         /// </summary>
         public static string platform_8 {
             get {
@@ -540,7 +639,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Sports Lottery.
         /// </summary>
-        internal static string product_64 {
+        public static string product_64 {
             get {
                 return ResourceManager.GetString("product_64", resourceCulture);
             }
@@ -574,11 +673,29 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Saba.
+        ///   Looks up a localized string similar to Saba .
         /// </summary>
         public static string Saba {
             get {
                 return ResourceManager.GetString("Saba", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parlay.
+        /// </summary>
+        public static string sport__2 {
+            get {
+                return ResourceManager.GetString("sport_-2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Others.
+        /// </summary>
+        public static string sport_0 {
+            get {
+                return ResourceManager.GetString("sport_0", resourceCulture);
             }
         }
     }

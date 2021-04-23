@@ -18,15 +18,15 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers
         }
 
         public IEnumerable<DimDistributionResponse> ToTurnoverResponse(IEnumerable<SportsbookDTO> fullItems, bool includeOther,
-            IReadOnlyDictionary<int, IEnumerable<bool>> onlySupportedData = null, IEnumerable<int> excludedFromTopData = null, bool includeSabaName = false)
-            => ToResponse(fullItems, _ => _.Turnover, includeOther, onlySupportedData, excludedFromTopData ?? Enumerable.Empty<int>(), includeSabaName);
+            IReadOnlyDictionary<int, IEnumerable<bool>> onlySupportedData = null, IEnumerable<int> excludedFromTopData = null)
+            => ToResponse(fullItems, _ => _.Turnover, includeOther, onlySupportedData, excludedFromTopData ?? Enumerable.Empty<int>());
 
         public IEnumerable<DimDistributionResponse> ToWinlossResponse(IEnumerable<SportsbookDTO> fullItems, bool includeOther,
-            IReadOnlyDictionary<int, IEnumerable<bool>> onlySupportedData = null, IEnumerable<int> excludedFromTopData = null, bool includeSabaName = false)
-            => ToResponse(fullItems, _ => _.Winloss, includeOther, onlySupportedData, excludedFromTopData ?? Enumerable.Empty<int>(), includeSabaName);
+            IReadOnlyDictionary<int, IEnumerable<bool>> onlySupportedData = null, IEnumerable<int> excludedFromTopData = null)
+            => ToResponse(fullItems, _ => _.Winloss, includeOther, onlySupportedData, excludedFromTopData ?? Enumerable.Empty<int>());
 
         private IEnumerable<DimDistributionResponse> ToResponse(IEnumerable<SportsbookDTO> fullItems, Func<SportsbookDTO, double> dimensionValueFunc, bool includeOther,
-           IReadOnlyDictionary<int, IEnumerable<bool>> onlySupportedData, IEnumerable<int> excludedFromTopData, bool includeSabaName)
+           IReadOnlyDictionary<int, IEnumerable<bool>> onlySupportedData, IEnumerable<int> excludedFromTopData)
         {
             var topItems = onlySupportedData == null || !onlySupportedData.Any() ?
                 fullItems.Where(_ => !excludedFromTopData.Contains(_.Id)).OrderByDescending(dimensionValueFunc).Take(NUMBER_OF_TOP) 
@@ -35,7 +35,7 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers
             var sumDimensionAll = fullItems.Sum(_ => Math.Abs(dimensionValueFunc(_)));
 
             var result = topItems
-                .Select(_ => ToDimDistributionResponse(_, sumDimensionAll, dimensionValueFunc, includeSabaName))
+                .Select(_ => ToDimDistributionResponse(_, sumDimensionAll, dimensionValueFunc))
                 .ToList();
 
             if (includeOther && ToDimDistributionOtherResponse(fullItems, topItems, sumDimensionAll, dimensionValueFunc) is DimDistributionResponse otherItem)
@@ -47,13 +47,13 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers
         }
 
 
-        private DimDistributionResponse ToDimDistributionResponse(SportsbookDTO rawData, double sumAll, Func<SportsbookDTO, double> valueFunc, bool includeSabaName = false)
+        private DimDistributionResponse ToDimDistributionResponse(SportsbookDTO rawData, double sumAll, Func<SportsbookDTO, double> valueFunc)
         {
             var dimValue = valueFunc.Invoke(rawData);
             return new DimDistributionResponse
             {
                 Id = rawData.Id,
-                Name = includeSabaName && rawData.IsSaba ? $"{ViewResource.Saba} {rawData.Name}" : rawData.Name,
+                Name = rawData.Name,
                 Value = dimValue,
                 Distribution = _calculationService.CalculateDistribution(dimValue, sumAll),
                 IsSaba = rawData.IsSaba,
