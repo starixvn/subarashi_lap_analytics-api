@@ -493,7 +493,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AE Casino.
+        ///   Looks up a localized string similar to AE Sexy.
         /// </summary>
         internal static string product_46 {
             get {
