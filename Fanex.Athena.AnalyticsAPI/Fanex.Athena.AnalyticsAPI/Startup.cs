@@ -26,6 +26,10 @@ using SharpRaven;
 using System;
 using System.Collections.Generic;
 using System.IO.Compression;
+using MediatR;
+using System.Reflection;
+using Fanex.Athena.AnalyticsAPI.Sportsbook.Handlers;
+using System.Linq;
 
 namespace Fanex.Athena.AnalyticsAPI
 {
@@ -55,6 +59,8 @@ namespace Fanex.Athena.AnalyticsAPI
                                 .Build();
                 options.Filters.Add(new AuthorizeFilter(policy));
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            SetupMediatR(services);
 
             services.Configure<IConfiguration>(Configuration);
 
@@ -117,6 +123,7 @@ namespace Fanex.Athena.AnalyticsAPI
             });
 
             Performance.Extensions.DefendencyInjectionExtension.AddDIPerformance(services);
+            Sportsbook.Extensions.DefendencyInjectionExtension.AddDIPerformance(services);
             Summary.Extensions.DefendencyInjectionExtension.AddDISummary(services);
             Common.Extensions.DefendencyInjectionExtension.AddDICommon(services, Configuration);
             Core.Extensions.DefendencyInjectionExtension.AddDICore(services);
@@ -135,6 +142,7 @@ namespace Fanex.Athena.AnalyticsAPI
             else
             {
                 app.UseHsts();
+                app.UseHttpsRedirection();
             }
 
             app.UseStaticFiles();
@@ -148,6 +156,12 @@ namespace Fanex.Athena.AnalyticsAPI
             app.UseErrorHandler(Env);
             app.UseAuthentication();
             app.UseMvc();
+        }
+
+        private static void SetupMediatR(IServiceCollection services)
+        {
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.StartsWith("Fanex.Athena.AnalyticsAPI"));
+            services.AddMediatR(assemblies.ToArray());
         }
 
         private void SetupLogging(IServiceCollection services)

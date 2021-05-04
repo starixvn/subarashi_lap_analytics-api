@@ -51,10 +51,11 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
 
         private void AddExtraServerInfo(IDictionary<string, object> result)
         {
-            var connection = _httpContextAccessor.HttpContext.Connection;
-            result.Add("Local Ip", connection.LocalIpAddress.ToString());
-            result.Add("Local Port", connection.LocalPort);
-            result.Add("Client Ip", connection.RemoteIpAddress.ToString());
+            var context = _httpContextAccessor.HttpContext;
+            result.Add("Local Ip", context.Connection.LocalIpAddress.ToString());
+            result.Add("Local Port", context.Connection.LocalPort);
+            result.Add("Client Ip", context.Connection.RemoteIpAddress.ToString());
+            result.Add("Schema", context.Request.Scheme);
         }
     }
 }

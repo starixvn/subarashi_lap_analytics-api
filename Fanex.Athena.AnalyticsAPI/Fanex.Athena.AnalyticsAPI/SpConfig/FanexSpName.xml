@@ -38,4 +38,8 @@
     <Setting Key="LAP_Performance_PlatformComparionPeriodBySite" SpName="LAP_Performance_PlatformComparionPeriodBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
     <Setting Key="LAP_Performance_PlatformComparionBySite" SpName="LAP_Performance_PlatformComparionBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
   </Function>
+  <!-- Sportsbook -->
+  <Function Name="DAX_Query_Sporksbook">
+    <Setting Key="LAP_Sportbook_Performance_MeasureDistributionBySite" SpName="LAP_Sportbook_Performance_MeasureDistributionBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />
+  </Function>
 </Functions>

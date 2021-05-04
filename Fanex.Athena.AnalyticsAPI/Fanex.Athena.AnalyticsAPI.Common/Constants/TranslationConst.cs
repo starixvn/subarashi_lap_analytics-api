@@ -9,5 +9,7 @@
         public const string CurrencyType = "currency";
         public const string PlatformType = "platform";
         public const string BettypeType = "bettype";
+        public const string SportType = "sport";
+        public const string LeagueType = "league";
     }
 }

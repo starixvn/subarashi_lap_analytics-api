@@ -30,14 +30,11 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.Services
 
                 using (var response = await _httpClient.SendAsync(requestMessage, HttpCompletionOption.ResponseHeadersRead))
                 {
-                    if (response.IsSuccessStatusCode)
+                    response.EnsureSuccessStatusCode();
+                    using (var streamContent = await response.Content.ReadAsStreamAsync())
                     {
-                        using (var streamContent = await response.Content.ReadAsStreamAsync())
-                        {
-                            return JsonHelper.DeserializeJsonFromStream<TResult>(streamContent);
-                        }
+                        return JsonHelper.DeserializeJsonFromStream<TResult>(streamContent);
                     }
-                    return default(TResult);
                 }
             }
         }

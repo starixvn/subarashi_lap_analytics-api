@@ -27,7 +27,7 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.UnitTest.Services
         }
 
         [Fact]
-        public async Task PostAsync_ErrorCode_ReturnNull()
+        public async Task PostAsync_ErrorCode_ThrowException()
         {
             //Arrange
             _mockHttpMessageHandler.Protected()
@@ -37,9 +37,10 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.UnitTest.Services
                     StatusCode = System.Net.HttpStatusCode.BadRequest
                 });
             //Act
-            var result = await _targetService.PostAsync<object>(_fixture.Create<string>(), _fixture.Create<object>());
+            Func<Task> action = () => _targetService.PostAsync<object>(_fixture.Create<string>(), _fixture.Create<object>());
+
             //Assert
-            Assert.Null(result);
+            await Assert.ThrowsAsync<HttpRequestException>(action);
         }
 
         [Fact]

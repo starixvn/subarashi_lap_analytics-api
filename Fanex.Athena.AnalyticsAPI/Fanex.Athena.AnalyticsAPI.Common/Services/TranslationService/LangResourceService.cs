@@ -10,6 +10,10 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
     public class LangResourceService : ILangResourceService
     {
         private static readonly string[] EXCEPTION_BETTYPE_IDs = new[] { "0" };
+        private static readonly string[] EXCEPTION_SPORT_IDs = new[] { "0" };
+        private static readonly string[] HARD_CODE_SPORT_IDS = new[] { "-2" }; 
+
+        private static string LangCode => Thread.CurrentThread.CurrentCulture.Name;
 
         private readonly IRemotingRefService _remotingRefService;
 
@@ -25,6 +29,11 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
                 return GetDisplayBetTypeName(id, defaultValue);
             }
 
+            if (type.Equals(TranslationConst.SportType, StringComparison.OrdinalIgnoreCase) && !EXCEPTION_SPORT_IDs.Any(_ => _.Equals(id)))
+            {
+                return GetSportName(id, defaultValue);
+            }
+
             var result = GetValue(type, id);
             result = string.IsNullOrEmpty(result) ? defaultValue : result;
 
@@ -33,8 +42,22 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
 
         private string GetDisplayBetTypeName(string betTypeId, string defaultValue)
         {
-            var langCode = Thread.CurrentThread.CurrentCulture.Name;
-            var result = _remotingRefService.GetDisplayedBetTypeName(betTypeId, langCode);
+            var result = _remotingRefService.GetDisplayedBetTypeName(betTypeId, LangCode);
+            if (string.IsNullOrEmpty(result))
+            {
+                result = defaultValue;
+            }
+            return result;
+        }
+
+        private string GetSportName(string sportId, string defaultValue)
+        {
+            if(HARD_CODE_SPORT_IDS.Any(_ => _.Equals(sportId)))
+            {
+                return GetValue(TranslationConst.SportType, sportId);
+            }
+
+            var result = _remotingRefService.GetSportName(sportId, LangCode);
             if (string.IsNullOrEmpty(result))
             {
                 result = defaultValue;
