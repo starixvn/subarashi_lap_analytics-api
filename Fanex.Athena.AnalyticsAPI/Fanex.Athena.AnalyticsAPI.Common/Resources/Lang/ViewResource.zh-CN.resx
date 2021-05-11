@@ -389,4 +389,8 @@
   <data name="sport_0" xml:space="preserve">
     <value>其他</value>
   </data>
+  <data name="product_62" xml:space="preserve">
+    <value>HB电子</value>
+    <comment>Habanero</comment>
+  </data>
 </root>
