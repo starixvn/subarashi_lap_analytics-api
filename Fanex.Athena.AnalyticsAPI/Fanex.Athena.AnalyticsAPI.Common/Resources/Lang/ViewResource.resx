@@ -386,4 +386,8 @@
   <data name="sport_0" xml:space="preserve">
     <value>Others</value>
   </data>
+  <data name="product_62" xml:space="preserve">
+    <value>Habanero</value>
+    <comment>Habanero</comment>
+  </data>
 </root>
