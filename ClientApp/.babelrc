@@ -1,0 +1,8 @@
+{
+  "presets": ["@babel/react", ["@babel/preset-env",{"targets": {
+    "chrome": "60",
+    "firefox": "60" 
+
+  }}]],
+  "plugins": ["@babel/proposal-class-properties"]
+}

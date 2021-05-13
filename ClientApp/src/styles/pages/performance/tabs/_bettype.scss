@@ -1,0 +1,66 @@
+.performance-container {
+  .bettype-tab {
+    
+    .table-comparison-body {
+      tr {
+        td {
+          padding: 5px 7px;
+        }
+      }
+    }
+
+    .info-zone-container {
+      width: 100%;
+    }
+
+    .side-tab-container {
+      width: 100%;
+
+      &:first-child {
+        overflow: hidden;
+        margin-bottom: 15px;
+      }
+
+      &:last-child {
+        .info-zone-body {
+          height: 660px;
+          .chart-container {
+            max-height: 600px;
+          }
+        }
+      }
+
+      .side-tab-left {
+        float: left;
+        width: 50%;
+      }
+
+      .side-tab-right {
+        float: right;
+        width: 49%;
+        .table-comparison {
+          .table-comparison-body {
+            width: 100%;
+            td {
+              .arrow-up, .arrow-down, .rec-equal {
+                float: left;
+              }
+            }
+          }
+        }
+      }
+
+      @media (max-width: 1300px) {
+        .side-tab-left{
+          float: none;
+          width: 100%;
+          margin-bottom: 15px;
+        }
+        .side-tab-right {
+          float: none;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

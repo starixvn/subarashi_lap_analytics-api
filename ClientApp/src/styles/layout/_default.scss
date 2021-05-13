@@ -1,0 +1,21 @@
+﻿html {
+    font-size: 62.5%;
+    height: 100%;
+    overflow: auto;
+     margin: 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.3em;
+    background: $background-color;
+    height: 100%;
+    overflow: auto;
+     margin: 0;
+    -webkit-overflow-scrolling: touch;
+}

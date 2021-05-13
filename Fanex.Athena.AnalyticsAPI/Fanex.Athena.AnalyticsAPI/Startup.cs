@@ -1,4 +1,5 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
+using Fanex.Athena.AnalyticsAPI.Configuration;
 using Fanex.Athena.AnalyticsAPI.Core.Extensions;
 using Fanex.Athena.AnalyticsAPI.Core.Middleware;
 using Fanex.Athena.AnalyticsAPI.Core.Models;
@@ -11,6 +12,7 @@ using Fanex.Logging.RabbitMQ;
 using Fanex.Logging.Sentry.RavenClient;
 using Fanex.RemotingRef;
 using LAP.ONEBook.Security;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,9 +28,6 @@ using SharpRaven;
 using System;
 using System.Collections.Generic;
 using System.IO.Compression;
-using MediatR;
-using System.Reflection;
-using Fanex.Athena.AnalyticsAPI.Sportsbook.Handlers;
 using System.Linq;
 
 namespace Fanex.Athena.AnalyticsAPI
@@ -67,6 +66,7 @@ namespace Fanex.Athena.AnalyticsAPI
             services.AddSwaggerDoc(Env, API_NAME);
 
             services.Configure<SSASSetting>(Configuration.GetSection("SSASSetting"));
+            services.Configure<StaticResourceConfig>(Configuration.GetSection("StaticResource"));
 
             services.AddCors(o => o.AddPolicy("DefaultPolicy", builder =>
             {
@@ -135,7 +135,8 @@ namespace Fanex.Athena.AnalyticsAPI
         {
             app.UseForwardedHeaders();
 
-            if (Env.IsDevelopment())
+            var isDevelopment = Env.IsDevelopment();
+            if (isDevelopment)
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -145,7 +146,17 @@ namespace Fanex.Athena.AnalyticsAPI
                 app.UseHttpsRedirection();
             }
 
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = ctx =>
+                {
+                    const int OneYear = 60 * 60 * 24 * 365;
+                    ctx.Context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.CacheControl] = isDevelopment ?
+                    "no-cache" : "public,max-age=" + OneYear;
+                    ctx.Context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.AccessControlAllowOrigin] = "*";
+                }
+            });
+
             app.UseWhoAmIHealthCheck();
             app.UseCors("DefaultPolicy");
             app.UseLocalization();

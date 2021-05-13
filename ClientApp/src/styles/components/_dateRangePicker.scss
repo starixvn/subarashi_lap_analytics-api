@@ -1,0 +1,17 @@
+@import "~@legion-lib/react-daterangepicker/dist/style.css";
+
+.daterange-container {
+  .datepicker {
+    cursor: pointer;
+  }
+
+  .input-text {
+    outline: none;
+    width: 150px;
+    height: 30px;
+    border: none;
+    color: #545454;
+    border-bottom: 1px solid #888888;
+    text-align: left;
+  }
+}

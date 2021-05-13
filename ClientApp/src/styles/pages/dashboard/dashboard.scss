@@ -1,0 +1,42 @@
+﻿@import '../../base/common';
+@import '../../base/variables';
+
+#dashboard {
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        border-bottom: 1px solid #C4C4C4 !important;
+    }
+
+    li {
+        float: left;
+    }
+
+    li a {
+        display: block;
+        color: $text-default-color;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 10px 20px;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+
+    .active {
+        color: $active-color;
+        border-bottom: 2px solid $active-color;
+    }
+
+    .pieLegend {
+        ul {
+            border-bottom: none !important;
+            text-align: center;
+            li {
+                display: inline-block;
+                float: none;
+            }
+        }
+    }
+}

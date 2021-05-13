@@ -1,0 +1,54 @@
+.performance-container {
+  .overview-tab {
+    .info-zone-container {
+      float: left;
+      margin-left: 20px;
+    }
+
+    .table-major-list {
+      .table-comparison-body {
+        tr {
+          th:first-child {
+            width: 150px;
+          }
+        }
+        width: 450px;
+      }
+      float: left;
+      margin-left: 20px;
+    }
+
+    .box-info-measure-list {
+      float: left;
+    }
+
+    @media (max-width: 767px) {
+      .info-zone-container {
+        margin-left: 0;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1280px) {
+        .info-zone-container {
+          margin-left: 0;
+        }
+        .table-major-list {
+          float: none;
+          overflow: auto;
+          margin-left: 0;
+
+          .table-comparison {
+            margin-bottom: 15px;
+            float: left;
+            margin-left: 20px;
+
+            .table-comparison-body {
+              width: 380px;
+            }
+          }
+        }
+    }
+ }
+}
+
+

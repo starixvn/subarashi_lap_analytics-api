@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.AnalyticsAPI.S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.AnalyticsAPI.UnitTests.Utils", "UnitTests\Fanex.Athena.AnalyticsAPI.UnitTests.Utils\Fanex.Athena.AnalyticsAPI.UnitTests.Utils.csproj", "{B7729329-D8AD-4BE4-B726-F39949B9A4CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Athena.AnalyticsAPI.Sportsbook", "Modules\Fanex.Athena.AnalyticsAPI.Sportsbook\Fanex.Athena.AnalyticsAPI.Sportsbook.csproj", "{B6996AE4-F218-4C87-970F-CB4897135B68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.AnalyticsAPI.Sportsbook", "Modules\Fanex.Athena.AnalyticsAPI.Sportsbook\Fanex.Athena.AnalyticsAPI.Sportsbook.csproj", "{B6996AE4-F218-4C87-970F-CB4897135B68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,70 @@
+@import '../base/variables';
+
+.rmp-main-container {
+    .mp-form-container {
+        .mp-form-input {
+            width: 150px;
+            height: 30px;
+            border: none;
+            color: $tex-filter; 
+            border-bottom: 1px solid #888888;
+            text-align: left;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    .range-mp-container {
+        display: block;
+        position: absolute;
+        z-index: 10;
+        width: 630px;
+        background: rgb(255, 255, 255);
+        border-width: 1px;
+        border-style: solid;
+        border-image: initial;
+        border-color: rgb(204, 204, 204) rgb(204, 204, 204) rgb(187, 187, 187);
+        padding: 10px;
+        box-sizing: border-box;
+
+        .quick-selection-container {
+            float: left;
+            .quick-selection {
+                padding: 0.3rem;
+                margin-bottom: 0.3rem;
+
+              &:hover {
+                cursor: pointer;
+                background-color: $main-color;
+                color: $text-white-color;
+              }
+            }
+
+            .quick-selection-active {
+                background-color: $main-color;
+                color: $text-white-color;
+            }
+        }
+
+        .mp-container {
+            float: left;
+            position: unset;
+            margin-left: 10px;
+        }
+    }
+}
+
+.couple-month-range {
+    .month-range-item {
+      display: inline-block;
+      &:last-child {
+        margin-left: $filter-item-distance;
+      }
+    }
+}
