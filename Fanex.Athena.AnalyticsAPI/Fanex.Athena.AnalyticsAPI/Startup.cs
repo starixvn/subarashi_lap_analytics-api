@@ -94,7 +94,9 @@ namespace Fanex.Athena.AnalyticsAPI
             {
                 IEnumerable<string> MimeTypes = new[]
                 {
-                     "application/json"
+                     "application/json",
+                     "application/javascript",
+                     "text/css"
                  };
                 options.EnableForHttps = true;
                 options.MimeTypes = MimeTypes;
@@ -146,6 +148,8 @@ namespace Fanex.Athena.AnalyticsAPI
                 app.UseHttpsRedirection();
             }
 
+            app.UseWhoAmIHealthCheck();
+            app.UseResponseCompression();
             app.UseStaticFiles(new StaticFileOptions
             {
                 OnPrepareResponse = ctx =>
@@ -157,10 +161,8 @@ namespace Fanex.Athena.AnalyticsAPI
                 }
             });
 
-            app.UseWhoAmIHealthCheck();
             app.UseCors("DefaultPolicy");
             app.UseLocalization();
-            app.UseResponseCompression();
             app.UseSwaggerDoc(Env, API_NAME);
             app.UseUM();
             app.UseStatusCodeResponse();
