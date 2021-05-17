@@ -1,0 +1,120 @@
+﻿.icon-quickaccess {
+    position: absolute;
+    top: 6.5rem;
+    left: -3.1rem;
+    padding: 8px 6px;
+    font-size: 18px;
+    box-sizing: border-box;
+    cursor: pointer;
+    color: #fff;
+    background: $colorPrimary;
+    border-radius: 3px 0 0 3px;
+    border: 1px solid $colorPrimary;
+    transition: all 0.1s ease;
+    z-index: 1001;
+    touch-action: auto;
+
+    &:active {
+        background-color: lighten($colorPrimary, 40%);
+    }
+}
+
+.btn-submit, .btn-reset {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+    color: #fff;
+    background: #f05b1f;
+    text-decoration: none;
+    text-transform: uppercase;    
+    &:hover,
+    &:active {
+        background: lighten(#f05b1f, 10%);
+    }
+}
+
+.btn-reset {
+    background: #35A1FB;
+    &:hover,
+    &:active {
+        background: lighten(#35A1FB, 10%);
+    }
+}
+
+.dashboard__right-panel {
+    position: fixed;
+    right: -20rem;
+    top: 0;
+    left: 100%;
+    bottom: 0;
+    z-index: 1001;
+    will-change: right;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -ms-touch-action: auto;
+    touch-action: auto;
+    transition: right 0.3s ease;
+    .right-panel-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: calc(100% - 20rem);
+        height: 100vh;
+        box-sizing: border-box;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        will-change: opacity;
+        transition: opacity 0.3s ease;
+    }
+    &.is-expanded {
+        right: 0;
+        left: 0;
+        z-index: 1001;
+        .right-panel-overlay {
+            opacity: 1;
+        }
+    }
+    .right-panel-wrap {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 20rem;
+        height: 100vh;
+        box-sizing: border-box;
+        background: $colorPrimary;
+        color: #fff;
+        .right-panel-content {
+            padding: 1.6rem 1rem;
+            @media (max-device-width: 767px) and (orientation: landscape) {
+                height: 100%;
+                overflow: auto;
+            }
+        }
+    }
+    .currency {
+        margin-bottom: 1rem;
+        .currency-label {
+            display: block;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        select {
+            width: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+    }
+    .widgets-config {
+        padding-bottom: 1rem;
+        padding-top: 1.5rem;
+        .widgets-title {
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+    }
+}

@@ -19,6 +19,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ClientApp\**" />
+    <Content Remove="ClientApp\**" />
+    <EmbeddedResource Remove="ClientApp\**" />
+    <None Remove="ClientApp\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="deploy.bat" />
     <None Remove="deploy.LOCAL.bat" />
     <None Remove="SpConfig\FanexSpName.xml" />
@@ -48,5 +55,9 @@
     <ProjectReference Include="..\Modules\Fanex.Athena.AnalyticsAPI.Performance\Fanex.Athena.AnalyticsAPI.Performance.csproj" />
     <ProjectReference Include="..\Modules\Fanex.Athena.AnalyticsAPI.Sportsbook\Fanex.Athena.AnalyticsAPI.Sportsbook.csproj" />
     <ProjectReference Include="..\Modules\Fanex.Athena.AnalyticsAPI.Summary\Fanex.Athena.AnalyticsAPI.Summary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 </Project>

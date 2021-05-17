@@ -1,0 +1,118 @@
+﻿@import '../../components/boxinfomeasure';
+@import '../../components/monthrangepicker';
+@import '../../base/mixins';
+@import './tabs/overview';
+@import './tabs/currency';
+@import './tabs/product';
+@import './tabs/platform';
+@import './tabs/bettype';
+
+.performance-container {
+  .loading-process {
+    background: rgba(255, 255, 255, 0.7) no-repeat;
+    .icon-loading {
+      top: 350px;
+    }
+  }
+
+  .info-zone-header {
+    padding: 6px 0;
+  }
+
+  .child-tab {
+    background-color: #fff;
+    padding-top: 15px;
+    padding-bottom: 50px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+
+  table {
+    border-spacing: 0 !important;
+    width: 100%;
+  }
+
+  .table-report {
+    padding: 40px 0;
+  }
+
+  .flex-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .pieChart {
+      width: 45% !important;
+      height: auto !important;
+      position: relative;
+      padding-top: 20px;
+      cursor: pointer;
+    }
+    .title-distribution {
+      margin-left: 10px;
+    }
+  }
+
+  .button-group {
+    button {
+      width: 100%;
+      height: 100%;
+      white-space: nowrap;
+      border: 1px solid #787878;
+      padding: 10px;
+      cursor: pointer;
+    }
+    button:active { 
+      outline: none;
+      border: none;
+    }
+    button:focus { 
+      outline: 0;
+    }
+    .selected { 
+      background-color: #39AF93;
+      color: #fff;
+    }
+    .radius-left {
+      margin-left: 20px;
+      border-bottom-left-radius: 5px;
+      border-top-left-radius: 5px;
+    }
+    .radius-right {
+      margin-right: 20px;
+      border-bottom-right-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+  }
+
+  .pieLegend {
+    padding-top: 20px;
+    padding-bottom: 5px;
+    display: table;
+    margin: 0 auto;
+    color: #6E6E6E;
+    cursor: pointer;
+
+    li {
+      padding: 10px;
+      span {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        margin-right: 5px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+    .hidden {
+      text-decoration: line-through;
+      text-decoration-style: solid;
+      text-decoration-thickness: 3px;
+      text-decoration-color: #787878;
+    }
+  }
+}
+

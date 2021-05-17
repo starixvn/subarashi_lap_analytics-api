@@ -1,0 +1,84 @@
+@import '../../components/dateRangePicker';
+
+.sportsbook-container {
+  .loading-process {
+    background: rgba(255, 255, 255, 0.7) no-repeat;
+    position: absolute !important;
+  }
+
+  .tab-container {
+    position: relative;
+  }
+
+  .child-tab {
+    background-color: #fff;
+    padding-top: 15px;
+    padding-bottom: 30px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+
+    .widget:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
+
+  .widget {
+    position: relative;
+
+    .widget-content-container:not(:last-child)    {
+      margin-bottom: 10px;
+    }
+  }
+
+  .widget-body {
+    padding: 15px 15px;
+    border: 1px solid #D3D3D3;
+  }
+
+  .widget-title {
+    padding: 15px 0;
+    text-align: center;
+    color: #FFFFFF;
+    background-color: #4C6375;
+    text-transform: uppercase;
+    font-size: 15px;
+  }
+
+  .chart-container {
+    position: relative;
+    border: 1px solid #D3D3D3;
+  }
+
+  .widget-content-container {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .widget-content-left {
+    float: left;
+    width: 49%;
+  }
+
+  .widget-content-right {
+    float: right;
+    width: 50%;
+  }
+
+  table {
+    border-spacing: 0 !important;
+    width: 100%;
+  }
+
+  @media (max-width: 1300px) {
+    .widget-content-left {
+      float: none;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    .widget-content-right {
+      float: none;
+      width: 100%;
+    }
+  }
+}

@@ -1,24 +1,22 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Controllers;
-using Microsoft.AspNetCore.Hosting;
+﻿using Fanex.Athena.AnalyticsAPI.Configuration;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace Fanex.Athena.AnalyticsAPI.Controllers
 {
-    [Route("[controller]")]
     [ApiController]
-    public class HomeController : ControllerBaseCustom
+    public class HomeController : ControllerBase
     {
-        private readonly IHostingEnvironment _env;
-
-        public HomeController(IHostingEnvironment env) : base(null)
-        {
-            _env = env;
-        }
+        private const int ThirtyMinutes = 60 * 30;
 
         [HttpGet]
-        public IActionResult Index()
+        [Route("api/static")]
+        [AllowAnonymous]
+        [ResponseCache(Duration = ThirtyMinutes, Location = ResponseCacheLocation.Client)]
+        public StaticResourceConfig Static([FromServices] IOptions<StaticResourceConfig> config)
         {
-            return ToResult(new { Name = "", _env.EnvironmentName });
+            return config.Value;
         }
     }
 }

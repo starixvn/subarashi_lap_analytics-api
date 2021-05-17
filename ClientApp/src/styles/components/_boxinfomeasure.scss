@@ -1,0 +1,39 @@
+.box-info-measure {
+  width: 150px;
+  padding: 10px 15px;
+  background: #E9F2FF;
+  border: 1px solid #CBD8EC; 
+  box-sizing: border-box;
+  text-align: center;
+
+  .box-info-mesure-name {
+    font-weight: bold;
+    font-size: 15px;
+    color: #333333;
+  }
+
+  .box-info-value-total {
+    margin-top: 25px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #425666;
+    word-break: break-all
+  }
+
+  .box-info-value-change {
+    margin-top: 30px;
+    font-size: 15px;
+    color: #333333;
+  }
+  .arrow-down, .arrow-up, .rec-equal {
+    display: inline-block;
+    margin-right: 5px;
+  }
+}
+
+.box-info-measure-list {
+  .box-info-measure {
+    margin-bottom: 15px;
+  }
+}
+

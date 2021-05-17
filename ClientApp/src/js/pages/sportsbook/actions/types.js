@@ -1,0 +1,1 @@
+export const SET_GLOBAL_FILTER = 'SET_GLOBAL_FILTER';

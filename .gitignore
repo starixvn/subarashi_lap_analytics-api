@@ -31,3 +31,10 @@ _ReSharper*/
 #Nuget packages folder
 packages/
 /TestReports
+
+#Client App
+**/node_modules
+**/.vs/
+**/.vscode
+# Jest - snapshot
+**/__snapshots__
