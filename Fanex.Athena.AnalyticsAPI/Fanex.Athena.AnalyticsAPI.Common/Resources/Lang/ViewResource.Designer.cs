@@ -601,6 +601,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to WM.
+        /// </summary>
+        public static string product_52 {
+            get {
+                return ResourceManager.GetString("product_52", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PG Soft.
         /// </summary>
         public static string product_56 {
