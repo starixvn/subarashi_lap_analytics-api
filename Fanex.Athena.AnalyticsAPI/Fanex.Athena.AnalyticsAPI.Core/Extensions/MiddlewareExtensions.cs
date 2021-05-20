@@ -126,6 +126,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
         {
             builder.UseUMHandler((ctx, umInfo) =>
             {
+                ctx.Response.ContentType = "application/json";
                 return ctx.Response.WriteAsync(JsonConvert.SerializeObject(new
                 {
                     msg = $"System is currently unavailable due to scheduled maintenance. This downtime will last from {umInfo.From} to {umInfo.To}.",
