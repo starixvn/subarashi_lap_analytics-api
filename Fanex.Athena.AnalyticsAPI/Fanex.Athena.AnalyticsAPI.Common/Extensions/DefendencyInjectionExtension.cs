@@ -32,6 +32,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
             services.AddSingleton<ITranslationService, TranslationService>();
             services.AddSingleton<IHandleRawData, RawDataService>();
             services.AddSingleton<IRemotingRefService, RemotingRefService>();
+            services.AddSingleton<ICommonService, CommonService>();
 
             var setting = new SSASSetting();
             configuration.GetSection("SSASSetting").Bind(setting);

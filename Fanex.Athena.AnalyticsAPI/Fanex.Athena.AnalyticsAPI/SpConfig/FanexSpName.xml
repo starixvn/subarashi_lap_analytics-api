@@ -9,6 +9,9 @@
     <Setting Key="Lrf_GetLicenseePendingFunds" SpName="Lrf_GetLicenseePendingFunds" DbName="DBACC.bodb02.bodbLicenseeNet" />
     <Setting Key="Lrf_GetCustomerBalance" SpName="Lrf_GetCustomerBalance" DbName="DBACC.bodb02.bodbLicenseeNet" />
   </Function>
+  <Function Name="Common">
+    <Setting Key="Lrf_SelBalanceUpDay" SpName="Lrf_SelBalanceUpDay" DbName="DBEXT.bodb02.bodbLicenseeNet" />
+  </Function>
   <!--Performance-->
   <Function Name="DAX_Query_Performance_Overview">
     <Setting Key="LAP_Performance_OverviewSummaryBySite" SpName="LAP_Performance_OverviewSummaryBySite" DbName="DBEXT.bodb_dwrs.bodbLicenseeNet" />

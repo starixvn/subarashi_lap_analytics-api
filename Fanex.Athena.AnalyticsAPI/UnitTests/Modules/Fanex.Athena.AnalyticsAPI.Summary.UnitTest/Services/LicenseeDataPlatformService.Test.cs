@@ -1,4 +1,5 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
+using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.ViewModels;
 using Fanex.Athena.AnalyticsAPI.Summary.Services;
@@ -15,12 +16,14 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.UnitTest.Services
     public class LicenseeDataPlatformService_Test
     {
         private readonly Mock<ISqlService> _mockSqlService;
+        private readonly Mock<ICommonService> _mockCommonService;
         private readonly LicenseeDataPlatformService _target;
 
         public LicenseeDataPlatformService_Test()
         {
             _mockSqlService = new Mock<ISqlService>();
-            _target = new LicenseeDataPlatformService(_mockSqlService.Object);
+            _mockCommonService = new Mock<ICommonService>();
+            _target = new LicenseeDataPlatformService(_mockSqlService.Object, _mockCommonService.Object); 
         }
 
         [Theory]
@@ -62,6 +65,14 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.UnitTest.Services
                 actualSpParams = spParams;
                 actualReadHandlerTarget = readHandler.Target;
             });
+
+            BalanceUp expectedBalanceUp = new BalanceUp()
+            {
+                MoveBetsDay = new DateTime(2021, 06, 22),
+                BalanceUpDay = new DateTime(2021, 06, 22)
+            };
+
+            _mockCommonService.Setup(_ => _.GetBalanceUp()).Returns(Task.FromResult(expectedBalanceUp));
 
             //Act
             await _target.GetWinLoss(metaModel);
@@ -112,6 +123,14 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.UnitTest.Services
                 actualReadHandlerTarget = readHandler.Target;
             });
 
+            BalanceUp expectedBalanceUp = new BalanceUp()
+            {
+                MoveBetsDay = new DateTime(2021, 06, 22),
+                BalanceUpDay = new DateTime(2021, 06, 22)
+            };
+
+            _mockCommonService.Setup(_ => _.GetBalanceUp()).Returns(Task.FromResult(expectedBalanceUp));
+
             //Act
             await _target.GetTurnover(metaModel);
 
@@ -128,7 +147,8 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.UnitTest.Services
                 AgentList = metaModel.AgentListXml,
                 metaModel.FromDate,
                 metaModel.ToDate,
-                metaModel.BaseCurrency
+                metaModel.BaseCurrency,
+                MoveBetsDay = new DateTime(2021, 06, 22)
             };
 
             return expectedSpParams;
