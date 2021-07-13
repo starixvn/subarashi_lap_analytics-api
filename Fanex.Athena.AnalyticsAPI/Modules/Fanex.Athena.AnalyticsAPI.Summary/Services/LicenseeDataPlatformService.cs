@@ -1,4 +1,5 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
+using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Summary.Helpers;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.ViewModels;
@@ -13,9 +14,12 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Services
     {
         private readonly ISqlService _sqlService;
 
-        public LicenseeDataPlatformService(ISqlService sqlService)
+        private readonly ICommonService _commonService;
+
+        public LicenseeDataPlatformService(ISqlService sqlService, ICommonService commonService)
         {
             _sqlService = sqlService;
+            _commonService = commonService;
         }
 
         public async Task<WidgetByPlatformViewModel> GetTurnover(BaseSummaryMetaModel metaModel)
@@ -39,12 +43,15 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Services
                 return new WidgetByPlatformViewModel { Total = 0, Data = new List<KeyValuePair<string, decimal>>(0) };
             }
 
+            var balanceUp = await _commonService.GetBalanceUp();
+
             var param = new
             {
                 AgentList = metaModel.AgentListXml,
                 metaModel.FromDate,
                 metaModel.ToDate,
-                metaModel.BaseCurrency
+                metaModel.BaseCurrency,
+                balanceUp.MoveBetsDay
             };
             var readHandler = ReadHandler(columnName);
 
