@@ -13,6 +13,9 @@ const sportOrder = {
   [5]: {
     [false]: 30 //Tennis
   },
+  [50]: {
+    [false]: 50 //Cricket
+  },
   [-2]: {
     [false]: 40 //Parlay
   },

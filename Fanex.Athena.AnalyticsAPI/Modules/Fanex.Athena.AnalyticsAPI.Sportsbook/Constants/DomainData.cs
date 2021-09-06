@@ -10,14 +10,15 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Constants
         {
             { 1, new [] { false, true } }, //Soccer, Saba Soccer
             { 2, new [] { false, true } }, //Basketball, Saba Basketball
+            { 50, new [] { false } }, //Cricket
             { 43, new [] { false } }, //E-Sports
             { 5, new [] { false } }, //Tennis
             { -2, new [] { false } } //Parlay
         };
 
-        public static readonly IEnumerable<int> ExcludedPlatformsFromTop = new[] 
-        { 
+        public static readonly IEnumerable<int> ExcludedPlatformsFromTop = new[]
+        {
             -1  //Other Platform
-        };  
+        };
     }
 }
