@@ -10,5 +10,6 @@ const _currenyDisplayNameMapper = {
   '75': 'PTU',
   '76': 'PS',
   '77': 'PTH',
-  '92': 'HID'
+  '92': 'HID',
+  '125': 'INH'
 }
