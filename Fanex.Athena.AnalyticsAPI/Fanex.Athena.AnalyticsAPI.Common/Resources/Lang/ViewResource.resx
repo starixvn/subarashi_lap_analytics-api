@@ -402,4 +402,10 @@
   <data name="Product_63" xml:space="preserve">
     <value>CG</value>
   </data>
+  <data name="Product68" xml:space="preserve">
+    <value>AdvantPlay</value>
+  </data>
+  <data name="Product69" xml:space="preserve">
+    <value>AdvantPlay Mini</value>
+  </data>
 </root>
