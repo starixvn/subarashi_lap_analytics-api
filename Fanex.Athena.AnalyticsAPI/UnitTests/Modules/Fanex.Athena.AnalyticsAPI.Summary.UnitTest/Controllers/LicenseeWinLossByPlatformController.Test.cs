@@ -15,11 +15,13 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.UnitTest.Controllers
     {
         private readonly LicenseeWinLossByPlatformController _target;
         private readonly Mock<ILicenseeDataPlatformService> _mockLicenseeDataPlatformService;
+        private readonly Mock<ICommonService> _mockCommonService;
 
         public LicenseeWinLossByPlatformController_Test()
         {
             _mockLicenseeDataPlatformService = new Mock<ILicenseeDataPlatformService>();
-            _target = new LicenseeWinLossByPlatformController(Mock.Of<IContextService>(), _mockLicenseeDataPlatformService.Object);
+            _mockCommonService = new Mock<ICommonService>();
+            _target = new LicenseeWinLossByPlatformController(Mock.Of<IContextService>(), _mockLicenseeDataPlatformService.Object, _mockCommonService.Object);
         }
 
         [Fact]
@@ -29,6 +31,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.UnitTest.Controllers
             var metaModel = FakeHelper.Create<BaseSummaryMetaModel>();
             var expectedResult = FakeHelper.Create<WidgetByPlatformViewModel>();
             _mockLicenseeDataPlatformService.Setup(_ => _.GetWinLoss(metaModel)).Returns(Task.FromResult(expectedResult));
+            //_mockCommonService.Setup(_ => _.GetAllowedSubProductCodeList(metaModel.SiteName, "SB")).Returns(Task.FromResult("SB"));
 
             //Act
             var result = await _target.GetData(metaModel);

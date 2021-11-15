@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels
 {
-    public class BaseSummaryMetaModel : IAgentMetaModel, IValidationMetaModel, ICurrencyIdListMetaModel
+    public class BaseSummaryMetaModel : IAgentMetaModel, IValidationMetaModel, ICurrencyIdListMetaModel, ISiteNameMetaModel
     {
         private int _currencyId;
 
@@ -45,5 +45,9 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels
         }
 
         public string AgentListXml { get; set; }
+
+        public string SiteName { get; set; }
+
+        public string ProductList { get; set; } = string.Empty;
     }
 }

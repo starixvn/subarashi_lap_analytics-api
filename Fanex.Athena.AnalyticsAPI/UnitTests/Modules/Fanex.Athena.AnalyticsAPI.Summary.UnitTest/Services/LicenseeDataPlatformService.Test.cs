@@ -23,7 +23,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.UnitTest.Services
         {
             _mockSqlService = new Mock<ISqlService>();
             _mockCommonService = new Mock<ICommonService>();
-            _target = new LicenseeDataPlatformService(_mockSqlService.Object, _mockCommonService.Object); 
+            _target = new LicenseeDataPlatformService(_mockSqlService.Object, _mockCommonService.Object);
         }
 
         [Theory]
@@ -148,7 +148,8 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.UnitTest.Services
                 metaModel.FromDate,
                 metaModel.ToDate,
                 metaModel.BaseCurrency,
-                MoveBetsDay = new DateTime(2021, 06, 22)
+                MoveBetsDay = new DateTime(2021, 06, 22),
+                metaModel.ProductList
             };
 
             return expectedSpParams;
