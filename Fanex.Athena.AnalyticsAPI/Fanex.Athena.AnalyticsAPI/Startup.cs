@@ -218,6 +218,11 @@ namespace Fanex.Athena.AnalyticsAPI
                     "DBACC.bodb02.bodbLicenseeNet",
                     new ConnectionConfiguration("DBACC.bodb02.bodbLicenseeNet",
                         Configuration.GetConnectionString("DBACC.bodb02.bodbLicenseeNet"))
+                },
+                {
+                    "DBLIC.bodb_Licensee.bodbLicenseeNet",
+                    new ConnectionConfiguration("DBLIC.bodb_Licensee.bodbLicenseeNet",
+                        Configuration.GetConnectionString("DBLIC.bodb_Licensee.bodbLicenseeNet"))
                 }
             };
 

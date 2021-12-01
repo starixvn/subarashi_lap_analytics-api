@@ -19,21 +19,29 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Controllers
     public class LicenseeWinLossByPlatformController : ControllerBaseCustom
     {
         private readonly ILicenseeDataPlatformService _licenseeDataPlatformService;
+        private readonly ICommonService _commonService;
 
-        public LicenseeWinLossByPlatformController(IContextService contextService, ILicenseeDataPlatformService licenseeDataPlatformService)
+        public LicenseeWinLossByPlatformController(
+            IContextService contextService,
+            ILicenseeDataPlatformService licenseeDataPlatformService,
+            ICommonService commonService)
             : base(contextService)
         {
             _licenseeDataPlatformService = licenseeDataPlatformService;
+            _commonService = commonService;
         }
 
         [HttpGet]
-        [AutoBindingMetaModel(bindAgent: true)]
+        [AutoBindingMetaModel(bindSiteName: true, bindAgent: true)]
         [ApiRequestValidation(ResponseContent = ResponseContentConst.DefaultWidgetResult)]
         public async Task<WidgetByPlatformViewModel> GetData([FromQuery]BaseSummaryMetaModel metaModel)
         {
             var now = DateTime.Now.Date;
+            var licenseeInfo = await _commonService.GetLicenseeInfo(metaModel.SiteName);
             metaModel.FromDate = new DateTime(now.Year, now.Month, 1);
             metaModel.ToDate = now;
+            metaModel.ProductList = await _commonService.GetAllowedSubProductCodeList(licenseeInfo.Id);
+
             var result = await _licenseeDataPlatformService.GetWinLoss(metaModel);
             return result;
         }
