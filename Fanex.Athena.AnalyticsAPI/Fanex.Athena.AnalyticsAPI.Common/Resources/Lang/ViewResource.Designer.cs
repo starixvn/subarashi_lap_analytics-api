@@ -142,11 +142,56 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Big Bash League.
+        /// </summary>
+        public static string league_53181 {
+            get {
+                return ResourceManager.GetString("league_53181", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Caribbean Premier League.
+        /// </summary>
+        public static string league_53206 {
+            get {
+                return ResourceManager.GetString("league_53206", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indian Premier League.
+        /// </summary>
+        public static string league_53284 {
+            get {
+                return ResourceManager.GetString("league_53284", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pakistan Super League.
+        /// </summary>
+        public static string league_62837 {
+            get {
+                return ResourceManager.GetString("league_62837", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CBA.
         /// </summary>
         public static string league_7507 {
             get {
                 return ResourceManager.GetString("league_7507", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abu Dhabi T10 League.
+        /// </summary>
+        public static string league_96359 {
+            get {
+                return ResourceManager.GetString("league_96359", resourceCulture);
             }
         }
         

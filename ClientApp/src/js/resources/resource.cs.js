@@ -108,6 +108,7 @@ export const cs = {
   saba_soccer: '沙巴足球',
   basketball: '篮球',
   saba_basketball: '沙巴篮球',
+  cricket: '板球',
   winloss: '输赢',
   report_by_turnover: '依照投注额',
   report_by_winloss: '依照输赢',

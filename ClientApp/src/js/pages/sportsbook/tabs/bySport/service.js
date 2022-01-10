@@ -1,11 +1,11 @@
 const sportOrder = {
   [1]: {
     [false]: 0, //Soccer
-    [true]: 50 //Saba Soccer
+    [true]: 60 //Saba Soccer
   },
   [2]: {
     [false]: 10, //Basketball
-    [true]: 60 //Saba Basketball
+    [true]: 70 //Saba Basketball
   },
   [43]: {
     [false]: 20 //E-Sports
@@ -14,13 +14,13 @@ const sportOrder = {
     [false]: 30 //Tennis
   },
   [50]: {
-    [false]: 50 //Cricket
+    [false]: 40 //Cricket
   },
   [-2]: {
-    [false]: 40 //Parlay
+    [false]: 50 //Parlay
   },
   [0]: {
-    [false]: 70 //Others
+    [false]: 80 //Others
   }
 }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 {
-    public interface IBettypePerformanceService : IPerformanceService
+    public interface IBettypePerformanceService : IPerformanceService, IPerformanceDistributionService
     {
         Task<IEnumerable<DistributionVM>> GetDistributionWithComparison(BettypePerformanceFilterMetaModel filter);
 
@@ -17,7 +17,5 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
         Task<IEnumerable<OverallMeasurementVM>> GetOverallMeasurement(PerformanceFilterMetaModel filter);
 
         Task<IEnumerable<MeasurementComparisonVM>> GetMeasurementDifferenceWithComparison(BettypePerformanceFilterMetaModel filter);
-
-        Task<(IEnumerable<DistributionDTO> prevPeriodData, IEnumerable<DistributionDTO> currentPeriodData)> GetDistributionRawData(PerformanceFilterMetaModel filter);
     }
 }

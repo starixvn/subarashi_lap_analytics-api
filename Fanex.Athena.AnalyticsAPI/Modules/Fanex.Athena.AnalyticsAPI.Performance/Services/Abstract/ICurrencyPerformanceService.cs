@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 {
-    public interface ICurrencyPerformanceService : IPerformanceService
+    public interface ICurrencyPerformanceService : IPerformanceService, IPerformanceDistributionService
     {
         Task<IEnumerable<DistributionVM>> GetDistributionWithComparison(CurrenyPerformanceFilterMetaModel filter);
 
@@ -17,7 +17,5 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
         Task<IEnumerable<OverallMeasurementVM>> GetOverallMeasurement(PerformanceFilterMetaModel filter);
 
         Task<IDictionary<string, object>> GetAllDetailMonthGrowthWithComparison(CurrenyPerformanceFilterMetaModel filter);
-
-        Task<(IEnumerable<DistributionDTO> prevPeriodData, IEnumerable<DistributionDTO> currentPeriodData)> GetDistributionRawData(PerformanceFilterMetaModel filter);
     }
 }                                                                                       

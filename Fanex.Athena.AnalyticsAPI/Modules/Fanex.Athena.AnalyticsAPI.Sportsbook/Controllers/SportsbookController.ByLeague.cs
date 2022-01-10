@@ -27,5 +27,15 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Controllers
             var result = await _sender.Send(request);
             return ToResult(result);
         }
+
+        [HttpPost]
+        [Route("api/sportsbook/league/cricket")]
+        [ProducesResponseType(typeof(ByLeagueResponse), (int)HttpStatusCode.OK)]
+        [AutoBindingMetaModel(bindSiteName: true)]
+        public async Task<JsonResult> ByLeagueCricket([FromBody] ByLeagueCricketRequest request)
+        {
+            var result = await _sender.Send(request);
+            return ToResult(result);
+        }
     }
 }

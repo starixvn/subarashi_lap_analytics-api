@@ -8,7 +8,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
 
         public double CalculateDistribution(double? value, double total)
         {
-            value = value ?? 0;
+            value ??= 0;
 
             if (value.Value.CompareTo(0) == 0 || total.CompareTo(0) == 0)
             {
@@ -32,8 +32,8 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
 
         public double CalculateGrowth(double? current, double? previous)
         {
-            current = current ?? 0;
-            previous = previous ?? 0;
+            current ??= 0;
+            previous ??= 0;
 
             var baseValue = previous.Value;
             if (previous.Value.CompareTo(0) == 0)
@@ -49,7 +49,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
 
         public double ToPercentUnit(double? value)
         {
-            value = value ?? 0;
+            value ??= 0;
             var result = value.Value * 100;
             result = ToRound(result);
 

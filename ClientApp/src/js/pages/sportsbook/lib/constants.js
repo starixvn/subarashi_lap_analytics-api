@@ -25,6 +25,7 @@ export const apiUrl = {
   bySport: '/api/sportsbook/sport',
   byLeagueSoccer: '/api/sportsbook/league/soccer',
   byLeagueBasketball: '/api/sportsbook/league/basketball',
+  byLeagueCricket: '/api/sportsbook/league/cricket',
   byBettypeSoccer: '/api/sportsbook/bettype/soccer',
   byBettypeBasketball: '/api/sportsbook/bettype/basketball',
   byCurrency: '/api/sportsbook/currency',

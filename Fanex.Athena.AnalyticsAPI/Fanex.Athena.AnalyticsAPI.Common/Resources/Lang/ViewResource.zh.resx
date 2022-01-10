@@ -411,4 +411,19 @@
   <data name="Product69" xml:space="preserve">
     <value>AdvantPlay Mini</value>
   </data>
+  <data name="league_53181" xml:space="preserve">
+    <value>澳大利亚板球联赛</value>
+  </data>
+  <data name="league_53206" xml:space="preserve">
+    <value>加勒比超级联赛</value>
+  </data>
+  <data name="league_53284" xml:space="preserve">
+    <value>印度超级联赛</value>
+  </data>
+  <data name="league_62837" xml:space="preserve">
+    <value>巴基斯坦超级联赛</value>
+  </data>
+  <data name="league_96359" xml:space="preserve">
+    <value>阿布扎比T10联赛</value>
+  </data>
 </root>
