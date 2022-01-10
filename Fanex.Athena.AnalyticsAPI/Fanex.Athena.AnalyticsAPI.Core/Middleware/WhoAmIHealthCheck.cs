@@ -12,9 +12,9 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
     public class WhoAmIHealthCheck : IHealthCheck
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IHostingEnvironment _env;
+        private readonly IWebHostEnvironment _env;
 
-        public WhoAmIHealthCheck(IHttpContextAccessor httpContextAccessor, IHostingEnvironment env)
+        public WhoAmIHealthCheck(IHttpContextAccessor httpContextAccessor, IWebHostEnvironment env)
         {
             _httpContextAccessor = httpContextAccessor;
             _env = env;

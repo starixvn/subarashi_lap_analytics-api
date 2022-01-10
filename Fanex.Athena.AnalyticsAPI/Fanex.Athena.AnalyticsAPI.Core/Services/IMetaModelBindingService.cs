@@ -8,5 +8,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Services
         void BindSiteName(IDictionary<string, object> actionArguments, string siteName);
 
         void BindAgentXml(IDictionary<string, object> actionArguments, IEnumerable<CurrencyAgentInfo> currencyAgentList);
+
+        void BindProductCodeList(IDictionary<string, object> actionArguments, IEnumerable<string> offeredSubProductList);
     }
 }

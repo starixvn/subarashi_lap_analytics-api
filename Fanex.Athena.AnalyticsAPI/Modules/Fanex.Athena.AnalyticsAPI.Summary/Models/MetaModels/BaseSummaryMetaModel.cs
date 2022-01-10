@@ -1,11 +1,12 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Consts;
+using Fanex.Athena.AnalyticsAPI.Core.Constants;
 using Fanex.Athena.AnalyticsAPI.Core.Models.MetaModels;
 using System;
 using System.Linq;
 
 namespace Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels
 {
-    public class BaseSummaryMetaModel : IAgentMetaModel, IValidationMetaModel, ICurrencyIdListMetaModel, ISiteNameMetaModel
+    public class BaseSummaryMetaModel : IAgentMetaModel, IValidationMetaModel, ICurrencyIdListMetaModel, IProductCodeListMetaModel
     {
         private int _currencyId;
 
@@ -46,8 +47,6 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels
 
         public string AgentListXml { get; set; }
 
-        public string SiteName { get; set; }
-
-        public string ProductList { get; set; } = string.Empty;
+        public string ProductCodeList { get; set; } = ProductCode.SB; 
     }
 }

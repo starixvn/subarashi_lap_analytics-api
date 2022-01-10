@@ -1,47 +1,64 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Models;
-using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
-using LAP.ONEBook.Security;
+﻿using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
 using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
+using System.Text.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using Newtonsoft.Json;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Services
 {
     public class AuthInfoService : IAuthInfoService
     {
-        private readonly ClaimsPrincipal user;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        private DefaultAuthInfo<Permission, CurrencyAgentInfo> _authInfo;
-
-        protected DefaultAuthInfo<Permission, CurrencyAgentInfo> AuthInfo
-        {
-            get
-            {
-                if (_authInfo == null)
-                {
-                    var userDataClaim = user.Claims.FirstOrDefault(_ => _.Type.Equals(ClaimTypes.UserData, StringComparison.OrdinalIgnoreCase));
-                    _authInfo = JsonConvert.DeserializeObject<DefaultAuthInfo<Permission, CurrencyAgentInfo>>(userDataClaim.Value);
-                }
-                return _authInfo;
-            }
-        }
+        protected HttpContext Context => _httpContextAccessor.HttpContext;
+        protected ClaimsPrincipal User => Context.User;
 
         public AuthInfoService(IHttpContextAccessor httpContextAccessor)
         {
-            user = httpContextAccessor.HttpContext.User;
+            _httpContextAccessor = httpContextAccessor;
         }
 
-        public string SiteName => user.Identity.Name;
+        public string SiteName => GetClaimValue("SiteName");
 
-        public string UserName => AuthInfo.UserID;
+        public string UserName => GetClaimValue("UserID");
 
-        public int UserId => AuthInfo.UserSEQ;
+        public int UserId => GetClaimValue<int>("UserSEQ");
 
-        public string Language => AuthInfo.Language;
+        public string Language => GetClaimValue("Language");
 
-        public IEnumerable<CurrencyAgentInfo> CurrencyAgentList => AuthInfo.Currency;
+        public IEnumerable<string> OfferedSubProductList
+        {
+            get
+            {
+                var offeredSubProductList = GetClaimValue("OfferedSubProducts");
+                return string.IsNullOrEmpty(offeredSubProductList) ? Enumerable.Empty<string>() : offeredSubProductList.Split(',');
+            }
+        }
+
+
+        private IEnumerable<CurrencyAgentInfo> _currencyAgentList;
+
+        public IEnumerable<CurrencyAgentInfo> CurrencyAgentList
+        {
+            get
+            {
+                if (_currencyAgentList is null)
+                {
+                    var agentClaims = User.Claims.Where(_ => _.Type.Equals("CurrencyAgent", StringComparison.OrdinalIgnoreCase));
+                    _currencyAgentList = agentClaims.Select(agent => JsonConvert.DeserializeObject<CurrencyAgentInfo>(agent.Value));
+                }
+
+                return _currencyAgentList;
+            }
+        }
+
+        private T GetClaimValue<T>(string claimType)
+           => (T)Convert.ChangeType(GetClaimValue(claimType), typeof(T));
+
+        private string GetClaimValue(string claimType)
+            => User.FindFirst(claimType)?.Value;
     }
 }

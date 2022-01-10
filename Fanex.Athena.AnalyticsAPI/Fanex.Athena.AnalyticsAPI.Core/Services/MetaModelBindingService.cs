@@ -1,4 +1,5 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
+﻿using Fanex.Athena.AnalyticsAPI.Core.Constants;
+using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
 using Fanex.Athena.AnalyticsAPI.Core.Models.MetaModels;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,16 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Services
                 }
 
                 itemWithAgent.AgentListXml = GenerateAgentListXml(currencyAgentList, currencyIdList);
+            }
+        }
+
+        public void BindProductCodeList(IDictionary<string, object> actionArguments, IEnumerable<string> offeredSubProductList)
+        {
+            if (IsMetaModel(actionArguments, out IProductCodeListMetaModel productCodeListMetaModel)
+                && offeredSubProductList != null && offeredSubProductList.Any()
+                && productCodeListMetaModel.ProductCodeList.Split(',').Any(_ => string.Equals(_, ProductCode.SB, StringComparison.InvariantCultureIgnoreCase)))
+            {
+                productCodeListMetaModel.ProductCodeList = productCodeListMetaModel.ProductCodeList + "," + string.Join(",", offeredSubProductList);
             }
         }
 

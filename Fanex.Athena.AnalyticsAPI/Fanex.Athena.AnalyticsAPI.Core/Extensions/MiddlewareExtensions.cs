@@ -1,71 +1,105 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Filters;
-using Fanex.Athena.AnalyticsAPI.Core.Middleware;
-
+﻿using Fanex.Athena.AnalyticsAPI.Core.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using ONEbook.UM.Extensions;
-using Swashbuckle.AspNetCore.Swagger;
+using ONEbook.UM.AspNetCore;
+using ONEbook.UM.Configurations;
+using ONEbook.UM.Helpers;
+using ONEbook.UM.Services;
+using ONEbook.UM.Transport;
+using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
 {
     public static class MiddlewareExtensions
     {
-        public static IApplicationBuilder UseErrorHandler(this IApplicationBuilder builder, IHostingEnvironment env)
+        public static void AddCorsPortalSite(this IServiceCollection services, IConfiguration configuration)
         {
-            if (!env.IsDevelopment())
+            var allowedCrossDomains = configuration.GetSection("AllowedCrossDomains")
+                .Get<IEnumerable<string>>();
+
+            var preflightMaxAge30InDay = TimeSpan.FromDays(30);
+            services.AddCors(options =>
             {
-                builder.UseMiddleware<ErrorHandler>();
-            }
+                options.AddDefaultPolicy(
+                                  builder =>
+                                  {
+                                      builder.SetIsOriginAllowed(domain =>
+                                      {
+                                          if (allowedCrossDomains == null || !allowedCrossDomains.Any())
+                                          {
+                                              return true;
+                                          }
+
+                                          var clientDomain = new Uri(domain).Authority;
+                                          var isValid = allowedCrossDomains.Any(allowedCrossDomain => clientDomain.EndsWith(allowedCrossDomain, StringComparison.OrdinalIgnoreCase));
+                                          return isValid;
+                                      })
+                                      .AllowAnyMethod()
+                                      .AllowAnyHeader()
+                                      .SetPreflightMaxAge(preflightMaxAge30InDay);
+                                  });
+            });
+        }
+
+
+        public static void AddUnderMaintenance(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddSingleton(new UMClientConfiguration().Initialize(configuration));
+            services.AddSingleton<IUMCacheService, UMCacheService>();
+            services.AddSingleton<IUMRestClient, UMRestClient>();
+            services.AddSingleton<IHttpContextHelper, HttpContextHelper>();
+            services.AddSingleton<IMaintenanceService, MaintenanceService>();
+            services.AddSession();
+        }
+
+        public static IApplicationBuilder UseErrorHandler(this IApplicationBuilder builder)
+        {
+            const string RequestedWithHeader = "X-Requested-With";
+            const string XmlHttpRequest = "XMLHttpRequest";
+            bool IsAjaxRequest(HttpRequest request)
+                => request.Headers.TryGetValue(RequestedWithHeader, out StringValues headerValue)
+                   && string.Equals(headerValue.FirstOrDefault(), XmlHttpRequest, StringComparison.OrdinalIgnoreCase);
+
+            builder.UseWhen(context => IsAjaxRequest(context.Request),
+               builder => builder.UseStatusCodePages(async context =>
+               {
+                   var response = context.HttpContext.Response;
+                   response.ContentType = "application/json";
+                   var errorObject = new
+                   {
+                       statusCode = response.StatusCode,
+                       msg = "An error occurred while processing your request",
+                       isSuccess = false
+                   };
+                   await response.WriteAsync(JsonConvert.SerializeObject(errorObject));
+               }));
+
+            builder.UseMiddleware<ErrorHandler>();
+
             return builder;
         }
 
-        public static IApplicationBuilder UseStatusCodeResponse(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseHealthCheck(this IApplicationBuilder builder)
         {
-            builder.UseStatusCodePages(async context =>
+            builder.Use(async (context, next) =>
             {
-                var response = context.HttpContext.Response;
-                response.ContentType = "application/json";
-                var errorObject = new
+                if (context.Request.Path.StartsWithSegments("/ping"))
                 {
-                    msg = $"{response.StatusCode} error",
-                    isSuccess = false
-                };
-                await response.WriteAsync(JsonConvert.SerializeObject(errorObject));
+                    return;
+                }
+                await next();
             });
 
-            return builder;
-        }
 
-        public static IApplicationBuilder UseLocalization(this IApplicationBuilder builder)
-        {
-            var supportedCultures = new List<CultureInfo>
-            {
-                new CultureInfo("en-US"),
-                new CultureInfo("zh-CN")
-            };
-
-            builder.UseRequestLocalization(new RequestLocalizationOptions
-            {
-                DefaultRequestCulture = new RequestCulture("en-US"),
-                SupportedCultures = supportedCultures,
-                SupportedUICultures = supportedCultures
-            });
-
-            return builder;
-        }
-
-        public static IApplicationBuilder UseWhoAmIHealthCheck(this IApplicationBuilder builder)
-        {
-            return builder.UseHealthChecks("/health", new HealthCheckOptions
+            builder.UseHealthChecks("/health", new HealthCheckOptions
             {
                 AllowCachingResponses = false,
                 Predicate = _ => true,
@@ -84,57 +118,27 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
                         json.ToString(Formatting.Indented));
                 }
             });
-        }
 
-        public static IServiceCollection AddSwaggerDoc(this IServiceCollection services, IHostingEnvironment env, string apiName)
-        {
-            if (env.IsDevelopment())
-            {
-                services.AddSwaggerGen(c =>
-                {
-                    c.SwaggerDoc("v1", new Info
-                    {
-                        Version = "v1",
-                        Title = apiName,
-                    });
-
-                    c.OperationFilter<OneAuthHeaderFilter>();
-
-                    c.DescribeStringEnumsInCamelCase();
-                    c.DescribeAllEnumsAsStrings();
-                });
-            }
-
-            return services;
-        }
-
-        public static IApplicationBuilder UseSwaggerDoc(this IApplicationBuilder builder, IHostingEnvironment env, string apiName)
-        {
-            if (env.IsDevelopment())
-            {
-                builder.UseSwagger();
-                builder.UseSwaggerUI(c =>
-                {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", $"{apiName} V1");
-                    c.RoutePrefix = string.Empty;
-                });
-            }
             return builder;
         }
 
-        public static IApplicationBuilder UseUM(this IApplicationBuilder builder)
+        public static void UseStaticResource(this IApplicationBuilder app, bool isDev)
         {
-            builder.UseUMHandler((ctx, umInfo) =>
+            app.UseStaticFiles(new StaticFileOptions
             {
-                ctx.Response.ContentType = "application/json";
-                return ctx.Response.WriteAsync(JsonConvert.SerializeObject(new
+                OnPrepareResponse = ctx =>
                 {
-                    msg = $"System is currently unavailable due to scheduled maintenance. This downtime will last from {umInfo.From} to {umInfo.To}.",
-                    isSuccess = false
-                }));
+                    const int OneYear = 60 * 60 * 24 * 365;
+                    ctx.Context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.CacheControl] = isDev ?
+                    "no-cache" : "public,max-age=" + OneYear;
+                    ctx.Context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.AccessControlAllowOrigin] = "*";
+                }
             });
-
-            return builder;
+        }
+        public static void UseUnderMaintenance(this IApplicationBuilder app)
+        {
+            app.UseSession();
+            app.UseMiddleware<UnderMaintenanceHandler>();
         }
     }
 }

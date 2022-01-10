@@ -15,7 +15,7 @@ import RightPanel from './components/RightPanel';
 import widgetLayout from '../../layouts/widgetLayout';
 import languageApi from '../../lib/languageApi';
 import { widgetKey, wgLayouts } from './lib/constants';
-import localStorageHelper from '../../lib/localStorageHelper';
+import localStorageHelper from '../../lib/LocalStorageHelper';
 import { bindActionCreators } from 'redux'
 import { ActionCreators } from '../../actions/index'
 import { connect } from 'react-redux';
