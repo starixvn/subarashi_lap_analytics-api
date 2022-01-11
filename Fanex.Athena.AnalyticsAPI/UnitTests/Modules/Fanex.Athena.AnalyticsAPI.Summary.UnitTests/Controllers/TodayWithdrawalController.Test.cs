@@ -1,4 +1,5 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Helpers;
+using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Summary.Controllers;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Summary.Services;
@@ -34,7 +35,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.UnitTests.Controllers
 
             //Assert
             Assert.Equal(expectedResult, result);
-            Assert.Equal(DateTime.Now.Date, metaModel.FromDate);
+            Assert.Equal(DateTimeHelper.DatabaseServerNow.Date, metaModel.FromDate);
         }
     }
 }

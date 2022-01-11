@@ -1,5 +1,6 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
 using Fanex.Athena.AnalyticsAPI.Configuration;
+using Fanex.Athena.AnalyticsAPI.Controllers;
 using Fanex.Athena.AnalyticsAPI.Core.Extensions;
 using Fanex.Athena.AnalyticsAPI.Core.Middleware;
 using Fanex.Data;
@@ -87,9 +88,12 @@ namespace Fanex.Athena.AnalyticsAPI
                    options.CacheKeyPrefix = "OAuth2Introspection:";
                    options.CacheDuration = TimeSpan.FromMinutes(instrospecCacheDuration);
                    options.DiscoveryPolicy.RequireHttps = false;
-                    
+
                    options.TokenRetriever = TokenRetrieval.FromAuthorizationHeader();
                });
+
+            services.AddHttpClient<AuthController>()
+            .SetHandlerLifetime(TimeSpan.FromDays(1));
 
             Performance.Extensions.DefendencyInjectionExtension.AddDIPerformance(services);
             Sportsbook.Extensions.DefendencyInjectionExtension.AddDIPerformance(services);

@@ -1,4 +1,5 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Controllers;
+using Fanex.Athena.AnalyticsAPI.Common.Helpers;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Core.Attributes;
 using Fanex.Athena.AnalyticsAPI.Core.Constants;
@@ -33,7 +34,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Controllers
         [ApiRequestValidation(ResponseContent = ResponseContentConst.DefaultWidgetResult)]
         public async Task<WidgetByPlatformViewModel> GetData([FromQuery]BaseSummaryMetaModel metaModel)
         {
-            var now = DateTime.Now.Date;
+            var now = DateTimeHelper.DatabaseServerNow.Date;
             metaModel.FromDate = new DateTime(now.Year, now.Month, 1);
             metaModel.ToDate = now;
 

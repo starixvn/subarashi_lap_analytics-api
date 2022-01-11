@@ -12,6 +12,17 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
 
         private static IFormatProvider CULTURE_INFO_DEFAULT = new CultureInfo("en-US");
 
+        private static readonly TimeZoneInfo DatabaseServerTimezoneInfo = TimeZoneInfo.CreateCustomTimeZone(
+                    "DB Server Time",
+                    TimeSpan.FromHours(-4),
+                    "(GMT-04:00) DB Server Time",
+                    "DB Server Time");
+
+        public static DateTime DatabaseServerNow =>
+            TimeZoneInfo.ConvertTimeFromUtc(
+                DateTime.UtcNow,
+                DatabaseServerTimezoneInfo);
+
         public static string ParseFromFormatToString(string date, bool includeEndOfMonth)
         {
             if (IsMonthFormat(date))

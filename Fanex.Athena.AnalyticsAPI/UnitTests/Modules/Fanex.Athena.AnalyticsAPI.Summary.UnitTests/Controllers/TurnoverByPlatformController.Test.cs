@@ -1,4 +1,5 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Helpers;
+using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Summary.Controllers;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.ViewModels;
@@ -29,14 +30,13 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.UnitTests.Controllers
             var metaModel = FakeHelper.Create<BaseSummaryMetaModel>();
             var expectedResult = FakeHelper.Create<WidgetByPlatformViewModel>();
             _mockLicenseeDataPlatformService.Setup(_ => _.GetTurnover(metaModel)).Returns(Task.FromResult(expectedResult));
-            //_mockCommonService.Setup(_ => _.GetAllowedSubProductCodeList(metaModel.SiteName, "SB")).Returns(Task.FromResult("SB"));
 
             //Act
             var result = await _target.GetData(metaModel);
             //Assert
             Assert.Equal(expectedResult, result);
 
-            var now = DateTime.Now.Date;
+            var now = DateTimeHelper.DatabaseServerNow.Date;
             Assert.Equal(new DateTime(now.Year, now.Month, 1), metaModel.FromDate);
             Assert.Equal(now, metaModel.ToDate);
         }

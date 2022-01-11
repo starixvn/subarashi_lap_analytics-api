@@ -18,10 +18,10 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Constants
 
         public static readonly IReadOnlyDictionary<int, IEnumerable<bool>> SupportedSoccerLeagues = new Dictionary<int, IEnumerable<bool>>
         {
-            { 3, new [] { false } }, //ENGLISH PREMIER LEAGUE	
-            { 4, new [] { false } }, //ITALY SERIE A	
-            { 5, new [] { false } }, //GERMANY-BUNDESLIGA I	
-            { 13, new [] { false } }, //UEFA Champions League	
+            { 3, new [] { false } }, //ENGLISH PREMIER LEAGUE
+            { 4, new [] { false } }, //ITALY SERIE A
+            { 5, new [] { false } }, //GERMANY-BUNDESLIGA I
+            { 13, new [] { false } }, //UEFA Champions League
             { 43, new [] { false } }, //SPAIN PRIMERA LALIGA
         };
 
@@ -31,13 +31,12 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Constants
             { 53206, new [] { false } }, //Caribbean Premier League
             { 53284, new [] { false } }, //Indian Premier League
             { 96359, new [] { false } }, //Abu Dhabi T10 League
-            { 62837, new [] { false } }, //Pakistan Super League 
+            { 62837, new [] { false } }, //Pakistan Super League
         };
 
         public static readonly IEnumerable<int> ExcludedPlatformsFromTop = new[]
         {
             -1  //Other Platform
         };
-       
     }
 }
