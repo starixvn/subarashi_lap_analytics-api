@@ -17,11 +17,35 @@
   <ItemGroup>
     <None Remove="deploy.bat" />
     <None Remove="deploy.LOCAL.bat" />
+    <None Remove="SpConfig\FanexSpName.LOCAL.xml" />
+    <None Remove="SpConfig\FanexSpName.LOCAL_1.xml" />
+    <None Remove="SpConfig\FanexSpName.PROD.xml" />
+    <None Remove="SpConfig\FanexSpName.SIT.xml" />
+    <None Remove="SpConfig\FanexSpName.UAT.xml" />
+    <None Remove="SpConfig\FanexSpName.UAT_1.xml" />
     <None Remove="SpConfig\FanexSpName.xml" />
   </ItemGroup>
 
   <ItemGroup>
     <AdditionalFiles Include="..\.sonarlint\sparta_lap.analyticsapi\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+    <Content Include="SpConfig\FanexSpName.SIT.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpConfig\FanexSpName.PROD.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpConfig\FanexSpName.UAT_1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpConfig\FanexSpName.UAT.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpConfig\FanexSpName.LOCAL_1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SpConfig\FanexSpName.LOCAL.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SpConfig\FanexSpName.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
