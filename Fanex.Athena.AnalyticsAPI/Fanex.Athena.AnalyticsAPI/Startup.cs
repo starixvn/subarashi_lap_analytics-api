@@ -1,174 +1,138 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
 using Fanex.Athena.AnalyticsAPI.Configuration;
+using Fanex.Athena.AnalyticsAPI.Controllers;
 using Fanex.Athena.AnalyticsAPI.Core.Extensions;
 using Fanex.Athena.AnalyticsAPI.Core.Middleware;
-using Fanex.Athena.AnalyticsAPI.Core.Models;
-using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
-using Fanex.Athena.ExtService.Common.Configuration;
 using Fanex.Data;
 using Fanex.Data.SqlServer;
-using Fanex.Logging;
-using Fanex.Logging.RabbitMQ;
-using Fanex.Logging.Sentry.RavenClient;
 using Fanex.RemotingRef;
-using LAP.ONEBook.Security;
+using IdentityModel.AspNetCore.OAuth2Introspection;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ONEbook.UM.Configurations;
-using ONEbook.UM.Extensions;
-using SharpRaven;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
-using System.IO.Compression;
+using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI
 {
     public class Startup
     {
-        private const string API_NAME = "LAP - Analytics API";
-
-        public Startup(IConfiguration configuration, IHostingEnvironment env)
+        public Startup(IConfiguration configuration, IWebHostEnvironment hostingEnvironment)
         {
             Configuration = configuration;
-            Env = env;
+            HostingEnvironment = hostingEnvironment;
         }
 
         public IConfiguration Configuration { get; }
-        public IHostingEnvironment Env { get; set; }
+        public IWebHostEnvironment HostingEnvironment { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            RefDataTypeContainer
-                .ConnectTo(new Uri(Configuration["Fanex.RemotingRef.Service.Url"]))
-                .FromApplication("LAP_Analytics_API");
-
-            services.AddMvc(options =>
+            services.AddControllers(options =>
             {
                 var policy = new AuthorizationPolicyBuilder()
-                                .RequireAuthenticatedUser()
-                                .Build();
+                              .RequireAuthenticatedUser()
+                              .Build();
                 options.Filters.Add(new AuthorizeFilter(policy));
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            });
+
+            RefDataTypeContainer
+               .ConnectTo(new Uri(Configuration["Fanex.RemotingRef.Service.Url"]))
+               .FromApplication("LAP_Analytics_API");
 
             SetupMediatR(services);
 
             services.Configure<IConfiguration>(Configuration);
 
-            services.AddSwaggerDoc(Env, API_NAME);
-
             services.Configure<SSASSetting>(Configuration.GetSection("SSASSetting"));
             services.Configure<StaticResourceConfig>(Configuration.GetSection("StaticResource"));
+            services.Configure<IdentityServerConfig>(Configuration.GetSection("IdentityServer"));
 
-            services.AddCors(o => o.AddPolicy("DefaultPolicy", builder =>
-            {
-                var preflightMaxAge30InDay = TimeSpan.FromDays(30);
-
-                builder.AllowAnyOrigin()
-                       .AllowAnyMethod()
-                       .AllowAnyHeader()
-                       .SetPreflightMaxAge(preflightMaxAge30InDay);
-            }));
+            services.AddCorsPortalSite(Configuration);
 
             services.Configure<ForwardedHeadersOptions>(options =>
             {
-                options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+                options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto | ForwardedHeaders.XForwardedHost;
                 options.KnownNetworks.Clear();
                 options.KnownProxies.Clear();
             });
 
-            services.Configure<GzipCompressionProviderOptions>(options =>
-            {
-                options.Level = CompressionLevel.Optimal;
-            });
-
-            services.AddResponseCompression(options =>
-            {
-                IEnumerable<string> MimeTypes = new[]
-                {
-                     "application/json",
-                     "application/javascript",
-                     "text/css"
-                 };
-                options.EnableForHttps = true;
-                options.MimeTypes = MimeTypes;
-                options.Providers.Add<GzipCompressionProvider>();
-            });
-
+            services.AddDistributedMemoryCache();
+            services.AddHttpContextAccessor();
             services.AddHealthChecks().AddCheck<WhoAmIHealthCheck>("WhoAmIHealthCheck");
-
-            SetupLogging(services);
+            services.AddUnderMaintenance(Configuration);
             SetupSqlProvider();
+            ConfigRequestLocalization(services);
 
-            services.AddONEBookAuthentication(options =>
-            {
-                var isDev = Env.IsDevelopment();
-                if (isDev && Configuration.GetValue<bool>("AllowBypassAuthentication"))
-                {
-                    var section = Configuration.GetSection("FakeUserData");
-                    var fakeData = section.Get<DefaultAuthInfo<Permission, CurrencyAgentInfo>>();
-                    options.FakeData = () => fakeData;
-                    options.AllowBypass = true;
-                }
-                else
-                {
-                    options.SecurityConnectionString = GetOneBookSecurityConnection();
-                }
-            });
+            var instrospecCacheDuration = int.TryParse(Configuration["IdentityServer:CacheDuration"], out int cache) ? cache : 0;
+            services.AddAuthentication()
+               .AddOAuth2Introspection(options =>
+               {
+                   options.Authority = Configuration["IdentityServer:Host"];
+                   options.ClientId = Configuration["IdentityServer:CredentialIntrospection:ClientId"];
+                   options.ClientSecret = Configuration["IdentityServer:CredentialIntrospection:ClientSecret"];
+                   options.SaveToken = true;
+                   options.SkipTokensWithDots = true;
+                   options.EnableCaching = instrospecCacheDuration > 0;
+                   options.CacheKeyPrefix = "OAuth2Introspection:";
+                   options.CacheDuration = TimeSpan.FromMinutes(instrospecCacheDuration);
+                   options.DiscoveryPolicy.RequireHttps = false;
+
+                   options.TokenRetriever = TokenRetrieval.FromAuthorizationHeader();
+               });
+
+            services.AddHttpClient<AuthController>()
+            .SetHandlerLifetime(TimeSpan.FromDays(1));
 
             Performance.Extensions.DefendencyInjectionExtension.AddDIPerformance(services);
             Sportsbook.Extensions.DefendencyInjectionExtension.AddDIPerformance(services);
             Summary.Extensions.DefendencyInjectionExtension.AddDISummary(services);
             Common.Extensions.DefendencyInjectionExtension.AddDICommon(services, Configuration);
             Core.Extensions.DefendencyInjectionExtension.AddDICore(services);
-
-            services.AddUMService(Configuration.GetSection("ONEbook.UM").Get<UMClientConfiguration>());
         }
 
         public void Configure(IApplicationBuilder app)
         {
             app.UseForwardedHeaders();
 
-            var isDevelopment = Env.IsDevelopment();
-            if (isDevelopment)
+            if (string.Equals(Configuration["UseErrorHandler"], "1"))
+            {
+                app.UseErrorHandler();
+            }
+            else
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
+
+            if (!HostingEnvironment.IsDevelopment())
             {
                 app.UseHsts();
                 app.UseHttpsRedirection();
             }
 
-            app.UseWhoAmIHealthCheck();
-            app.UseResponseCompression();
-            app.UseStaticFiles(new StaticFileOptions
+            app.UseHealthCheck();
+            app.UseStaticResource(HostingEnvironment.IsDevelopment());
+            app.UseUnderMaintenance();
+            app.UseRouting();
+            app.UseCors();
+            app.UseAuthorization();
+            app.UseRequestLocalization();
+            app.UseEndpoints(endpoints =>
             {
-                OnPrepareResponse = ctx =>
-                {
-                    const int OneYear = 60 * 60 * 24 * 365;
-                    ctx.Context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.CacheControl] = isDevelopment ?
-                    "no-cache" : "public,max-age=" + OneYear;
-                    ctx.Context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.AccessControlAllowOrigin] = "*";
-                }
+                endpoints.MapGet("/", async context => await context.Response.WriteAsync("LAP Analytics is running"));
+                endpoints.MapDefaultControllerRoute();
             });
-
-            app.UseCors("DefaultPolicy");
-            app.UseLocalization();
-            app.UseSwaggerDoc(Env, API_NAME);
-            app.UseUM();
-            app.UseStatusCodeResponse();
-            app.UseErrorHandler(Env);
-            app.UseAuthentication();
-            app.UseMvc();
         }
 
         private static void SetupMediatR(IServiceCollection services)
@@ -177,66 +141,64 @@ namespace Fanex.Athena.AnalyticsAPI
             services.AddMediatR(assemblies.ToArray());
         }
 
-        private void SetupLogging(IServiceCollection services)
-        {
-            var loggingSetting = Configuration.GetSection("LoggingSetting").Get<LoggingSetting>();
-
-            var logEngines = new List<ILogEngine>(2);
-            if (loggingSetting.RabbitEngine != null)
-            {
-                logEngines.Add(new RabbitMQLogging(loggingSetting.RabbitEngine.ConnectionString));
-            }
-            if (loggingSetting.SentryEngine != null)
-            {
-                logEngines.Add(new SentryLogging(new SentryEngineOptions
-                {
-                    Dsn = new Dsn(loggingSetting.SentryEngine.BackendDsn)
-                }));
-            }
-
-            LogManager
-             .SetDefaultLogCategory(loggingSetting.Category)
-             .Use(logEngines);
-            services.AddSingleton(_ => Logger.Log);
-        }
-
         private void SetupSqlProvider()
         {
-            var connectionStrings = new Dictionary<string, ConnectionConfiguration>
-            {
-                {
-                    "DBEXT.bodb_dwrs.bodbLicenseeNet",
-                    new ConnectionConfiguration("DBEXT.bodb_dwrs.bodbLicenseeNet",
-                        Configuration.GetConnectionString("DBEXT.bodb_dwrs.bodbLicenseeNet"))
-                },
-                {
-                    "DBEXT.bodb02.bodbLicenseeNet",
-                    new ConnectionConfiguration("DBEXT.bodb02.bodbLicenseeNet",
-                        Configuration.GetConnectionString("DBEXT.bodb02.bodbLicenseeNet"))
-                },
-                {
-                    "DBACC.bodb02.bodbLicenseeNet",
-                    new ConnectionConfiguration("DBACC.bodb02.bodbLicenseeNet",
-                        Configuration.GetConnectionString("DBACC.bodb02.bodbLicenseeNet"))
-                },
-                {
-                    "DBLIC.bodb_Licensee.bodbLicenseeNet",
-                    new ConnectionConfiguration("DBLIC.bodb_Licensee.bodbLicenseeNet",
-                        Configuration.GetConnectionString("DBLIC.bodb_Licensee.bodbLicenseeNet"))
-                }
-            };
+            var listConnectionName = Configuration.GetSection("ConnectionStrings").GetChildren().Select(_ => _.Key);
+            var connectionStrings = new Dictionary<string, ConnectionConfiguration>(listConnectionName
+                .Select(connectionName => new KeyValuePair<string, ConnectionConfiguration>(connectionName,
+                    new ConnectionConfiguration(connectionName, Configuration.GetConnectionString(connectionName)))
+                ));
 
             DbSettingProviderManager
                 .StartNewSession()
-                .WithSqlServer(resourcePath: "~/SpConfig")
+                .WithSqlServer(resourcePath: "~/SpConfig/FanexSpName.xml")
                 .Use(connectionStrings)
                 .Run();
         }
 
-        private string GetOneBookSecurityConnection()
+        private static void ConfigRequestLocalization(IServiceCollection services)
         {
-            var encryptedConnectionString = Configuration.GetConnectionString("LAP.OneBookSecurity");
-            return Cryptography.DecryptConnectionString(encryptedConnectionString);
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                const string EnCultureName = "en-US";
+                var enCulture = new CultureInfo(EnCultureName)
+                {
+                    DateTimeFormat = new DateTimeFormatInfo
+                    {
+                        ShortDatePattern = "M/d/yyyy",
+                        ShortTimePattern = "h:mm tt",
+                        LongDatePattern = "MM/dd/yyyy",
+                        LongTimePattern = "h:mm:ss tt"
+                    }
+                };
+                var csCulture = new CultureInfo("zh-CN");
+
+                options.DefaultRequestCulture = new RequestCulture(EnCultureName);
+                options.SupportedCultures = new List<CultureInfo>
+                {
+                    enCulture
+                };
+                options.SupportedUICultures = new List<CultureInfo>
+                {
+                    enCulture,
+                    csCulture
+                };
+
+                var languageCodeMappers = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase)
+                {
+                    { "en", "en-US" },
+                    { "cs", "zh-CN" }
+                };
+
+                options.RequestCultureProviders = new List<IRequestCultureProvider>
+                {
+                    new CustomRequestCultureProvider(context =>
+                    {
+                        var culture = languageCodeMappers[context.User.FindFirst("Language")?.Value ?? "en"];
+                        return Task.FromResult(new ProviderCultureResult(culture: EnCultureName, uiCulture: culture));
+                    })
+                };
+            });
         }
     }
 }

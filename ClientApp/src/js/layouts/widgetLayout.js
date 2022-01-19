@@ -1,4 +1,4 @@
-import localStorageHelper from '../lib/localStorageHelper';
+import localStorageHelper from '../lib/LocalStorageHelper';
 
 export default class widgetLayout {
     static getWidgetStatusSettings(permissions = [], widgetKey) {

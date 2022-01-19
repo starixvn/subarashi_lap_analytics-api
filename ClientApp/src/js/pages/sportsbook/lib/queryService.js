@@ -21,6 +21,12 @@ export default class QueryService {
     return response;
   }
 
+  static async getDataByLeagueCricket(params, after) {
+    const response = await this.fetchData(params, apiUrl.byLeagueCricket, defaultResponseData);
+    after && after(response)
+    return response;
+  }
+
   static async getDataByBettypeSoccer(params, after) {
     const response = await this.fetchData(params, apiUrl.byBettypeSoccer, defaultResponseData);
     after && after(response)

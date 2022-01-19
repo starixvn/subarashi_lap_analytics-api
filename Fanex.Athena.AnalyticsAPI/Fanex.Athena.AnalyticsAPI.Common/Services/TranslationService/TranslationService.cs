@@ -50,7 +50,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
             {
                 var id = GetTranslationId(originalItem, type, attributeInfo);
                 var defaultValue = prop.GetValue(originalItem)?.ToString() ?? string.Empty;
-                translationType = translationType ?? attributeInfo.TranslationType;
+                translationType ??= attributeInfo.TranslationType;
 
                 var tranlatedValue = _langResourceService.GetName(translationType, id, defaultValue);
 

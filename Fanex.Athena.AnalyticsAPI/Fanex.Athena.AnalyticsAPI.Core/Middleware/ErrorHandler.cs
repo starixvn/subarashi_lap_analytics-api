@@ -1,8 +1,6 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Core.Helpers;
-using Fanex.Logging;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Net;
 using System.Threading.Tasks;
@@ -12,9 +10,9 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
     public class ErrorHandler
     {
         private readonly RequestDelegate _next;
-        private readonly ILogger _logger;
+        private readonly ILogger<ErrorHandler> _logger;
 
-        public ErrorHandler(RequestDelegate next, ILogger logger)
+        public ErrorHandler(RequestDelegate next, ILogger<ErrorHandler> logger)
         {
             _next = next;
             _logger = logger;
@@ -22,38 +20,21 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
 
         public async Task Invoke(HttpContext context)
         {
-            var error = context.Features[typeof(IExceptionHandlerFeature)] as IExceptionHandlerFeature;
-            if (error != null && error.Error != null)
+            try
             {
-                await HandleError(context, error.Error);
+                await _next.Invoke(context);
             }
-            else
+            catch (Exception exception)
             {
-                try
-                {
-                    await _next.Invoke(context);
-                }
-                catch (Exception exception)
-                {
-                    await HandleError(context, exception);
-                }
+                HandleError(context, exception);
             }
         }
 
-        private async Task HandleError(HttpContext context, Exception error)
+        private void HandleError(HttpContext context, Exception exception)
         {
-            var errorMsg = ErrorMessageHelper.GenerateMessage(context, error);
-            await _logger.ErrorAsync(errorMsg);
-
+            var errorMsg = ErrorMessageHelper.GenerateMessage(context, exception);
+            _logger.LogCritical(exception, errorMsg);
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            context.Response.ContentType = "application/json";
-
-            await context.Response.WriteAsync(JsonConvert.SerializeObject(new
-            {
-                state = "Internal Server Error",
-                msg = "Sorry, an error occurred while processing your request.",
-                isSuccess = false
-            }));
         }
     }
 }

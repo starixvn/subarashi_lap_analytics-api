@@ -1,39 +1,74 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Controllers;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Core.Services;
+﻿using Fanex.Athena.AnalyticsAPI.Configuration;
+using Fanex.Athena.AnalyticsAPI.Models;
+using IdentityModel.Client;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Primitives;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.Extensions.Options;
+using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Controllers
 {
     [ApiController]
-    public class AuthController : ControllerBaseCustom
-    {
-        private readonly IAuthService _authService;
-        private const string AUTHKEY = "X-Auth-Token";
+    public class AuthController : Controller
+    { 
+        private readonly IdentityServerConfig _identityServerConfig;
+        private readonly HttpClient _client;
 
-        public AuthController(IContextService contextService, IAuthService authService)
-            : base(contextService)
+        public AuthController(IOptionsSnapshot<IdentityServerConfig> identityServerConfig, HttpClient client)
         {
-            _authService = authService;
+            _identityServerConfig = identityServerConfig.Value;
+            _client = client; 
         }
 
         [HttpPost]
-        [Route("auth/token")]
-        public async Task<JsonResult> GetToken()
+        [Route("api/auth/token")]
+        [AllowAnonymous]
+        public async Task<IStatusCodeActionResult> Token([FromBody] LapTokenRequest request)
         {
-            if (HttpContext.Request.Headers.TryGetValue(AUTHKEY, out StringValues lapToken))
+            if(!ModelState.IsValid)
             {
-                var jwt = await _authService.Authenticate(lapToken[0]);
-                if (string.IsNullOrEmpty(jwt))
-                {
-                    _contextService.AddError("token is invalid");
-                }
-                return ToResult(new { token = jwt });
+                return BadRequest();
             }
-            _contextService.AddError("token is invalid");
-            return ToResult();
+
+            var tokenResponse = await RequestToken(request.Token);
+            return Json(new
+            {
+                IsSuccess = !tokenResponse.IsError,
+                Msg = tokenResponse.ErrorDescription,
+                AccessToken = tokenResponse.AccessToken
+            });
+        }
+
+        [HttpGet]
+        [Route("Auth/RedirectToLAP/{lapUrl}/{lapVer?}")]
+        [AllowAnonymous]
+        public ActionResult RedirectToLAP([FromRoute] string lapUrl, [FromRoute] string lapVer = "")
+        {
+            return Redirect(string.Format("http://{0}/{1}/12bet/Auth/Login?returnUrl=/Dashboard", lapUrl, lapVer));
+        }
+
+        private async Task<TokenResponse> RequestToken(string token)
+        {
+            using var request = new TokenRequest
+            {
+                Address = $"{_identityServerConfig.Host}/{_identityServerConfig.TokenEndpoint}",
+                ClientId = _identityServerConfig.CredentialClient.ClientId,
+                ClientSecret = _identityServerConfig.CredentialClient.ClientSecret,
+                GrantType = _identityServerConfig.GrantType,
+                Parameters = new Parameters(new Dictionary<string, string>
+                {
+                    { nameof(token), token },
+                    { "scope", _identityServerConfig.Scope },
+                    { "clien_ip", HttpContext.Connection.RemoteIpAddress.ToString() }
+                })
+            };
+
+            var tokenResponse = await _client.RequestTokenAsync(request);
+
+            return tokenResponse.Exception != null ? throw tokenResponse.Exception : tokenResponse;
         }
     }
 }

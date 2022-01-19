@@ -5,5 +5,6 @@
         public const int ALL = -1;
         public const int SOCCER = 1;
         public const int BASKETBALL = 2;
+        public const int CRICKET = 50;
     }
 }

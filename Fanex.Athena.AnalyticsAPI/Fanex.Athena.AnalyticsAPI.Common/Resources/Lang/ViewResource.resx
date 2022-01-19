@@ -408,4 +408,19 @@
   <data name="Product69" xml:space="preserve">
     <value>AdvantPlay Mini</value>
   </data>
+  <data name="league_53181" xml:space="preserve">
+    <value>Big Bash League</value>
+  </data>
+  <data name="league_53206" xml:space="preserve">
+    <value>Caribbean Premier League</value>
+  </data>
+  <data name="league_53284" xml:space="preserve">
+    <value>Indian Premier League</value>
+  </data>
+  <data name="league_62837" xml:space="preserve">
+    <value>Pakistan Super League</value>
+  </data>
+  <data name="league_96359" xml:space="preserve">
+    <value>Abu Dhabi T10 League</value>
+  </data>
 </root>

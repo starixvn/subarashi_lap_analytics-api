@@ -6,27 +6,29 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 
-const { environment, projectPath } = require("./utils/constant");
+const { environment } = require("./utils/constant");
 const entry = require("./utils/entry");
 const path = require('path');
 
 module.exports = env => {
-  env = environment[env] || environment.development;
-  const isDevBuild = !(env === environment.production);
+  const mode = environment[env.mode] || environment.development;
+  const isDevBuild = !(mode === environment.production);
+  const outputPath = env.output || '../../Fanex.Athena.AnalyticsAPI/Fanex.Athena.AnalyticsAPI/wwwroot';
   const sharedConfig = () => ({
-    mode: env,
+    mode,
     stats: { modules: false },
     resolve: {
       extensions: [".js", ".jsx"]
     },
     output: {
-      path: path.resolve(__dirname,'../../Fanex.Athena.AnalyticsAPI/Fanex.Athena.AnalyticsAPI/wwwroot'),
+      path: path.resolve(__dirname, outputPath),
       filename: "[name].js",
       chunkFilename: 'js/[name].[contenthash].chunk.js'
     },
     optimization: {
       splitChunks: {
         cacheGroups: {
+          default: false,
           vendor: {
             name: 'vendor',
             test: /[\\/]node_modules[\\/]/,
@@ -61,12 +63,6 @@ module.exports = env => {
 
   const clientBundleConfig = merge(sharedConfig(), {
     entry: entry,
-    devServer: isDevBuild ?  {
-      contentBase: projectPath.rootPath + '/build',
-      compress: true,
-      hot: true,
-      port: 8080
-    } : undefined,
     module: {
       rules: [{
         test: /\.s?[ac]ss$/,
@@ -92,7 +88,7 @@ module.exports = env => {
     plugins: [
       new webpack.DefinePlugin({
         'process.env': {
-          'NODE_ENV': JSON.stringify(env)
+          'NODE_ENV': JSON.stringify(mode)
       }}),
       new FixStyleOnlyEntriesPlugin(),
       new MiniCssExtractPlugin({
@@ -100,10 +96,11 @@ module.exports = env => {
         chunkFilename: 'css/[name].css',
       }),
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-      new BundleAnalyzerPlugin(),
       new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ["js/**/*.*", "css/**/*.*"] })
-    ].concat(isDevBuild ? [] : [new OptimizeCSSAssetsPlugin()]),
-    devtool: isDevBuild ? "source-map" : undefined
+    ].concat(isDevBuild ? [] : [new OptimizeCSSAssetsPlugin()])
+    .concat(env.disableAnalyzer ? [] : [new BundleAnalyzerPlugin()]),
+    devtool: isDevBuild ? "source-map" : undefined,
+    watch: isDevBuild
   });
 
   return [clientBundleConfig];

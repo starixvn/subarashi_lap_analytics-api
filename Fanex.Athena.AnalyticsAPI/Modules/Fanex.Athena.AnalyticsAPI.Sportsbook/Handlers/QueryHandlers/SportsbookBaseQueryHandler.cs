@@ -21,6 +21,7 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Handlers
             _sportsbookMapper = sportsbookMapper;
             _translationService = translationService;
         }
+
         protected virtual string TranslationType => TranslationConst.NormalType;
 
         protected async Task<IEnumerable<SportsbookDTO>> GetRawData(SportsbookBaseRequest request)

@@ -1,5 +1,4 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Summary.Helpers;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.ViewModels;
@@ -26,7 +25,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Services
         {
             const string spKey = "Lrf_GetLicenseeTurnoverByPlatform";
             const string columnName = "Turnover";
-            return await GetData(metaModel, spKey, columnName);
+            return await GetData(metaModel, spKey, columnName); 
         }
 
         public async Task<WidgetByPlatformViewModel> GetWinLoss(BaseSummaryMetaModel metaModel)
@@ -48,11 +47,11 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Services
             var param = new
             {
                 AgentList = metaModel.AgentListXml,
+                ProductList = metaModel.ProductCodeList,
                 metaModel.FromDate,
                 metaModel.ToDate,
                 metaModel.BaseCurrency,
-                balanceUp.MoveBetsDay,
-                metaModel.ProductList
+                balanceUp.MoveBetsDay
             };
             var readHandler = ReadHandler(columnName);
 

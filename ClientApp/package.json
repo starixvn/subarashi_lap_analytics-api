@@ -11,6 +11,7 @@
   "dependencies": {
     "@9softstudio/react-monthpicker": "^1.0.9",
     "@legion-lib/react-daterangepicker": "^1.0.0",
+    "async-lock": "^1.2.8",
     "axios": "^0.19.0",
     "chart.js": "^2.8.0",
     "react": "^16.8.6",
@@ -74,7 +75,7 @@
     "merge-stream": "^2.0.0",
     "mini-css-extract-plugin": "^0.8.0",
     "minimist": "^1.2.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.14.1",
     "npm": "^6.10.1",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "protractor": "^6.0.0",
@@ -90,7 +91,6 @@
     "webpack": "^4.37.0",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.10.3",
     "webpack-fix-style-only-entries": "^0.3.0",
     "webpack-merge": "^4.2.1"
   },
@@ -100,9 +100,8 @@
     "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update",
     "jest-install": "npm install jest-cli -g ",
-    "build_dev": "node node_modules/webpack/bin/webpack.js --config config/webpack.config.js --watch",
-    "build_pro": "node node_modules/webpack/bin/webpack.js --config config/webpack.config.js --env=production",
-    "start_dev": "webpack-dev-server --config config/webpack.config.js"
+    "build_dev": "node node_modules/webpack/bin/webpack.js --config config/webpack.config.js --env.mode=development",
+    "build_pro": "node node_modules/webpack/bin/webpack.js --config config/webpack.config.js --env.mode=production"
   },
   "jest": {
     "verbose": false

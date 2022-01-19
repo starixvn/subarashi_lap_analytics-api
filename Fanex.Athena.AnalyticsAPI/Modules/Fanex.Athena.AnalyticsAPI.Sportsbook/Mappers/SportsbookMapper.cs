@@ -1,5 +1,4 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Mappers;
-using Fanex.Athena.AnalyticsAPI.Common.Resources.Lang;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Models;
 using System;
@@ -32,16 +31,16 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers
                 fullItems.Where(_ => !excludedFromTopData.Contains(_.Id)).OrderByDescending(dimensionValueFunc).Take(NUMBER_OF_TOP) 
                 : fullItems.Where(x => onlySupportedData.ContainsKey(x.Id) && onlySupportedData[x.Id].Any(y => y == x.IsSaba));
 
-            var sumDimensionAll = fullItems.Sum(_ => Math.Abs(dimensionValueFunc(_)));
+            if (includeOther && ToOtherDTO(fullItems, topItems) is SportsbookDTO otherDto)
+            {
+                topItems = topItems.Append(otherDto);
+            }
+
+            var sumDimensionAll = topItems.Sum(_ => Math.Abs(dimensionValueFunc(_)));
 
             var result = topItems
                 .Select(_ => ToDimDistributionResponse(_, sumDimensionAll, dimensionValueFunc))
                 .ToList();
-
-            if (includeOther && ToDimDistributionOtherResponse(fullItems, topItems, sumDimensionAll, dimensionValueFunc) is DimDistributionResponse otherItem)
-            {
-                result.Add(otherItem);
-            }
 
             return result.OrderByDescending(_ => _.Distribution);
         }
@@ -61,10 +60,10 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers
             };
         }
 
-        private DimDistributionResponse ToDimDistributionOtherResponse(IEnumerable<SportsbookDTO> fullItems, IEnumerable<SportsbookDTO> topItems, double sumDim, Func<SportsbookDTO, double> valueFunc)
+        private SportsbookDTO ToOtherDTO(IEnumerable<SportsbookDTO> fullItems,  IEnumerable<SportsbookDTO> topItems)
         {
             var otherItems = fullItems.Except(topItems);
-            if (!otherItems.Any())
+            if(!otherItems.Any())
             {
                 return null;
             }
@@ -79,7 +78,7 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers
                 TurnoverNoDraw = sumTurnoverNoDrawOther
             };
 
-            return ToDimDistributionResponse(otherDto, sumDim, valueFunc);
+            return otherDto;
         }
 
         private static (double turnover, double winloss, double tunoverNoDraw) SumRawData(IEnumerable<SportsbookDTO> rawData)

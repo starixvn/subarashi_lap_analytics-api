@@ -2,6 +2,7 @@
 using Fanex.Athena.AnalyticsAPI.Common.Resources.Lang;
 using Fanex.RemotingRef;
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 
@@ -11,9 +12,9 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
     {
         private static readonly string[] EXCEPTION_BETTYPE_IDs = new[] { "0" };
         private static readonly string[] EXCEPTION_SPORT_IDs = new[] { "0" };
-        private static readonly string[] HARD_CODE_SPORT_IDS = new[] { "-2" }; 
+        private static readonly string[] HARD_CODE_SPORT_IDS = new[] { "-2" };
 
-        private static string LangCode => Thread.CurrentThread.CurrentCulture.Name;
+        private static string LangCode => CultureInfo.CurrentUICulture.Name;
 
         private readonly IRemotingRefService _remotingRefService;
 

@@ -2,7 +2,6 @@
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Core.Attributes;
 using Fanex.Athena.AnalyticsAPI.Core.Constants;
-using Fanex.Athena.AnalyticsAPI.Core.ONEBookAuth;
 using Fanex.Athena.AnalyticsAPI.Summary.Consts;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Summary.Services;
@@ -13,7 +12,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    [ONEBookAuthorize(Permissions = PermissionConst.SUMMARY_PENDING_FUND)]
+    [BearerAuthorize(Roles.SuperAdmin, Roles.SummaryPendingFunds)]
     public class PendingFundController : ControllerBaseCustom
     {
         private readonly ISingleValueService _singleValueService;

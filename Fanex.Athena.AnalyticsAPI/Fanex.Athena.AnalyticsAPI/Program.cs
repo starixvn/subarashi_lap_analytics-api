@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace Fanex.Athena.AnalyticsAPI
 {
@@ -8,19 +9,29 @@ namespace Fanex.Athena.AnalyticsAPI
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            CreateHost(args).Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-             WebHost.CreateDefaultBuilder(args)
-               .ConfigureAppConfiguration((builderContext, config) =>
-               {
-                   var env = builderContext.HostingEnvironment;
-                   config.SetBasePath(env.ContentRootPath);
-                   config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-                   config.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
-                   config.AddEnvironmentVariables();
-               })
-               .UseStartup<Startup>();
+        public static IHost CreateHost(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration((builderContext, config) =>
+            {
+                var env = builderContext.HostingEnvironment;
+                config.SetBasePath(env.ContentRootPath);
+                config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+                config.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
+                config.AddEnvironmentVariables();
+            })
+            .ConfigureLogging(logging =>
+            {
+                logging.ClearProviders();
+                logging.AddConsole();
+            })
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+                webBuilder.UseSentry();
+            })
+            .Build();
     }
 }

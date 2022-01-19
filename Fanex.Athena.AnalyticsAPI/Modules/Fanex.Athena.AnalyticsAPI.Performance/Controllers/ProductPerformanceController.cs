@@ -6,8 +6,8 @@ using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Core.Attributes;
 using Fanex.Athena.AnalyticsAPI.Core.Constants;
-using Fanex.Athena.AnalyticsAPI.Core.ONEBookAuth;
 using Fanex.Athena.AnalyticsAPI.Performance.Constants;
+using Fanex.Athena.AnalyticsAPI.Performance.Extensions;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Services;
@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 {
     [ApiController]
-    [ONEBookAuthorize(Permissions = PermissionConst.PERFORMANCE_TAB)]
+    [BearerAuthorize(Roles.SuperAdmin, Roles.PerformanceTab)]
     public class ProductPerformanceController : ControllerBaseCustom
     {
         private readonly IProductPerformanceService _productService;
@@ -77,7 +77,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [AutoBindingMetaModel(bindSiteName: true)]
         public async Task<JsonResult> GetCombineData([FromBody]ProductPerformanceFilterMetaModel filter)
         {
-            await BindTopDistributionsToFilterMetaModel(filter);
+            await filter.BindTopDistributionsToFilterMetaModel(_productService);
+
             _translationService.Translate(filter.TopDistributions, TranslationConst.ProductType);
 
             var isMargin = filter.Measurement.Id == MeasurementConst.MARGIN;
@@ -107,32 +108,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
                     MonthGrowth = new { }
                 }
             });
-        }
-
-        private async Task BindTopDistributionsToFilterMetaModel(PerformanceFilterMetaModel filter)
-        {
-            var topDistributions = await _productService.GetTopDistributions(filter);
-            filter.TopDistributions = topDistributions.Select(_ => new DistributionMetaModel
-            {
-                DisplayId = _.topDistributionId,
-                DisplayName = _.topDistributionName,
-                CurrentPeriodDistributions = new List<IdentityMetaModel> { new IdentityMetaModel { Id = _.topDistributionId, Name = _.topDistributionName } },
-                PreviousPeriodDistributions = new List<IdentityMetaModel> { new IdentityMetaModel { Id = _.topDistributionId, Name = _.topDistributionName } }
-            }).ToList();
-
-            var otherDistribution = filter.TopDistributions.FirstOrDefault(_ => _.DisplayId == ViewModelMapper.DISTRIBUTION_OTHERS_ID);
-
-            if (otherDistribution != null)
-            {
-                var dicTopDistributions = topDistributions.ToDictionary(_ => _.topDistributionId, _ => _);
-
-                var (prevPeriodData, currentPeriodData) = await _productService.GetDistributionRawData(filter);
-                var prevPeriodOthersData = prevPeriodData.Where(_ => !_.IsSum && !dicTopDistributions.ContainsKey(_.Id));
-                var currentPeriodOthersData = currentPeriodData.Where(_ => !_.IsSum && !dicTopDistributions.ContainsKey(_.Id));
-
-                otherDistribution.PreviousPeriodDistributions = prevPeriodOthersData.Any() ? prevPeriodOthersData?.Select(_ => new IdentityMetaModel { Id = _.Id, Name = _.Name }) : null;
-                otherDistribution.CurrentPeriodDistributions = currentPeriodOthersData.Select(_ => new IdentityMetaModel { Id = _.Id, Name = _.Name });
-            }
         }
     }
 }

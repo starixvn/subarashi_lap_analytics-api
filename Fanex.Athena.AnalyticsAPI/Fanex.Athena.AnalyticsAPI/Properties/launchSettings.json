@@ -10,7 +10,7 @@
     "Kestrel.Fanex.Athena.AnalyticsAPI": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "index.html",
+      "launchUrl": "Auth/RedirectToLAP/ha.nexdev.net:7611/LAP5",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
@@ -19,7 +19,7 @@
     "Docker.Fanex.Athena.AnalyticsAPI": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "index.html",
+      "launchUrl": "",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

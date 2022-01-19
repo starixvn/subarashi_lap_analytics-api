@@ -15,9 +15,14 @@ const LeagueTab = ({ globalFilter }) => {
   const [isBasketballLoading, setBasketballLoading] = useState(false);
   const [basketballData, setBasketballData] = useState(defaultResponseData);
 
+  const [isCricketLoading, setCricketLoading] = useState(false);
+  const [cricketData, setCricketData] = useState(defaultResponseData);
+
+
   useEffect(() => {
     globalFilter && getDataByLeagueSoccer();
     globalFilter && getDataByLeagueBasketball();
+    globalFilter && getDataByLeagueCricket();
   }, [globalFilter])
 
   const getDataByLeagueSoccer = () => {
@@ -36,6 +41,14 @@ const LeagueTab = ({ globalFilter }) => {
     })
   }
 
+  const getDataByLeagueCricket = () => {
+    setCricketLoading(true);
+    QueryService.getDataByLeagueCricket(globalFilter, response => {
+      setCricketLoading(false);
+      setCricketData(response)
+    })
+  }
+
   const _renderSoccerSection = () => {
     return (<Widget title={languageApi.getDefaultRes('soccer')} isLoading={isSoccerLoading}>
       <WidgetContent data={soccerData.byTurnover} chartTitle={languageApi.getDefaultRes('distribution_of_turnover')} dimension={dimension.league} measurement={measurement.turnover} />
@@ -50,11 +63,19 @@ const LeagueTab = ({ globalFilter }) => {
     </Widget>)
   }
 
+  const _renderCricketSection = () => {
+    return (<Widget title={languageApi.getDefaultRes('cricket')} isLoading={isCricketLoading}>
+      <WidgetContent data={cricketData.byTurnover} chartTitle={languageApi.getDefaultRes('distribution_of_turnover')} dimension={dimension.league} measurement={measurement.turnover} />
+      <WidgetContent data={cricketData.byWinloss} chartTitle={languageApi.getDefaultRes('distribution_of_winloss')} dimension={dimension.league} measurement={measurement.winloss} />
+    </Widget>)
+  }
+
   return (globalFilter &&
     <React.Fragment>
       <div className="child-tab by-league-tab" style={getScrollTabStyle()}>
         {_renderSoccerSection()}
         {_renderBasketballSection()}
+        {_renderCricketSection()}
       </div>
     </React.Fragment>
   );

@@ -174,14 +174,14 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
                 var othersData = await _performanceRepository.QueryMultipleAsync<PlatformMeasurementPeriodDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 
-                var prevPeriodOthersData = othersData.ElementAtOrDefault(0)?.FirstOrDefault() ?? CreationalHelper.Create<PlatformMeasurementPeriodDTO>();
+                var prevPeriodOthersData = othersData.ElementAt(0).FirstOrDefault() ?? CreationalHelper.Create<PlatformMeasurementPeriodDTO>();
                 prevPeriodOthersData.PlatformId = ViewModelMapper.DISTRIBUTION_OTHERS_ID;
 
-                var currentPeriodOthersData = othersData.ElementAtOrDefault(1)?.FirstOrDefault();
+                var currentPeriodOthersData = othersData.ElementAt(1).First();
                 currentPeriodOthersData.PlatformId = ViewModelMapper.DISTRIBUTION_OTHERS_ID;
 
-                prevPeriodData = prevPeriodOthersData != null ? prevPeriodData.Append(prevPeriodOthersData) : prevPeriodData;
-                currentPeriodData = currentPeriodOthersData != null ? currentPeriodData.Append(currentPeriodOthersData) : currentPeriodData;
+                prevPeriodData = prevPeriodData.Append(prevPeriodOthersData);
+                currentPeriodData = currentPeriodData.Append(currentPeriodOthersData);
             }
 
             return (prevPeriodData, currentPeriodData);
@@ -209,14 +209,14 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
                 var othersData = await _performanceRepository.QueryMultipleAsync<PlatformMeasurementComparisonDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 
-                var prevPeriodOthersData = othersData.ElementAtOrDefault(0)?.FirstOrDefault() ?? CreationalHelper.Create<PlatformMeasurementComparisonDTO>();
+                var prevPeriodOthersData = othersData.ElementAt(0).FirstOrDefault() ?? CreationalHelper.Create<PlatformMeasurementComparisonDTO>();
                 prevPeriodOthersData.PlatformId = ViewModelMapper.DISTRIBUTION_OTHERS_ID;
 
-                var currentPeriodOthersData = othersData.ElementAtOrDefault(1)?.FirstOrDefault();
+                var currentPeriodOthersData = othersData.ElementAt(1).First();
                 currentPeriodOthersData.PlatformId = ViewModelMapper.DISTRIBUTION_OTHERS_ID;
 
-                prevPeriodData = prevPeriodOthersData != null ? prevPeriodData.Append(prevPeriodOthersData) : prevPeriodData;
-                currentPeriodData = currentPeriodOthersData != null ? currentPeriodData.Append(currentPeriodOthersData) : currentPeriodData;
+                prevPeriodData = prevPeriodData.Append(prevPeriodOthersData);
+                currentPeriodData = currentPeriodData.Append(currentPeriodOthersData);
             }
 
             return (prevPeriodData, currentPeriodData);

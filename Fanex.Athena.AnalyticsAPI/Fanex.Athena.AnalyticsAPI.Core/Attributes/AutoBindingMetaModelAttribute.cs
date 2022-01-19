@@ -9,10 +9,10 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Attributes
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public sealed class AutoBindingMetaModelAttribute : TypeFilterAttribute
     {
-        public AutoBindingMetaModelAttribute(bool bindSiteName = false, bool bindAgent = false)
+        public AutoBindingMetaModelAttribute(bool bindSiteName = false, bool bindAgent = false, bool bindProductList = false)
             : base(typeof(AutoBindingMetaModelImplAttribute))
         {
-            Arguments = new[] { bindSiteName as object, bindAgent as object };
+            Arguments = new object[] { bindSiteName, bindAgent, bindProductList };
         }
     }
 
@@ -24,16 +24,19 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Attributes
 
         private readonly bool _bindSiteName;
         private readonly bool _bindAgent;
+        private readonly bool _bindProductList;
 
         public AutoBindingMetaModelImplAttribute(IAuthInfoService authInfoService, IMetaModelBindingService bindingService,
             bool bindSiteName,
-            bool bindAgent)
+            bool bindAgent,
+            bool bindProductList)
         {
             _authInfoService = authInfoService;
             _bindingService = bindingService;
 
             _bindSiteName = bindSiteName;
             _bindAgent = bindAgent;
+            _bindProductList = bindProductList;
         }
 
         public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
@@ -46,6 +49,11 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Attributes
             if (_bindAgent)
             {
                 _bindingService.BindAgentXml(context.ActionArguments, _authInfoService.CurrencyAgentList);
+            }
+
+            if(_bindProductList)
+            {
+                _bindingService.BindProductCodeList(context.ActionArguments, _authInfoService.OfferedSubProductList);
             }
 
             await next();

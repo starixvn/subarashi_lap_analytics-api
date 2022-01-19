@@ -108,6 +108,7 @@ export const en = {
     saba_soccer: 'Saba Soccer',
     basketball: 'Basketball',
     saba_basketball: 'Saba Basketball',
+    cricket: 'Cricket',
     winloss: 'Win Loss',
     report_by_turnover: 'Report By Turnover',
     report_by_winloss: 'Report By Win Loss',

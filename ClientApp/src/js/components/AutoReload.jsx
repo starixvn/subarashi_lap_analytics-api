@@ -1,5 +1,5 @@
 import React from 'react';
-import localStorageHelper from '../lib/localStorageHelper'
+import localStorageHelper from '../lib/LocalStorageHelper'
 
 export default class AutoReload extends React.Component {
     constructor(props) {
