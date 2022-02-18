@@ -8,15 +8,11 @@ namespace Fanex.Athena.AnalyticsAPI.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
-        private const int ThirtyMinutes = 60 * 30;
-
         [HttpGet]
         [Route("api/static")]
         [AllowAnonymous]
-        [ResponseCache(Duration = ThirtyMinutes, Location = ResponseCacheLocation.Client)]
+        [ResponseCache(Duration = 0, NoStore = true, Location = ResponseCacheLocation.None)]
         public StaticResourceConfig Static([FromServices] IOptions<StaticResourceConfig> config)
-        {
-            return config.Value;
-        }
+            => config.Value;
     }
 }
