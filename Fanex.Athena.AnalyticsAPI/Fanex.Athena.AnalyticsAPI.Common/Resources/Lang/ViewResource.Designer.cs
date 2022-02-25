@@ -763,7 +763,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RNG Casino.
+        ///   Looks up a localized string similar to Saba Casino.
         /// </summary>
         public static string product_7 {
             get {
