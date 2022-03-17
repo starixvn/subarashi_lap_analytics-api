@@ -646,6 +646,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Virtual Sports 3.
+        /// </summary>
+        public static string product_50 {
+            get {
+                return ResourceManager.GetString("product_50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to WM.
         /// </summary>
         public static string product_52 {
@@ -736,6 +745,24 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AdvantPlay.
+        /// </summary>
+        public static string product_68 {
+            get {
+                return ResourceManager.GetString("product_68", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AdvantPlay Mini.
+        /// </summary>
+        public static string product_69 {
+            get {
+                return ResourceManager.GetString("product_69", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RNG Casino.
         /// </summary>
         public static string product_7 {
@@ -759,24 +786,6 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         public static string product_9 {
             get {
                 return ResourceManager.GetString("product_9", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to AdvantPlay.
-        /// </summary>
-        public static string Product68 {
-            get {
-                return ResourceManager.GetString("Product68", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to AdvantPlay Mini.
-        /// </summary>
-        public static string Product69 {
-            get {
-                return ResourceManager.GetString("Product69", resourceCulture);
             }
         }
         
