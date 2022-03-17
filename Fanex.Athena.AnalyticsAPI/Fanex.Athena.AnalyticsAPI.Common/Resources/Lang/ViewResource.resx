@@ -402,10 +402,10 @@
   <data name="Product_63" xml:space="preserve">
     <value>CG</value>
   </data>
-  <data name="Product68" xml:space="preserve">
+  <data name="product_68" xml:space="preserve">
     <value>AdvantPlay</value>
   </data>
-  <data name="Product69" xml:space="preserve">
+  <data name="product_69" xml:space="preserve">
     <value>AdvantPlay Mini</value>
   </data>
   <data name="league_53181" xml:space="preserve">
@@ -422,5 +422,8 @@
   </data>
   <data name="league_96359" xml:space="preserve">
     <value>Abu Dhabi T10 League</value>
+  </data>
+  <data name="product_50" xml:space="preserve">
+    <value>Virtual Sports 3</value>
   </data>
 </root>
