@@ -57,9 +57,8 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
             services.AddSingleton(new UMClientConfiguration().Initialize(configuration));
             services.AddSingleton<IUMCacheService, UMCacheService>();
             services.AddSingleton<IUMRestClient, UMRestClient>();
-            services.AddSingleton<IHttpContextHelper, HttpContextHelper>();
+            services.AddSingleton<IHttpContextHelper, HttpContextNoneSessionHelper>();
             services.AddSingleton<IMaintenanceService, MaintenanceService>();
-            services.AddSession();
         }
 
         public static IApplicationBuilder UseErrorHandler(this IApplicationBuilder builder)
@@ -137,8 +136,25 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
         }
         public static void UseUnderMaintenance(this IApplicationBuilder app)
         {
-            app.UseSession();
             app.UseMiddleware<UnderMaintenanceHandler>();
+        }
+
+        internal class HttpContextNoneSessionHelper : IHttpContextHelper
+        {
+            private readonly IHttpContextAccessor httpContextAccessor;
+
+            public HttpContextNoneSessionHelper(IHttpContextAccessor httpContextAccessor)
+                => this.httpContextAccessor = httpContextAccessor;
+
+            public string GetSession(string key) => string.Empty;
+
+            public string GetValueFromQueryString(string queryKey)
+                => httpContextAccessor.HttpContext.Request.Query[queryKey].ToString();
+
+            public void SetSession(string key, string value)
+            {
+                //nothing 
+            }
         }
     }
 }
