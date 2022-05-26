@@ -68,6 +68,7 @@ namespace Fanex.Athena.AnalyticsAPI
                 options.KnownProxies.Clear();
             });
 
+            services.AddMemoryCache();
             services.AddDistributedMemoryCache();
             services.AddHttpContextAccessor();
             services.AddHealthChecks().AddCheck<WhoAmIHealthCheck>("WhoAmIHealthCheck");
@@ -100,10 +101,17 @@ namespace Fanex.Athena.AnalyticsAPI
             Summary.Extensions.DefendencyInjectionExtension.AddDISummary(services);
             Common.Extensions.DefendencyInjectionExtension.AddDICommon(services, Configuration);
             Core.Extensions.DefendencyInjectionExtension.AddDICore(services);
+
+            services.AddHttpsRedirection(options =>
+            {
+                const int httpsPort = 443;
+                options.HttpsPort = httpsPort;
+            });
         }
 
         public void Configure(IApplicationBuilder app)
         {
+            app.UseHealthCheck();
             app.UseForwardedHeaders();
 
             if (string.Equals(Configuration["UseErrorHandler"], "1"))
@@ -115,13 +123,14 @@ namespace Fanex.Athena.AnalyticsAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseWhoAmICheck();
+
             if (!HostingEnvironment.IsDevelopment())
             {
                 app.UseHsts();
                 app.UseHttpsRedirection();
             }
 
-            app.UseHealthCheck();
             app.UseStaticResource(HostingEnvironment.IsDevelopment());
             app.UseUnderMaintenance();
             app.UseRouting();

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -57,7 +58,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
             services.AddSingleton(new UMClientConfiguration().Initialize(configuration));
             services.AddSingleton<IUMCacheService, UMCacheService>();
             services.AddSingleton<IUMRestClient, UMRestClient>();
-            services.AddSingleton<IHttpContextHelper, HttpContextNoneSessionHelper>();
+            services.AddSingleton<IHttpContextHelper, ContextInMemoryHelper>();
             services.AddSingleton<IMaintenanceService, MaintenanceService>();
         }
 
@@ -88,19 +89,21 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
             return builder;
         }
 
-        public static IApplicationBuilder UseHealthCheck(this IApplicationBuilder builder)
+        public static void UseHealthCheck(this IApplicationBuilder app)
         {
-            builder.Use(async (context, next) =>
+            app.Use(async (context, next) =>
             {
-                if (context.Request.Path.StartsWithSegments("/ping"))
+                if (context.Request.Path.StartsWithSegments("/ping") || context.Request.Path.StartsWithSegments("/health"))
                 {
                     return;
                 }
                 await next();
             });
+        }
 
-
-            builder.UseHealthChecks("/health", new HealthCheckOptions
+        public static IApplicationBuilder UseWhoAmICheck(this IApplicationBuilder builder)
+        {
+            builder.UseHealthChecks("/whoami", new HealthCheckOptions
             {
                 AllowCachingResponses = false,
                 Predicate = _ => true,
@@ -139,22 +142,29 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
             app.UseMiddleware<UnderMaintenanceHandler>();
         }
 
-        internal class HttpContextNoneSessionHelper : IHttpContextHelper
+        internal class ContextInMemoryHelper : IHttpContextHelper
         {
+            private readonly TimeSpan ByPassUMCacheTime = TimeSpan.FromMinutes(30);
             private readonly IHttpContextAccessor httpContextAccessor;
+            private readonly IMemoryCache cache;
 
-            public HttpContextNoneSessionHelper(IHttpContextAccessor httpContextAccessor)
-                => this.httpContextAccessor = httpContextAccessor;
+            public ContextInMemoryHelper(IHttpContextAccessor httpContextAccessor, IMemoryCache cache)
+            {
+                this.httpContextAccessor = httpContextAccessor;
+                this.cache = cache;
+            }
 
-            public string GetSession(string key) => string.Empty;
+            public string GetSession(string key)
+                => cache.TryGetValue(BuildKey(key), out string value) ? value : string.Empty;
 
             public string GetValueFromQueryString(string queryKey)
-                => httpContextAccessor.HttpContext.Request.Query[queryKey].ToString();
+                => httpContextAccessor.HttpContext?.Request.Query[queryKey].ToString();
 
             public void SetSession(string key, string value)
-            {
-                //nothing 
-            }
+                => cache.Set(BuildKey(key), value, ByPassUMCacheTime);
+
+            private string BuildKey(string key)
+                => $"{key}:{httpContextAccessor.HttpContext?.Connection.RemoteIpAddress.ToString()}";
         }
     }
 }
