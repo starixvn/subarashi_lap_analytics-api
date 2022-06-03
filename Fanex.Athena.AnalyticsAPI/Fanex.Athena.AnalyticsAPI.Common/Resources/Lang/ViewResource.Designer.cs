@@ -799,6 +799,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MaxGame.
+        /// </summary>
+        public static string Product61 {
+            get {
+                return ResourceManager.GetString("Product61", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Saba .
         /// </summary>
         public static string Saba {
