@@ -11,5 +11,6 @@ const _currenyDisplayNameMapper = {
   '76': 'PS',
   '77': 'PTH',
   '92': 'HID',
-  '125': 'INH'
+  '125': 'INH',
+  '142': 'USDT'
 }
