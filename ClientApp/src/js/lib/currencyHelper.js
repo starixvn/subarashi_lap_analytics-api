@@ -12,5 +12,17 @@ const _currenyDisplayNameMapper = {
   '77': 'PTH',
   '92': 'HID',
   '125': 'INH',
-  '142': 'USDT'
-}
+  '137': 'DOGE',
+  '138': 'ELON',
+  '139': 'SHIB',
+  '142': 'USDT',
+  '143': 'USDC',
+  '146': 'ZEON',
+  '150': 'PEOPLE',
+  '153': 'LOOKS',
+  '154': 'XPRT',
+  '156': 'FLOW',
+  '157': 'SAND',
+  '158': 'AVAX',
+  '160': 'CAKE'
+};
