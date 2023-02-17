@@ -38,7 +38,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Consts
 
         public const int BetfromOthers = 88;
 
-        public static readonly IDictionary<int, string> MapPlatformKeys = new Dictionary<int, string>
+        public static readonly IReadOnlyDictionary<int, string> MapPlatformKeys = new Dictionary<int, string>
         {
             { All, nameof(All) },
             { DesktopNewAsia, nameof(DesktopNewAsia) },
