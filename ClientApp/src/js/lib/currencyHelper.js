@@ -11,6 +11,7 @@ const _currenyDisplayNameMapper = {
   '76': 'PS',
   '77': 'PTH',
   '92': 'HID',
+  '96': 'USDT',
   '125': 'INH',
   '137': 'DOGE',
   '138': 'ELON',
@@ -24,5 +25,6 @@ const _currenyDisplayNameMapper = {
   '156': 'FLOW',
   '157': 'SAND',
   '158': 'AVAX',
-  '160': 'CAKE'
+  '160': 'CAKE',
+  '202': 'USDTJP'
 };
