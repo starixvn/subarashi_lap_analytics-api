@@ -20,8 +20,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Helpers
 
             AddDatabaseInfo(messageBuilder, exception);
 
-            const int limitedNumOfInnerException = 3;
-            AddExceptionInfo(messageBuilder, exception, limitedNumOfInnerException);
+            AddExceptionInfo(messageBuilder, exception);
 
             return messageBuilder.ToString();
         }
@@ -52,19 +51,21 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Helpers
             }
         }
 
-        private static void AddExceptionInfo(StringBuilder builder, Exception exception, int limitedInnerException)
+        private static void AddExceptionInfo(StringBuilder builder, Exception exception)
         {
-            builder.AppendLine();
-            builder.AppendLine("EXCEPTION INFO");
-            builder.AppendLine($"Message: {exception.Message}");
-            builder.AppendLine($"Source: {exception.Source}");
-            builder.AppendLine($"TargetSite: {exception.TargetSite}");
-            builder.AppendLine($"StackTrace: {exception.StackTrace}");
-
-            if (exception.InnerException != null && limitedInnerException > 0)
+            int limitedNumOfInnerException = 3;
+            do
             {
-                AddExceptionInfo(builder, exception.InnerException, --limitedInnerException);
-            }
+                builder.AppendLine();
+                builder.AppendLine("EXCEPTION INFO");
+                builder.AppendLine($"Message: {exception.Message}");
+                builder.AppendLine($"Source: {exception.Source}");
+                builder.AppendLine($"TargetSite: {exception.TargetSite}");
+                builder.AppendLine($"StackTrace: {exception.StackTrace}");
+
+                exception = exception.InnerException;
+                limitedNumOfInnerException--;
+            } while (exception != null && limitedNumOfInnerException > 0);
         }
 
         private static IDictionary<string, object> GetDbExceptionInfo(Exception exception)

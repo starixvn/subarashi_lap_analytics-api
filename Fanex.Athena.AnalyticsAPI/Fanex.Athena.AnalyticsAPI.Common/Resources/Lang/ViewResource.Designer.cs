@@ -709,6 +709,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MaxGame.
+        /// </summary>
+        public static string Product_61 {
+            get {
+                return ResourceManager.GetString("Product_61", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Habanero.
         /// </summary>
         public static string product_62 {
@@ -781,6 +790,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Jili.
+        /// </summary>
+        public static string Product_76 {
+            get {
+                return ResourceManager.GetString("Product_76", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bingo.
         /// </summary>
         public static string product_8 {
@@ -795,15 +813,6 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         public static string product_9 {
             get {
                 return ResourceManager.GetString("product_9", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to MaxGame.
-        /// </summary>
-        public static string Product61 {
-            get {
-                return ResourceManager.GetString("Product61", resourceCulture);
             }
         }
         
