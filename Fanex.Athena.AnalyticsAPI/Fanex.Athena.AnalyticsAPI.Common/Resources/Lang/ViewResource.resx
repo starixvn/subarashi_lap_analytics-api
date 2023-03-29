@@ -246,17 +246,9 @@
     <value>AG Casino</value>
     <comment>AG Casino</comment>
   </data>
-  <data name="product_12" xml:space="preserve">
-    <value>Gold Deluxe</value>
-    <comment>Gold Deluxe</comment>
-  </data>
   <data name="product_13" xml:space="preserve">
     <value>Macau</value>
     <comment>Macau</comment>
-  </data>
-  <data name="product_16" xml:space="preserve">
-    <value>Colossus Bets</value>
-    <comment>Colossus Bets</comment>
   </data>
   <data name="product_20" xml:space="preserve">
     <value>Cock Fighting</value>
@@ -273,10 +265,6 @@
   <data name="product_24" xml:space="preserve">
     <value>Number Game 2</value>
     <comment>Number Game 2</comment>
-  </data>
-  <data name="product_25" xml:space="preserve">
-    <value>Fishing World</value>
-    <comment>Fishing World</comment>
   </data>
   <data name="product_26" xml:space="preserve">
     <value>Cash Out</value>
@@ -357,10 +345,6 @@
   <data name="product_6" xml:space="preserve">
     <value>Virtual Sports</value>
     <comment>Virtual Sports</comment>
-  </data>
-  <data name="product_60" xml:space="preserve">
-    <value>GDG</value>
-    <comment>GDG</comment>
   </data>
   <data name="product_64" xml:space="preserve">
     <value>Sports Lottery</value>

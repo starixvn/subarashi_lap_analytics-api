@@ -19,7 +19,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ViewResource {
@@ -421,29 +421,11 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gold Deluxe.
-        /// </summary>
-        public static string product_12 {
-            get {
-                return ResourceManager.GetString("product_12", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Macau.
         /// </summary>
         public static string product_13 {
             get {
                 return ResourceManager.GetString("product_13", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Colossus Bets.
-        /// </summary>
-        public static string product_16 {
-            get {
-                return ResourceManager.GetString("product_16", resourceCulture);
             }
         }
         
@@ -480,15 +462,6 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         public static string product_24 {
             get {
                 return ResourceManager.GetString("product_24", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Fishing World.
-        /// </summary>
-        public static string product_25 {
-            get {
-                return ResourceManager.GetString("product_25", resourceCulture);
             }
         }
         
@@ -696,15 +669,6 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         public static string product_6 {
             get {
                 return ResourceManager.GetString("product_6", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to GDG.
-        /// </summary>
-        public static string product_60 {
-            get {
-                return ResourceManager.GetString("product_60", resourceCulture);
             }
         }
         
