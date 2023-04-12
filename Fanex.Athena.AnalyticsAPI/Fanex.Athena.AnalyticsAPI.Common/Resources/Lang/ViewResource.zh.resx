@@ -249,17 +249,9 @@
     <value>AG Casino</value>
     <comment>AG Casino</comment>
   </data>
-  <data name="product_12" xml:space="preserve">
-    <value>GD真人娱乐场</value>
-    <comment>Gold Deluxe</comment>
-  </data>
   <data name="product_13" xml:space="preserve">
     <value>Macau</value>
     <comment>Macau</comment>
-  </data>
-  <data name="product_16" xml:space="preserve">
-    <value>Colossus Bets</value>
-    <comment>Colossus Bets</comment>
   </data>
   <data name="product_20" xml:space="preserve">
     <value>Cock Fighting</value>
@@ -276,10 +268,6 @@
   <data name="product_24" xml:space="preserve">
     <value>百练赛 2</value>
     <comment>Number Game 2</comment>
-  </data>
-  <data name="product_25" xml:space="preserve">
-    <value>GG捕鱼</value>
-    <comment>Fishing World</comment>
   </data>
   <data name="product_26" xml:space="preserve">
     <value>即时兑现</value>
@@ -360,10 +348,6 @@
   <data name="product_6" xml:space="preserve">
     <value>虚拟运动</value>
     <comment>Virtual Sports</comment>
-  </data>
-  <data name="product_60" xml:space="preserve">
-    <value>金大门</value>
-    <comment>GDG</comment>
   </data>
   <data name="product_64" xml:space="preserve">
     <value>体育时时彩</value>
