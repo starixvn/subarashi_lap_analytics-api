@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Modules\Fanex.Athena.AnalyticsAPI.Performance\Fanex.Athena.AnalyticsAPI.Performance.csproj" />
+    <ProjectReference Include="..\..\..\Modules\Fanex.Athena.AnalyticsAPI.Sportsbook\Fanex.Athena.AnalyticsAPI.Sportsbook.csproj" />
   </ItemGroup>
 
 </Project>
