@@ -763,6 +763,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to YeeBet.
+        /// </summary>
+        public static string Product_77 {
+            get {
+                return ResourceManager.GetString("Product_77", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bingo.
         /// </summary>
         public static string product_8 {
