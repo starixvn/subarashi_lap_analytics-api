@@ -12,7 +12,7 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Constants
             { 2, new [] { false, true } }, //Basketball, Saba Basketball
             { 50, new [] { false } }, //Cricket
             { 43, new [] { false, true } }, //E-Sports
-            { 5, new [] { false } }, //Tennis
+            { 5, new [] { false, true } }, //Tennis, Saba Tennis
             { -2, new [] { false } } //Parlay
         };
 
