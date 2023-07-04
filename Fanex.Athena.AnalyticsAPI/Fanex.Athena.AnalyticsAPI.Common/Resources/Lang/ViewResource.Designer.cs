@@ -675,9 +675,9 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to MaxGame.
         /// </summary>
-        public static string Product_61 {
+        public static string product_61 {
             get {
-                return ResourceManager.GetString("Product_61", resourceCulture);
+                return ResourceManager.GetString("product_61", resourceCulture);
             }
         }
         
@@ -693,9 +693,9 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to CG.
         /// </summary>
-        public static string Product_63 {
+        public static string product_63 {
             get {
-                return ResourceManager.GetString("Product_63", resourceCulture);
+                return ResourceManager.GetString("product_63", resourceCulture);
             }
         }
         
@@ -754,20 +754,29 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MG-RNG.
+        /// </summary>
+        public static string product_74 {
+            get {
+                return ResourceManager.GetString("product_74", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Jili.
         /// </summary>
-        public static string Product_76 {
+        public static string product_76 {
             get {
-                return ResourceManager.GetString("Product_76", resourceCulture);
+                return ResourceManager.GetString("product_76", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to YeeBet.
         /// </summary>
-        public static string Product_77 {
+        public static string product_77 {
             get {
-                return ResourceManager.GetString("Product_77", resourceCulture);
+                return ResourceManager.GetString("product_77", resourceCulture);
             }
         }
         

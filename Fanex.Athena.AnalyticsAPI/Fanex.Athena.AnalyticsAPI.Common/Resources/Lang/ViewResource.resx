@@ -383,7 +383,7 @@
   <data name="product_67" xml:space="preserve">
     <value>Vgaming</value>
   </data>
-  <data name="Product_63" xml:space="preserve">
+  <data name="product_63" xml:space="preserve">
     <value>CG</value>
   </data>
   <data name="product_68" xml:space="preserve">
@@ -413,13 +413,16 @@
   <data name="product_71" xml:space="preserve">
     <value>FGG</value>
   </data>
-  <data name="Product_61" xml:space="preserve">
+  <data name="product_61" xml:space="preserve">
     <value>MaxGame</value>
   </data>
-  <data name="Product_76" xml:space="preserve">
+  <data name="product_76" xml:space="preserve">
     <value>Jili</value>
   </data>
-  <data name="Product_77" xml:space="preserve">
+  <data name="product_77" xml:space="preserve">
     <value>YeeBet</value>
+  </data>
+  <data name="product_74" xml:space="preserve">
+    <value>MG-RNG</value>
   </data>
 </root>
