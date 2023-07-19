@@ -12,7 +12,8 @@ const sportOrder = {
     [true]: 80 //Saba E-Sports
   },
   [5]: {
-    [false]: 30 //Tennis
+    [false]: 30, //Tennis
+    [true]: 90 //Saba Tennis
   },
   [50]: {
     [false]: 40 //Cricket
@@ -21,7 +22,7 @@ const sportOrder = {
     [false]: 50 //Parlay
   },
   [0]: {
-    [false]: 90 //Others
+    [false]: 900 //Others
   }
 }
 
