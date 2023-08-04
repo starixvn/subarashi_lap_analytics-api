@@ -411,7 +411,7 @@
     <value>阿布扎比T10联赛</value>
   </data>
   <data name="product_50" xml:space="preserve">
-    <value>Virtual Sports 3</value>
+    <value>Virtual Sports 3 (Old)</value>
   </data>
   <data name="Product_76" xml:space="preserve">
     <value>吉利电子</value>
@@ -429,5 +429,8 @@
   <data name="platform_20" xml:space="preserve">
     <value>聊天室</value>
     <comment>Chat Room</comment>
+  </data>
+  <data name="product_78" xml:space="preserve">
+    <value>虚拟运动3</value>
   </data>
 </root>
