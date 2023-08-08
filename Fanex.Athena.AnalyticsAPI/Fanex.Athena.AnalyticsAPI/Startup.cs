@@ -196,7 +196,8 @@ namespace Fanex.Athena.AnalyticsAPI
                 var languageCodeMappers = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase)
                 {
                     { "en", "en-US" },
-                    { "cs", "zh-CN" }
+                    { "cs", "zh-CN" },
+                    { "vn", "vi-VN" }
                 };
 
                 options.RequestCultureProviders = new List<IRequestCultureProvider>
