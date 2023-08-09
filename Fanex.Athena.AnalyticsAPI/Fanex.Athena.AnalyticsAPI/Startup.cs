@@ -203,7 +203,8 @@ namespace Fanex.Athena.AnalyticsAPI
                 {
                     new CustomRequestCultureProvider(context =>
                     {
-                        var culture = languageCodeMappers[context.User.FindFirst("Language")?.Value ?? "en"];
+                        var langCode = context.User.FindFirst("Language")?.Value ?? "en";
+                        var culture = languageCodeMappers.GetValueOrDefault(langCode, "en-US");
                         return Task.FromResult(new ProviderCultureResult(culture: EnCultureName, uiCulture: culture));
                     })
                 };
