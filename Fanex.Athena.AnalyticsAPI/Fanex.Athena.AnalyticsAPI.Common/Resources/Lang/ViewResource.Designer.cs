@@ -277,7 +277,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mobile Euro.
+        ///   Looks up a localized string similar to Mobile Galaxy.
         /// </summary>
         public static string platform_15 {
             get {
@@ -313,11 +313,29 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Desktop Galaxy.
+        /// </summary>
+        public static string platform_19 {
+            get {
+                return ResourceManager.GetString("platform_19", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Desktop China.
         /// </summary>
         public static string platform_2 {
             get {
                 return ResourceManager.GetString("platform_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chat Room.
+        /// </summary>
+        public static string platform_20 {
+            get {
+                return ResourceManager.GetString("platform_20", resourceCulture);
             }
         }
         

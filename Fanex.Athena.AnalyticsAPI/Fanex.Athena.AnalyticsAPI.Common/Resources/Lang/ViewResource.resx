@@ -186,8 +186,8 @@
     <comment>E-Sports App</comment>
   </data>
   <data name="platform_15" xml:space="preserve">
-    <value>Mobile Euro</value>
-    <comment>Mobile Euro</comment>
+    <value>Mobile Galaxy</value>
+    <comment># 191840</comment>
   </data>
   <data name="platform_16" xml:space="preserve">
     <value>Desktop Others</value>
@@ -424,5 +424,11 @@
   </data>
   <data name="product_74" xml:space="preserve">
     <value>MG-RNG</value>
+  </data>
+  <data name="platform_19" xml:space="preserve">
+    <value>Desktop Galaxy</value>
+  </data>
+  <data name="platform_20" xml:space="preserve">
+    <value>Chat Room</value>
   </data>
 </root>
