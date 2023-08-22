@@ -12,9 +12,11 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Consts
 
         public const int DesktopOthers = 3;
 
+        public const int DesktopGalaxy = 17;
+
         public const int MobileStandard = 4;
 
-        public const int MobileEuro = 5;
+        public const int MobileGalaxy = 5;
 
         public const int MobileCompact = 6;
 
@@ -36,6 +38,8 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Consts
 
         public const int WAP = 15;
 
+        public const int ChatRoom = 16;
+
         public const int BetfromOthers = 88;
 
         public static readonly IReadOnlyDictionary<int, string> MapPlatformKeys = new Dictionary<int, string>
@@ -44,8 +48,9 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Consts
             { DesktopNewAsia, nameof(DesktopNewAsia) },
             { DesktopChina, nameof(DesktopChina) },
             { DesktopOthers, nameof(DesktopOthers) },
+            { DesktopGalaxy, nameof(DesktopGalaxy) },
             { MobileStandard, nameof(MobileStandard) },
-            { MobileEuro, nameof(MobileEuro) },
+            { MobileGalaxy, nameof(MobileGalaxy) },
             { MobileCompact, nameof(MobileCompact) },
             { MobileOthers, nameof(MobileOthers) },
             { ESportsDesktop, nameof(ESportsDesktop) },
@@ -56,6 +61,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Consts
             { Tablet, nameof(Tablet) },
             { DeepLink, nameof(DeepLink) },
             { WAP, nameof(WAP) },
+            { ChatRoom, nameof(ChatRoom) },
             { BetfromOthers, nameof(BetfromOthers) }
         };
     }

@@ -186,8 +186,8 @@
     <comment>E-Sports App</comment>
   </data>
   <data name="platform_15" xml:space="preserve">
-    <value>手机欧洲版</value>
-    <comment>Mobile Euro</comment>
+    <value>手机银河版</value>
+    <comment>Mobile Galaxy</comment>
   </data>
   <data name="platform_16" xml:space="preserve">
     <value>桌机其他</value>
@@ -421,5 +421,13 @@
   </data>
   <data name="product_74" xml:space="preserve">
     <value>MG-RNG</value>
+  </data>
+  <data name="platform_19" xml:space="preserve">
+    <value>桌机银河版</value>
+    <comment>Desktop Galaxy</comment>
+  </data>
+  <data name="platform_20" xml:space="preserve">
+    <value>聊天室</value>
+    <comment>Chat Room</comment>
   </data>
 </root>
