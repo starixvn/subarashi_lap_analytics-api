@@ -45,7 +45,7 @@ export const cs = {
   DeepLink: "深度链结",
   BetfromOthers: "其他",
   NativeApp: "原生 APP",
-  MobileGalaxy: "手机银河版",
+  MobileGalaxy: "手机欧洲版",
   ESportsDesktop: '电子竞技 桌机',
   ESportsMobile: '电子竞技 手机',
   ESportsApp: '电子竞技 APP',

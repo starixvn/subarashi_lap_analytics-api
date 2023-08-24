@@ -45,7 +45,7 @@ export const en = {
     DeepLink: "Deep Link",
     BetfromOthers: "Others",
     NativeApp: "Native APP",
-    MobileGalaxy: "Mobile Galaxy",
+    MobileGalaxy: "Mobile Euro",
     ESportsDesktop: 'E-Sports Desktop',
     ESportsMobile: 'E-Sports Mobile',
     ESportsApp: 'E-Sports APP',

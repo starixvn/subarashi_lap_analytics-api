@@ -277,7 +277,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mobile Galaxy.
+        ///   Looks up a localized string similar to Mobile Euro.
         /// </summary>
         public static string platform_15 {
             get {
