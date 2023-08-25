@@ -14,6 +14,11 @@ export const langCodes = {
   vietnamese: 'vn'
 }
 
+export const isSpacesBetweenWordsLanguage = (lang) =>{
+  return (lang === langCodes.english)
+  || (lang===langCodes.vietnamese);
+}
+
 export const tabMenuKey = {
     summary: 'summary',
     performance: 'performance',

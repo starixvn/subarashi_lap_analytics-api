@@ -13,7 +13,7 @@ import { setAnalyticData } from '../../actions/analyticDataAction';
 import { defaultData, MEASUREMENT_ID} from '../../lib/constants';
 import numberFormat from '../../../../lib/numberFormat';
 import languageApi from '../../../../lib/languageApi';
-import { dashboardLangCode, langCodes } from '../../../../lib/constants';
+import { dashboardLangCode, isSpacesBetweenWordsLanguage } from '../../../../lib/constants';
 import withGA from '../../../../components/HOC/WithGA';
 
 class OverviewTab extends Component {
@@ -98,7 +98,7 @@ class OverviewTab extends Component {
       }
     }];
 
-    const title =  `${measurement.name}${dashboardLangCode !== langCodes.english ? '' : ' '}${languageApi.getDefaultRes('comparison')}${isPeriodGrowthDataType ? '' : ' - ' + selectedDrillDownColumnName}`;
+    const title =  `${measurement.name}${isSpacesBetweenWordsLanguage(dashboardLangCode) ? ' ' : ''}${languageApi.getDefaultRes('comparison')}${isPeriodGrowthDataType ? '' : ' - ' + selectedDrillDownColumnName}`;
     const leftAxisName = `${measurement.name} ${measurementId === MEASUREMENT_ID.MARGIN ? '(%)' : ''}`;
 
     return <GrowthChart
