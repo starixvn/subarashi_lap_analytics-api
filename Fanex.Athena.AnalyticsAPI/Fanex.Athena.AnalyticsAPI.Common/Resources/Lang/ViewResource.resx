@@ -186,8 +186,8 @@
     <comment>E-Sports App</comment>
   </data>
   <data name="platform_15" xml:space="preserve">
-    <value>Mobile Galaxy</value>
-    <comment># 191840</comment>
+    <value>Mobile Euro</value>
+    <comment>revert</comment>
   </data>
   <data name="platform_16" xml:space="preserve">
     <value>Desktop Others</value>
