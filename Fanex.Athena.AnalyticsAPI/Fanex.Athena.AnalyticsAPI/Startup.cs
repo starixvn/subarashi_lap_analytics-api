@@ -1,4 +1,9 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
 using Fanex.Athena.AnalyticsAPI.Configuration;
 using Fanex.Athena.AnalyticsAPI.Controllers;
 using Fanex.Athena.AnalyticsAPI.Core.Extensions;
@@ -18,11 +23,6 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI
 {
@@ -180,7 +180,6 @@ namespace Fanex.Athena.AnalyticsAPI
                         LongTimePattern = "h:mm:ss tt"
                     }
                 };
-                var csCulture = new CultureInfo("zh-CN");
 
                 options.DefaultRequestCulture = new RequestCulture(EnCultureName);
                 options.SupportedCultures = new List<CultureInfo>
@@ -190,13 +189,15 @@ namespace Fanex.Athena.AnalyticsAPI
                 options.SupportedUICultures = new List<CultureInfo>
                 {
                     enCulture,
-                    csCulture
+                    new CultureInfo("zh-CN"),
+                    new CultureInfo("vi-VN")
                 };
 
                 var languageCodeMappers = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase)
                 {
                     { "en", "en-US" },
-                    { "cs", "zh-CN" }
+                    { "cs", "zh-CN" },
+                    { "vn", "vi-VN" }
                 };
 
                 options.RequestCultureProviders = new List<IRequestCultureProvider>

@@ -8,7 +8,7 @@ import ComparisonTable from '../components/normal/ComparisonTable';
 import GrowthChart from '../components/charts/GrowthChart';
 import { generalService } from '../lib/service';
 import languageApi from '../../../lib/languageApi';
-import { dashboardLangCode, langCodes } from '../../../lib/constants';
+import { dashboardLangCode, isSpacesBetweenWordsLanguage } from '../../../lib/constants';
 import { tabMenuKey } from '../../performance/lib/constants';
 import { ChartMode } from '../enums/enum';
 
@@ -39,9 +39,9 @@ export default class PerformanceChildTab extends PureComponent {
   getTitle = (chartMode, measurementId) => {
       const measurement = generalService.getMeasurementNameById(measurementId) || {};
       if (this.tabKey === tabMenuKey.bettype && chartMode === ChartMode.PIE_CHART) {
-        return `${measurement.name}${dashboardLangCode !== langCodes.english ? '' : ' '}${languageApi.getDefaultRes('distribution_chart_title_bettype_top5')}`
+        return `${measurement.name}${isSpacesBetweenWordsLanguage(dashboardLangCode) ? ' ' : ''}${languageApi.getDefaultRes('distribution_chart_title_bettype_top5')}`
       }
-      return `${measurement.name}${dashboardLangCode !== langCodes.english ? '' : ' '}${this.titleDistributionChart}`;
+      return `${measurement.name}${isSpacesBetweenWordsLanguage(dashboardLangCode) ? ' ' : ''}${this.titleDistributionChart}`;
   }
 
   renderDistributionChart() {
@@ -96,9 +96,8 @@ export default class PerformanceChildTab extends PureComponent {
       dataSet: growthChartData.map(_ => _.growthPercent)
     };
     const barChartData = this._getBarChartData(growthChartData, measurement, displayNameMapper);
-    const labels = isPeriodGrowthDataType ? growthChartData.map(_ => displayNameMapper ? displayNameMapper(_) : _.name)
-                 :  growthChartData.map(_ => _.name);
-    const title = `${measurement.name}${dashboardLangCode !== langCodes.english ? '' : ' '}${languageApi.getDefaultRes('comparison')}${isPeriodGrowthDataType ? '' :
+    const labels = isPeriodGrowthDataType ? growthChartData.map(_ => displayNameMapper ? displayNameMapper(_) : _.name) :  growthChartData.map(_ => _.name);
+    const title = `${measurement.name}${isSpacesBetweenWordsLanguage(dashboardLangCode) ? ' ' : ''}${languageApi.getDefaultRes('comparison')}${isPeriodGrowthDataType ? '' :
       ` - ${selectedColumnDrillDown.name} - ${growthChartConsts[selectedColumnDrillDown.datasetIndex].periodName}`}`;
     const leftAxisName = `${measurement.name} ${measurementId === MEASUREMENT_ID.MARGIN ? '(%)' : ''}`;
     const autoScale = this.isAutoScaleGrowthChart;

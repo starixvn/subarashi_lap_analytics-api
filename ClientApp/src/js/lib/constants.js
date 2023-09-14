@@ -10,7 +10,13 @@ export const dashboardLangCode = window.dashboardLangCode || 'en';
 
 export const langCodes = {
   english: 'en',
-  simplifiedChinese: 'cs'
+  simplifiedChinese: 'cs',
+  vietnamese: 'vn'
+}
+
+export const isSpacesBetweenWordsLanguage = (lang) =>{
+  return (lang === langCodes.english)
+  || (lang===langCodes.vietnamese);
 }
 
 export const tabMenuKey = {
