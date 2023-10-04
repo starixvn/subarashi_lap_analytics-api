@@ -26,5 +26,7 @@ const _currenyDisplayNameMapper = {
   '157': 'SAND',
   '158': 'AVAX',
   '160': 'CAKE',
-  '202': 'USDTJP'
+  '202': 'USDTJP',
+  '208': 'USDKH',
+  '209': 'MP'
 };
