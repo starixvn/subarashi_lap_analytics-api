@@ -9,7 +9,8 @@ export default class numberFormat {
             "THB": "฿",
             "IDR": "Rp",
             "BDT": "৳",
-            "INR": "₹"
+            "INR": "₹",
+            "PHP": "₱",
         }
         currency = currencies[currency] ? currencies[currency] : ''
 
