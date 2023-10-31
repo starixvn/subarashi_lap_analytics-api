@@ -146,7 +146,7 @@ export default class LicenseeWinLoss extends React.Component {
                 title={languageApi.getRes(this.props.langCode, "licensee_winloss_month_todate")} widgetKey={widgetKey.ChartLicenseeWL}
                 widgetName="licenseewl default" isLoading={this.state.isLoading}>
                 <Bar data={this.state.data} options={this.options} />
-                <div className="footer-total">
+                <div className="footer-total" style={{fontFamily: `"Helvetica Neue", Helvetica, Arial, sans-serif`}}>
                     <span>
                         {languageApi.getRes(this.props.langCode, "total_winloss")}: {numberFormat.formatCurrency(this.state.total, this.props.filter.baseCurrency)}
                     </span>
