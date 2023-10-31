@@ -187,7 +187,7 @@
   </data>
   <data name="platform_15" xml:space="preserve">
     <value>Mobile Euro</value>
-    <comment>revert</comment>
+    <comment>Mobile Euro</comment>
   </data>
   <data name="platform_16" xml:space="preserve">
     <value>Desktop Others</value>
@@ -433,5 +433,9 @@
   </data>
   <data name="product_78" xml:space="preserve">
     <value>Virtual Sports 3</value>
+  </data>
+  <data name="platform_21" xml:space="preserve">
+    <value>Mobile Galaxy</value>
+    <comment>Mobile Galaxy</comment>
   </data>
 </root>

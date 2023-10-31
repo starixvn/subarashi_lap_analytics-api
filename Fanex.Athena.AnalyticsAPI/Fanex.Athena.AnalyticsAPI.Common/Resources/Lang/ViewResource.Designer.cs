@@ -340,6 +340,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mobile Galaxy.
+        /// </summary>
+        public static string platform_21 {
+            get {
+                return ResourceManager.GetString("platform_21", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deep Link.
         /// </summary>
         public static string platform_3 {
