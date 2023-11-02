@@ -408,7 +408,7 @@
     <value>Abu Dhabi T10 League</value>
   </data>
   <data name="product_50" xml:space="preserve">
-    <value>Virtual Sports 3</value>
+    <value>Virtual Sports 3 (Old)</value>
   </data>
   <data name="product_71" xml:space="preserve">
     <value>FGG</value>
@@ -430,5 +430,8 @@
   </data>
   <data name="platform_20" xml:space="preserve">
     <value>Chat Room</value>
+  </data>
+  <data name="product_78" xml:space="preserve">
+    <value>Virtual Sports 3</value>
   </data>
 </root>

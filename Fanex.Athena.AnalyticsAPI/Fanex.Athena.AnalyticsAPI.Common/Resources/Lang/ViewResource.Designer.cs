@@ -637,7 +637,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Virtual Sports 3.
+        ///   Looks up a localized string similar to Virtual Sports 3 (Old).
         /// </summary>
         public static string product_50 {
             get {
@@ -795,6 +795,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         public static string product_77 {
             get {
                 return ResourceManager.GetString("product_77", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Virtual Sports 3.
+        /// </summary>
+        public static string product_78 {
+            get {
+                return ResourceManager.GetString("product_78", resourceCulture);
             }
         }
         
