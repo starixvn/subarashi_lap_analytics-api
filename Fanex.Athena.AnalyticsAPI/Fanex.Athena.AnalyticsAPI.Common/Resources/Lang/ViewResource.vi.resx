@@ -238,7 +238,7 @@
     <value>Sportsbook</value>
   </data>
   <data name="product_10" xml:space="preserve">
-    <value>Playtech Casino </value>
+    <value>Playtech Casino</value>
   </data>
   <data name="product_11" xml:space="preserve">
     <value>AG Casino</value>
@@ -380,5 +380,8 @@
   </data>
   <data name="sport_0" xml:space="preserve">
     <value>Khác</value>
+  </data>
+  <data name="platform_21" xml:space="preserve">
+    <value>Mobile Galaxy</value>
   </data>
 </root>
