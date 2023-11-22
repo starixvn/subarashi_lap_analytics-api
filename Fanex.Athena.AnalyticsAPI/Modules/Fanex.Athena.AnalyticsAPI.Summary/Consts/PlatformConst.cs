@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Fanex.Athena.AnalyticsAPI.Summary.Consts
+﻿namespace Fanex.Athena.AnalyticsAPI.Summary.Consts
 {
     public static class PlatformConst
     {
@@ -12,11 +10,9 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Consts
 
         public const int DesktopOthers = 3;
 
-        public const int DesktopGalaxy = 17;
-
         public const int MobileStandard = 4;
 
-        public const int MobileGalaxy = 5;
+        public const int MobileEuro = 5;
 
         public const int MobileCompact = 6;
 
@@ -40,29 +36,17 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Consts
 
         public const int ChatRoom = 16;
 
+        public const int DesktopGalaxy = 17;
+
+        public const int MobileGalaxy = 18;
+
         public const int BetfromOthers = 88;
 
-        public static readonly IReadOnlyDictionary<int, string> MapPlatformKeys = new Dictionary<int, string>
-        {
-            { All, nameof(All) },
-            { DesktopNewAsia, nameof(DesktopNewAsia) },
-            { DesktopChina, nameof(DesktopChina) },
-            { DesktopOthers, nameof(DesktopOthers) },
-            { DesktopGalaxy, nameof(DesktopGalaxy) },
-            { MobileStandard, nameof(MobileStandard) },
-            { MobileGalaxy, nameof(MobileGalaxy) },
-            { MobileCompact, nameof(MobileCompact) },
-            { MobileOthers, nameof(MobileOthers) },
-            { ESportsDesktop, nameof(ESportsDesktop) },
-            { ESportsMobile, nameof(ESportsMobile) },
-            { ESportsApp, nameof(ESportsApp) },
-            { MobileApp, nameof(MobileApp) },
-            { NativeApp, nameof(NativeApp) },
-            { Tablet, nameof(Tablet) },
-            { DeepLink, nameof(DeepLink) },
-            { WAP, nameof(WAP) },
-            { ChatRoom, nameof(ChatRoom) },
-            { BetfromOthers, nameof(BetfromOthers) }
-        };
+        // Jollysports
+        public const int Desktop = 91;
+
+        public const int Mobile = 92;
+
+        public const int Others = 99;
     }
 }

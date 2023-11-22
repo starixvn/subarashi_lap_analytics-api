@@ -384,4 +384,13 @@
   <data name="platform_21" xml:space="preserve">
     <value>Mobile Galaxy</value>
   </data>
+  <data name="platform_-1" xml:space="preserve">
+    <value>Khác</value>
+  </data>
+  <data name="platform_-2" xml:space="preserve">
+    <value>Máy tính</value>
+  </data>
+  <data name="platform_-3" xml:space="preserve">
+    <value>Di động</value>
+  </data>
 </root>

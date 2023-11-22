@@ -216,6 +216,33 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Others.
         /// </summary>
+        public static string platform__1 {
+            get {
+                return ResourceManager.GetString("platform_-1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deskktop.
+        /// </summary>
+        public static string platform__2 {
+            get {
+                return ResourceManager.GetString("platform_-2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mobile.
+        /// </summary>
+        public static string platform__3 {
+            get {
+                return ResourceManager.GetString("platform_-3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Others.
+        /// </summary>
         public static string platform_0 {
             get {
                 return ResourceManager.GetString("platform_0", resourceCulture);

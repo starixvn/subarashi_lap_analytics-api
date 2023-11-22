@@ -3,6 +3,7 @@ using Fanex.Athena.AnalyticsAPI.Common.Helpers;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Core.Attributes;
 using Fanex.Athena.AnalyticsAPI.Core.Constants;
+using Fanex.Athena.AnalyticsAPI.Core.Services;
 using Fanex.Athena.AnalyticsAPI.Summary.Consts;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.ViewModels;
@@ -19,14 +20,17 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Controllers
     public class TurnoverByPlatformController : ControllerBaseCustom
     {
         private readonly ILicenseeDataPlatformService _licenseeDataPlatformService;
+        private readonly IAuthInfoService _authInfoService;
 
         public TurnoverByPlatformController(
             IContextService contextService,
-            ILicenseeDataPlatformService licenseeDataPlatformService
+            ILicenseeDataPlatformService licenseeDataPlatformService,
+            IAuthInfoService authInfoService
             )
             : base(contextService)
         {
             _licenseeDataPlatformService = licenseeDataPlatformService;
+            _authInfoService = authInfoService;
         }
 
         [HttpGet]
@@ -37,6 +41,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Controllers
             var now = DateTimeHelper.DatabaseServerNow.Date;
             metaModel.FromDate = new DateTime(now.Year, now.Month, 1);
             metaModel.ToDate = now;
+            metaModel.SpecialPlatform = _authInfoService.SpecialPlatform;
 
             var result = await _licenseeDataPlatformService.GetTurnover(metaModel);
             return result;

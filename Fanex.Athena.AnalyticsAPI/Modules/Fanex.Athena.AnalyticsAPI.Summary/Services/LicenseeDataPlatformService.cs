@@ -51,6 +51,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Services
                 metaModel.FromDate,
                 metaModel.ToDate,
                 metaModel.BaseCurrency,
+                metaModel.SpecialPlatform,
                 balanceUp.MoveBetsDay
             };
             var readHandler = ReadHandler(columnName);

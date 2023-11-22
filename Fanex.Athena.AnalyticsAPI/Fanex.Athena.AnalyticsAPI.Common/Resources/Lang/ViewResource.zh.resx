@@ -436,4 +436,13 @@
   <data name="platform_21" xml:space="preserve">
     <value>手机银河版</value>
   </data>
+  <data name="platform_-1" xml:space="preserve">
+    <value>其他</value>
+  </data>
+  <data name="platform_-2" xml:space="preserve">
+    <value>桌机</value>
+  </data>
+  <data name="platform_-3" xml:space="preserve">
+    <value>手机</value>
+  </data>
 </root>

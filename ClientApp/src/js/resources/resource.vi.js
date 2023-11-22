@@ -51,6 +51,8 @@ export const vi = {
   ESportsApp: 'Ứng dụng Thể Thao Điện Tử',
   DesktopGalaxy: 'Desktop Galaxy',
   ChatRoom: 'Nhóm Chat',
+  Mobile: 'Di động',
+  Desktop: 'Máy tính',
   Others: 'Khác',
   date: "Ngày",
   DateRangeExceedMsg:"Phạm vi ngày vượt quá {0} tháng. Vui lòng thử lại!",

@@ -27,6 +27,8 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Services
 
         public int UserId => GetClaimValue<int>("UserSEQ");
 
+        public int SpecialPlatform => GetClaimValue<int>("SpecialPlatform");
+
         public string Language => GetClaimValue("Language");
 
         public IEnumerable<string> OfferedSubProductList

@@ -51,6 +51,8 @@ export const cs = {
   ESportsApp: '电子竞技 APP',
   DesktopGalaxy: '桌机银河版',
   ChatRoom: '聊天室',
+  Mobile: '手机',
+  Desktop: '桌机',
   Others: '其他',
   date: "日期",
   DateRangeExceedMsg:"Date range exceeds {0} months. Please try again!",

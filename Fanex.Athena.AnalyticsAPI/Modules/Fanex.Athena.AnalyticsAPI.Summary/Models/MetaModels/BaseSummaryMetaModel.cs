@@ -47,6 +47,8 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels
 
         public string AgentListXml { get; set; }
 
+        public int SpecialPlatform { get; set; }
+
         public string ProductCodeList { get; set; } = ProductCode.SB; 
     }
 }
