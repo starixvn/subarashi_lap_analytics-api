@@ -1,13 +1,14 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Helpers;
+﻿using System;
+using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Common.Helpers;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
+using Fanex.Athena.AnalyticsAPI.Core.Services;
 using Fanex.Athena.AnalyticsAPI.Summary.Controllers;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.ViewModels;
 using Fanex.Athena.AnalyticsAPI.Summary.Services;
 using Fanex.Athena.AnalyticsAPI.UnitTests.Utils.Helpers;
 using Moq;
-using System;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Athena.AnalyticsAPI.Summary.UnitTests.Controllers
@@ -16,11 +17,13 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.UnitTests.Controllers
     {
         private readonly LicenseeWinLossByPlatformController _target;
         private readonly Mock<ILicenseeDataPlatformService> _mockLicenseeDataPlatformService;
+        private readonly Mock<IAuthInfoService> _mockAuthInfoService;
 
         public LicenseeWinLossByPlatformController_Test()
         {
             _mockLicenseeDataPlatformService = new Mock<ILicenseeDataPlatformService>();
-            _target = new LicenseeWinLossByPlatformController(Mock.Of<IContextService>(), _mockLicenseeDataPlatformService.Object);
+            _mockAuthInfoService = new Mock<IAuthInfoService>();
+            _target = new LicenseeWinLossByPlatformController(Mock.Of<IContextService>(), _mockLicenseeDataPlatformService.Object, _mockAuthInfoService.Object);
         }
 
         [Fact]

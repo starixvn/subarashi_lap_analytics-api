@@ -51,6 +51,8 @@ export const en = {
     ESportsApp: 'E-Sports APP',
     DesktopGalaxy: 'Desktop Galaxy',
     ChatRoom: 'Chat Room',
+    Mobile: 'Mobile',
+    Desktop: 'Desktop',
     Others: 'Others',
     date: "Date",
     DateRangeExceedMsg:"Date range exceeds {0} months. Please try again!",

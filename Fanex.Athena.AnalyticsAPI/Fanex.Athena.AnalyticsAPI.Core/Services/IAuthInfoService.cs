@@ -11,5 +11,6 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Services
         IEnumerable<CurrencyAgentInfo> CurrencyAgentList { get; }
         IEnumerable<string> OfferedSubProductList { get; }
         string Language { get; }
+        int SpecialPlatform { get; }
     }
 }

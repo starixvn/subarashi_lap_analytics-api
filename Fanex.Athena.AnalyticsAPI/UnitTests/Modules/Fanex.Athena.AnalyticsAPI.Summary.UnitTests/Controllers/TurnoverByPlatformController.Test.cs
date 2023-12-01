@@ -1,5 +1,6 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Helpers;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
+using Fanex.Athena.AnalyticsAPI.Core.Services;
 using Fanex.Athena.AnalyticsAPI.Summary.Controllers;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.ViewModels;
@@ -16,11 +17,13 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.UnitTests.Controllers
     {
         private readonly TurnoverByPlatformController _target;
         private readonly Mock<ILicenseeDataPlatformService> _mockLicenseeDataPlatformService;
+        private readonly Mock<IAuthInfoService> _mockAuthInfoService;
 
         public TurnoverByPlatformController_Test()
         {
             _mockLicenseeDataPlatformService = new Mock<ILicenseeDataPlatformService>();
-            _target = new TurnoverByPlatformController(Mock.Of<IContextService>(), _mockLicenseeDataPlatformService.Object);
+            _mockAuthInfoService = new Mock<IAuthInfoService>();
+            _target = new TurnoverByPlatformController(Mock.Of<IContextService>(), _mockLicenseeDataPlatformService.Object, _mockAuthInfoService.Object);
         }
 
         [Fact]
