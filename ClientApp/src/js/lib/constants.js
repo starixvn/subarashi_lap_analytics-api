@@ -11,7 +11,9 @@ export const dashboardLangCode = window.dashboardLangCode || 'en';
 export const langCodes = {
   english: 'en',
   simplifiedChinese: 'cs',
-  vietnamese: 'vn'
+  vietnamese: 'vn',
+  thailand: 'th',
+  indonesia: 'id',
 }
 
 export const isSpacesBetweenWordsLanguage = (lang) =>{

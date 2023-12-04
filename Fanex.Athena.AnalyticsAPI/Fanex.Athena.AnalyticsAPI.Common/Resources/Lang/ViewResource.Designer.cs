@@ -223,7 +223,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deskktop.
+        ///   Looks up a localized string similar to Desktop.
         /// </summary>
         public static string platform__2 {
             get {

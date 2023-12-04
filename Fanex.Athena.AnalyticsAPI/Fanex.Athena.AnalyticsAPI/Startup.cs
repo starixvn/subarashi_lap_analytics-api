@@ -190,14 +190,18 @@ namespace Fanex.Athena.AnalyticsAPI
                 {
                     enCulture,
                     new CultureInfo("zh-CN"),
-                    new CultureInfo("vi-VN")
+                    new CultureInfo("vi-VN"),
+                    new CultureInfo("id-ID"),
+                    new CultureInfo("th-TH"),
                 };
 
                 var languageCodeMappers = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase)
                 {
                     { "en", "en-US" },
                     { "cs", "zh-CN" },
-                    { "vn", "vi-VN" }
+                    { "vn", "vi-VN" },
+                    { "id", "id-ID" },
+                    { "th", "th-TH" },
                 };
 
                 options.RequestCultureProviders = new List<IRequestCultureProvider>
