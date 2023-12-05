@@ -5,6 +5,7 @@ const merge = require("webpack-merge");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
+const ChunkRenamePlugin = require("webpack-chunk-rename-plugin");
 
 const { environment } = require("./utils/constant");
 const entry = require("./utils/entry");
@@ -23,7 +24,7 @@ module.exports = env => {
     output: {
       path: path.resolve(__dirname, outputPath),
       filename: "[name].js",
-      chunkFilename: 'js/[name].[contenthash].chunk.js'
+      chunkFilename: 'js/[name].[contenthash].chunk.js',
     },
     optimization: {
       splitChunks: {
@@ -33,7 +34,7 @@ module.exports = env => {
             name: 'vendor',
             test: /[\\/]node_modules[\\/]/,
             chunks: 'all'
-           }
+          }
         }
       }
     },
@@ -94,6 +95,9 @@ module.exports = env => {
       new MiniCssExtractPlugin({
         filename: "[name].css",
         chunkFilename: 'css/[name].css',
+      }),
+      new ChunkRenamePlugin({
+        vendor: 'js/[name].js',
       }),
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
       new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ["js/**/*.*", "css/**/*.*"] })

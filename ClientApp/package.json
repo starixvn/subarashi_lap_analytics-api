@@ -90,6 +90,7 @@
     "url-loader": "^2.1.0",
     "webpack": "^4.37.0",
     "webpack-bundle-analyzer": "^3.3.2",
+    "webpack-chunk-rename-plugin": "^1.0.3",
     "webpack-cli": "^3.3.6",
     "webpack-fix-style-only-entries": "^0.3.0",
     "webpack-merge": "^4.2.1"
