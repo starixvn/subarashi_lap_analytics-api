@@ -156,9 +156,6 @@
   <data name="league_62837" xml:space="preserve">
     <value>Liga Super Pakistan</value>
   </data>
-  <data name="league_7507" xml:space="preserve">
-    <value />
-  </data>
   <data name="league_96359" xml:space="preserve">
     <value>Liga Abu Dhabi T10</value>
   </data>
@@ -182,9 +179,6 @@
   </data>
   <data name="platform_1" xml:space="preserve">
     <value>Asia</value>
-  </data>
-  <data name="platform_10" xml:space="preserve">
-    <value />
   </data>
   <data name="platform_11" xml:space="preserve">
     <value>Aplikasi Asli</value>
@@ -211,7 +205,7 @@
     <value>Lainnya (Mobile)</value>
   </data>
   <data name="platform_19" xml:space="preserve">
-    <value />
+    <value>Desktop Galaxy</value>
   </data>
   <data name="platform_2" xml:space="preserve">
     <value>Desktop Cina</value>
@@ -220,7 +214,7 @@
     <value>Ruang Obrolan</value>
   </data>
   <data name="platform_21" xml:space="preserve">
-    <value />
+    <value>Mobile Galaxy</value>
   </data>
   <data name="platform_3" xml:space="preserve">
     <value>Tautan Mendalam</value>
@@ -274,7 +268,7 @@
     <value>Penarikan Tunai</value>
   </data>
   <data name="product_28" xml:space="preserve">
-    <value>Virtual Sports 2</value>
+    <value>Olahraga Virtual 2</value>
   </data>
   <data name="product_29" xml:space="preserve">
     <value>Togel</value>
@@ -297,9 +291,6 @@
   <data name="product_36" xml:space="preserve">
     <value>Peer to Peer</value>
   </data>
-  <data name="product_37" xml:space="preserve">
-    <value>SG</value>
-  </data>
   <data name="product_38" xml:space="preserve">
     <value>Promosi Saba</value>
   </data>
@@ -321,9 +312,6 @@
   <data name="product_46" xml:space="preserve">
     <value>AE Sexy</value>
   </data>
-  <data name="product_50" xml:space="preserve">
-    <value />
-  </data>
   <data name="product_52" xml:space="preserve">
     <value>WM</value>
   </data>
@@ -333,9 +321,6 @@
   <data name="product_57" xml:space="preserve">
     <value>Joker</value>
   </data>
-  <data name="product_58" xml:space="preserve">
-    <value />
-  </data>
   <data name="product_6" xml:space="preserve">
     <value>Olahraga Virtual</value>
   </data>
@@ -344,9 +329,6 @@
   </data>
   <data name="product_62" xml:space="preserve">
     <value>Habanero</value>
-  </data>
-  <data name="product_63" xml:space="preserve">
-    <value />
   </data>
   <data name="product_64" xml:space="preserve">
     <value>Lotre Olahraga</value>
@@ -363,26 +345,17 @@
   <data name="product_7" xml:space="preserve">
     <value>Casino Saba</value>
   </data>
-  <data name="product_71" xml:space="preserve">
-    <value />
-  </data>
-  <data name="product_74" xml:space="preserve">
-    <value>MG-RNG</value>
-  </data>
   <data name="product_76" xml:space="preserve">
     <value>Jili</value>
   </data>
-  <data name="product_77" xml:space="preserve">
-    <value>YeeBet</value>
-  </data>
   <data name="product_78" xml:space="preserve">
-    <value>Virtual Sports 3</value>
+    <value>Olahraga Virtual 3</value>
   </data>
   <data name="product_8" xml:space="preserve">
     <value>Bingo</value>
   </data>
   <data name="product_9" xml:space="preserve">
-    <value>RNG Keno</value>
+    <value>Permainan Angka Keno</value>
   </data>
   <data name="Saba" xml:space="preserve">
     <value>Saba</value>
@@ -392,5 +365,8 @@
   </data>
   <data name="sport_0" xml:space="preserve">
     <value>Lainnya</value>
+  </data>
+  <data name="product_50" xml:space="preserve">
+    <value>Olahraga Virtual 3 (old)</value>
   </data>
 </root>

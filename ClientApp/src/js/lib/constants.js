@@ -18,7 +18,8 @@ export const langCodes = {
 
 export const isSpacesBetweenWordsLanguage = (lang) =>{
   return (lang === langCodes.english)
-  || (lang===langCodes.vietnamese);
+  || (lang===langCodes.vietnamese)
+  || (lang===langCodes.indonesia);
 }
 
 export const tabMenuKey = {
