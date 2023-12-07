@@ -808,6 +808,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SEAL Entertainment.
+        /// </summary>
+        public static string product_73 {
+            get {
+                return ResourceManager.GetString("product_73", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MG-RNG.
         /// </summary>
         public static string product_74 {
