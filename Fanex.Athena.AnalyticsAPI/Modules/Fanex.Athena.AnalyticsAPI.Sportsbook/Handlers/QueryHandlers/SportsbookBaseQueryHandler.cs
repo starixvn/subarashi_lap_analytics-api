@@ -1,11 +1,12 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Constants;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Common.Constants;
+using Fanex.Athena.AnalyticsAPI.Common.Helpers;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Models;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Models.Criteria;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Repositories;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Handlers
 {
@@ -31,7 +32,7 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Handlers
             return rawData;
         }
 
-        protected IEnumerable<DimDistributionResponse> Translate(IEnumerable<DimDistributionResponse> responses) 
+        protected IEnumerable<DimDistributionResponse> Translate(IEnumerable<DimDistributionResponse> responses)
         {
             _translationService.Translate(responses, TranslationType);
             return responses;
@@ -44,7 +45,7 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Handlers
                 SiteName = request.SiteName,
                 FromDate = request.FromDate,
                 ToDate = request.ToDate,
-                BaseCurrencyName = request.BaseCurrency,
+                BaseCurrencyName = CurrencyHelper.GetBasedCurrency(request.BaseCurrency),
                 Type = request.TabType,
                 SportType = request.SportType
             };

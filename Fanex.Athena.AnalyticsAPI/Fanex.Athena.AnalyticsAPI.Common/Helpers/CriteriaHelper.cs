@@ -12,7 +12,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
             var period = isCurrentPeriod ? metaModel.CurrentPeriod : metaModel.PreviousPeriod;
             var criteria = new TCriteria
             {
-                BaseCurrencyName = metaModel.BaseCurrencyName,
+                BaseCurrencyName = CurrencyHelper.GetBasedCurrency(metaModel.BaseCurrencyName),
                 SiteName = metaModel.SiteName,
                 FromDate = period.FromMonth,
                 ToDate = period.ToMonth
