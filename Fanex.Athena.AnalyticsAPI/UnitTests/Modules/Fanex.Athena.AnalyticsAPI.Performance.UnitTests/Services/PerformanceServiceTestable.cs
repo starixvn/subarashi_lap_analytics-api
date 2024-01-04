@@ -1,10 +1,9 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
+﻿using System.Collections.Generic;
+using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Repositories;
 using Fanex.Athena.AnalyticsAPI.Performance.Services;
-using System.Collections.Generic;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Services
 {

@@ -1,14 +1,13 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
+﻿using System;
+using System.Collections;
+using System.Data;
+using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Summary.Services;
 using Fanex.Athena.AnalyticsAPI.UnitTests.Utils.Helpers;
 using FluentAssertions;
 using Moq;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Athena.AnalyticsAPI.Summary.UnitTests.Services

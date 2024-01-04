@@ -1,7 +1,7 @@
-﻿using AutoFixture;
+﻿using System.Collections.Generic;
+using AutoFixture;
 using Fanex.Athena.LGAPI.SSAS.Bridge.Attributes;
 using Fanex.Athena.LGAPI.SSAS.Bridge.Extensions;
-using System.Collections.Generic;
 using Xunit;
 
 namespace Fanex.Athena.LGAPI.SSAS.Bridge.UnitTests.Extensions

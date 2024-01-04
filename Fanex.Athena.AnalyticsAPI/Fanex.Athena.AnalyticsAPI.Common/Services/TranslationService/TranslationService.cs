@@ -1,12 +1,12 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Attributes;
-using Fanex.Athena.AnalyticsAPI.Common.Constants;
-using Fanex.Athena.AnalyticsAPI.Common.Models.DataDomain;
-using Fanex.Athena.AnalyticsAPI.Common.Resources.Lang;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using Fanex.Athena.AnalyticsAPI.Common.Attributes;
+using Fanex.Athena.AnalyticsAPI.Common.Constants;
+using Fanex.Athena.AnalyticsAPI.Common.Models.DataDomain;
+using Fanex.Athena.AnalyticsAPI.Common.Resources.Lang;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {

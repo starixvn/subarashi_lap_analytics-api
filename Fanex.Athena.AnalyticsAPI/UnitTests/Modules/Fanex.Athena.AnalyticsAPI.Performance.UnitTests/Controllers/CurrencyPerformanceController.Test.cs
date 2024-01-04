@@ -1,4 +1,7 @@
-﻿using AutoFixture;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using AutoFixture;
 using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Controllers;
@@ -8,9 +11,6 @@ using Fanex.Athena.AnalyticsAPI.Performance.Services;
 using Moq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Controllers
@@ -43,7 +43,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Controllers
             var filter = FakeCurrencyPerformanceFilterMetaModel;
             filter.Measurement.Id = measurementId;
 
-            var topDistributionsData= _fixture.CreateMany<(string topDistributionId, string topDistributionName)>();
+            var topDistributionsData = _fixture.CreateMany<(string topDistributionId, string topDistributionName)>();
             var topDistributions = topDistributionsData.Select(_ => new DistributionMetaModel
             {
                 DisplayId = _.topDistributionId,
@@ -81,7 +81,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Controllers
                     GrowthData = new
                     {
                         PeriodGrowth = periodGrowthData,
-                        MonthGrowth = new {}
+                        MonthGrowth = new { }
                     }
                 },
                 isSuccess = true,

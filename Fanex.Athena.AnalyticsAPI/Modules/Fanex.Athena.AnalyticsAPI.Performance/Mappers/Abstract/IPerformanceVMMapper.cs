@@ -1,8 +1,8 @@
-﻿using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
+﻿using System;
+using System.Collections.Generic;
+using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
-using System;
-using System.Collections.Generic;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
 {

@@ -1,6 +1,6 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Attributes;
+﻿using System.Collections.Generic;
+using Fanex.Athena.AnalyticsAPI.Common.Attributes;
 using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
-using System.Collections.Generic;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels
 {
@@ -12,6 +12,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels
         public string DisplayName { get; set; }
 
         public IEnumerable<IdentityMetaModel> PreviousPeriodDistributions { get; set; }
+
         public IEnumerable<IdentityMetaModel> CurrentPeriodDistributions { get; set; }
     }
 }

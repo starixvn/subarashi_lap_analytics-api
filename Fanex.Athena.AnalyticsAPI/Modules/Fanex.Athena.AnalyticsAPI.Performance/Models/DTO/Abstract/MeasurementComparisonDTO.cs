@@ -27,6 +27,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
             {
                 return _margin;
             }
+
             set
             {
                 _margin = value * Percent;

@@ -3,7 +3,9 @@
     public class BridgeSetting
     {
         public string BridgeHost { get; set; }
+
         public string AuthKey { get; set; }
+
         public string ConnectionKey { get; set; }
     }
 }

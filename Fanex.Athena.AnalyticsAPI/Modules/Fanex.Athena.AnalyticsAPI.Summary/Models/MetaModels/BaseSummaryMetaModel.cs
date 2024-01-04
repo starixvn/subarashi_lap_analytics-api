@@ -1,8 +1,8 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Consts;
+﻿using System;
+using System.Linq;
+using Fanex.Athena.AnalyticsAPI.Common.Consts;
 using Fanex.Athena.AnalyticsAPI.Core.Constants;
 using Fanex.Athena.AnalyticsAPI.Core.Models.MetaModels;
-using System;
-using System.Linq;
 
 namespace Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels
 {
@@ -16,6 +16,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels
             {
                 return _currencyId;
             }
+
             set
             {
                 _currencyId = value;
@@ -49,6 +50,6 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels
 
         public int SpecialPlatform { get; set; }
 
-        public string ProductCodeList { get; set; } = ProductCode.SB; 
+        public string ProductCodeList { get; set; } = ProductCode.SB;
     }
 }

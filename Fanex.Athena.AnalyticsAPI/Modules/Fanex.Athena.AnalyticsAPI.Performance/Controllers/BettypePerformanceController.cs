@@ -1,4 +1,6 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Constants;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Common.Constants;
 using Fanex.Athena.AnalyticsAPI.Common.Controllers;
 using Fanex.Athena.AnalyticsAPI.Common.Extensions;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
@@ -10,8 +12,6 @@ using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 {
@@ -36,7 +36,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [HttpPost]
         [Route("api/performance/bettype/distribution")]
         [AutoBindingMetaModel(bindSiteName: true)]
-        public async Task<JsonResult> GetDistribution([FromBody]BettypePerformanceFilterMetaModel filter)
+        public async Task<JsonResult> GetDistribution([FromBody] BettypePerformanceFilterMetaModel filter)
         {
             var result = await _bettypeService.GetDistributionWithComparison(filter);
             return ToResult(result);
@@ -45,7 +45,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [HttpPost]
         [Route("api/performance/bettype/diffences")]
         [AutoBindingMetaModel(bindSiteName: true)]
-        public async Task<JsonResult> GetDiffences([FromBody]BettypePerformanceFilterMetaModel filter)
+        public async Task<JsonResult> GetDiffences([FromBody] BettypePerformanceFilterMetaModel filter)
         {
             var result = await _bettypeService.GetMeasurementDifferenceWithComparison(filter);
             return ToResult(result);
@@ -54,7 +54,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [HttpPost]
         [Route("api/performance/bettype/period-growth")]
         [AutoBindingMetaModel(bindSiteName: true)]
-        public async Task<JsonResult> GetPeriodGrowth([FromBody]BettypePerformanceFilterMetaModel filter)
+        public async Task<JsonResult> GetPeriodGrowth([FromBody] BettypePerformanceFilterMetaModel filter)
         {
             var result = await _bettypeService.GetPeriodGrowthWithComparison(filter);
             return ToResult(result);
@@ -63,7 +63,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [HttpPost]
         [Route("api/performance/bettype/month-growth-all")]
         [AutoBindingMetaModel(bindSiteName: true)]
-        public async Task<JsonResult> GetAllMonthGrowth([FromBody]BettypePerformanceFilterMetaModel filter)
+        public async Task<JsonResult> GetAllMonthGrowth([FromBody] BettypePerformanceFilterMetaModel filter)
         {
             var result = await _bettypeService.GetAllDetailMonthGrowthWithComparison(filter);
             return ToResult(result);
@@ -72,7 +72,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [HttpPost]
         [Route("api/performance/bettype")]
         [AutoBindingMetaModel(bindSiteName: true)]
-        public async Task<JsonResult> GetCombineData([FromBody]BettypePerformanceFilterMetaModel filter)
+        public async Task<JsonResult> GetCombineData([FromBody] BettypePerformanceFilterMetaModel filter)
         {
             const int numberOfTopBettype = 10;
             await filter.BindTopDistributionsToFilterMetaModel(_bettypeService, numberOfTopBettype);

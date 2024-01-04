@@ -1,4 +1,5 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Controllers;
+﻿using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Common.Controllers;
 using Fanex.Athena.AnalyticsAPI.Common.Helpers;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Core.Attributes;
@@ -7,8 +8,6 @@ using Fanex.Athena.AnalyticsAPI.Summary.Consts;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Summary.Services;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Summary.Controllers
 {
@@ -28,7 +27,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Controllers
         [HttpGet]
         [AutoBindingMetaModel(bindAgent: true)]
         [ApiRequestValidation(ResponseContent = ResponseContentConst.DefaultSingleValue)]
-        public async Task<decimal> GetData([FromQuery]BaseSummaryMetaModel metaModel)
+        public async Task<decimal> GetData([FromQuery] BaseSummaryMetaModel metaModel)
         {
             metaModel.FromDate = DateTimeHelper.DatabaseServerNow.Date;
             var result = await _singleValueService.GetTodayDeposit(metaModel);

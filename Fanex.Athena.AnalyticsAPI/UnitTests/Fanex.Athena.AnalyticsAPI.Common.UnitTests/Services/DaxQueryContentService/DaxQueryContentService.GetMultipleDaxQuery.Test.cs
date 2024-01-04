@@ -1,11 +1,11 @@
-﻿using AutoFixture;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using AutoFixture;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Data;
 using Fanex.Data.Repository;
 using Moq;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services
@@ -66,6 +66,6 @@ namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services
             {
                 Assert.Equal(listOutput[i], result.ElementAt(i));
             }
-         }
+        }
     }
 }

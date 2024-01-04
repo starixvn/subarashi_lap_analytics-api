@@ -1,15 +1,15 @@
-﻿using AutoFixture;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
+using AutoFixture;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
 using Fanex.Data.Repository;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Services
@@ -95,8 +95,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Services
             _mapperMock.Setup(_ => _.ToMeasurementGrowthTimeVM(It.IsAny<IEnumerable<MeasurementTimeDTO>>(), currentPeriodFromDate, currentPeriodToDate))
                 .Returns(dataVM[1]);
 
-            var prevPeriodSuffixFieldName = $"{filter.PreviousPeriod.FromMonth }_{filter.PreviousPeriod.ToMonth}";
-            var currentPeriodSuffixFieldName = $"{filter.CurrentPeriod.FromMonth }_{filter.CurrentPeriod.ToMonth}";
+            var prevPeriodSuffixFieldName = $"{filter.PreviousPeriod.FromMonth}_{filter.PreviousPeriod.ToMonth}";
+            var currentPeriodSuffixFieldName = $"{filter.CurrentPeriod.FromMonth}_{filter.CurrentPeriod.ToMonth}";
 
             //Act
             var result = await _target.GetAllDetailMonthGrowthWithComparison(filter);

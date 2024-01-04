@@ -1,10 +1,10 @@
-﻿using AutoFixture;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using AutoFixture;
 using Fanex.Athena.LGAPI.SSAS.Bridge.Services;
 using Moq;
 using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Athena.LGAPI.SSAS.Bridge.UnitTests.Services
@@ -40,7 +40,6 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.UnitTests.Services
         [Fact]
         public async Task QueryAsync_WhenCall_HttpClientServiceCallWithCorrectParams()
         {
-
             //Arrange
             var url = null as string;
             var body = null as object;

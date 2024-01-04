@@ -1,5 +1,5 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Services
 {

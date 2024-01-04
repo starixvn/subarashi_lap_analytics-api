@@ -1,10 +1,10 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
 using Fanex.Athena.AnalyticsAPI.Core.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Core.Services;
 using Fanex.Athena.AnalyticsAPI.UnitTests.Utils.Helpers;
 using Moq;
-using System.Collections.Generic;
-using System.Linq;
 using Xunit;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.UnitTests.Service

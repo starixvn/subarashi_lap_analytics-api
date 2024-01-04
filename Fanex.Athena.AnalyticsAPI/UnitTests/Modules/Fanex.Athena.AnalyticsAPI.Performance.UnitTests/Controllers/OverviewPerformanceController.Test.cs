@@ -1,4 +1,5 @@
-﻿using AutoFixture;
+﻿using System.Threading.Tasks;
+using AutoFixture;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Controllers;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
@@ -7,7 +8,6 @@ using Fanex.Athena.AnalyticsAPI.Performance.Services;
 using Moq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Controllers

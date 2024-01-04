@@ -1,6 +1,6 @@
-﻿using Fanex.Data.Repository;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Fanex.Data.Repository;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {

@@ -1,4 +1,8 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Extensions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Common.Extensions;
 using Fanex.Athena.AnalyticsAPI.Common.Helpers;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Mappers;
@@ -7,10 +11,6 @@ using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 using CommonHelper = Fanex.Athena.AnalyticsAPI.Common.Helpers;
 
@@ -26,7 +26,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             IContextService context,
             IPerformanceRepository performanceRepository,
             IOverviewPerformanceVMMapper viewModelMapper,
-            IHandleRawData handleRawData                                               
+            IHandleRawData handleRawData
             ) : base(context, performanceRepository, handleRawData)
         {
             _viewModelMapper = viewModelMapper;

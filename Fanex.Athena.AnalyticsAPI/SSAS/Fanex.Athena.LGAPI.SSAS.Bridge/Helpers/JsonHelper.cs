@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using System.IO;
+﻿using System.IO;
+using Newtonsoft.Json;
 
 namespace Fanex.Athena.LGAPI.SSAS.Bridge.Helpers
 {

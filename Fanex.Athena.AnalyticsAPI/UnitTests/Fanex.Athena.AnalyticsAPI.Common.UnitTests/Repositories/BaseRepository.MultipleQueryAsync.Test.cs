@@ -1,12 +1,12 @@
-﻿using AutoFixture;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using AutoFixture;
 using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.LGAPI.SSAS.Bridge.Services;
 using Fanex.Data.Repository;
 using Microsoft.Extensions.Options;
 using Moq;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Repositories

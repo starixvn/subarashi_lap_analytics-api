@@ -6,6 +6,7 @@ namespace Fanex.Athena.AnalyticsAPI.Configuration
     {
         private string[] _scripts;
         private string[] _styles;
+
         public string BundleVersion { get; set; }
 
         public string[] Scripts

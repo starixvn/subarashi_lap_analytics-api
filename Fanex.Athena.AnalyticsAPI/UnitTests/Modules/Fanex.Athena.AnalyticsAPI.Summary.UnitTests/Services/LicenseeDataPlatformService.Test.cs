@@ -1,4 +1,7 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
+﻿using System;
+using System.Data;
+using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.ViewModels;
@@ -6,9 +9,6 @@ using Fanex.Athena.AnalyticsAPI.Summary.Services;
 using Fanex.Athena.AnalyticsAPI.UnitTests.Utils.Helpers;
 using FluentAssertions;
 using Moq;
-using System;
-using System.Data;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Athena.AnalyticsAPI.Summary.UnitTests.Services
@@ -149,7 +149,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.UnitTests.Services
                 metaModel.ToDate,
                 metaModel.BaseCurrency,
                 MoveBetsDay = new DateTime(2021, 06, 22),
-                ProductList = metaModel.ProductCodeList
+                ProductList = metaModel.ProductCodeList,
             };
 
             return expectedSpParams;

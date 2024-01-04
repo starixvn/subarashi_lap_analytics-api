@@ -1,11 +1,11 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Summary.Helpers;
-using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Summary.Models.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Common.Services;
+using Fanex.Athena.AnalyticsAPI.Summary.Helpers;
+using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
+using Fanex.Athena.AnalyticsAPI.Summary.Models.ViewModels;
 
 namespace Fanex.Athena.AnalyticsAPI.Summary.Services
 {
@@ -25,7 +25,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Services
         {
             const string spKey = "Lrf_GetLicenseeTurnoverByPlatform";
             const string columnName = "Turnover";
-            return await GetData(metaModel, spKey, columnName); 
+            return await GetData(metaModel, spKey, columnName);
         }
 
         public async Task<WidgetByPlatformViewModel> GetWinLoss(BaseSummaryMetaModel metaModel)
@@ -62,25 +62,25 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Services
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Critical Code Smell", "S3353:Unchanged local variables should be \"const\"", Justification = "<Pending>")]
         private static Func<string, Func<IDataReader, WidgetByPlatformViewModel>> ReadHandler = winlossColumnName => reader =>
-        {
-            var winlossColumn = winlossColumnName;
+                {
+                    var winlossColumn = winlossColumnName;
 
-            var dataList = new List<KeyValuePair<string, decimal>>();
-            var total = 0m;
-            while (reader.Read())
-            {
-                var platformType = Convert.ToInt32(reader["PlatformType"]);
-                var key = PlatformHelper.GetPlatformKey(platformType);
-                var value = Convert.ToDecimal(reader[winlossColumn]);
-                total += value;
-                dataList.Add(new KeyValuePair<string, decimal>(key, value));
-            }
+                    var dataList = new List<KeyValuePair<string, decimal>>();
+                    var total = 0m;
+                    while (reader.Read())
+                    {
+                        var platformType = Convert.ToInt32(reader["PlatformType"]);
+                        var key = PlatformHelper.GetPlatformKey(platformType);
+                        var value = Convert.ToDecimal(reader[winlossColumn]);
+                        total += value;
+                        dataList.Add(new KeyValuePair<string, decimal>(key, value));
+                    }
 
-            return new WidgetByPlatformViewModel
-            {
-                Data = dataList,
-                Total = total
-            };
-        };
+                    return new WidgetByPlatformViewModel
+                    {
+                        Data = dataList,
+                        Total = total
+                    };
+                };
     }
 }

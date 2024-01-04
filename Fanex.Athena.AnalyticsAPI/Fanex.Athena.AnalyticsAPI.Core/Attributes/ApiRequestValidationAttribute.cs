@@ -1,10 +1,10 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Constants;
+﻿using System;
+using System.Linq;
+using System.Net;
+using Fanex.Athena.AnalyticsAPI.Core.Constants;
 using Fanex.Athena.AnalyticsAPI.Core.Models.MetaModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System;
-using System.Linq;
-using System.Net;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Attributes
 {

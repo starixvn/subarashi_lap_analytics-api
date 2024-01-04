@@ -1,6 +1,6 @@
-﻿using Fanex.Athena.LGAPI.SSAS.Bridge.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Fanex.Athena.LGAPI.SSAS.Bridge.Attributes;
 
 namespace Fanex.Athena.LGAPI.SSAS.Bridge.Extensions
 {

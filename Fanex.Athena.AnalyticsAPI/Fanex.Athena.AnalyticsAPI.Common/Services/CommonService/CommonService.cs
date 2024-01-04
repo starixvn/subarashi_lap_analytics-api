@@ -1,7 +1,7 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
-using System;
+﻿using System;
 using System.Data;
 using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
@@ -34,7 +34,5 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
             }
             return balanceup;
         };
-
-
     }
 }

@@ -35,6 +35,7 @@ namespace Fanex.Athena.AnalyticsAPI
         }
 
         public IConfiguration Configuration { get; }
+
         public IWebHostEnvironment HostingEnvironment { get; }
 
         public void ConfigureServices(IServiceCollection services)

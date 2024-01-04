@@ -1,10 +1,10 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Constants;
-using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
-using Fanex.Athena.AnalyticsAPI.Core.Models.MetaModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Fanex.Athena.AnalyticsAPI.Core.Constants;
+using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
+using Fanex.Athena.AnalyticsAPI.Core.Models.MetaModels;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Services
 {

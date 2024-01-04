@@ -1,6 +1,6 @@
-﻿using Fanex.Athena.LGAPI.SSAS.Bridge.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Fanex.Athena.LGAPI.SSAS.Bridge.Models;
 
 namespace Fanex.Athena.LGAPI.SSAS.Bridge.Services
 {

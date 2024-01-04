@@ -5,6 +5,7 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Models.Criteria
     public class SportsbookCriteria : AnalyticCriteria
     {
         public byte Type { get; set; }
+
         public int SportType { get; set; }
 
         public override string GetSettingKey() => "LAP_Sportbook_Performance_MeasureDistributionBySite";

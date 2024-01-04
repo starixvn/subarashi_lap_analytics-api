@@ -10,6 +10,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels
         public string Name { get; set; }
 
         public double Total { get; set; }
+
         public double GrowthPercent { get; set; }
     }
 }

@@ -1,10 +1,9 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Constants;
-using Fanex.Athena.AnalyticsAPI.Common.Resources.Lang;
-using Fanex.RemotingRef;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Linq;
-using System.Threading;
+using Fanex.Athena.AnalyticsAPI.Common.Constants;
+using Fanex.Athena.AnalyticsAPI.Common.Resources.Lang;
+using Fanex.RemotingRef;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
@@ -53,7 +52,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
 
         private string GetSportName(string sportId, string defaultValue)
         {
-            if(HARD_CODE_SPORT_IDS.Any(_ => _.Equals(sportId)))
+            if (HARD_CODE_SPORT_IDS.Any(_ => _.Equals(sportId)))
             {
                 return GetValue(TranslationConst.SportType, sportId);
             }

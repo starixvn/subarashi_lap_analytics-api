@@ -1,4 +1,6 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Controllers;
+﻿using System;
+using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Common.Controllers;
 using Fanex.Athena.AnalyticsAPI.Common.Helpers;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Core.Attributes;
@@ -9,8 +11,6 @@ using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.ViewModels;
 using Fanex.Athena.AnalyticsAPI.Summary.Services;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Summary.Controllers
 {

@@ -1,10 +1,10 @@
-﻿using Fanex.Data;
-using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using Fanex.Data;
+using Microsoft.AspNetCore.Http;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Helpers
 {

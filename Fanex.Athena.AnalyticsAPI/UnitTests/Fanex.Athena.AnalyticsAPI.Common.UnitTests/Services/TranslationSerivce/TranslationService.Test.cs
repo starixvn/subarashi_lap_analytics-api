@@ -1,9 +1,4 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Constants;
-using Fanex.Athena.AnalyticsAPI.Common.Resources.Lang;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using System.Globalization;
-using System.Text.RegularExpressions;
-using System.Threading;
+﻿using System.Text.RegularExpressions;
 using Xunit;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services.TranslationSerivce

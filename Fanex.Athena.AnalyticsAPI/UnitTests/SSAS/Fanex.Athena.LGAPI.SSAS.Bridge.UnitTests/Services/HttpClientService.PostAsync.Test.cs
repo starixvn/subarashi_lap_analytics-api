@@ -1,12 +1,12 @@
-﻿using AutoFixture;
+﻿using System;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+using AutoFixture;
 using Fanex.Athena.LGAPI.SSAS.Bridge.Services;
 using Moq;
 using Moq.Protected;
 using Newtonsoft.Json;
-using System;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Athena.LGAPI.SSAS.Bridge.UnitTests.Services

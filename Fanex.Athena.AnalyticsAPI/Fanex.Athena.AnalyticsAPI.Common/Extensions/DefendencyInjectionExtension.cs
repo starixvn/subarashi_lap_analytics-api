@@ -1,11 +1,11 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
+﻿using System;
+using System.Net.Http;
+using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.LGAPI.SSAS.Bridge.Services;
 using Fanex.RemotingRef;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Net.Http;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
 {

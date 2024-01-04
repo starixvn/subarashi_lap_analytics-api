@@ -1,4 +1,8 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Middleware;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Mime;
+using Fanex.Athena.AnalyticsAPI.Core.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
@@ -8,16 +12,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using ONEbook.UM.AspNetCore;
 using ONEbook.UM.Configurations;
 using ONEbook.UM.Helpers;
 using ONEbook.UM.Services;
 using ONEbook.UM.Transport;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mime;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
 {
@@ -51,7 +50,6 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
                                   });
             });
         }
-
 
         public static void AddUnderMaintenance(this IServiceCollection services, IConfiguration configuration)
         {
@@ -137,6 +135,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
                 }
             });
         }
+
         public static void UseUnderMaintenance(this IApplicationBuilder app)
         {
             app.UseMiddleware<UnderMaintenanceHandler>();

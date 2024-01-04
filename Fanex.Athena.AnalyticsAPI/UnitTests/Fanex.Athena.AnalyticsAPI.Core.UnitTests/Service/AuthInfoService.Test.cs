@@ -1,12 +1,7 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Models;
-using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
+﻿using System.Security.Claims;
 using Fanex.Athena.AnalyticsAPI.Core.Services;
-using Fanex.Athena.AnalyticsAPI.UnitTests.Utils.Helpers;
-using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Moq;
-using System.Collections.Generic;
-using System.Security.Claims;
 using Xunit;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.UnitTests.Service

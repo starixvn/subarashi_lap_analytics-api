@@ -1,10 +1,10 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Mappers;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Common.Mappers;
 using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Services;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Extensions
 {

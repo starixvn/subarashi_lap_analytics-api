@@ -1,12 +1,12 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.LGAPI.SSAS.Bridge.Models;
 using Fanex.Athena.LGAPI.SSAS.Bridge.Services;
 using Fanex.Data.Repository;
 using Microsoft.Extensions.Options;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Repositories
 {

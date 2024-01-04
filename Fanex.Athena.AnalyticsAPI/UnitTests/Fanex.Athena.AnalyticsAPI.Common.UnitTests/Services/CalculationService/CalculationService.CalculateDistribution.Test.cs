@@ -41,7 +41,6 @@ namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services
             Assert.Equal(0, actual);
         }
 
-
         [Theory]
         [InlineData(0, 1.25, 0)]
         [InlineData(15, 100, 15)]
