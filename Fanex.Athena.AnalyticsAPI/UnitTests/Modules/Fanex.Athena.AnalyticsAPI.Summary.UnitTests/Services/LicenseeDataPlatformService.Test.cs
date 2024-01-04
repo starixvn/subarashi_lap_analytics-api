@@ -150,6 +150,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.UnitTests.Services
                 metaModel.BaseCurrency,
                 MoveBetsDay = new DateTime(2021, 06, 22),
                 ProductList = metaModel.ProductCodeList,
+                metaModel.SpecialPlatform,
             };
 
             return expectedSpParams;
