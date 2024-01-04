@@ -11,12 +11,15 @@ export const dashboardLangCode = window.dashboardLangCode || 'en';
 export const langCodes = {
   english: 'en',
   simplifiedChinese: 'cs',
-  vietnamese: 'vn'
+  vietnamese: 'vn',
+  thailand: 'th',
+  indonesia: 'id',
 }
 
 export const isSpacesBetweenWordsLanguage = (lang) =>{
   return (lang === langCodes.english)
-  || (lang===langCodes.vietnamese);
+  || (lang===langCodes.vietnamese)
+  || (lang===langCodes.indonesia);
 }
 
 export const tabMenuKey = {
