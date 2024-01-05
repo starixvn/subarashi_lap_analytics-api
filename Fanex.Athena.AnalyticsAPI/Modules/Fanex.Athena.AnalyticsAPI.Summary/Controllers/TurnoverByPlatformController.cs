@@ -36,12 +36,12 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Controllers
         [HttpGet]
         [AutoBindingMetaModel(bindAgent: true, bindProductList: true)]
         [ApiRequestValidation(ResponseContent = ResponseContentConst.DefaultWidgetResult)]
-        public async Task<WidgetByPlatformViewModel> GetData([FromQuery]BaseSummaryMetaModel metaModel)
+        public async Task<WidgetByPlatformViewModel> GetData([FromQuery] BaseSummaryMetaModel metaModel)
         {
             var now = DateTimeHelper.DatabaseServerNow.Date;
             metaModel.FromDate = new DateTime(now.Year, now.Month, 1);
             metaModel.ToDate = now;
-            metaModel.SpecialPlatform = _authInfoService.SpecialPlatform;
+            metaModel.SpecialPlatform = _authInfoService.SpecialPlatformType;
 
             var result = await _licenseeDataPlatformService.GetTurnover(metaModel);
             return result;

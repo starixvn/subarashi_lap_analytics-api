@@ -40,7 +40,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Controllers
             var now = DateTimeHelper.DatabaseServerNow.Date;
             metaModel.FromDate = new DateTime(now.Year, now.Month, 1);
             metaModel.ToDate = now;
-            metaModel.SpecialPlatform = _authInfoService.SpecialPlatform;
+            metaModel.SpecialPlatform = _authInfoService.SpecialPlatformType;
 
             var result = await _licenseeDataPlatformService.GetWinLoss(metaModel);
             return result;
