@@ -12,5 +12,6 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Services
         IEnumerable<string> OfferedSubProductList { get; }
         string Language { get; }
         int SpecialPlatform { get; }
+        int SpecialPlatformType { get; }
     }
 }

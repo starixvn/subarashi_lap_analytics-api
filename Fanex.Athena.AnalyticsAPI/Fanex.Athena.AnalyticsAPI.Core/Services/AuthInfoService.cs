@@ -29,6 +29,8 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Services
 
         public int SpecialPlatform => GetClaimValue<int>("SpecialPlatform");
 
+        public int SpecialPlatformType => GetClaimValue<int>("SpecialPlatformType");
+
         public string Language => GetClaimValue("Language");
 
         public IEnumerable<string> OfferedSubProductList
@@ -39,7 +41,6 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Services
                 return string.IsNullOrEmpty(offeredSubProductList) ? Enumerable.Empty<string>() : offeredSubProductList.Split(',');
             }
         }
-
 
         private IEnumerable<CurrencyAgentInfo> _currencyAgentList;
 
