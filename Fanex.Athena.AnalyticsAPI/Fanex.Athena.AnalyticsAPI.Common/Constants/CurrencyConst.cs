@@ -6,7 +6,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Consts
     {
         public static readonly IEnumerable<string> SupportedBaseCurrencies = new[]
         {
-            "EUR", "USD", "GBP", "MYR", "CNY", "THB", "IDR", "INH", "BDT", "INR", "PHP", "USDT", "MP"
+            "EUR", "USD", "GBP", "MYR", "CNY", "THB", "IDR", "INH", "BDT", "INR", "PHP", "USDT", "MP", "NPR", "TRY"
         };
     }
 }
