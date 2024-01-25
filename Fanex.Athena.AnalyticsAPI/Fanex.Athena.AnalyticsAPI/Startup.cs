@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
 using Fanex.Athena.AnalyticsAPI.Configuration;
 using Fanex.Athena.AnalyticsAPI.Controllers;
 using Fanex.Athena.AnalyticsAPI.Core.Extensions;
@@ -56,7 +55,6 @@ namespace Fanex.Athena.AnalyticsAPI
 
             services.Configure<IConfiguration>(Configuration);
 
-            services.Configure<SSASSetting>(Configuration.GetSection("SSASSetting"));
             services.Configure<StaticResourceConfig>(Configuration.GetSection("StaticResource"));
             services.Configure<IdentityServerConfig>(Configuration.GetSection("IdentityServer"));
 

@@ -1,5 +1,5 @@
 ﻿using System;
-using Fanex.Athena.LGAPI.SSAS.Bridge.Attributes;
+using Fanex.Athena.AnalyticsAPI.Common.Attributes;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
 {

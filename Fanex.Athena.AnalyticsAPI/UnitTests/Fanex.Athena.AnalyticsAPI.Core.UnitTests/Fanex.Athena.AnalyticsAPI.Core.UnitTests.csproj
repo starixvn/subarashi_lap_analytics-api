@@ -5,8 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Middleware\**" />
     <Compile Remove="Modules\**" />
+    <EmbeddedResource Remove="Middleware\**" />
     <EmbeddedResource Remove="Modules\**" />
+    <None Remove="Middleware\**" />
     <None Remove="Modules\**" />
   </ItemGroup>
 
@@ -35,9 +38,5 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Fanex.Athena.AnalyticsAPI.Core\Fanex.Athena.AnalyticsAPI.Core.csproj" />
     <ProjectReference Include="..\Fanex.Athena.AnalyticsAPI.UnitTests.Utils\Fanex.Athena.AnalyticsAPI.UnitTests.Utils.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Middleware\" />
   </ItemGroup>
 </Project>

@@ -1,7 +1,8 @@
 ﻿using System.Collections;
-using System.Threading;
+using System.Data;
 using System.Threading.Tasks;
 using AutoFixture;
+using Fanex.Athena.AnalyticsAPI.Common.Attributes;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Data;
 using Fanex.Data.Repository;
@@ -10,31 +11,33 @@ using Xunit;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services
 {
-    public class SqlService_ExecuteNonQueryWithOutput_Test
+    public class SqlService_ExecuteQueryWithReadHandler_Test
     {
         private readonly SqlService _targetService;
         private readonly Fixture _fixture;
         private readonly Mock<IObjectDb> _mockObjDB;
         private readonly Mock<CreateObjectDbFunc> _createObjectDbFuncMock;
 
-        public SqlService_ExecuteNonQueryWithOutput_Test()
+        public SqlService_ExecuteQueryWithReadHandler_Test()
         {
             _targetService = new SqlService();
             _mockObjDB = new Mock<IObjectDb>();
             _createObjectDbFuncMock = new Mock<CreateObjectDbFunc>();
-
             _fixture = new Fixture();
+
+            var mockReader = new Mock<IDataReader>();
+            mockReader.Setup(_ => _.Read()).Returns(false);
+            _mockObjDB.Setup(_ => _.ExecuteReaderAsync(It.IsAny<string>(), null, default)).ReturnsAsync(mockReader.Object);
 
             DbSettingProviderManager.StartTestingSession();
             ObjectDbFactory.SwitchToTestingMode();
         }
 
         [Fact]
-        public async Task ExecuteNonQueryWithOutput_WhenCall_CreateDBInstanceWithCorrectSettingKey()
+        public async Task ExecuteQueryWithReadHandler_WhenCall_CreateDBInstanceWithCorrectSettingKey()
         {
             //Arrange
             var settingKey = _fixture.Create<string>();
-
             var criteria = new Mock<ICriteria>();
             criteria.Setup(_ => _.IsValid()).Returns(true);
             criteria.Setup(_ => _.GetSettingKey()).Returns(settingKey);
@@ -44,16 +47,17 @@ namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services
             ObjectDbFactory.Mock(_createObjectDbFuncMock.Object);
 
             //Act
-            await _targetService.ExecuteNonQueryWithOutput(criteria.Object, _fixture.Create<string>());
+            await _targetService.ExecuteQueryWithReadHandler<DTOClassTest>(settingKey, criteria.Object, (reader) => null);
 
             //Assert
             _createObjectDbFuncMock.Verify(_ => _.Invoke(settingKey, null), Times.Once);
         }
 
         [Fact]
-        public async Task ExecuteNonQueryWithOutput_WhenCall_ExecuteNonQueryAsyncWithCorrectCriteria()
+        public async Task ExecuteQueryWithReadHandler_WhenCall_ExecuteReaderAsyncWithCorrectCriteria()
         {
             //Arrange
+            var settingKey = _fixture.Create<string>();
             var criteria = new Mock<ICriteria>();
             criteria.Setup(_ => _.IsValid()).Returns(true);
 
@@ -62,16 +66,37 @@ namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services
             ObjectDbFactory.Mock(_createObjectDbFuncMock.Object);
 
             //Act
-            await _targetService.ExecuteNonQueryWithOutput(criteria.Object, _fixture.Create<string>());
+            await _targetService.ExecuteQueryWithReadHandler<DTOClassTest>(settingKey, criteria.Object, (reader) => null);
 
             //Assert
-            _mockObjDB.Verify(_ => _.ExecuteNonQueryAsync(criteria.Object, null, default(CancellationToken)), Times.Once);
+            _mockObjDB.Verify(_ => _.ExecuteReaderAsync(criteria.Object, null, default), Times.Once);
         }
 
         [Fact]
-        public async Task ExecuteNonQueryWithOutput_OutputNull_ReturnNull()
+        public async Task ExecuteQueryWithReadHandler_ReaderHandlerReturnNull_ReturnNull()
         {
             //Arrange
+            var settingKey = _fixture.Create<string>();
+            var criteria = new Mock<ICriteria>();
+            criteria.Setup(_ => _.IsValid()).Returns(true);
+
+            _createObjectDbFuncMock.Setup(_ => _.Invoke(It.IsAny<string>(), null)).Returns(_mockObjDB.Object);
+
+            ObjectDbFactory.Mock(_createObjectDbFuncMock.Object);
+
+            //Act
+            var result = await _targetService.ExecuteQueryWithReadHandler<DTOClassTest>(settingKey, criteria.Object, (reader) => null);
+
+            //Assert
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public async Task ExecuteQueryWithReadHandler_ReaderHandlerReturnData_ReturnCorrectData()
+        {
+            //Arrange
+            var expected = _fixture.CreateMany<DTOClassTest>();
+            var settingKey = _fixture.Create<string>();
             var criteria = new Mock<ICriteria>();
             criteria.Setup(_ => _.IsValid()).Returns(true);
 
@@ -82,62 +107,24 @@ namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services
             ObjectDbFactory.Mock(_createObjectDbFuncMock.Object);
 
             //Act
-            var result = await _targetService.ExecuteNonQueryWithOutput(criteria.Object, _fixture.Create<string>());
+            var result = await _targetService.ExecuteQueryWithReadHandler(settingKey, criteria.Object, (reader) => expected);
 
             //Assert
-            Assert.Null(result);
+            Assert.Equal(expected, result);
         }
 
-        [Fact]
-        public async Task ExecuteNonQueryWithOutput_OutputIsNotNullAndContainsKey_ReturnCorrectResult()
+        private class DTOClassTest
         {
-            //Arrange
-            var criteria = new Mock<ICriteria>();
-            criteria.Setup(_ => _.IsValid()).Returns(true);
+            [SsasColumn("prop1")]
+            public int Prop1 { get; set; }
 
-            var outputKey = "DAX_Query";
+            [SsasColumn("prop2")]
+            public string Prop2 { get; set; }
 
-            var output = new Hashtable
-            {
-                { outputKey, "output result" }
-            };
+            [SsasColumn("prop3")]
+            public string Prop3 { get; set; }
 
-            _mockObjDB.Setup(_ => _.GetOutputParams()).Returns(output);
-
-            _createObjectDbFuncMock.Setup(_ => _.Invoke(It.IsAny<string>(), null)).Returns(_mockObjDB.Object);
-
-            ObjectDbFactory.Mock(_createObjectDbFuncMock.Object);
-
-            //Act
-            var result = await _targetService.ExecuteNonQueryWithOutput(criteria.Object, outputKey);
-
-            //Assert
-            Assert.Equal(output[outputKey], result);
-        }
-
-        [Fact]
-        public async Task GetDaxQuery_OutputIsNotNullAndNoContainsKey_ReturnNull()
-        {
-            //Arrange
-            var criteria = new Mock<ICriteria>();
-            criteria.Setup(_ => _.IsValid()).Returns(true);
-
-            var output = new Hashtable
-            {
-                { "DAX_Query_No_Key", "abc" }
-            };
-
-            _mockObjDB.Setup(_ => _.GetOutputParams()).Returns(output);
-
-            _createObjectDbFuncMock.Setup(_ => _.Invoke(It.IsAny<string>(), null)).Returns(_mockObjDB.Object);
-
-            ObjectDbFactory.Mock(_createObjectDbFuncMock.Object);
-
-            //Act
-            var result = await _targetService.ExecuteNonQueryWithOutput(criteria.Object, "DAX_Query");
-
-            //Assert
-            Assert.Null(result);
+            public string Prop4 { get; set; } = "prop4";
         }
     }
 }

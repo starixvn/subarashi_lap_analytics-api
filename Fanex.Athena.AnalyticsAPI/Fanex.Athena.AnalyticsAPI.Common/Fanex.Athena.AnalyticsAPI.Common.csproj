@@ -22,10 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SSAS\Fanex.Athena.LGAPI.SSAS.Bridge\Fanex.Athena.LGAPI.SSAS.Bridge.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Resources\Lang\ViewResource.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
