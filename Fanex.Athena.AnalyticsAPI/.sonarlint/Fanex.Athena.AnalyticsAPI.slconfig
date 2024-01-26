@@ -1,12 +1,20 @@
 {
-  "ServerUri": "http://sonarqube.nexdev.net",
+  "ServerUri": "http://sonarqube.nexdev.net/",
   "Organization": null,
   "ProjectKey": "Sparta_LAP.AnalyticsAPI",
   "ProjectName": "Legion / LAP.AnalyticsAPI",
   "Profiles": {
     "CSharp": {
       "ProfileKey": "cs-sonar-way-80515",
-      "ProfileTimestamp": "2021-12-16T15:13:27Z"
+      "ProfileTimestamp": "2023-12-08T09:13:56Z"
+    },
+    "Js": {
+      "ProfileKey": "AWl04iZWj9olo_-BB-_e",
+      "ProfileTimestamp": "2023-08-07T03:32:55Z"
+    },
+    "Ts": {
+      "ProfileKey": "ts-tslint-55020",
+      "ProfileTimestamp": "2023-08-07T03:27:09Z"
     }
   }
 }
