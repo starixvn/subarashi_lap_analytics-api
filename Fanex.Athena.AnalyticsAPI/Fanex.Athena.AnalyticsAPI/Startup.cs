@@ -98,7 +98,7 @@ namespace Fanex.Athena.AnalyticsAPI
             Performance.Extensions.DefendencyInjectionExtension.AddDIPerformance(services);
             Sportsbook.Extensions.DefendencyInjectionExtension.AddDIPerformance(services);
             Summary.Extensions.DefendencyInjectionExtension.AddDISummary(services);
-            Common.Extensions.DefendencyInjectionExtension.AddDICommon(services, Configuration);
+            Common.Extensions.DefendencyInjectionExtension.AddDICommon(services);
             Core.Extensions.DefendencyInjectionExtension.AddDICore(services);
 
             services.AddHttpsRedirection(options =>

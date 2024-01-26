@@ -36,7 +36,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Services
         {
             if (IsMetaModel(actionArguments, out IProductCodeListMetaModel productCodeListMetaModel)
                 && offeredSubProductList != null && offeredSubProductList.Any()
-                && productCodeListMetaModel.ProductCodeList.Split(',').Any(_ => string.Equals(_, ProductCode.SB, StringComparison.InvariantCultureIgnoreCase)))
+                && Array.Exists(productCodeListMetaModel.ProductCodeList.Split(','), _ => string.Equals(_, ProductCode.SB, StringComparison.InvariantCultureIgnoreCase)))
             {
                 productCodeListMetaModel.ProductCodeList = productCodeListMetaModel.ProductCodeList + "," + string.Join(",", offeredSubProductList);
             }

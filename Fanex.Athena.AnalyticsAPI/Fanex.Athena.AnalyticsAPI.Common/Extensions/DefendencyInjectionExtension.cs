@@ -1,20 +1,19 @@
 ﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.RemotingRef;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
 {
     public static class DefendencyInjectionExtension
     {
-        public static IServiceCollection AddDICommon(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddDICommon(this IServiceCollection services)
         {
             return services
-                .AddServices(configuration)
+                .AddServices()
                 .AddRepositories();
         }
 
-        private static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
+        private static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddTransient<IContextService, ContextService>();
             services.AddSingleton<ICalculationService, CalculationService>();

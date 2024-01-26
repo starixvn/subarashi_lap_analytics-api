@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Linq;
 using Fanex.Athena.AnalyticsAPI.Common.Constants;
 using Fanex.Athena.AnalyticsAPI.Common.Resources.Lang;
 using Fanex.RemotingRef;
@@ -24,12 +23,12 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
 
         public string GetName(string type, string id, string defaultValue)
         {
-            if (type.Equals(TranslationConst.BettypeType, StringComparison.OrdinalIgnoreCase) && !EXCEPTION_BETTYPE_IDs.Any(_ => _.Equals(id)))
+            if (type.Equals(TranslationConst.BettypeType, StringComparison.OrdinalIgnoreCase) && !Array.Exists(EXCEPTION_BETTYPE_IDs, _ => _.Equals(id)))
             {
                 return GetDisplayBetTypeName(id, defaultValue);
             }
 
-            if (type.Equals(TranslationConst.SportType, StringComparison.OrdinalIgnoreCase) && !EXCEPTION_SPORT_IDs.Any(_ => _.Equals(id)))
+            if (type.Equals(TranslationConst.SportType, StringComparison.OrdinalIgnoreCase) && !Array.Exists(EXCEPTION_SPORT_IDs, _ => _.Equals(id)))
             {
                 return GetSportName(id, defaultValue);
             }
@@ -52,7 +51,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
 
         private string GetSportName(string sportId, string defaultValue)
         {
-            if (HARD_CODE_SPORT_IDS.Any(_ => _.Equals(sportId)))
+            if (Array.Exists(HARD_CODE_SPORT_IDS, _ => _.Equals(sportId)))
             {
                 return GetValue(TranslationConst.SportType, sportId);
             }

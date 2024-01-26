@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Fanex.Athena.AnalyticsAPI.Common.Controllers;
 using Fanex.Athena.AnalyticsAPI.Common.Helpers;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
@@ -38,7 +37,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Controllers
         public async Task<WidgetByPlatformViewModel> GetData([FromQuery] BaseSummaryMetaModel metaModel)
         {
             var now = DateTimeHelper.DatabaseServerNow.Date;
-            metaModel.FromDate = new DateTime(now.Year, now.Month, 1);
+            metaModel.FromDate = DateTimeHelper.CreateDateTime(now.Year, now.Month, 1);
             metaModel.ToDate = now;
             metaModel.SpecialPlatform = _authInfoService.SpecialPlatformType;
 

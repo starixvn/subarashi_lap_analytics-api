@@ -18,9 +18,18 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
                     "(GMT-04:00) DB Server Time",
                     "DB Server Time");
 
+        public static Func<DateTimeOffset> DateTimeOffsetProvider { get; set; } = () => DateTimeOffset.Now;
+
+        public static DateTime Now => DateTimeOffsetProvider().DateTime;
+
+        public static DateTime UtcNow => DateTimeOffsetProvider().UtcDateTime;
+
+        public static DateTime CreateDateTime(int year, int month, int day, int hour = 0, int minute = 0, int second = 0)
+            => new DateTimeOffset(year, month, day, hour, minute, second, TimeSpan.Zero).DateTime;
+
         public static DateTime DatabaseServerNow =>
             TimeZoneInfo.ConvertTimeFromUtc(
-                DateTime.UtcNow,
+                UtcNow,
                 DatabaseServerTimezoneInfo);
 
         public static string ParseFromFormatToString(string date, bool includeEndOfMonth)
@@ -38,7 +47,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
             var parsedDate = DateTime.ParseExact(date, MONTH_FORMAT, CULTURE_INFO_DEFAULT);
             var day = includeEndOfMonth ? DateTime.DaysInMonth(parsedDate.Year, parsedDate.Month) : 1;
 
-            return new DateTime(parsedDate.Year, parsedDate.Month, day);
+            return CreateDateTime(parsedDate.Year, parsedDate.Month, day);
         }
 
         public static DateTime ParseFromFormatDateToDate(string date, bool includeEndOfMonth)
@@ -46,7 +55,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
             var parsedDate = DateTime.ParseExact(date, DATE_FORMAT, CULTURE_INFO_DEFAULT);
             var day = includeEndOfMonth ? DateTime.DaysInMonth(parsedDate.Year, parsedDate.Month) : 1;
 
-            return new DateTime(parsedDate.Year, parsedDate.Month, day);
+            return CreateDateTime(parsedDate.Year, parsedDate.Month, day);
         }
 
         public static DateTime ParseFromFormatDateToDate(string date)

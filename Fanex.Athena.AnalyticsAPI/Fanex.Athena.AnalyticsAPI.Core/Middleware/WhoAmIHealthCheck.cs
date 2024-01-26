@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
@@ -7,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Common.Helpers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -57,7 +57,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
             result.Add("Local Ip", context.Connection.LocalIpAddress.ToString());
             result.Add("Local Port", context.Connection.LocalPort);
             result.Add("Client Ip", context.Connection.RemoteIpAddress.ToString());
-            result.Add("Server Time", DateTime.Now.ToString(CultureInfo.InvariantCulture));
+            result.Add("Server Time", DateTimeHelper.Now.ToString(CultureInfo.InvariantCulture));
             result.Add("Last Upadted", File.GetCreationTime(typeof(WhoAmIHealthCheck).Assembly.Location).ToString(CultureInfo.InvariantCulture));
             result.Add("Host", context.Request.Host);
             result.Add("Schema", context.Request.Scheme);
