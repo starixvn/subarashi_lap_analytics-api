@@ -1,7 +1,7 @@
-﻿using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
+using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 {

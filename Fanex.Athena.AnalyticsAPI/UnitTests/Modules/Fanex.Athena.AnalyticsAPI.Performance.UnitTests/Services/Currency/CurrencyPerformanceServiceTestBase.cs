@@ -1,12 +1,11 @@
-﻿using AutoFixture;
+﻿using System.Linq;
+using AutoFixture;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Mappers;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Repositories;
 using Fanex.Athena.AnalyticsAPI.Performance.Services;
 using Moq;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Services
 {

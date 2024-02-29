@@ -1,4 +1,4 @@
-﻿using Fanex.Athena.LGAPI.SSAS.Bridge.Attributes;
+﻿using Fanex.Athena.AnalyticsAPI.Common.Attributes;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
 {
@@ -14,6 +14,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
         public bool IsSum { get; set; }
 
         public abstract string Id { get; }
+
         public abstract string Name { get; }
     }
 }

@@ -1,9 +1,9 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Mappers;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Sportsbook.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Fanex.Athena.AnalyticsAPI.Common.Mappers;
+using Fanex.Athena.AnalyticsAPI.Common.Services;
+using Fanex.Athena.AnalyticsAPI.Sportsbook.Models;
 
 namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers
 {
@@ -28,7 +28,7 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers
            IReadOnlyDictionary<int, IEnumerable<bool>> onlySupportedData, IEnumerable<int> excludedFromTopData)
         {
             var topItems = onlySupportedData == null || !onlySupportedData.Any() ?
-                fullItems.Where(_ => !excludedFromTopData.Contains(_.Id)).OrderByDescending(dimensionValueFunc).Take(NUMBER_OF_TOP) 
+                fullItems.Where(_ => !excludedFromTopData.Contains(_.Id)).OrderByDescending(dimensionValueFunc).Take(NUMBER_OF_TOP)
                 : fullItems.Where(x => onlySupportedData.ContainsKey(x.Id) && onlySupportedData[x.Id].Any(y => y == x.IsSaba));
 
             if (includeOther && ToOtherDTO(fullItems, topItems) is SportsbookDTO otherDto)
@@ -45,7 +45,6 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers
             return result.OrderByDescending(_ => _.Distribution);
         }
 
-
         private DimDistributionResponse ToDimDistributionResponse(SportsbookDTO rawData, double sumAll, Func<SportsbookDTO, double> valueFunc)
         {
             var dimValue = valueFunc.Invoke(rawData);
@@ -60,10 +59,10 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers
             };
         }
 
-        private SportsbookDTO ToOtherDTO(IEnumerable<SportsbookDTO> fullItems,  IEnumerable<SportsbookDTO> topItems)
+        private SportsbookDTO ToOtherDTO(IEnumerable<SportsbookDTO> fullItems, IEnumerable<SportsbookDTO> topItems)
         {
             var otherItems = fullItems.Except(topItems);
-            if(!otherItems.Any())
+            if (!otherItems.Any())
             {
                 return null;
             }

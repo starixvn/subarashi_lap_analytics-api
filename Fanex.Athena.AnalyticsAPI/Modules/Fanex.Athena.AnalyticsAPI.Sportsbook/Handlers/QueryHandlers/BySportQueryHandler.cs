@@ -1,14 +1,14 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Constants;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Common.Constants;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Constants;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Models;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Repositories;
 using MediatR;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Handlers
 {
@@ -25,7 +25,7 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Handlers
         {
             var rawData = (await GetRawData(request)).ToList();
             CombineParlay(rawData);
-           
+
             return new BySportResponse
             {
                 ByTurnover = Translate(_sportsbookMapper.ToTurnoverResponse(rawData, includeOther: true, onlySupportedData: DomainData.SupportedSports)),

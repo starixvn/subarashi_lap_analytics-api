@@ -1,21 +1,18 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Fanex.Athena.AnalyticsAPI.Common.Helpers;
 using Fanex.Athena.AnalyticsAPI.Common.Mappers;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
 {
     public class PerformanceVMMapper : ViewModelMapper, IPerformanceVMMapper
     {
-        public PerformanceVMMapper(
-            ICalculationService calculationService
-            )
-            : base(calculationService)
+        public PerformanceVMMapper(ICalculationService calculationService) : base(calculationService)
         {
         }
 
@@ -23,8 +20,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             IEnumerable<MeasurementTimeDTO> periodDtos,
             DateTime fromMonth, DateTime toMonth)
         {
-            fromMonth = new DateTime(fromMonth.Year, fromMonth.Month, 1);
-            toMonth = new DateTime(toMonth.Year, toMonth.Month, 1);
+            fromMonth = DateTimeHelper.CreateDateTime(fromMonth.Year, fromMonth.Month, 1);
+            toMonth = DateTimeHelper.CreateDateTime(toMonth.Year, toMonth.Month, 1);
 
             var result = new List<MeasurementGrowthVM>();
             var currentPeriodData = periodDtos.ToDictionary(_ => _.Time.ToLocalTime().ToString(DateTimeHelper.MONTH_FORMAT));
@@ -115,7 +112,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             where T : DistributionDTO
         {
             var listDto = dtos.ToList();
-            var sumItem = listDto.FirstOrDefault(_ => _.IsSum);
+            var sumItem = listDto.Find(_ => _.IsSum);
             listDto.Remove(sumItem);
 
             var dtoDic = listDto.ToDictionary(_ => _.Id, _ => _);

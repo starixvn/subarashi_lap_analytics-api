@@ -1,8 +1,8 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Services;
+﻿using System;
+using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System;
-using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Attributes
 {
@@ -51,7 +51,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Attributes
                 _bindingService.BindAgentXml(context.ActionArguments, _authInfoService.CurrencyAgentList);
             }
 
-            if(_bindProductList)
+            if (_bindProductList)
             {
                 _bindingService.BindProductCodeList(context.ActionArguments, _authInfoService.OfferedSubProductList);
             }

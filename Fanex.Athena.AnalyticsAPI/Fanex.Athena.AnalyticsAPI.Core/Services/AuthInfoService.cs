@@ -1,10 +1,9 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
-using Microsoft.AspNetCore.Http;
-using System.Text.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Services
@@ -14,6 +13,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Services
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         protected HttpContext Context => _httpContextAccessor.HttpContext;
+
         protected ClaimsPrincipal User => Context.User;
 
         public AuthInfoService(IHttpContextAccessor httpContextAccessor)

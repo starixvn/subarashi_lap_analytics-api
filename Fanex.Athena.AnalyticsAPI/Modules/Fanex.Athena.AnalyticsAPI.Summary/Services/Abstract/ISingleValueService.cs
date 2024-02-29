@@ -1,5 +1,5 @@
-﻿using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
 
 namespace Fanex.Athena.AnalyticsAPI.Summary.Services
 {

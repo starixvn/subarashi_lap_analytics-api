@@ -1,4 +1,5 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Constants;
+﻿using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Common.Constants;
 using Fanex.Athena.AnalyticsAPI.Common.Controllers;
 using Fanex.Athena.AnalyticsAPI.Common.Extensions;
 using Fanex.Athena.AnalyticsAPI.Common.Helpers;
@@ -8,7 +9,6 @@ using Fanex.Athena.AnalyticsAPI.Core.Constants;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 {
@@ -33,7 +33,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [HttpPost]
         [Route("api/performance/overview/summary")]
         [AutoBindingMetaModel(bindSiteName: true)]
-        public async Task<JsonResult> GetSummary([FromBody]PerformanceFilterMetaModel filter)
+        public async Task<JsonResult> GetSummary([FromBody] PerformanceFilterMetaModel filter)
         {
             var result = await _overviewService.GetSummaryWithComparison(filter);
             return ToResult(result);
@@ -42,7 +42,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [HttpPost]
         [Route("api/performance/overview/top-change")]
         [AutoBindingMetaModel(bindSiteName: true)]
-        public async Task<JsonResult> GetTopChange([FromBody]PerformanceFilterMetaModel filter)
+        public async Task<JsonResult> GetTopChange([FromBody] PerformanceFilterMetaModel filter)
         {
             var result = await _getTopChange(filter);
             return ToResult(result);
@@ -69,7 +69,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [HttpPost]
         [Route("api/performance/overview")]
         [AutoBindingMetaModel(bindSiteName: true)]
-        public async Task<JsonResult> GetCombineData([FromBody]PerformanceFilterMetaModel filter)
+        public async Task<JsonResult> GetCombineData([FromBody] PerformanceFilterMetaModel filter)
         {
             var topChangeTask = _getTopChange(filter);
             var summaryTask = _overviewService.GetSummaryWithComparison(filter);

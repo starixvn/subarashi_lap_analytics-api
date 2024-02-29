@@ -1,7 +1,7 @@
-﻿using AutoFixture;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using AutoFixture;
 
 namespace Fanex.Athena.AnalyticsAPI.UnitTests.Utils.Helpers
 {

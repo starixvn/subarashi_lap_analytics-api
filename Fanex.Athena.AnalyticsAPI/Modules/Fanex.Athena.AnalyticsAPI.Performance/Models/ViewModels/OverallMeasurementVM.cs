@@ -3,7 +3,7 @@
 namespace Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels
 {
     public class OverallMeasurementVM
-    {              
+    {
         public string Id { get; set; }
 
         [Translation(nameof(Id))]

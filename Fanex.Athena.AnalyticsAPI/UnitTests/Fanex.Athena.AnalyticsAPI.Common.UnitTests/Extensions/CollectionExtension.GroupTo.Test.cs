@@ -1,8 +1,8 @@
-﻿using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Common.Extensions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoFixture;
+using Fanex.Athena.AnalyticsAPI.Common.Extensions;
 using Xunit;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Extensions
@@ -10,6 +10,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Extensions
     internal class Fake_GroupTo_Class
     {
         public int Key { get; set; }
+
         public int Value { get; set; }
     }
 

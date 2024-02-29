@@ -1,4 +1,6 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Attributes;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Core.Attributes;
 using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
 using Fanex.Athena.AnalyticsAPI.Core.Services;
 using Fanex.Athena.AnalyticsAPI.UnitTests.Utils.Helpers;
@@ -9,8 +11,6 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Routing;
 using Moq;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.UnitTests.Attributes

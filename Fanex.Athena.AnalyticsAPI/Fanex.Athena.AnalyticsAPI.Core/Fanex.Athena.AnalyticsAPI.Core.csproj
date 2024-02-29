@@ -30,4 +30,8 @@
     <PackageReference Include="ONEbook.UM.AspNetCore" Version="3.1.0-beta05" />
     <PackageReference Include="ONEbook.UM.Transport" Version="3.1.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Fanex.Athena.AnalyticsAPI.Common\Fanex.Athena.AnalyticsAPI.Common.csproj" />
+  </ItemGroup>
 </Project>

@@ -1,26 +1,26 @@
-﻿using Fanex.Athena.AnalyticsAPI.Configuration;
+﻿using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Configuration;
 using Fanex.Athena.AnalyticsAPI.Models;
 using IdentityModel.Client;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Options;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Controllers
 {
     [ApiController]
     public class AuthController : Controller
-    { 
+    {
         private readonly IdentityServerConfig _identityServerConfig;
         private readonly HttpClient _client;
 
         public AuthController(IOptionsSnapshot<IdentityServerConfig> identityServerConfig, HttpClient client)
         {
             _identityServerConfig = identityServerConfig.Value;
-            _client = client; 
+            _client = client;
         }
 
         [HttpPost]
@@ -28,7 +28,7 @@ namespace Fanex.Athena.AnalyticsAPI.Controllers
         [AllowAnonymous]
         public async Task<IStatusCodeActionResult> Token([FromBody] LapTokenRequest request)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest();
             }

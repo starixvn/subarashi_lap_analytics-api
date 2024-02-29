@@ -1,6 +1,6 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
+﻿using System;
+using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
 using Newtonsoft.Json;
-using System;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
 {

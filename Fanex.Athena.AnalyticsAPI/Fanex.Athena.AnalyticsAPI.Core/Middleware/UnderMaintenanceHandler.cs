@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using ONEbook.UM.Services;
-using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
 {

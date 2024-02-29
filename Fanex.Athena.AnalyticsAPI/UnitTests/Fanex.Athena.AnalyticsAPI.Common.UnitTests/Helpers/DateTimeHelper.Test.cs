@@ -1,6 +1,6 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Helpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Fanex.Athena.AnalyticsAPI.Common.Helpers;
 using Xunit;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Helpers

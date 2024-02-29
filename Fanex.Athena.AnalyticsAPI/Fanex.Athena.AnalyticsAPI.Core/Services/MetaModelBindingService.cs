@@ -1,10 +1,10 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Constants;
-using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
-using Fanex.Athena.AnalyticsAPI.Core.Models.MetaModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Fanex.Athena.AnalyticsAPI.Core.Constants;
+using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
+using Fanex.Athena.AnalyticsAPI.Core.Models.MetaModels;
 
 namespace Fanex.Athena.AnalyticsAPI.Core.Services
 {
@@ -36,7 +36,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Services
         {
             if (IsMetaModel(actionArguments, out IProductCodeListMetaModel productCodeListMetaModel)
                 && offeredSubProductList != null && offeredSubProductList.Any()
-                && productCodeListMetaModel.ProductCodeList.Split(',').Any(_ => string.Equals(_, ProductCode.SB, StringComparison.InvariantCultureIgnoreCase)))
+                && Array.Exists(productCodeListMetaModel.ProductCodeList.Split(','), _ => string.Equals(_, ProductCode.SB, StringComparison.InvariantCultureIgnoreCase)))
             {
                 productCodeListMetaModel.ProductCodeList = productCodeListMetaModel.ProductCodeList + "," + string.Join(",", offeredSubProductList);
             }

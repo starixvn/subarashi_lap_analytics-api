@@ -1,7 +1,7 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Criteria;
+﻿using System.Linq;
+using Fanex.Athena.AnalyticsAPI.Common.Models.Criteria;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
-using System.Linq;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Helpers
 {

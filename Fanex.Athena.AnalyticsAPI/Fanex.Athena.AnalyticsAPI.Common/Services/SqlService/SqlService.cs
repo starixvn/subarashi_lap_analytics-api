@@ -1,27 +1,15 @@
-﻿using Fanex.Data;
-using Fanex.Data.Repository;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Common.Extensions;
+using Fanex.Data;
+using Fanex.Data.Repository;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
     public class SqlService : ISqlService
     {
-        public async Task<object> ExecuteNonQueryWithOutput(ICriteria criteria, string outputName)
-        {
-            using (var db = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
-            {
-                await db.ExecuteNonQueryAsync(criteria);
-                var output = db.GetOutputParams();
-                if (output != null && output.ContainsKey(outputName))
-                {
-                    return output[outputName];
-                }
-            }
-            return null;
-        }
-
         public async Task<T> ExecuteQueryWithReadHandler<T>(string spKey, object spParams, Func<IDataReader, T> readHandler)
         {
             using (var db = ObjectDbFactory.CreateInstance(spKey))
@@ -31,6 +19,35 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
                     return readHandler.Invoke(reader);
                 }
             }
+        }
+
+        public async Task<IEnumerable<T>> ExecuteQueryData<T>(ICriteria criteria) where T : new()
+        {
+            using var db = ObjectDbFactory.CreateInstance(criteria.GetSettingKey());
+            var result = new LinkedList<T>();
+
+            using (var reader = await db.ExecuteReaderAsync(criteria).ConfigureAwait(false))
+            {
+                while (reader.Read())
+                {
+                    var data = reader.ReadObject<T>();
+                    result.AddLast(data);
+                }
+            }
+            return result;
+        }
+
+        public async Task<IEnumerable<IEnumerable<T>>> ExecuteMultipleQueryData<T>(params ICriteria[] listCriteria) where T : new()
+        {
+            var tasks = new List<Task<IEnumerable<T>>>(listCriteria.Length);
+            foreach (var criteria in listCriteria)
+            {
+                tasks.Add(ExecuteQueryData<T>(criteria));
+            }
+
+            var result = await Task.WhenAll(tasks);
+
+            return result;
         }
     }
 }

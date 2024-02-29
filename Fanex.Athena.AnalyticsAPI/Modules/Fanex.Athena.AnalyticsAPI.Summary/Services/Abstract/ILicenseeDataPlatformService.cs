@@ -1,6 +1,6 @@
-﻿using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
+﻿using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Summary.Models.ViewModels;
-using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Summary.Services
 {

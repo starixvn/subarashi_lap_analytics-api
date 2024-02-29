@@ -1,8 +1,8 @@
 ﻿using AutoFixture;
-using Fanex.Athena.LGAPI.SSAS.Bridge.Attributes;
+using Fanex.Athena.AnalyticsAPI.Common.Attributes;
 using Xunit;
 
-namespace Fanex.Athena.LGAPI.SSAS.Bridge.UnitTests.Attributes
+namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Attributes
 {
     public class SsasColumnAttribute_Test
     {
@@ -31,7 +31,7 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.UnitTests.Attributes
         {
             //Arrange
             var mapColumn = _fixture.Create<string>();
-            var attribute = new SsasColumnAttribute();
+            var attribute = _fixture.Create<SsasColumnAttribute>();
 
             //Act
             attribute.MapColumn = mapColumn;

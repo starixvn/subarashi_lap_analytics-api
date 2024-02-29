@@ -1,4 +1,6 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Helpers;
+﻿using System;
+using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Common.Helpers;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Core.Services;
 using Fanex.Athena.AnalyticsAPI.Summary.Controllers;
@@ -7,8 +9,6 @@ using Fanex.Athena.AnalyticsAPI.Summary.Models.ViewModels;
 using Fanex.Athena.AnalyticsAPI.Summary.Services;
 using Fanex.Athena.AnalyticsAPI.UnitTests.Utils.Helpers;
 using Moq;
-using System;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Athena.AnalyticsAPI.Summary.UnitTests.Controllers

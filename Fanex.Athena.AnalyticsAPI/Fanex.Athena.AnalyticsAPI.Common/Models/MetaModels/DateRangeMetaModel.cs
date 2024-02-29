@@ -12,6 +12,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels
             {
                 return _fromMonth;
             }
+
             set
             {
                 _fromMonth = DateTimeHelper.ParseFromFormatToString(value, false);
@@ -26,6 +27,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels
             {
                 return _toMonth;
             }
+
             set
             {
                 _toMonth = DateTimeHelper.ParseFromFormatToString(value, true);

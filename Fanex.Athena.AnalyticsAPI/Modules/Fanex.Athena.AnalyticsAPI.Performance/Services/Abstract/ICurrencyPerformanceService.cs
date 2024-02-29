@@ -1,8 +1,7 @@
-﻿using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 {
@@ -18,4 +17,4 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 
         Task<IDictionary<string, object>> GetAllDetailMonthGrowthWithComparison(CurrenyPerformanceFilterMetaModel filter);
     }
-}                                                                                       
+}

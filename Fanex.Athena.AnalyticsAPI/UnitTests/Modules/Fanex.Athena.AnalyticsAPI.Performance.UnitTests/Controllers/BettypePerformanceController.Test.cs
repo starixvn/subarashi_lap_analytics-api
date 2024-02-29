@@ -1,4 +1,7 @@
-﻿using AutoFixture;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using AutoFixture;
 using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Controllers;
@@ -8,9 +11,6 @@ using Fanex.Athena.AnalyticsAPI.Performance.Services;
 using Moq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Controllers
@@ -53,7 +53,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Controllers
             }).ToList();
 
             _bettypeServiceMock.Setup(_ => _.GetTopDistributions(filter, 10)).ReturnsAsync(topDistributionsData);
-            
 
             var overallMarginData = _fixture.CreateMany<OverallMeasurementVM>();
             _bettypeServiceMock.Setup(_ => _.GetOverallMeasurement(filter)).ReturnsAsync(overallMarginData);
@@ -66,7 +65,6 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Controllers
 
             var periodGrowthData = _fixture.CreateMany<MeasurementPeriodComparisonGrowthVM>();
             _bettypeServiceMock.Setup(_ => _.GetPeriodGrowthWithComparison(filter)).ReturnsAsync(periodGrowthData);
-
 
             var expected = new
             {

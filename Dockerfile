@@ -16,9 +16,6 @@ RUN npm install
 
 COPY NuGet.Config .
 
-COPY Fanex.Athena.AnalyticsAPI/SSAS/Fanex.Athena.LGAPI.SSAS.Bridge/Fanex.Athena.LGAPI.SSAS.Bridge.csproj ./SSAS/Fanex.Athena.LGAPI.SSAS.Bridge/
-RUN dotnet restore SSAS/Fanex.Athena.LGAPI.SSAS.Bridge/Fanex.Athena.LGAPI.SSAS.Bridge.csproj -v n
-
 COPY Fanex.Athena.AnalyticsAPI/Fanex.Athena.AnalyticsAPI.Core/Fanex.Athena.AnalyticsAPI.Core.csproj ./Fanex.Athena.AnalyticsAPI.Core/
 RUN dotnet restore Fanex.Athena.AnalyticsAPI.Core/Fanex.Athena.AnalyticsAPI.Core.csproj -v n
 
@@ -48,7 +45,6 @@ RUN node node_modules/webpack/bin/webpack.js  \
 	--env.disableAnalyzer=true \
 	--env.output=../../publish/wwwroot
 
-COPY Fanex.Athena.AnalyticsAPI/SSAS/Fanex.Athena.LGAPI.SSAS.Bridge ./SSAS/Fanex.Athena.LGAPI.SSAS.Bridge
 COPY Fanex.Athena.AnalyticsAPI/Fanex.Athena.AnalyticsAPI.Core ./Fanex.Athena.AnalyticsAPI.Core
 COPY Fanex.Athena.AnalyticsAPI/Fanex.Athena.AnalyticsAPI.Common ./Fanex.Athena.AnalyticsAPI.Common
 COPY Fanex.Athena.AnalyticsAPI/Modules/Fanex.Athena.AnalyticsAPI.Summary ./Modules/Fanex.Athena.AnalyticsAPI.Summary

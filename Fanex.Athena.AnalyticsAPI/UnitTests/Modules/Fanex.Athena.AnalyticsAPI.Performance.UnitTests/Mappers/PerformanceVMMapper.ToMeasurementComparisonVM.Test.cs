@@ -1,12 +1,12 @@
-﻿using AutoFixture;
+﻿using System.Collections.Generic;
+using System.Linq;
+using AutoFixture;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Mappers;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
 using Moq;
 using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Linq;
 using Xunit;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Mappers
@@ -86,7 +86,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Mappers
                     DifferenceGrossProfit = new DifferenceMeasurement { DifferenceTotal  = 3501254.255, DifferenceDistribution = 12.2 },
                     DifferenceTurnover = new DifferenceMeasurement { DifferenceTotal = 91230.23, DifferenceDistribution = 39.2 }
                 },
-                new MeasurementComparisonVM                                                 
+                new MeasurementComparisonVM
                 {
                     Id = "0",
                     Name = "Others",

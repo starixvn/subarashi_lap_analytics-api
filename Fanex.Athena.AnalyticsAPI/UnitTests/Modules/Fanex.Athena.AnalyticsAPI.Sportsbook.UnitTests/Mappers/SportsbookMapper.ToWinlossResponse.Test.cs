@@ -1,10 +1,10 @@
-﻿using AutoFixture;
+﻿using System.Collections.Generic;
+using AutoFixture;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Models;
 using Moq;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 using Xunit;
 
 namespace Fanex.Athena.AnalyticsAPI.Sportsbook.UnitTests.Mappers

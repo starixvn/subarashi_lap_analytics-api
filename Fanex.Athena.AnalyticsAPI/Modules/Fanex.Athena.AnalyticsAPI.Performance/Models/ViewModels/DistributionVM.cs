@@ -1,5 +1,5 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Attributes;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Fanex.Athena.AnalyticsAPI.Common.Attributes;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels
 {

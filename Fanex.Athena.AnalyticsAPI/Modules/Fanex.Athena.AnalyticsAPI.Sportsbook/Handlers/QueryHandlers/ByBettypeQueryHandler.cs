@@ -1,12 +1,12 @@
-﻿using Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers;
+﻿using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Fanex.Athena.AnalyticsAPI.Common.Constants;
+using Fanex.Athena.AnalyticsAPI.Common.Services;
+using Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Models;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Repositories;
 using MediatR;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Linq;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Common.Constants;
 
 namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Handlers
 {

@@ -1,6 +1,6 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
+﻿using System.Collections.Generic;
+using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Core.Models.MetaModels;
-using System.Collections.Generic;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels
 {

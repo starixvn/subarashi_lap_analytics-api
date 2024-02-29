@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fanex.Athena.LGAPI.SSAS.Bridge.Attributes
+namespace Fanex.Athena.AnalyticsAPI.Common.Attributes
 {
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
     public sealed class SsasColumnAttribute : Attribute
@@ -8,10 +8,6 @@ namespace Fanex.Athena.LGAPI.SSAS.Bridge.Attributes
         public SsasColumnAttribute(string mapColumn)
         {
             MapColumn = mapColumn;
-        }
-
-        public SsasColumnAttribute()
-        {
         }
 
         public string MapColumn { get; set; }

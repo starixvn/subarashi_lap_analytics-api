@@ -1,5 +1,4 @@
-﻿
-using Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers;
+﻿using Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 

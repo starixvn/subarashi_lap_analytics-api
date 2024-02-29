@@ -1,5 +1,5 @@
-﻿using Fanex.Athena.AnalyticsAPI.Sportsbook.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Fanex.Athena.AnalyticsAPI.Sportsbook.Models;
 
 namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers
 {
