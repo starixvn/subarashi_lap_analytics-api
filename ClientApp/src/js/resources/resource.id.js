@@ -109,7 +109,7 @@ export const id = {
   basketball: "Bola basket",
   saba_basketball: "Bola Basket Saba",
   cricket: "Kriket",
-  winloss: "Menang atau kalah",
+  winloss: "Menang-Kalah",
   report_by_turnover: "Laporan Berdasarkan Omset",
   report_by_winloss: "Laporan Menurut Menang Kalah",
   distribution_of_turnover: "Distribusi Omset",
