@@ -853,6 +853,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to UU SLOTS.
+        /// </summary>
+        public static string product_79 {
+            get {
+                return ResourceManager.GetString("product_79", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bingo.
         /// </summary>
         public static string product_8 {
