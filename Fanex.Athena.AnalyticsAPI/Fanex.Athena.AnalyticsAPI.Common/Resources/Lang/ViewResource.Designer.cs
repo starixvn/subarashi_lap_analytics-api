@@ -923,5 +923,14 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
                 return ResourceManager.GetString("sport_0", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Virtual .
+        /// </summary>
+        public static string Virtual {
+            get {
+                return ResourceManager.GetString("Virtual", resourceCulture);
+            }
+        }
     }
 }

@@ -6,6 +6,8 @@ using Fanex.Athena.AnalyticsAPI.Common.Extensions;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Core.Attributes;
 using Fanex.Athena.AnalyticsAPI.Core.Constants;
+using Fanex.Athena.AnalyticsAPI.Core.Helpers;
+using Fanex.Athena.AnalyticsAPI.Core.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Constants;
 using Fanex.Athena.AnalyticsAPI.Performance.Extensions;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
@@ -21,16 +23,19 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
     {
         private readonly IBettypePerformanceService _bettypeService;
         private readonly ITranslationService _translationService;
+        private readonly IAuthInfoService _authInfoService;
 
         public BettypePerformanceController(
             IContextService contextService,
             IBettypePerformanceService bettypeService,
-            ITranslationService translationService
+            ITranslationService translationService,
+            IAuthInfoService authInfoService
             )
             : base(contextService)
         {
             _bettypeService = bettypeService;
             _translationService = translationService;
+            _authInfoService = authInfoService;
         }
 
         [HttpPost]
@@ -74,10 +79,11 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [AutoBindingMetaModel(bindSiteName: true)]
         public async Task<JsonResult> GetCombineData([FromBody] BettypePerformanceFilterMetaModel filter)
         {
+            var isHideSaba = SabaHelper.IsHideSaba(_authInfoService.SpecialPlatform);
             const int numberOfTopBettype = 10;
             await filter.BindTopDistributionsToFilterMetaModel(_bettypeService, numberOfTopBettype);
 
-            _translationService.Translate(filter.TopDistributions, TranslationConst.BettypeType);
+            _translationService.Translate(filter.TopDistributions, isHideSaba, TranslationConst.BettypeType);
 
             var isMargin = filter.Measurement.Id == MeasurementConst.MARGIN;
 
@@ -87,8 +93,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
                               !isMargin ? _bettypeService.GetDistributionWithComparison(filter) : Task.FromResult<IEnumerable<DistributionVM>>(null),
                               isMargin ? _bettypeService.GetOverallMeasurement(filter) : Task.FromResult<IEnumerable<OverallMeasurementVM>>(null));
 
-            _translationService.Translate(distributionData, TranslationConst.NormalType);
-            _translationService.Translate(overallMarginData, TranslationConst.NormalType);
+            _translationService.Translate(distributionData, isHideSaba, TranslationConst.NormalType);
+            _translationService.Translate(overallMarginData, isHideSaba, TranslationConst.NormalType);
 
             return ToResult(new
             {

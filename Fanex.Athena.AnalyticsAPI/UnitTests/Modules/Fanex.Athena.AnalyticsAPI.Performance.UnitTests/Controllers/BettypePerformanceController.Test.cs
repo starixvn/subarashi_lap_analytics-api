@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoFixture;
 using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
+using Fanex.Athena.AnalyticsAPI.Core.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Controllers;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
@@ -21,6 +22,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Controllers
         private readonly Mock<IContextService> _contextServiceMock;
         private readonly Mock<IBettypePerformanceService> _bettypeServiceMock;
         private readonly Mock<ITranslationService> _translationServiceMock;
+        private readonly Mock<IAuthInfoService> _authInfoServiceMock;
 
         private readonly Fixture _fixture;
 
@@ -29,8 +31,9 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Controllers
             _contextServiceMock = new Mock<IContextService>();
             _bettypeServiceMock = new Mock<IBettypePerformanceService>();
             _translationServiceMock = new Mock<ITranslationService>();
+            _authInfoServiceMock = new Mock<IAuthInfoService>();
             _fixture = new Fixture();
-            _target = new BettypePerformanceController(_contextServiceMock.Object, _bettypeServiceMock.Object, _translationServiceMock.Object);
+            _target = new BettypePerformanceController(_contextServiceMock.Object, _bettypeServiceMock.Object, _translationServiceMock.Object, _authInfoServiceMock.Object);
         }
 
         [Theory]

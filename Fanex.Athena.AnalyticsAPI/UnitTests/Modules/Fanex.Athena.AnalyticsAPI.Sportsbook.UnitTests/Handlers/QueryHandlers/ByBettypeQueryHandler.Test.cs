@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoFixture;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
+using Fanex.Athena.AnalyticsAPI.Core.Services;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Handlers;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Models;
@@ -26,7 +27,7 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.UnitTests.Handlers.QueryHandlers
             _fixture = new Fixture();
             _sportsbookRepository = new Mock<ISportsbookRepository>();
             _sportsbookMapper = new Mock<ISportsbookMapper>();
-            _handler = new ByBettypeQueryHandler(_sportsbookRepository.Object, _sportsbookMapper.Object, Mock.Of<ITranslationService>());
+            _handler = new ByBettypeQueryHandler(_sportsbookRepository.Object, _sportsbookMapper.Object, Mock.Of<ITranslationService>(), Mock.Of<IAuthInfoService>());
         }
 
         [Fact]

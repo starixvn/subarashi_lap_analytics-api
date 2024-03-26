@@ -6,6 +6,8 @@ using Fanex.Athena.AnalyticsAPI.Common.Extensions;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Core.Attributes;
 using Fanex.Athena.AnalyticsAPI.Core.Constants;
+using Fanex.Athena.AnalyticsAPI.Core.Helpers;
+using Fanex.Athena.AnalyticsAPI.Core.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Constants;
 using Fanex.Athena.AnalyticsAPI.Performance.Extensions;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
@@ -21,16 +23,19 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
     {
         private readonly IProductPerformanceService _productService;
         private readonly ITranslationService _translationService;
+        private readonly IAuthInfoService _authInfoService;
 
         public ProductPerformanceController(
             IContextService contextService,
             IProductPerformanceService productService,
-            ITranslationService translationService
+            ITranslationService translationService,
+            IAuthInfoService authInfoService
             )
             : base(contextService)
         {
             _productService = productService;
             _translationService = translationService;
+            _authInfoService = authInfoService;
         }
 
         [HttpPost]
@@ -75,8 +80,9 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         public async Task<JsonResult> GetCombineData([FromBody] ProductPerformanceFilterMetaModel filter)
         {
             await filter.BindTopDistributionsToFilterMetaModel(_productService);
+            var isHideSaba = SabaHelper.IsHideSaba(_authInfoService.SpecialPlatform);
 
-            _translationService.Translate(filter.TopDistributions, TranslationConst.ProductType);
+            _translationService.Translate(filter.TopDistributions, isHideSaba, TranslationConst.ProductType);
 
             var isMargin = filter.Measurement.Id == MeasurementConst.MARGIN;
 
@@ -86,8 +92,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
                               !isMargin ? _productService.GetDistributionWithComparison(filter) : Task.FromResult<IEnumerable<DistributionVM>>(null),
                               isMargin ? _productService.GetOverallMeasurement(filter) : Task.FromResult<IEnumerable<OverallMeasurementVM>>(null));
 
-            _translationService.Translate(distributionData, TranslationConst.NormalType);
-            _translationService.Translate(overallMarginData, TranslationConst.NormalType);
+            _translationService.Translate(distributionData, isHideSaba, TranslationConst.NormalType);
+            _translationService.Translate(overallMarginData, isHideSaba, TranslationConst.NormalType);
 
             return ToResult(new
             {
