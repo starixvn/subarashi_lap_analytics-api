@@ -19,7 +19,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
             _langResourceService = langResourceService;
         }
 
-        public void Translate<T>(IEnumerable<T> originalItems, string translationType = null)
+        public void Translate<T>(IEnumerable<T> originalItems, bool isHideSaba, string translationType = null)
             where T : class
         {
             if (originalItems == null || !originalItems.Any())
@@ -37,13 +37,13 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
                     var enumerable = prop.GetValue(originalItem) as IEnumerable<object>;
                     if (enumerable == null)
                     {
-                        BindTranslateValue(originalItem, type, prop, translationType);
+                        BindTranslateValue(originalItem, type, prop, translationType, isHideSaba);
                     }
                 }
             }
         }
 
-        private void BindTranslateValue<T>(T originalItem, Type type, PropertyInfo prop, string translationType)
+        private void BindTranslateValue<T>(T originalItem, Type type, PropertyInfo prop, string translationType, bool isHideSaba)
         {
             var attributeInfo = Attribute.GetCustomAttribute(prop, typeof(TranslationAttribute)) as TranslationAttribute;
             if (attributeInfo != null)
@@ -64,7 +64,8 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
                     && originalItem is ISabaAble sabaModel
                     && sabaModel.IsSaba)
                 {
-                    tranlatedValue = $"{ViewResource.Saba}{tranlatedValue}";
+                    var prefixText = isHideSaba ? ViewResource.Virtual : ViewResource.Saba;
+                    tranlatedValue = $"{prefixText}{tranlatedValue}";
                 }
 
                 prop.SetValue(originalItem, tranlatedValue);

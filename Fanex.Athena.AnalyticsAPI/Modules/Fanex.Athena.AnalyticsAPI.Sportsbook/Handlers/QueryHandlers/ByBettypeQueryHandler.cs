@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Fanex.Athena.AnalyticsAPI.Common.Constants;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
+using Fanex.Athena.AnalyticsAPI.Core.Services;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Models;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Repositories;
@@ -14,8 +15,12 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Handlers
         IRequestHandler<ByBettypeSoccerRequest, ByBettypeResponse>,
         IRequestHandler<ByBettypeBasketballRequest, ByBettypeResponse>
     {
-        public ByBettypeQueryHandler(ISportsbookRepository sportsbookRepository, ISportsbookMapper sportsbookMapper, ITranslationService translationService)
-            : base(sportsbookRepository, sportsbookMapper, translationService)
+        public ByBettypeQueryHandler(
+            ISportsbookRepository sportsbookRepository,
+            ISportsbookMapper sportsbookMapper,
+            ITranslationService translationService,
+            IAuthInfoService authInfoService)
+            : base(sportsbookRepository, sportsbookMapper, translationService, authInfoService)
         {
         }
 
@@ -28,7 +33,8 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Handlers
             return new ByBettypeResponse
             {
                 ByTurnover = Translate(_sportsbookMapper.ToTurnoverResponse(rawData, includeOther: true)),
-                ByWinloss = Translate(_sportsbookMapper.ToWinlossResponse(rawData, includeOther: true))
+                ByWinloss = Translate(_sportsbookMapper.ToWinlossResponse(rawData, includeOther: true)),
+                IsHideSaba = IsHideSaba
             };
         }
 
@@ -39,7 +45,8 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Handlers
             return new ByBettypeResponse
             {
                 ByTurnover = Translate(_sportsbookMapper.ToTurnoverResponse(rawData, includeOther: true)),
-                ByWinloss = Translate(_sportsbookMapper.ToWinlossResponse(rawData, includeOther: true))
+                ByWinloss = Translate(_sportsbookMapper.ToWinlossResponse(rawData, includeOther: true)),
+                IsHideSaba = IsHideSaba
             };
         }
     }

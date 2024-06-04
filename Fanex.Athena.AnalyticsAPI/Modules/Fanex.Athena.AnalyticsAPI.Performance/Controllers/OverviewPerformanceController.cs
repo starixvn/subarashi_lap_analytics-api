@@ -6,6 +6,8 @@ using Fanex.Athena.AnalyticsAPI.Common.Helpers;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
 using Fanex.Athena.AnalyticsAPI.Core.Attributes;
 using Fanex.Athena.AnalyticsAPI.Core.Constants;
+using Fanex.Athena.AnalyticsAPI.Core.Helpers;
+using Fanex.Athena.AnalyticsAPI.Core.Services;
 using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
 using Fanex.Athena.AnalyticsAPI.Performance.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -18,16 +20,19 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
     {
         private readonly IOverviewPerformanceService _overviewService;
         private readonly ITranslationService _translationService;
+        private readonly IAuthInfoService _authInfoService;
 
         public OverviewPerformanceController(
             IContextService contextService,
             IOverviewPerformanceService overviewPerformanceService,
-            ITranslationService translationService
+            ITranslationService translationService,
+            IAuthInfoService authInfoService
             )
             : base(contextService)
         {
             _overviewService = overviewPerformanceService;
             _translationService = translationService;
+            _authInfoService = authInfoService;
         }
 
         [HttpPost]
@@ -44,7 +49,9 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [AutoBindingMetaModel(bindSiteName: true)]
         public async Task<JsonResult> GetTopChange([FromBody] PerformanceFilterMetaModel filter)
         {
-            var result = await _getTopChange(filter);
+            var isHideSaba = SabaHelper.IsHideSaba(_authInfoService.SpecialPlatform);
+
+            var result = await _getTopChange(filter, isHideSaba);
             return ToResult(result);
         }
 
@@ -71,7 +78,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
         [AutoBindingMetaModel(bindSiteName: true)]
         public async Task<JsonResult> GetCombineData([FromBody] PerformanceFilterMetaModel filter)
         {
-            var topChangeTask = _getTopChange(filter);
+            var isHideSaba = SabaHelper.IsHideSaba(_authInfoService.SpecialPlatform);
+            var topChangeTask = _getTopChange(filter, isHideSaba);
             var summaryTask = _overviewService.GetSummaryWithComparison(filter);
             var periodGrowthTask = _overviewService.GetPeriodGrowthWithComparison(filter);
 
@@ -87,7 +95,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
             var prevPeriodMonthGrowthData = await prevDetailMonthGrowthTask;
             var currentPeriodMonthGrowthData = await currentDetailMonthGrowthTask;
 
-            _translationService.Translate(periodGrowthData, TranslationConst.NormalType);
+            _translationService.Translate(periodGrowthData, isHideSaba, TranslationConst.NormalType);
 
             return ToResult(new
             {
@@ -107,7 +115,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
             });
         }
 
-        private async Task<object> _getTopChange(PerformanceFilterMetaModel filter)
+        private async Task<object> _getTopChange(PerformanceFilterMetaModel filter, bool isHideSaba)
         {
             var (currencyTopChange, bettypeTopChange, platformTopChange, productTopChange) = await TaskExtension.WhenAllAsync(
                      _overviewService.GetCurrencyTopChangeWithComparison(filter),
@@ -116,9 +124,9 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
                      _overviewService.GetProductTopChangeWithComparison(filter)
                 );
 
-            _translationService.Translate(bettypeTopChange, TranslationConst.BettypeType);
-            _translationService.Translate(platformTopChange, TranslationConst.PlatformType);
-            _translationService.Translate(productTopChange, TranslationConst.ProductType);
+            _translationService.Translate(bettypeTopChange, isHideSaba, TranslationConst.BettypeType);
+            _translationService.Translate(platformTopChange, isHideSaba, TranslationConst.PlatformType);
+            _translationService.Translate(productTopChange, isHideSaba, TranslationConst.ProductType);
 
             return new
             {

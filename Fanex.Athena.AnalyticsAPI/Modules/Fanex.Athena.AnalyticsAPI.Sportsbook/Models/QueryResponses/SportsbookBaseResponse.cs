@@ -7,5 +7,7 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Models
         public IEnumerable<DimDistributionResponse> ByTurnover { get; set; }
 
         public IEnumerable<DimDistributionResponse> ByWinloss { get; set; }
+
+        public bool IsHideSaba { get; set; }
     }
 }

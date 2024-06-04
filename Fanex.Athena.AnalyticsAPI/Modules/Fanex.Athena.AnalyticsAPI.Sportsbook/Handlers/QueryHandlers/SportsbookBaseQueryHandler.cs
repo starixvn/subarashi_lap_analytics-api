@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using Fanex.Athena.AnalyticsAPI.Common.Constants;
 using Fanex.Athena.AnalyticsAPI.Common.Helpers;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
+using Fanex.Athena.AnalyticsAPI.Core.Helpers;
+using Fanex.Athena.AnalyticsAPI.Core.Services;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Models;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Models.Criteria;
@@ -15,15 +17,23 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Handlers
         protected readonly ISportsbookRepository _sportsbookRepository;
         protected readonly ISportsbookMapper _sportsbookMapper;
         protected readonly ITranslationService _translationService;
+        protected readonly IAuthInfoService _authInfoService;
 
-        protected SportsbookBaseQueryHandler(ISportsbookRepository sportsbookRepository, ISportsbookMapper sportsbookMapper, ITranslationService translationService)
+        protected SportsbookBaseQueryHandler(
+            ISportsbookRepository sportsbookRepository,
+            ISportsbookMapper sportsbookMapper,
+            ITranslationService translationService,
+            IAuthInfoService authInfoService)
         {
             _sportsbookRepository = sportsbookRepository;
             _sportsbookMapper = sportsbookMapper;
             _translationService = translationService;
+            _authInfoService = authInfoService;
         }
 
         protected virtual string TranslationType => TranslationConst.NormalType;
+
+        protected bool IsHideSaba => SabaHelper.IsHideSaba(_authInfoService.SpecialPlatform);
 
         protected async Task<IEnumerable<SportsbookDTO>> GetRawData(SportsbookBaseRequest request)
         {
@@ -34,7 +44,7 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Handlers
 
         protected IEnumerable<DimDistributionResponse> Translate(IEnumerable<DimDistributionResponse> responses)
         {
-            _translationService.Translate(responses, TranslationType);
+            _translationService.Translate(responses, IsHideSaba, TranslationType);
             return responses;
         }
 

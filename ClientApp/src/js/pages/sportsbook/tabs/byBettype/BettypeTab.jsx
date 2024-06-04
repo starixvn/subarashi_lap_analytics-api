@@ -65,7 +65,7 @@ const BettypeTab = ({ globalFilter }) => {
   const _renderSoccerSection = () => {
     return (<Widget title={languageApi.getDefaultRes('soccer')} isLoading={isSoccerLoading}>
       <WidgetContent data={soccerData.byTurnover} chartTitle={distributionChartTitle.turnover} dimension={dimension.bettype} measurement={measurement.turnover} />
-      <WidgetContent data={soccerData.byWinloss}  chartTitle={distributionChartTitle.winloss} dimension={dimension.bettype} measurement={measurement.winloss} />
+      <WidgetContent data={soccerData.byWinloss} chartTitle={distributionChartTitle.winloss} dimension={dimension.bettype} measurement={measurement.winloss} />
     </Widget>)
   }
 
@@ -77,16 +77,16 @@ const BettypeTab = ({ globalFilter }) => {
   }
 
   const _renderSabaSoccerSection = () => {
-    return (<Widget title={languageApi.getDefaultRes('saba_soccer')} isLoading={isSabaSoccerLoading}>
-      <WidgetContent data={sabaSoccerData.byTurnover} chartTitle={distributionChartTitle.turnover}  dimension={dimension.bettype} measurement={measurement.turnover} />
-      <WidgetContent data={sabaSoccerData.byWinloss} chartTitle={distributionChartTitle.winloss}  dimension={dimension.bettype} measurement={measurement.winloss} />
+    return (<Widget title={sabaSoccerData.isHideSaba ? languageApi.getDefaultRes('virtual_soccer') : languageApi.getDefaultRes('saba_soccer')} isLoading={isSabaSoccerLoading}>
+      <WidgetContent data={sabaSoccerData.byTurnover} chartTitle={distributionChartTitle.turnover} dimension={dimension.bettype} measurement={measurement.turnover} />
+      <WidgetContent data={sabaSoccerData.byWinloss} chartTitle={distributionChartTitle.winloss} dimension={dimension.bettype} measurement={measurement.winloss} />
     </Widget>)
   }
 
   const _renderSabaBasketballSection = () => {
-    return (<Widget title={languageApi.getDefaultRes('saba_basketball')} isLoading={isSabaBasketballLoading}>
-      <WidgetContent data={sabaBasketballData.byTurnover} chartTitle={distributionChartTitle.turnover}  dimension={dimension.bettype} measurement={measurement.turnover} />
-      <WidgetContent data={sabaBasketballData.byWinloss} chartTitle={distributionChartTitle.winloss}  dimension={dimension.bettype} measurement={measurement.winloss} />
+    return (<Widget title={sabaBasketballData.isHideSaba ? languageApi.getDefaultRes('virtual_basketball') : languageApi.getDefaultRes('saba_basketball')} isLoading={isSabaBasketballLoading}>
+      <WidgetContent data={sabaBasketballData.byTurnover} chartTitle={distributionChartTitle.turnover} dimension={dimension.bettype} measurement={measurement.turnover} />
+      <WidgetContent data={sabaBasketballData.byWinloss} chartTitle={distributionChartTitle.winloss} dimension={dimension.bettype} measurement={measurement.winloss} />
     </Widget>)
   }
 

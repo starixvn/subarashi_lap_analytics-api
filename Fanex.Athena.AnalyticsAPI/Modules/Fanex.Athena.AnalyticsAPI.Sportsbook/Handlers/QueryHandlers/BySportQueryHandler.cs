@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Fanex.Athena.AnalyticsAPI.Common.Constants;
 using Fanex.Athena.AnalyticsAPI.Common.Services;
+using Fanex.Athena.AnalyticsAPI.Core.Services;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Constants;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers;
 using Fanex.Athena.AnalyticsAPI.Sportsbook.Models;
@@ -14,8 +15,12 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Handlers
 {
     public class BySportQueryHandler : SportsbookBaseQueryHandler, IRequestHandler<BySportRequest, BySportResponse>
     {
-        public BySportQueryHandler(ISportsbookRepository sportsbookRepository, ISportsbookMapper sportsbookMapper, ITranslationService translationService)
-            : base(sportsbookRepository, sportsbookMapper, translationService)
+        public BySportQueryHandler(
+            ISportsbookRepository sportsbookRepository,
+            ISportsbookMapper sportsbookMapper,
+            ITranslationService translationService,
+            IAuthInfoService authInfoService)
+            : base(sportsbookRepository, sportsbookMapper, translationService, authInfoService)
         {
         }
 
