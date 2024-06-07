@@ -393,4 +393,7 @@
   <data name="platform_-3" xml:space="preserve">
     <value>Di động</value>
   </data>
+  <data name="platform_22" xml:space="preserve">
+    <value>Desktop nhỏ gọn</value>
+  </data>
 </root>

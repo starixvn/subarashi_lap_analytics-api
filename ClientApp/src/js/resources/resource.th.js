@@ -48,6 +48,7 @@ export const th = {
   ESportsMobile: "อี-สปอร์ต มือถือ",
   ESportsApp: "APP อี-สปอร์ต",
   DesktopGalaxy: "เดสก์ท็อปแกแล็กซี่",
+  DesktopCompact: "เดสก์ท็อปคอมแพค",
   ChatRoom: "ห้องแชท",
   Mobile: "โทรศัพท์มือถือ",
   Desktop: "คอมพิวเตอร์ตั้งโต๊ะ",

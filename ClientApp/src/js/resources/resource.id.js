@@ -36,6 +36,7 @@ export const id = {
   SmartSite: "Situs Cerdas",
   DesktopNewAsia: "Desktop New Asia",
   DesktopOthers: "Desktop Lainnya",
+  DesktopCompact: "Desktop Kompak",
   MobileApp: "Aplikasi Mobile",
   MobileStandard: "Mobile Standar",
   MobileCompact: "Mobile Kompak",

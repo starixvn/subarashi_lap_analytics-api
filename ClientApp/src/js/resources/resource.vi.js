@@ -50,6 +50,7 @@ export const vi = {
   ESportsMobile: 'Thể thao điện tử di động',
   ESportsApp: 'Ứng dụng Thể Thao Điện Tử',
   DesktopGalaxy: 'Desktop Galaxy',
+  DesktopCompact: 'Desktop nhỏ gọn',
   ChatRoom: 'Nhóm Chat',
   Mobile: 'Di động',
   Desktop: 'Máy tính',

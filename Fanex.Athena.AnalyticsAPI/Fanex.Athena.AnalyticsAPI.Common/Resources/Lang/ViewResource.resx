@@ -465,4 +465,7 @@
   <data name="product_79" xml:space="preserve">
     <value>UU SLOTS</value>
   </data>
+  <data name="platform_22" xml:space="preserve">
+    <value>Desktop Compact</value>
+  </data>
 </root>

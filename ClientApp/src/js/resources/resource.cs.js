@@ -50,6 +50,7 @@ export const cs = {
   ESportsMobile: '电子竞技 手机',
   ESportsApp: '电子竞技 APP',
   DesktopGalaxy: '桌机银河版',
+  DesktopCompact: '桌机轻量版',
   ChatRoom: '聊天室',
   Mobile: '手机',
   Desktop: '桌机',

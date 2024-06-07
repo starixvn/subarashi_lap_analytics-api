@@ -38,6 +38,7 @@ export const en = {
   SmartSite: "Smart Site",
   DesktopNewAsia: "Desktop New Asia",
   DesktopOthers: "Desktop Others",
+  DesktopCompact: "Desktop Compact",
   MobileApp: "Mobile APP",
   MobileStandard: "Mobile Standard",
   MobileCompact: "Mobile Compact",
