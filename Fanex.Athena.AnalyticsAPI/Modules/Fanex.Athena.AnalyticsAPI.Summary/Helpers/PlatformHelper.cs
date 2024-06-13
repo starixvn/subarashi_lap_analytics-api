@@ -11,6 +11,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Helpers
             { PlatformConst.DesktopChina, nameof(PlatformConst.DesktopChina) },
             { PlatformConst.DesktopOthers, nameof(PlatformConst.DesktopOthers) },
             { PlatformConst.DesktopGalaxy, nameof(PlatformConst.DesktopGalaxy) },
+            { PlatformConst.DesktopCompact, nameof(PlatformConst.DesktopCompact) },
             { PlatformConst.MobileStandard, nameof(PlatformConst.MobileStandard) },
             { PlatformConst.MobileEuro, nameof(PlatformConst.MobileEuro) },
             { PlatformConst.MobileGalaxy, nameof(PlatformConst.MobileGalaxy) },

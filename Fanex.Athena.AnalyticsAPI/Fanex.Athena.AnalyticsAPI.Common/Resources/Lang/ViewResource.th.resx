@@ -384,4 +384,7 @@
   <data name="product_50" xml:space="preserve">
     <value>กีฬาเสมือนจริง 3 (old)</value>
   </data>
+  <data name="platform_22" xml:space="preserve">
+    <value>เดสก์ท็อปคอมแพค</value>
+  </data>
 </root>
