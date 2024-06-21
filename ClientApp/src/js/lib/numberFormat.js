@@ -11,8 +11,11 @@ export default class numberFormat {
             "BDT": "৳",
             "INR": "₹",
             "PHP": "₱",
-            "NPR":	"₹", 
-            "TRY":	"₺"
+            "NPR": "₹", 
+            "TRY": "₺",
+            "JPY": "¥",
+            "MXN": "Mex$",
+            "NGN": "₦"
         }
         currency = currencies[currency] ? currencies[currency] : ''
 
