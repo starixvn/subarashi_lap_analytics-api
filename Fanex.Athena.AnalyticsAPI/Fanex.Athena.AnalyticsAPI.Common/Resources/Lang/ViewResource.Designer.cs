@@ -898,6 +898,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nextspin.
+        /// </summary>
+        public static string product_86 {
+            get {
+                return ResourceManager.GetString("product_86", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FastSpin.
         /// </summary>
         public static string product_88 {
