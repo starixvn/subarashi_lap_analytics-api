@@ -916,6 +916,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FA CHAI.
+        /// </summary>
+        public static string product_90 {
+            get {
+                return ResourceManager.GetString("product_90", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Saba .
         /// </summary>
         public static string Saba {
