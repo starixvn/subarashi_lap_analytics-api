@@ -475,6 +475,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Playtech.
+        /// </summary>
+        public static string product_101 {
+            get {
+                return ResourceManager.GetString("product_101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AG Casino.
         /// </summary>
         public static string product_11 {
