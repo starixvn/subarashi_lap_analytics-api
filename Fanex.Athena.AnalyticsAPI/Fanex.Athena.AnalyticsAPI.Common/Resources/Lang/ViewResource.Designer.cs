@@ -691,6 +691,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to GPI.
+        /// </summary>
+        public static string product_49 {
+            get {
+                return ResourceManager.GetString("product_49", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Virtual Sports 3 (Old).
         /// </summary>
         public static string product_50 {
