@@ -1,17 +1,22 @@
-FROM hub.nexdev.net/base/dotnet/core/sdk:5.0.102-ca-patch-buster-slim AS builder
+ARG CI_REGISTRY_IMAGE
 
-RUN apt-get update  \
-	&& curl --silent --location https://deb.nodesource.com/setup_14.x | bash -  \
-	&& apt-get install -y nodejs
+FROM $CI_REGISTRY_IMAGE:builder as deps
 
-RUN node -v
-RUN npm -v
+RUN mkdir -p /src/packages
+
+FROM hub.nexdev.net/base/dotnet/core/sdk:5.0.102-node14-ca-patch-buster-slim AS builder
+
+ENV NUGET_PACKAGES=/src/packages
+
+COPY --from=deps $NUGET_PACKAGES/. $NUGET_PACKAGES/
 
 WORKDIR /src
 
 COPY ClientApp/package.json ./
 COPY ClientApp/package-lock.json ./
 
+RUN node -v
+RUN npm -v
 RUN npm install
 
 COPY NuGet.Config .
@@ -53,8 +58,8 @@ COPY Fanex.Athena.AnalyticsAPI/Modules/Fanex.Athena.AnalyticsAPI.Sportsbook ./Mo
 COPY Fanex.Athena.AnalyticsAPI/Fanex.Athena.AnalyticsAPI/ ./Fanex.Athena.AnalyticsAPI
 
 RUN dotnet publish "Fanex.Athena.AnalyticsAPI/Fanex.Athena.AnalyticsAPI.csproj" -c Release -o /publish \
-  --runtime alpine-x64 \
-  --self-contained false
+	--runtime alpine-x64 \
+	--self-contained false
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:5.0-alpine
 

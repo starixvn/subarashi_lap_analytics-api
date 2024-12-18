@@ -952,6 +952,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to GPI Live Casino.
+        /// </summary>
+        public static string product_91 {
+            get {
+                return ResourceManager.GetString("product_91", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ON Casino.
         /// </summary>
         public static string product_97 {
