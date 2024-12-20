@@ -50,6 +50,7 @@ export const id = {
   ESportsMobile: "E-Sports Mobile",
   ESportsApp: "Aplikasi E-Sports",
   DesktopGalaxy: "Desktop Galaxy",
+  QuickBetWidget: 'Widget Taruhan Cepat',
   ChatRoom: "Ruang Obrolan",
   Mobile: "Ponsel",
   Desktop: "Komputer meja",

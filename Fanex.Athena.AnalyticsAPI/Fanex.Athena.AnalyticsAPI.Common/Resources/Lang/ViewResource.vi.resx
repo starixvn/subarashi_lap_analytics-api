@@ -396,4 +396,7 @@
   <data name="platform_22" xml:space="preserve">
     <value>Desktop nhỏ gọn</value>
   </data>
+  <data name="platform_23" xml:space="preserve">
+    <value>Công cụ đặt cược nhanh</value>
+  </data>
 </root>

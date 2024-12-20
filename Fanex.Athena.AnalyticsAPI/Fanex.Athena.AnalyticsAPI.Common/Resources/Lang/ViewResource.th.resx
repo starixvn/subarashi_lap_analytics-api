@@ -387,4 +387,7 @@
   <data name="platform_22" xml:space="preserve">
     <value>เดสก์ท็อปคอมแพค</value>
   </data>
+  <data name="platform_23" xml:space="preserve">
+    <value>วิดเจ็ตเดิมพันด่วน</value>
+  </data>
 </root>

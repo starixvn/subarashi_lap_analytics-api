@@ -52,6 +52,7 @@ export const vi = {
   ESportsApp: 'Ứng dụng Thể Thao Điện Tử',
   DesktopGalaxy: 'Desktop Galaxy',
   DesktopCompact: 'Desktop nhỏ gọn',
+  QuickBetWidget: 'Công cụ đặt cược nhanh',
   ChatRoom: 'Nhóm Chat',
   Mobile: 'Di động',
   Desktop: 'Máy tính',

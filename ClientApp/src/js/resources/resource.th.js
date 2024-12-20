@@ -50,6 +50,7 @@ export const th = {
   ESportsApp: "APP อี-สปอร์ต",
   DesktopGalaxy: "เดสก์ท็อปแกแล็กซี่",
   DesktopCompact: "เดสก์ท็อปคอมแพค",
+  QuickBetWidget: 'วิดเจ็ตเดิมพันด่วน',
   ChatRoom: "ห้องแชท",
   Mobile: "โทรศัพท์มือถือ",
   Desktop: "คอมพิวเตอร์ตั้งโต๊ะ",

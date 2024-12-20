@@ -52,6 +52,7 @@ export const en = {
   ESportsMobile: 'E-Sports Mobile',
   ESportsApp: 'E-Sports APP',
   DesktopGalaxy: 'Desktop Galaxy',
+  QuickBetWidget: 'Quick Bet Widget',
   ChatRoom: 'Chat Room',
   Mobile: 'Mobile',
   Desktop: 'Desktop',

@@ -372,4 +372,7 @@
   <data name="platform_22" xml:space="preserve">
     <value>Desktop Kompak</value>
   </data>
+  <data name="platform_23" xml:space="preserve">
+    <value>Widget Taruhan Cepat</value>
+  </data>
 </root>
