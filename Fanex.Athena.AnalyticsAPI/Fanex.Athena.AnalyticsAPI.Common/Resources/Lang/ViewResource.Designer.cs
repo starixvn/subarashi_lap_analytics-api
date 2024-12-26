@@ -385,6 +385,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quick Bet Widget.
+        /// </summary>
+        public static string platform_23 {
+            get {
+                return ResourceManager.GetString("platform_23", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deep Link.
         /// </summary>
         public static string platform_3 {

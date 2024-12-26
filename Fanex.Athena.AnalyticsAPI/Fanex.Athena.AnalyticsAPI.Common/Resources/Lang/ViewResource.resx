@@ -489,4 +489,8 @@
   <data name="product_91" xml:space="preserve">
     <value>GPI Live Casino</value>
   </data>
+  <data name="platform_23" xml:space="preserve">
+    <value>Quick Bet Widget</value>
+    <comment>Quick Bet Widget</comment>
+  </data>
 </root>

@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Fanex.Athena.AnalyticsAPI.Summary.Consts;
-
-namespace Fanex.Athena.AnalyticsAPI.Summary.Helpers
+﻿namespace Fanex.Athena.AnalyticsAPI.Summary.Helpers
 {
+    using System.Collections.Generic;
+    using Consts;
+
     public static class PlatformHelper
     {
         private static readonly IDictionary<int, string> NormalPlatform = new Dictionary<int, string>
@@ -25,6 +25,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Helpers
             { PlatformConst.Tablet, nameof(PlatformConst.Tablet) },
             { PlatformConst.DeepLink, nameof(PlatformConst.DeepLink) },
             { PlatformConst.WAP, nameof(PlatformConst.WAP) },
+            { PlatformConst.QuickBetWidget, nameof(PlatformConst.QuickBetWidget) },
             { PlatformConst.ChatRoom, nameof(PlatformConst.ChatRoom) },
             { PlatformConst.BetfromOthers, nameof(PlatformConst.BetfromOthers) }
         };
@@ -33,7 +34,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Helpers
         {
             { PlatformConst.Desktop, nameof(PlatformConst.Desktop) },
             { PlatformConst.Mobile, nameof(PlatformConst.Mobile) },
-            { PlatformConst.Others, nameof(PlatformConst.BetfromOthers) },
+            { PlatformConst.Others, nameof(PlatformConst.BetfromOthers) }
         };
 
         public static string GetPlatformKey(int type)
