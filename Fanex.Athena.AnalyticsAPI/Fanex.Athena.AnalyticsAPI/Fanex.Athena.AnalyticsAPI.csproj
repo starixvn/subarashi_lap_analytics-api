@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <UserSecretsId>eb7a307f-9ad2-44a8-a1c0-38b1d381b960</UserSecretsId>
     <CodeAnalysisRuleSet>..\.sonarlint\sparta_lap.analyticsapicsharp.ruleset</CodeAnalysisRuleSet>
@@ -17,50 +17,17 @@
   <ItemGroup>
     <None Remove="deploy.bat" />
     <None Remove="deploy.LOCAL.bat" />
-    <None Remove="SpConfig\FanexSpName.AWS.xml" />
-    <None Remove="SpConfig\FanexSpName.KLDR.xml" />
-    <None Remove="SpConfig\FanexSpName.LOCAL.xml" />
-    <None Remove="SpConfig\FanexSpName.LOCAL_1.xml" />
-    <None Remove="SpConfig\FanexSpName.PROD.xml" />
-    <None Remove="SpConfig\FanexSpName.SIT.xml" />
-    <None Remove="SpConfig\FanexSpName.UAT.xml" />
-    <None Remove="SpConfig\FanexSpName.UAT_1.xml" />
-    <None Remove="SpConfig\FanexSpName.xml" />
   </ItemGroup>
 
   <ItemGroup>
     <AdditionalFiles Include="..\.sonarlint\sparta_lap.analyticsapi\CSharp\SonarLint.xml" Link="SonarLint.xml" />
-    <Content Include="SpConfig\FanexSpName.KLDR.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SpConfig\FanexSpName.AWS.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SpConfig\FanexSpName.SIT.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SpConfig\FanexSpName.PROD.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SpConfig\FanexSpName.UAT_1.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SpConfig\FanexSpName.UAT.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SpConfig\FanexSpName.LOCAL_1.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SpConfig\FanexSpName.LOCAL.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SpConfig\FanexSpName.xml">
+    <Content Include="SpConfig\*.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fanex.Data.SqlServer" Version="4.2.2" />
+    <PackageReference Include="Fanex.Data.SqlServer" Version="4.3.3" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="IdentityModel.AspNetCore.OAuth2Introspection" Version="5.1.0" />
     <PackageReference Include="Sentry.AspNetCore" Version="2.1.6" />
@@ -72,6 +39,11 @@
     <ProjectReference Include="..\Modules\Fanex.Athena.AnalyticsAPI.Performance\Fanex.Athena.AnalyticsAPI.Performance.csproj" />
     <ProjectReference Include="..\Modules\Fanex.Athena.AnalyticsAPI.Sportsbook\Fanex.Athena.AnalyticsAPI.Sportsbook.csproj" />
     <ProjectReference Include="..\Modules\Fanex.Athena.AnalyticsAPI.Summary\Fanex.Athena.AnalyticsAPI.Summary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\Dockerfile" Link="Dockerfile" />
+    <AdditionalFiles Include="..\..\.dockerignore" Link=".dockerignore" />
   </ItemGroup>
 
   <ItemGroup>

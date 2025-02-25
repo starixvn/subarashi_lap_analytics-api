@@ -9,6 +9,7 @@ using Fanex.Athena.AnalyticsAPI.Core.Extensions;
 using Fanex.Athena.AnalyticsAPI.Core.Middleware;
 using Fanex.Data;
 using Fanex.Data.SqlServer;
+using Fanex.Data.Vault;
 using Fanex.RemotingRef;
 using IdentityModel.AspNetCore.OAuth2Introspection;
 using MediatR;
@@ -21,6 +22,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 
 namespace Fanex.Athena.AnalyticsAPI
@@ -73,7 +75,7 @@ namespace Fanex.Athena.AnalyticsAPI
             services.AddHttpContextAccessor();
             services.AddHealthChecks().AddCheck<WhoAmIHealthCheck>("WhoAmIHealthCheck");
             services.AddUnderMaintenance(Configuration);
-            SetupSqlProvider();
+            SetupSqlProvider(services);
             ConfigRequestLocalization(services);
 
             var instrospecCacheDuration = int.TryParse(Configuration["IdentityServer:CacheDuration"], out int cache) ? cache : 0;
@@ -150,19 +152,15 @@ namespace Fanex.Athena.AnalyticsAPI
             services.AddMediatR(assemblies.ToArray());
         }
 
-        private void SetupSqlProvider()
+        private void SetupSqlProvider(IServiceCollection services)
         {
-            var listConnectionName = Configuration.GetSection("ConnectionStrings").GetChildren().Select(_ => _.Key);
-            var connectionStrings = new Dictionary<string, ConnectionConfiguration>(listConnectionName
-                .Select(connectionName => new KeyValuePair<string, ConnectionConfiguration>(connectionName,
-                    new ConnectionConfiguration(connectionName, Configuration.GetConnectionString(connectionName)))
-                ));
-
             DbSettingProviderManager
                 .StartNewSession()
-                .WithSqlServer(resourcePath: "~/SpConfig/FanexSpName.xml")
-                .Use(connectionStrings)
+                .WithSqlServer(Configuration)
+                .UseDefaultDbSettingProvider("~/SpConfig/FanexSpName.xml", true)
                 .Run();
+
+            services.TryAddSingleton<VaultDbAliasService, VaultDbAliasServiceImp>();
         }
 
         private static void ConfigRequestLocalization(IServiceCollection services)
