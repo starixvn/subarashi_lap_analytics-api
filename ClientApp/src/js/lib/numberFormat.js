@@ -16,7 +16,8 @@ export default class numberFormat {
       "JPY": "¥",
       "MXN": "Mex$",
       "NGN": "₦",
-      "BRL": "R$"
+      "BRL": "R$",
+      "PKR": "Rs",
     }
     currency = currencies[currency] ? currencies[currency] : ''
 
