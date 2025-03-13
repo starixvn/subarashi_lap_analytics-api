@@ -502,6 +502,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Funky Games.
+        /// </summary>
+        public static string Product_105 {
+            get {
+                return ResourceManager.GetString("Product_105", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AG Casino.
         /// </summary>
         public static string product_11 {
