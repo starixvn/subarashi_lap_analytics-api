@@ -511,6 +511,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Microgaming Live.
+        /// </summary>
+        public static string product_108 {
+            get {
+                return ResourceManager.GetString("product_108", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AG Casino.
         /// </summary>
         public static string product_11 {
