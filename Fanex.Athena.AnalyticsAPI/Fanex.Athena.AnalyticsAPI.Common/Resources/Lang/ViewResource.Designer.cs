@@ -547,6 +547,24 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ClotPlay.
+        /// </summary>
+        public static string product_110 {
+            get {
+                return ResourceManager.GetString("product_110", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AI Gaming.
+        /// </summary>
+        public static string product_111 {
+            get {
+                return ResourceManager.GetString("product_111", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Macau.
         /// </summary>
         public static string product_13 {

@@ -517,4 +517,10 @@
   <data name="product_99" xml:space="preserve">
     <value>W Casino</value>
   </data>
+  <data name="product_110" xml:space="preserve">
+    <value>ClotPlay</value>
+  </data>
+  <data name="product_111" xml:space="preserve">
+    <value>AI Gaming</value>
+  </data>
 </root>
