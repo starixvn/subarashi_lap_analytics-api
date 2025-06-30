@@ -35,7 +35,7 @@ packages/
 #Client App
 **/node_modules
 **/.vs/
-**/.vscode
+# **/.vscode
 # Jest - snapshot
 **/__snapshots__
 **/coverage.cobertura.xml
