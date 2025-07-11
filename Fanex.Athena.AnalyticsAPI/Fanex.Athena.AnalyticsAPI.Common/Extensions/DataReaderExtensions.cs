@@ -22,6 +22,37 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
             return false;
         }
 
+        private static object GetDefaultValue(Type type)
+        {
+            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
+                return null;
+            }
+
+            if (type == typeof(string))
+            {
+                return string.Empty;
+            }
+
+            if (type.IsValueType)
+            {
+                var typeCode = Type.GetTypeCode(type);
+                if (typeCode >= TypeCode.SByte && typeCode <= TypeCode.Decimal)
+                {
+                    return 0;
+                }
+
+                return typeCode switch
+                {
+                    TypeCode.Boolean => false,
+                    TypeCode.DateTime => DateTime.MinValue,
+                    _ => Activator.CreateInstance(type),
+                };
+            }
+
+            return null;
+        }
+
         public static TResult ReadObject<TResult>(this IDataReader reader) where TResult : new()
         {
             if (reader == null)
@@ -35,10 +66,21 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
             {
                 var cubeMappingAttr = Attribute.GetCustomAttribute(prop, typeof(SsasColumnAttribute)) as SsasColumnAttribute;
                 var isValid = cubeMappingAttr != null && !string.IsNullOrWhiteSpace(cubeMappingAttr.MapColumn);
-                isValid = isValid && reader.HasColumn(cubeMappingAttr.MapColumn) && reader[cubeMappingAttr.MapColumn] != DBNull.Value;
+                isValid = isValid && reader.HasColumn(cubeMappingAttr.MapColumn);
+
                 if (isValid)
                 {
-                    prop.SetValue(objDTO, Convert.ChangeType(reader[cubeMappingAttr.MapColumn], prop.PropertyType));
+                    var value = reader[cubeMappingAttr.MapColumn];
+
+                    if (value != null && value != DBNull.Value && value.GetType() != typeof(DBNull) &&
+                        !(value is string strValue && strValue.Equals("NULL", StringComparison.OrdinalIgnoreCase)))
+                    {
+                        prop.SetValue(objDTO, Convert.ChangeType(value, prop.PropertyType));
+                    }
+                    else
+                    {
+                        prop.SetValue(objDTO, GetDefaultValue(prop.PropertyType));
+                    }
                 }
             }
 

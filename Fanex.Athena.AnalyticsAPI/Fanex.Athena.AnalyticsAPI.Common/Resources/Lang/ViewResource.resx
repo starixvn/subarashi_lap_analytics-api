@@ -230,137 +230,6 @@
     <value>Tablet</value>
     <comment>Tablet</comment>
   </data>
-  <data name="product_0" xml:space="preserve">
-    <value>Others</value>
-    <comment>Others</comment>
-  </data>
-  <data name="product_1" xml:space="preserve">
-    <value>Sportsbook</value>
-    <comment>Sportsbook</comment>
-  </data>
-  <data name="product_10" xml:space="preserve">
-    <value>Playtech Casino</value>
-    <comment>Playtech Casino</comment>
-  </data>
-  <data name="product_11" xml:space="preserve">
-    <value>AG Casino</value>
-    <comment>AG Casino</comment>
-  </data>
-  <data name="product_13" xml:space="preserve">
-    <value>Macau</value>
-    <comment>Macau</comment>
-  </data>
-  <data name="product_20" xml:space="preserve">
-    <value>Cock Fighting</value>
-    <comment>Cock Fighting</comment>
-  </data>
-  <data name="product_22" xml:space="preserve">
-    <value>Allbet</value>
-    <comment>Allbet</comment>
-  </data>
-  <data name="product_23" xml:space="preserve">
-    <value>Macau Games</value>
-    <comment>Macau Games</comment>
-  </data>
-  <data name="product_24" xml:space="preserve">
-    <value>Number Game 2</value>
-    <comment>Number Game 2</comment>
-  </data>
-  <data name="product_26" xml:space="preserve">
-    <value>Cash Out</value>
-    <comment>Cash Out</comment>
-  </data>
-  <data name="product_28" xml:space="preserve">
-    <value>Virtual Sports 2</value>
-    <comment>Virtual Sports 2</comment>
-  </data>
-  <data name="product_29" xml:space="preserve">
-    <value>Lottery</value>
-    <comment>Lottery</comment>
-  </data>
-  <data name="product_3" xml:space="preserve">
-    <value>Number Game</value>
-    <comment>Number Game</comment>
-  </data>
-  <data name="product_31" xml:space="preserve">
-    <value>Bullfighting</value>
-    <comment>Bullfighting</comment>
-  </data>
-  <data name="product_32" xml:space="preserve">
-    <value>Exchange</value>
-    <comment>Exchange</comment>
-  </data>
-  <data name="product_33" xml:space="preserve">
-    <value>Pragmatic</value>
-    <comment>Pragmatic</comment>
-  </data>
-  <data name="product_35" xml:space="preserve">
-    <value>Arcadia Gaming</value>
-    <comment>Arcadia Gaming</comment>
-  </data>
-  <data name="product_36" xml:space="preserve">
-    <value>Peer to Peer</value>
-    <comment>Peer to Peer</comment>
-  </data>
-  <data name="product_37" xml:space="preserve">
-    <value>SG</value>
-    <comment>SG</comment>
-  </data>
-  <data name="product_38" xml:space="preserve">
-    <value>Saba Promotion</value>
-    <comment>Saba Promotion</comment>
-  </data>
-  <data name="product_39" xml:space="preserve">
-    <value>Virtual Games</value>
-    <comment>Virtual Games</comment>
-  </data>
-  <data name="product_4" xml:space="preserve">
-    <value>BA</value>
-    <comment>BA</comment>
-  </data>
-  <data name="product_40" xml:space="preserve">
-    <value>SA Gaming</value>
-    <comment>SA Gaming</comment>
-  </data>
-  <data name="product_43" xml:space="preserve">
-    <value>Saba.club</value>
-    <comment>Saba.club</comment>
-  </data>
-  <data name="product_44" xml:space="preserve">
-    <value>Togel 4D</value>
-    <comment>I4D</comment>
-  </data>
-  <data name="product_46" xml:space="preserve">
-    <value>AE Sexy</value>
-    <comment>SXG</comment>
-  </data>
-  <data name="product_56" xml:space="preserve">
-    <value>PG Soft</value>
-    <comment>PG Soft</comment>
-  </data>
-  <data name="product_57" xml:space="preserve">
-    <value>Joker</value>
-    <comment>Joker</comment>
-  </data>
-  <data name="product_6" xml:space="preserve">
-    <value>Virtual Sports</value>
-    <comment>Virtual Sports</comment>
-  </data>
-  <data name="product_64" xml:space="preserve">
-    <value>Sports Lottery</value>
-  </data>
-  <data name="product_7" xml:space="preserve">
-    <value>Saba Casino</value>
-    <comment>Saba Casino</comment>
-  </data>
-  <data name="product_8" xml:space="preserve">
-    <value>Bingo</value>
-    <comment>Bingo</comment>
-  </data>
-  <data name="product_9" xml:space="preserve">
-    <value>RNG Keno</value>
-    <comment>RNG Keno</comment>
-  </data>
   <data name="Saba" xml:space="preserve">
     <value>Saba </value>
   </data>
@@ -369,28 +238,6 @@
   </data>
   <data name="sport_0" xml:space="preserve">
     <value>Others</value>
-  </data>
-  <data name="product_62" xml:space="preserve">
-    <value>Habanero</value>
-    <comment>Habanero</comment>
-  </data>
-  <data name="product_52" xml:space="preserve">
-    <value>WM</value>
-  </data>
-  <data name="product_58" xml:space="preserve">
-    <value>BG</value>
-  </data>
-  <data name="product_67" xml:space="preserve">
-    <value>Vgaming</value>
-  </data>
-  <data name="product_63" xml:space="preserve">
-    <value>CG</value>
-  </data>
-  <data name="product_68" xml:space="preserve">
-    <value>AdvantPlay</value>
-  </data>
-  <data name="product_69" xml:space="preserve">
-    <value>AdvantPlay Mini</value>
   </data>
   <data name="league_53181" xml:space="preserve">
     <value>Big Bash League</value>
@@ -407,32 +254,11 @@
   <data name="league_96359" xml:space="preserve">
     <value>Abu Dhabi T10 League</value>
   </data>
-  <data name="product_50" xml:space="preserve">
-    <value>Virtual Sports 3 (Old)</value>
-  </data>
-  <data name="product_71" xml:space="preserve">
-    <value>FGG</value>
-  </data>
-  <data name="product_61" xml:space="preserve">
-    <value>MaxGame</value>
-  </data>
-  <data name="product_76" xml:space="preserve">
-    <value>Jili</value>
-  </data>
-  <data name="product_77" xml:space="preserve">
-    <value>YeeBet</value>
-  </data>
-  <data name="product_74" xml:space="preserve">
-    <value>MG-RNG</value>
-  </data>
   <data name="platform_19" xml:space="preserve">
     <value>Desktop Galaxy</value>
   </data>
   <data name="platform_20" xml:space="preserve">
     <value>Chat Room</value>
-  </data>
-  <data name="product_78" xml:space="preserve">
-    <value>Virtual Sports 3</value>
   </data>
   <data name="platform_21" xml:space="preserve">
     <value>Mobile Galaxy</value>
@@ -450,77 +276,17 @@
     <value>Mobile</value>
     <comment>Mobile</comment>
   </data>
-  <data name="product_73" xml:space="preserve">
-    <value>SEAL Entertainment</value>
-  </data>
-  <data name="product_81" xml:space="preserve">
-    <value>WE Live Casino</value>
-  </data>
-  <data name="product_80" xml:space="preserve">
-    <value>Live22</value>
-  </data>
   <data name="Virtual" xml:space="preserve">
     <value>Virtual </value>
   </data>
-  <data name="product_79" xml:space="preserve">
-    <value>UU SLOTS</value>
-  </data>
   <data name="platform_22" xml:space="preserve">
     <value>Desktop Compact</value>
-  </data>
-  <data name="product_88" xml:space="preserve">
-    <value>FastSpin</value>
-  </data>
-  <data name="product_90" xml:space="preserve">
-    <value>FA CHAI</value>
-  </data>
-  <data name="product_86" xml:space="preserve">
-    <value>Nextspin</value>
-  </data>
-  <data name="product_97" xml:space="preserve">
-    <value>ON Casino</value>
-  </data>
-  <data name="product_101" xml:space="preserve">
-    <value>Playtech</value>
-  </data>
-  <data name="product_49" xml:space="preserve">
-    <value>GPI</value>
-  </data>
-  <data name="product_91" xml:space="preserve">
-    <value>GPI Live Casino</value>
   </data>
   <data name="platform_23" xml:space="preserve">
     <value>Quick Bet Widget</value>
     <comment>Quick Bet Widget</comment>
   </data>
-  <data name="product_92" xml:space="preserve">
-    <value>PLAYSTAR</value>
-  </data>
-  <data name="product_104" xml:space="preserve">
-    <value>ASKMESLOT</value>
-  </data>
-  <data name="Product_105" xml:space="preserve">
-    <value>Funky Games</value>
-  </data>
-  <data name="product_96" xml:space="preserve">
-    <value>HOTDOG</value>
-  </data>
-  <data name="product_108" xml:space="preserve">
-    <value>Microgaming Live</value>
-  </data>
-  <data name="product_102" xml:space="preserve">
-    <value>Playtech Live</value>
-  </data>
-  <data name="product_109" xml:space="preserve">
-    <value>RichGaming</value>
-  </data>
-  <data name="product_99" xml:space="preserve">
-    <value>W Casino</value>
-  </data>
-  <data name="product_110" xml:space="preserve">
-    <value>ClotPlay</value>
-  </data>
-  <data name="product_111" xml:space="preserve">
-    <value>AI Gaming</value>
+  <data name="product_85" xml:space="preserve">
+    <value>GPI Lottery</value>
   </data>
 </root>
