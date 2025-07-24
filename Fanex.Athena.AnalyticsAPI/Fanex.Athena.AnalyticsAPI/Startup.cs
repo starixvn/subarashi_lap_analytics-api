@@ -24,6 +24,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using System.Net;
+using Fanex.Athena.AnalyticsAPI.Common.Extensions;
+using Fanex.Athena.AnalyticsAPI.Common.Models;
 
 namespace Fanex.Athena.AnalyticsAPI
 {
@@ -48,6 +52,8 @@ namespace Fanex.Athena.AnalyticsAPI
                               .Build();
                 options.Filters.Add(new AuthorizeFilter(policy));
             });
+
+            services.Configure<AppSettings>(Configuration);
 
             RefDataTypeContainer
                .ConnectTo(new Uri(Configuration["Fanex.RemotingRef.Service.Url"]))
@@ -109,6 +115,8 @@ namespace Fanex.Athena.AnalyticsAPI
                 const int httpsPort = 443;
                 options.HttpsPort = httpsPort;
             });
+
+            services.AddCommonApiClient();
         }
 
         public void Configure(IApplicationBuilder app)

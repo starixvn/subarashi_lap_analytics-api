@@ -44,7 +44,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services
             criteria.Setup(_ => _.IsValid()).Returns(true);
             criteria.Setup(_ => _.GetSettingKey()).Returns(settingKey);
 
-            _createObjectDbFuncMock.Setup(_ => _.Invoke(settingKey, null)).Returns(_mockObjDB.Object);
+            _createObjectDbFuncMock.Setup(_ => _.Invoke(settingKey, null, null)).Returns(_mockObjDB.Object);
 
             ObjectDbFactory.Mock(_createObjectDbFuncMock.Object);
 
@@ -52,7 +52,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services
             await _targetService.ExecuteQueryData<DTOClassTest>(criteria.Object);
 
             //Assert
-            _createObjectDbFuncMock.Verify(_ => _.Invoke(settingKey, null), Times.Once);
+            _createObjectDbFuncMock.Verify(_ => _.Invoke(settingKey, null, null), Times.Once);
         }
 
         [Fact]
@@ -62,7 +62,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services
             var criteria = new Mock<ICriteria>();
             criteria.Setup(_ => _.IsValid()).Returns(true);
 
-            _createObjectDbFuncMock.Setup(_ => _.Invoke(It.IsAny<string>(), null)).Returns(_mockObjDB.Object);
+            _createObjectDbFuncMock.Setup(_ => _.Invoke(It.IsAny<string>(), null, null)).Returns(_mockObjDB.Object);
 
             ObjectDbFactory.Mock(_createObjectDbFuncMock.Object);
 
@@ -80,7 +80,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services
             var criteria = new Mock<ICriteria>();
             criteria.Setup(_ => _.IsValid()).Returns(true);
 
-            _createObjectDbFuncMock.Setup(_ => _.Invoke(It.IsAny<string>(), null)).Returns(_mockObjDB.Object);
+            _createObjectDbFuncMock.Setup(_ => _.Invoke(It.IsAny<string>(), null, null)).Returns(_mockObjDB.Object);
 
             ObjectDbFactory.Mock(_createObjectDbFuncMock.Object);
 

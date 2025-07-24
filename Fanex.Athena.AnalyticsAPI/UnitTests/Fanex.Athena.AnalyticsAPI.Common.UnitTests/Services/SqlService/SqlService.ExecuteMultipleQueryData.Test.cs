@@ -42,7 +42,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services
             var settingKey = _fixture.Create<string>();
             var number = _fixture.Create<int>() % 100;
             var criteriaList = CreateMultipleFakeCritera(number, settingKey);
-            _createObjectDbFuncMock.Setup(_ => _.Invoke(It.IsAny<string>(), null)).Returns(_mockObjDB.Object);
+            _createObjectDbFuncMock.Setup(_ => _.Invoke(It.IsAny<string>(), null, null)).Returns(_mockObjDB.Object);
 
             ObjectDbFactory.Mock(_createObjectDbFuncMock.Object);
 
@@ -50,7 +50,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services
             await _targetService.ExecuteMultipleQueryData<DTOClassTest>(criteriaList);
 
             //Assert
-            _createObjectDbFuncMock.Verify(_ => _.Invoke(settingKey, null), Times.Exactly(criteriaList.Length));
+            _createObjectDbFuncMock.Verify(_ => _.Invoke(settingKey, null, null), Times.Exactly(criteriaList.Length));
         }
 
         [Fact]
@@ -61,7 +61,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services
             var number = _fixture.Create<int>() % 100;
             var criteriaList = CreateMultipleFakeCritera(number, settingKey);
 
-            _createObjectDbFuncMock.Setup(_ => _.Invoke(It.IsAny<string>(), null)).Returns(_mockObjDB.Object);
+            _createObjectDbFuncMock.Setup(_ => _.Invoke(It.IsAny<string>(), null, null)).Returns(_mockObjDB.Object);
 
             ObjectDbFactory.Mock(_createObjectDbFuncMock.Object);
 
@@ -85,7 +85,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services
             var expected = new List<LinkedList<DTOClassTest>>();
             for (int i = 0; i < criteriaList.Length; i++) { expected.Add(new LinkedList<DTOClassTest>()); }
 
-            _createObjectDbFuncMock.Setup(_ => _.Invoke(It.IsAny<string>(), null)).Returns(_mockObjDB.Object);
+            _createObjectDbFuncMock.Setup(_ => _.Invoke(It.IsAny<string>(), null, null)).Returns(_mockObjDB.Object);
 
             ObjectDbFactory.Mock(_createObjectDbFuncMock.Object);
 
