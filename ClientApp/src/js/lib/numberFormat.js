@@ -18,6 +18,7 @@ export default class numberFormat {
       "NGN": "₦",
       "BRL": "R$",
       "PKR": "Rs",
+      "ZAR": "R",
     }
     currency = currencies[currency] ? currencies[currency] : ''
 
