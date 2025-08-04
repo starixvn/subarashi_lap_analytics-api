@@ -10,6 +10,7 @@ RUN npm -v
 RUN npm install
 
 COPY NuGet.Config .
+RUN dotnet nuget add source http://nuget.nexdev.net/api/v2
 
 COPY Fanex.Athena.AnalyticsAPI/Fanex.Athena.AnalyticsAPI.Core/Fanex.Athena.AnalyticsAPI.Core.csproj ./Fanex.Athena.AnalyticsAPI.Core/
 RUN --mount=type=cache,target=/root/.nuget/packages dotnet restore Fanex.Athena.AnalyticsAPI.Core/Fanex.Athena.AnalyticsAPI.Core.csproj -v n
