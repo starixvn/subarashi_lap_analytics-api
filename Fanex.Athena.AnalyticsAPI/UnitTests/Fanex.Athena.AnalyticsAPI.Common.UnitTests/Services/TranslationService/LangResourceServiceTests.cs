@@ -10,12 +10,14 @@ namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services
     public class LangResourceServiceTests
     {
         private readonly Mock<IRemotingRefService> _mockRemotingRefService;
+        private readonly Mock<ICommonApiClient> _mockApiClient;
         private readonly LangResourceService _langResourceService;
 
         public LangResourceServiceTests()
         {
             _mockRemotingRefService = new Mock<IRemotingRefService>();
-            _langResourceService = new LangResourceService(_mockRemotingRefService.Object);
+            _mockApiClient = new Mock<ICommonApiClient>();
+            _langResourceService = new LangResourceService(_mockRemotingRefService.Object, _mockApiClient.Object);
         }
 
         [Theory]
