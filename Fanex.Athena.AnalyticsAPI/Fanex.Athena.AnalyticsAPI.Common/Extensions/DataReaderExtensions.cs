@@ -45,7 +45,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
                 return typeCode switch
                 {
                     TypeCode.Boolean => false,
-                    TypeCode.DateTime => DateTime.MinValue,
+                    TypeCode.DateTime => DateTimeOffset.MinValue.DateTime,
                     _ => Activator.CreateInstance(type),
                 };
             }
@@ -65,23 +65,18 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
             foreach (var prop in props)
             {
                 var cubeMappingAttr = Attribute.GetCustomAttribute(prop, typeof(SsasColumnAttribute)) as SsasColumnAttribute;
-                var isValid = cubeMappingAttr != null && !string.IsNullOrWhiteSpace(cubeMappingAttr.MapColumn);
-                isValid = isValid && reader.HasColumn(cubeMappingAttr.MapColumn);
+                var isValid = cubeMappingAttr != null && !string.IsNullOrWhiteSpace(cubeMappingAttr.MapColumn) && reader.HasColumn(cubeMappingAttr.MapColumn);
 
-                if (isValid)
+                if (!isValid)
                 {
-                    var value = reader[cubeMappingAttr.MapColumn];
-
-                    if (value != null && value != DBNull.Value && value.GetType() != typeof(DBNull) &&
-                        !(value is string strValue && strValue.Equals("NULL", StringComparison.OrdinalIgnoreCase)))
-                    {
-                        prop.SetValue(objDTO, Convert.ChangeType(value, prop.PropertyType));
-                    }
-                    else
-                    {
-                        prop.SetValue(objDTO, GetDefaultValue(prop.PropertyType));
-                    }
+                    continue;
                 }
+
+                var value = reader[cubeMappingAttr.MapColumn];
+                var isNotNull = value != DBNull.Value && value is not DBNull &&
+                                !(value is string strValue && strValue.Equals("NULL", StringComparison.OrdinalIgnoreCase));
+
+                prop.SetValue(objDTO, isNotNull ? Convert.ChangeType(value, prop.PropertyType) : GetDefaultValue(prop.PropertyType));
             }
 
             return objDTO;

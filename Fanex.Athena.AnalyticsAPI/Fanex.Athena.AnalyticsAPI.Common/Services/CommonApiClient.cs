@@ -7,7 +7,6 @@ using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
-using Microsoft.AspNetCore.Http;
 
 namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
@@ -23,18 +22,10 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
         private const string LanguageKey = "Language";
         private const string HttpClientName = "CommonApiClient";
         private readonly IHttpClientFactory _clientFactory;
-        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        private static readonly JsonSerializerSettings _jsonSerializerSettings = new JsonSerializerSettings
-        {
-            DateTimeZoneHandling = DateTimeZoneHandling.Unspecified,
-            NullValueHandling = NullValueHandling.Ignore,
-        };
-
-        public CommonApiClient(IHttpClientFactory clientFactory, IHttpContextAccessor httpContextAccessor)
+        public CommonApiClient(IHttpClientFactory clientFactory)
         {
             _clientFactory = clientFactory;
-            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<T> GetAsync<T>(string path, string languageCode = "en-US", object value = null, int timeOut = 100)
