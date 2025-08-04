@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.AnalyticsAPI.S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.AnalyticsAPI.Sportsbook.UnitTests", "UnitTests\Modules\Fanex.Athena.AnalyticsAPI.Sportsbook.UnitTests\Fanex.Athena.AnalyticsAPI.Sportsbook.UnitTests.csproj", "{F7F6007B-C80D-4C2B-A6F2-EA1014B0D22A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fanex.Athena.AnalyticsAPI.UnitTests", "UnitTests\Fanex.Athena.AnalyticsAPI.UnitTests\Fanex.Athena.AnalyticsAPI.UnitTests.csproj", "{C1234567-1234-1234-1234-123456789ABC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -187,6 +189,18 @@ Global
 		{F7F6007B-C80D-4C2B-A6F2-EA1014B0D22A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F7F6007B-C80D-4C2B-A6F2-EA1014B0D22A}.Release|x86.ActiveCfg = Release|Any CPU
 		{F7F6007B-C80D-4C2B-A6F2-EA1014B0D22A}.Release|x86.Build.0 = Release|Any CPU
+		{C1234567-1234-1234-1234-123456789ABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1234567-1234-1234-1234-123456789ABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1234567-1234-1234-1234-123456789ABC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C1234567-1234-1234-1234-123456789ABC}.Debug|x86.Build.0 = Debug|Any CPU
+		{C1234567-1234-1234-1234-123456789ABC}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1234567-1234-1234-1234-123456789ABC}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{C1234567-1234-1234-1234-123456789ABC}.Development|x86.ActiveCfg = Debug|Any CPU
+		{C1234567-1234-1234-1234-123456789ABC}.Development|x86.Build.0 = Debug|Any CPU
+		{C1234567-1234-1234-1234-123456789ABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1234567-1234-1234-1234-123456789ABC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1234567-1234-1234-1234-123456789ABC}.Release|x86.ActiveCfg = Release|Any CPU
+		{C1234567-1234-1234-1234-123456789ABC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -202,6 +216,7 @@ Global
 		{AD7736FC-7383-4C52-8E95-4E2B2350CA77} = {0EAFC1D2-C52E-417C-9022-A7B77DC2B327}
 		{5B1915CE-660C-48F8-8867-D2882D80C0E4} = {0EAFC1D2-C52E-417C-9022-A7B77DC2B327}
 		{F7F6007B-C80D-4C2B-A6F2-EA1014B0D22A} = {0EAFC1D2-C52E-417C-9022-A7B77DC2B327}
+		{C1234567-1234-1234-1234-123456789ABC} = {A9165D3A-48FA-4BDD-9A03-8C0165CA23A7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2844F816-39A8-4EE9-B75A-2348BC440BFA}
