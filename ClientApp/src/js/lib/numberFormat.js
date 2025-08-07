@@ -19,6 +19,7 @@ export default class numberFormat {
       "BRL": "R$",
       "PKR": "Rs",
       "ZAR": "R",
+      "KRW": "₩",
     }
     currency = currencies[currency] ? currencies[currency] : ''
 
