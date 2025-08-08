@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
-
-namespace Fanex.Athena.AnalyticsAPI.Summary.Services
+﻿namespace Fanex.Athena.AnalyticsAPI.Summary.Services
 {
+    using System.Threading.Tasks;
+    using Models.MetaModels;
+
     public interface ISingleValueService
     {
         Task<decimal> GetCustomerBalance(BaseSummaryMetaModel metaModel);

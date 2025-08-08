@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Constants
+﻿namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Constants
 {
+    using System.Collections.Generic;
+
     public static class DomainData
     {
         public const int ParlaySportId = -2;

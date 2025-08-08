@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using AutoFixture;
-
-namespace Fanex.Athena.AnalyticsAPI.UnitTests.Utils.Helpers
+﻿namespace Fanex.Athena.AnalyticsAPI.UnitTests.Utils.Helpers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq.Expressions;
+    using AutoFixture;
+
     public static class FakeHelper
     {
         private static Fixture _fixture = new Fixture();

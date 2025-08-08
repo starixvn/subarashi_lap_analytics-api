@@ -1,12 +1,13 @@
-using System.Linq;
-using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Performance.Mappers;
-using Moq;
-using Xunit;
-
 namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Mappers
 {
+    using System.Linq;
+    using System.Reflection;
+    using AutoFixture;
+    using Common.Services;
+    using Moq;
+    using Performance.Mappers;
+    using Xunit;
+
     public class CurrencyPerformanceVMMapperTests
     {
         private readonly Mock<ICalculationService> _mockCalculationService;
@@ -112,7 +113,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Mappers
             var mapperType = typeof(CurrencyPerformanceVMMapper);
 
             // Act
-            var mapperMethods = mapperType.GetMethods(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.DeclaredOnly);
+            var mapperMethods = mapperType.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
 
             // Assert - Should only have constructor, no additional methods
             Assert.Empty(mapperMethods.Where(m => !m.IsSpecialName)); // IsSpecialName filters out constructors and property accessors

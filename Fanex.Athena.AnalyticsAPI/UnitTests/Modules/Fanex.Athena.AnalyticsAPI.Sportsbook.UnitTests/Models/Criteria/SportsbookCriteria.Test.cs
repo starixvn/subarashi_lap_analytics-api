@@ -1,9 +1,10 @@
-﻿using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Sportsbook.Models.Criteria;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Sportsbook.UnitTests.Models.Criteria
+﻿namespace Fanex.Athena.AnalyticsAPI.Sportsbook.UnitTests.Models.Criteria
 {
+    using AutoFixture;
+    using Constants;
+    using Sportsbook.Models.Criteria;
+    using Xunit;
+
     public class SportsbookCriteria_Test
     {
         private readonly Fixture _fixture;
@@ -32,8 +33,8 @@ namespace Fanex.Athena.AnalyticsAPI.Sportsbook.UnitTests.Models.Criteria
             // Arrange
             var criteria = _fixture.Create<SportsbookCriteria>();
             criteria.SiteName = "";
-            criteria.Type = Constants.TabType.SPORT;
-            criteria.SportType = Constants.SportType.ALL;
+            criteria.Type = TabType.SPORT;
+            criteria.SportType = SportType.ALL;
 
             // Assert
             Assert.True(criteria.IsValid());

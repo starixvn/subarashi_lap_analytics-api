@@ -1,15 +1,15 @@
-﻿using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Common.Controllers;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Core.Attributes;
-using Fanex.Athena.AnalyticsAPI.Core.Constants;
-using Fanex.Athena.AnalyticsAPI.Summary.Consts;
-using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Summary.Services;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Fanex.Athena.AnalyticsAPI.Summary.Controllers
+﻿namespace Fanex.Athena.AnalyticsAPI.Summary.Controllers
 {
+    using System.Threading.Tasks;
+    using Common.Controllers;
+    using Common.Services;
+    using Consts;
+    using Core.Attributes;
+    using Core.Constants;
+    using Microsoft.AspNetCore.Mvc;
+    using Models.MetaModels;
+    using Services;
+
     [ApiController]
     [Route("api/[controller]/[action]")]
     [BearerAuthorize(Roles.SuperAdmin, Roles.SummaryPendingFunds)]

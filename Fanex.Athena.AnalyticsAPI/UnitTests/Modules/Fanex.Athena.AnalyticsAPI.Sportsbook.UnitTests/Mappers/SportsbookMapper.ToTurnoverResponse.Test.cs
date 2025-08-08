@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers;
-using Fanex.Athena.AnalyticsAPI.Sportsbook.Models;
-using Moq;
-using Newtonsoft.Json;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Sportsbook.UnitTests.Mappers
+﻿namespace Fanex.Athena.AnalyticsAPI.Sportsbook.UnitTests.Mappers
 {
+    using System.Collections.Generic;
+    using AutoFixture;
+    using Common.Services;
+    using Moq;
+    using Newtonsoft.Json;
+    using Sportsbook.Mappers;
+    using Sportsbook.Models;
+    using Xunit;
+
     public class SportsbookMapper_ToTurnoverResponse_Test
     {
         private readonly Fixture _fixture;

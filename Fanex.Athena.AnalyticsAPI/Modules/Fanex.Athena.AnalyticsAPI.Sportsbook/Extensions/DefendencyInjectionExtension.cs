@@ -1,9 +1,9 @@
-﻿using Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers;
-using Fanex.Athena.AnalyticsAPI.Sportsbook.Repositories;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Extensions
+﻿namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Extensions
 {
+    using Mappers;
+    using Microsoft.Extensions.DependencyInjection;
+    using Repositories;
+
     public static class DefendencyInjectionExtension
     {
         public static IServiceCollection AddDIPerformance(this IServiceCollection services)

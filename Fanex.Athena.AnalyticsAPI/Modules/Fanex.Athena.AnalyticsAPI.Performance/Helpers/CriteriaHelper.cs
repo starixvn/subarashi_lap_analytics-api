@@ -1,10 +1,10 @@
-﻿using System.Linq;
-using Fanex.Athena.AnalyticsAPI.Common.Models.Criteria;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.Helpers
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Helpers
 {
+    using System.Linq;
+    using Common.Models.Criteria;
+    using Models.Criteria;
+    using Models.MetaModels;
+
     public static class CriteriaHelper
     {
         public static TCriteria ToPerformanceCriteria<TCriteria, TMetaModel>(TMetaModel metaModel, bool isCurrentPeriod = true)

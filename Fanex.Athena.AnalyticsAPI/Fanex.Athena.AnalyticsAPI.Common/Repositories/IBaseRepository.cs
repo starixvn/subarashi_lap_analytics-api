@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Fanex.Data.Repository;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.Repositories
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.Repositories
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Data.Repository;
+
     public interface IBaseRepository
     {
         Task<IEnumerable<TResult>> QueryAsync<TResult>(ICriteria criteria)

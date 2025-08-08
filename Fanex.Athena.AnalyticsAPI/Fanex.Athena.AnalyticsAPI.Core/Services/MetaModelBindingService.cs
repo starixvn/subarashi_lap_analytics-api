@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Fanex.Athena.AnalyticsAPI.Core.Constants;
-using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
-using Fanex.Athena.AnalyticsAPI.Core.Models.MetaModels;
-
-namespace Fanex.Athena.AnalyticsAPI.Core.Services
+﻿namespace Fanex.Athena.AnalyticsAPI.Core.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using Constants;
+    using Models.DataDomain;
+    using Models.MetaModels;
+
     public class MetaModelBindingService : IMetaModelBindingService
     {
         public void BindSiteName(IDictionary<string, object> actionArguments, string siteName)

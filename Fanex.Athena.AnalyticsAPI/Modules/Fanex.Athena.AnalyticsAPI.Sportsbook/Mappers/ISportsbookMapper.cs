@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Fanex.Athena.AnalyticsAPI.Sportsbook.Models;
-
-namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers
+﻿namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers
 {
+    using System.Collections.Generic;
+    using Models;
+
     public interface ISportsbookMapper
     {
         IEnumerable<DimDistributionResponse> ToTurnoverResponse(IEnumerable<SportsbookDTO> fullItems, bool includeOther,

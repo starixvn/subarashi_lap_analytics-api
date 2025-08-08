@@ -1,8 +1,8 @@
-﻿using System.Net;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Fanex.Athena.AnalyticsAPI.Core.Constants
+﻿namespace Fanex.Athena.AnalyticsAPI.Core.Constants
 {
+    using System.Net;
+    using Microsoft.AspNetCore.Mvc;
+
     public static class RequestResultConst
     {
         public static readonly IActionResult BadResult = new JsonResult(new

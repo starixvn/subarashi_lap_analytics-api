@@ -1,14 +1,15 @@
-﻿using System.Linq;
-using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Performance.Mappers;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Performance.Repositories;
-using Fanex.Athena.AnalyticsAPI.Performance.Services;
-using Moq;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Services
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Services
 {
+    using System.Linq;
+    using AutoFixture;
+    using Common.Models.MetaModels;
+    using Common.Services;
+    using Moq;
+    using Performance.Mappers;
+    using Performance.Models.MetaModels;
+    using Performance.Services;
+    using Repositories;
+
     public abstract class ProductPerformanceServiceTestBase
     {
         protected readonly Mock<IContextService> _contextServiceMock;
@@ -33,9 +34,9 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Services
 
         protected static ProductPerformanceFilterMetaModel FakeProductPerformanceFilterMetaModel => new ProductPerformanceFilterMetaModel
         {
-            CurrentPeriod = new Common.Models.MetaModels.MonthRangeMetaModel { FromMonth = "01/2019", ToMonth = "12/2019" },
-            PreviousPeriod = new Common.Models.MetaModels.MonthRangeMetaModel { FromMonth = "01/2018", ToMonth = "12/2019" },
-            Measurement = new Common.Models.MetaModels.SelectMetaModel(),
+            CurrentPeriod = new MonthRangeMetaModel { FromMonth = "01/2019", ToMonth = "12/2019" },
+            PreviousPeriod = new MonthRangeMetaModel { FromMonth = "01/2018", ToMonth = "12/2019" },
+            Measurement = new SelectMetaModel(),
             Products = Enumerable.Empty<string>(),
             TopDistributions = Enumerable.Empty<DistributionMetaModel>()
         };

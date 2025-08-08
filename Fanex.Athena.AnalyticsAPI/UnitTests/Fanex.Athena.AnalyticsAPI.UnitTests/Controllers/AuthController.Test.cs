@@ -1,28 +1,28 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Configuration;
-using Fanex.Athena.AnalyticsAPI.Controllers;
-using Fanex.Athena.AnalyticsAPI.Models;
-using IdentityModel.Client;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using Moq;
-using Moq.Protected;
-using Newtonsoft.Json;
-using Xunit;
-
 namespace Fanex.Athena.AnalyticsAPI.UnitTests.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+    using System.Net.Http.Json;
+    using System.Text;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using AnalyticsAPI.Controllers;
+    using AutoFixture;
+    using Configuration;
+    using IdentityModel.Client;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Options;
+    using Models;
+    using Moq;
+    using Moq.Protected;
+    using Newtonsoft.Json;
+    using Xunit;
+
     public class AuthController_Test
     {
         private readonly AuthController _target;

@@ -1,15 +1,15 @@
-﻿using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Common.Helpers;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Summary.Controllers;
-using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Summary.Services;
-using Fanex.Athena.AnalyticsAPI.UnitTests.Utils.Helpers;
-using Moq;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Summary.UnitTests.Controllers
+﻿namespace Fanex.Athena.AnalyticsAPI.Summary.UnitTests.Controllers
 {
+    using System.Threading.Tasks;
+    using AnalyticsAPI.UnitTests.Utils.Helpers;
+    using Common.Helpers;
+    using Common.Services;
+    using Models.MetaModels;
+    using Moq;
+    using Summary.Controllers;
+    using Summary.Services;
+    using Xunit;
+
     public class CustomerBalanceController_Test
     {
         private readonly CustomerBalanceController _target;

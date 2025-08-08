@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Fanex.Athena.AnalyticsAPI.Common.Mappers;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Sportsbook.Models;
-
-namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers
+﻿namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Common.Mappers;
+    using Common.Services;
+    using Models;
+
     public class SportsbookMapper : ViewModelMapper, ISportsbookMapper
     {
         private const int NUMBER_OF_TOP = 5;

@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections;
-using System.Data;
-using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Summary.Services;
-using Fanex.Athena.AnalyticsAPI.UnitTests.Utils.Helpers;
-using FluentAssertions;
-using Moq;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Summary.UnitTests.Services
+﻿namespace Fanex.Athena.AnalyticsAPI.Summary.UnitTests.Services
 {
+    using System;
+    using System.Collections;
+    using System.Data;
+    using System.Threading.Tasks;
+    using AnalyticsAPI.UnitTests.Utils.Helpers;
+    using Common.Services;
+    using FluentAssertions;
+    using Models.MetaModels;
+    using Moq;
+    using Summary.Services;
+    using Xunit;
+
     public class SingleValueService_Test
     {
         private readonly Mock<ISqlService> _mockSqlService;

@@ -1,15 +1,15 @@
-using Newtonsoft.Json;
-using System;
-using System.Collections.Specialized;
-using System.IO;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
-
 namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
+    using System;
+    using System.Collections.Specialized;
+    using System.IO;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Web;
+    using Newtonsoft.Json;
+
     public class ApiResponse<T>
     {
         public int ErrorCode { get; set; }

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace Fanex.Athena.AnalyticsAPI.Core.Models
+﻿namespace Fanex.Athena.AnalyticsAPI.Core.Models
 {
+    using System.Collections.Generic;
+
     public class Permission
     {
         public string FunctionKey { get; set; }

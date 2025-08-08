@@ -1,10 +1,10 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
-using ONEbook.UM.Services;
-
-namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
+﻿namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
 {
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Http;
+    using Newtonsoft.Json;
+    using ONEbook.UM.Services;
+
     public class UnderMaintenanceHandler
     {
         private const string MsgFormat = "System is currently unavailable due to scheduled maintenance. This downtime will last from {0} to {1} (HK Time GMT +8)";

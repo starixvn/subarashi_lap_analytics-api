@@ -1,13 +1,13 @@
-using System;
-using System.Net;
-using System.Net.Http;
-using Fanex.Athena.AnalyticsAPI.Common.Models;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
-
 namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
 {
+    using System;
+    using System.Net;
+    using System.Net.Http;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Options;
+    using Models;
+    using Services;
+
     public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddCommonApiClient(this IServiceCollection services)

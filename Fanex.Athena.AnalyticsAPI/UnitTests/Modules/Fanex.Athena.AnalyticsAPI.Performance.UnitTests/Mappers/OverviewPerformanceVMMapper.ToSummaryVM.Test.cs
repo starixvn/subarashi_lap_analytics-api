@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Performance.Mappers;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
-using Moq;
-using Newtonsoft.Json;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Mappers
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Mappers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using AutoFixture;
+    using Common.Services;
+    using Moq;
+    using Newtonsoft.Json;
+    using Performance.Mappers;
+    using Performance.Models.DTO;
+    using Performance.Models.ViewModels;
+    using Xunit;
+
     public class OverviewPerformanceVMMapper_ToSummaryVM_Test
     {
         private readonly Fixture _fixture;

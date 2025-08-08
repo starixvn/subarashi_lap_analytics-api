@@ -1,7 +1,7 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Attributes;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
 {
+    using Common.Attributes;
+
     public class ProductMeasurementComparisonDTO : MeasurementComparisonDTO
     {
         [SsasColumn("DimSportBettypeMatrix[ProductID]")]

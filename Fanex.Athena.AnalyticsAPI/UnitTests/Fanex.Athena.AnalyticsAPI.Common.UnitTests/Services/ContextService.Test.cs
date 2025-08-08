@@ -1,9 +1,9 @@
-using System.Linq;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Xunit;
-
 namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services
 {
+    using System.Linq;
+    using Common.Services;
+    using Xunit;
+
     public class ContextService_Test
     {
         private readonly ContextService _target;

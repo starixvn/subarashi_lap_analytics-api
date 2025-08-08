@@ -1,7 +1,7 @@
-﻿using Fanex.Data.Repository;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.Models.Criteria
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.Models.Criteria
 {
+    using Data.Repository;
+
     public abstract class AnalyticCriteria : CriteriaBase, ICriteria
     {
         public string SiteName { get; set; }

@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Performance.Mappers;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
-using Moq;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Mappers
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Mappers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using AutoFixture;
+    using Common.Models.MetaModels;
+    using Common.Services;
+    using Moq;
+    using Performance.Mappers;
+    using Performance.Models.MetaModels;
+    using Xunit;
+
     public class PerformanceVMMapper_ToMeasurementGrowthPeriodVM_Test
     {
         private readonly Fixture _fixture;

@@ -1,7 +1,7 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
-
-namespace Fanex.Athena.AnalyticsAPI.Core.Helpers
+﻿namespace Fanex.Athena.AnalyticsAPI.Core.Helpers
 {
+    using Models.DataDomain;
+
     public static class SabaHelper
     {
         public static bool IsHideSaba(int specialPlatform)

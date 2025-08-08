@@ -1,9 +1,9 @@
-﻿using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Common.Attributes;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Attributes
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Attributes
 {
+    using AutoFixture;
+    using Common.Attributes;
+    using Xunit;
+
     public class TranslationAttribute_Test
     {
         private readonly Fixture _fixture;

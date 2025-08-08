@@ -1,22 +1,22 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Common.Constants;
-using Fanex.Athena.AnalyticsAPI.Common.Controllers;
-using Fanex.Athena.AnalyticsAPI.Common.Extensions;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Core.Attributes;
-using Fanex.Athena.AnalyticsAPI.Core.Constants;
-using Fanex.Athena.AnalyticsAPI.Core.Helpers;
-using Fanex.Athena.AnalyticsAPI.Core.Services;
-using Fanex.Athena.AnalyticsAPI.Performance.Constants;
-using Fanex.Athena.AnalyticsAPI.Performance.Extensions;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
-using Fanex.Athena.AnalyticsAPI.Performance.Services;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Common.Constants;
+    using Common.Controllers;
+    using Common.Extensions;
+    using Common.Services;
+    using Constants;
+    using Core.Attributes;
+    using Core.Constants;
+    using Core.Helpers;
+    using Core.Services;
+    using Extensions;
+    using Microsoft.AspNetCore.Mvc;
+    using Models.MetaModels;
+    using Models.ViewModels;
+    using Services;
+
     [ApiController]
     [BearerAuthorize(Roles.SuperAdmin, Roles.PerformanceTab)]
     public class BettypePerformanceController : ControllerBaseCustom

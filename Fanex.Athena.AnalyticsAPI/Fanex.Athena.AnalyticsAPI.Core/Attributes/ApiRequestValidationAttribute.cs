@@ -1,13 +1,13 @@
-﻿using System;
-using System.Linq;
-using System.Net;
-using Fanex.Athena.AnalyticsAPI.Core.Constants;
-using Fanex.Athena.AnalyticsAPI.Core.Models.MetaModels;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
-
-namespace Fanex.Athena.AnalyticsAPI.Core.Attributes
+﻿namespace Fanex.Athena.AnalyticsAPI.Core.Attributes
 {
+    using System;
+    using System.Linq;
+    using System.Net;
+    using Constants;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Filters;
+    using Models.MetaModels;
+
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public sealed class ApiRequestValidationAttribute : ActionFilterAttribute
     {

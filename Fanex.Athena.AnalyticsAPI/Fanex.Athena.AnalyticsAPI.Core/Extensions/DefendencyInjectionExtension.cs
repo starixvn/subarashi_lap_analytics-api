@@ -1,8 +1,8 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Services;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
+﻿namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
 {
+    using Microsoft.Extensions.DependencyInjection;
+    using Services;
+
     public static class DefendencyInjectionExtension
     {
         public static IServiceCollection AddDICore(this IServiceCollection services)

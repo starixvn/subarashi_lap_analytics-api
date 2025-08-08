@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Fanex.Athena.AnalyticsAPI.Common.Attributes;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels
 {
+    using System.Collections.Generic;
+    using Common.Attributes;
+
     public class DistributionVM
     {
         public DistributionVM(int distributionSize = 6)

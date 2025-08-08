@@ -1,8 +1,8 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Criteria;
-using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
 {
+    using Models.Criteria;
+    using Models.MetaModels;
+
     public static class CriteriaHelper
     {
         public static TCriteria ToCriteria<TCriteria, TMetaModel>(TMetaModel metaModel, bool isCurrentPeriod = true)

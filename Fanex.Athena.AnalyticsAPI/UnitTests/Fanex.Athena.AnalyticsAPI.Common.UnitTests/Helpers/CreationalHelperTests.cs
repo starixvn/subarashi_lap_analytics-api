@@ -1,10 +1,9 @@
-using System;
-using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Common.Helpers;
-using Xunit;
-
 namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Helpers
 {
+    using AutoFixture;
+    using Common.Helpers;
+    using Xunit;
+
     public class CreationalHelperTests
     {
         private readonly Fixture _fixture;

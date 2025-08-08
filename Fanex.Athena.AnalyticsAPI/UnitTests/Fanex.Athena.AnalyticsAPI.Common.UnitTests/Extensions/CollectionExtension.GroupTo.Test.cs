@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Common.Extensions;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Extensions
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Extensions
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using AutoFixture;
+    using Common.Extensions;
+    using Xunit;
+
     internal class Fake_GroupTo_Class
     {
         public int Key { get; set; }
@@ -43,8 +43,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Extensions
             //Arrange
 
             //Act
-            var actual = CollectionExtension.GroupTo(new List<object>(),
-                _fixture.Create<Func<object, int>>(),
+            var actual = new List<object>().GroupTo(_fixture.Create<Func<object, int>>(),
                 _fixture.Create<Func<IGrouping<int, object>, object>>());
 
             //Assert
@@ -64,8 +63,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Extensions
             };
 
             //Act
-            var result = CollectionExtension.GroupTo(fakeList,
-                _ => _.Key,
+            var result = fakeList.GroupTo(_ => _.Key,
                 _ => new Fake_GroupTo_Class
                 {
                     Key = _.Key,

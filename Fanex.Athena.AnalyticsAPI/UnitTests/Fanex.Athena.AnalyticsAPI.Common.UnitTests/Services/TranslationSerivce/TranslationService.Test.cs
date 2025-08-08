@@ -1,8 +1,8 @@
-﻿using System.Text.RegularExpressions;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services.TranslationSerivce
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services.TranslationSerivce
 {
+    using System.Text.RegularExpressions;
+    using Xunit;
+
     public class TranslationService_Test
     {
         [Fact]

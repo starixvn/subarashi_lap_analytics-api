@@ -1,12 +1,12 @@
-using Fanex.Athena.AnalyticsAPI.Common.Constants;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.RemotingRef;
-using Moq;
-using System.Globalization;
-using Xunit;
-
 namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services
 {
+    using System.Globalization;
+    using Common.Constants;
+    using Common.Services;
+    using Moq;
+    using RemotingRef;
+    using Xunit;
+
     public class LangResourceServiceTests
     {
         private readonly Mock<IRemotingRefService> _mockRemotingRefService;

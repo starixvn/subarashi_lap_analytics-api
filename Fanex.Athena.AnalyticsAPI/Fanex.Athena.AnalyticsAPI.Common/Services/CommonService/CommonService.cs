@@ -1,10 +1,10 @@
-﻿using System;
-using System.Data;
-using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.Services
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
+    using System;
+    using System.Data;
+    using System.Threading.Tasks;
+    using Models.Configuration;
+
     public class CommonService : ICommonService
     {
         private readonly ISqlService _sqlService;

@@ -1,18 +1,19 @@
-﻿using System.Threading.Tasks;
-using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Core.Services;
-using Fanex.Athena.AnalyticsAPI.Performance.Controllers;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
-using Fanex.Athena.AnalyticsAPI.Performance.Services;
-using Moq;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Controllers
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Controllers
 {
+    using System.Threading.Tasks;
+    using AutoFixture;
+    using Common.Models.MetaModels;
+    using Common.Services;
+    using Core.Services;
+    using Moq;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Serialization;
+    using Performance.Controllers;
+    using Performance.Models.MetaModels;
+    using Performance.Models.ViewModels;
+    using Performance.Services;
+    using Xunit;
+
     public class OverviewPerformanceController_Test
     {
         private readonly OverviewPerformanceController _target;
@@ -102,9 +103,9 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Controllers
 
         private PerformanceFilterMetaModel FakePerformanceFilterMetaModel => new PerformanceFilterMetaModel
         {
-            CurrentPeriod = new Common.Models.MetaModels.MonthRangeMetaModel { FromMonth = "01/2019", ToMonth = "12/2019" },
-            PreviousPeriod = new Common.Models.MetaModels.MonthRangeMetaModel { FromMonth = "01/2018", ToMonth = "12/2019" },
-            Measurement = new Common.Models.MetaModels.SelectMetaModel() { Id = 1 },
+            CurrentPeriod = new MonthRangeMetaModel { FromMonth = "01/2019", ToMonth = "12/2019" },
+            PreviousPeriod = new MonthRangeMetaModel { FromMonth = "01/2018", ToMonth = "12/2019" },
+            Measurement = new SelectMetaModel { Id = 1 },
             BaseCurrencyName = "USD"
         };
     }

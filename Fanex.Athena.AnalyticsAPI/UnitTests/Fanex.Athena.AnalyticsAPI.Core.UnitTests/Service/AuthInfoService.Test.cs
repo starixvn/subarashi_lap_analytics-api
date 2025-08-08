@@ -1,11 +1,11 @@
-﻿using System.Security.Claims;
-using Fanex.Athena.AnalyticsAPI.Core.Services;
-using Microsoft.AspNetCore.Http;
-using Moq;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Core.UnitTests.Service
+﻿namespace Fanex.Athena.AnalyticsAPI.Core.UnitTests.Service
 {
+    using System.Security.Claims;
+    using Microsoft.AspNetCore.Http;
+    using Moq;
+    using Services;
+    using Xunit;
+
     public class AuthInfoService_Test
     {
         private AuthInfoService _target;
@@ -37,9 +37,9 @@ namespace Fanex.Athena.AnalyticsAPI.Core.UnitTests.Service
 
             //Action
             _target = new AuthInfoService(_mockContextAccessor.Object);
-            _mockHttpContext.Setup(_ => _.User).Returns(new ClaimsPrincipal(new ClaimsIdentity[]
+            _mockHttpContext.Setup(_ => _.User).Returns(new ClaimsPrincipal(new[]
             {
-                new ClaimsIdentity(new Claim[]
+                new ClaimsIdentity(new[]
                 {
                     new Claim("SiteName", expectedUserData.SiteName),
                     new Claim("UserSEQ", expectedUserData.UserID.ToString()),

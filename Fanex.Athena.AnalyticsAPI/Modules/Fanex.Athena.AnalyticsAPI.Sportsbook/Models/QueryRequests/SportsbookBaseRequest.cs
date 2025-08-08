@@ -1,8 +1,8 @@
-﻿using Fanex.Athena.AnalyticsAPI.Core.Models.MetaModels;
-using Newtonsoft.Json;
-
-namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Models
+﻿namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Models
 {
+    using Core.Models.MetaModels;
+    using Newtonsoft.Json;
+
     public abstract class SportsbookBaseRequest : ISiteNameMetaModel
     {
         [JsonIgnore]

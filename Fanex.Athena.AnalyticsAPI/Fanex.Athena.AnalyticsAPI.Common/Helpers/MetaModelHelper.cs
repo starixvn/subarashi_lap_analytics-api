@@ -1,9 +1,8 @@
-﻿using System;
-using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
-using Newtonsoft.Json;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
 {
+    using Models.MetaModels;
+    using Newtonsoft.Json;
+
     public static class MetaModelHelper
     {
         public static TMetalModel BackToPeriodByMonth<TMetalModel>(TMetalModel metaModel, int numberOfMonth, bool isCurrentPeriod = true)
@@ -43,7 +42,7 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
 
         public static T Clone<T>(this T source)
         {
-            if (Object.ReferenceEquals(source, null))
+            if (ReferenceEquals(source, null))
             {
                 return default(T);
             }

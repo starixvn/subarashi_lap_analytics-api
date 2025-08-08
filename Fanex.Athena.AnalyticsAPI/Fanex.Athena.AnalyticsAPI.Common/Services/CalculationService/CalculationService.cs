@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.Services
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
+    using System;
+
     public class CalculationService : ICalculationService
     {
         private static int Round_Floating_Point = 2;

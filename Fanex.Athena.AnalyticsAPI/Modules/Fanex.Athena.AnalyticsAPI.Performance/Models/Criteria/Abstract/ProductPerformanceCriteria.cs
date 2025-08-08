@@ -1,7 +1,7 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Criteria;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria
 {
+    using Common.Models.Criteria;
+
     public abstract class PlatformPerformanceCriteria : AnalyticCriteria, IMeasurementCriteria
     {
         public string ListPlatform { get; set; }

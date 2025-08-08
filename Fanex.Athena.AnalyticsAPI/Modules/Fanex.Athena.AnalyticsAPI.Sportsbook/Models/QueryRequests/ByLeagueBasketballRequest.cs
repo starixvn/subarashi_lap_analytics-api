@@ -1,7 +1,7 @@
-﻿using MediatR;
-
-namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Models
+﻿namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Models
 {
+    using MediatR;
+
     public class ByLeagueBasketballRequest : SportsbookBaseRequest, IRequest<ByLeagueResponse>
     {
         public override byte TabType => Constants.TabType.LEAGUE;

@@ -1,19 +1,19 @@
-﻿using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Common.Constants;
-using Fanex.Athena.AnalyticsAPI.Common.Controllers;
-using Fanex.Athena.AnalyticsAPI.Common.Extensions;
-using Fanex.Athena.AnalyticsAPI.Common.Helpers;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Core.Attributes;
-using Fanex.Athena.AnalyticsAPI.Core.Constants;
-using Fanex.Athena.AnalyticsAPI.Core.Helpers;
-using Fanex.Athena.AnalyticsAPI.Core.Services;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Performance.Services;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
 {
+    using System.Threading.Tasks;
+    using Common.Constants;
+    using Common.Controllers;
+    using Common.Extensions;
+    using Common.Helpers;
+    using Common.Services;
+    using Core.Attributes;
+    using Core.Constants;
+    using Core.Helpers;
+    using Core.Services;
+    using Microsoft.AspNetCore.Mvc;
+    using Models.MetaModels;
+    using Services;
+
     [ApiController]
     [BearerAuthorize(Roles.SuperAdmin, Roles.PerformanceTab)]
     public class OverviewPerformanceController : ControllerBaseCustom
@@ -83,7 +83,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Controllers
             var summaryTask = _overviewService.GetSummaryWithComparison(filter);
             var periodGrowthTask = _overviewService.GetPeriodGrowthWithComparison(filter);
 
-            var filterClone = MetaModelHelper.Clone(filter);
+            var filterClone = filter.Clone();
             filterClone.CurrentPeriod = filter.PreviousPeriod;
             var prevDetailMonthGrowthTask = _overviewService.GetDetailMonthGrowthWithComparison(filterClone);
             var currentDetailMonthGrowthTask = _overviewService.GetDetailMonthGrowthWithComparison(filter);

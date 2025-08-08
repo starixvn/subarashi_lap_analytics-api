@@ -1,23 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Common.Extensions;
-using Fanex.Athena.AnalyticsAPI.Common.Helpers;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Performance.Mappers;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
-using Fanex.Athena.AnalyticsAPI.Performance.Repositories;
-
-using CommonHelper = Fanex.Athena.AnalyticsAPI.Common.Helpers;
-
-using PerformanceHelper = Fanex.Athena.AnalyticsAPI.Performance.Helpers;
+﻿using PerformanceHelper = Fanex.Athena.AnalyticsAPI.Performance.Helpers;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Common.Extensions;
+    using Common.Helpers;
+    using Common.Services;
+    using Mappers;
+    using Models.Criteria;
+    using Models.DTO;
+    using Models.MetaModels;
+    using Models.ViewModels;
+    using Repositories;
+
     public class OverviewPerformanceService : PerformanceService, IOverviewPerformanceService
     {
         private readonly IOverviewPerformanceVMMapper _viewModelMapper;
@@ -72,7 +70,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
         public async Task<IEnumerable<SummaryVM>> GetSummaryWithComparison(PerformanceFilterMetaModel filter)
         {
             var criteriaPrevPeriod = CriteriaHelper.ToCriteria<OverviewSummaryCriteria, PerformanceFilterMetaModel>(filter, false);
-            var criteriaCurrentPeriod = CommonHelper.CriteriaHelper.ToCriteria<OverviewSummaryCriteria, PerformanceFilterMetaModel>(filter);
+            var criteriaCurrentPeriod = CriteriaHelper.ToCriteria<OverviewSummaryCriteria, PerformanceFilterMetaModel>(filter);
 
             var dtos = await _performanceRepository.QueryMultipleAsync<SummaryDTO>(criteriaPrevPeriod, criteriaCurrentPeriod);
 

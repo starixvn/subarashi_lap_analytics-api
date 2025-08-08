@@ -1,19 +1,19 @@
-﻿using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Core.Services;
-using Fanex.Athena.AnalyticsAPI.Sportsbook.Handlers;
-using Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers;
-using Fanex.Athena.AnalyticsAPI.Sportsbook.Models;
-using Fanex.Athena.AnalyticsAPI.Sportsbook.Repositories;
-using Fanex.Data.Repository;
-using Moq;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Sportsbook.UnitTests.Handlers.QueryHandlers
+﻿namespace Fanex.Athena.AnalyticsAPI.Sportsbook.UnitTests.Handlers.QueryHandlers
 {
+    using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using AutoFixture;
+    using Common.Services;
+    using Core.Services;
+    using Data.Repository;
+    using Moq;
+    using Repositories;
+    using Sportsbook.Handlers;
+    using Sportsbook.Mappers;
+    using Sportsbook.Models;
+    using Xunit;
+
     public class BySportQueryHandler_Test
     {
         private readonly Fixture _fixture;

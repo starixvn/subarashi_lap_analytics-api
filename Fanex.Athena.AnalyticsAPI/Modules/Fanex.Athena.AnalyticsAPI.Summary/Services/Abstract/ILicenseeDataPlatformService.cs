@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Summary.Models.ViewModels;
-
-namespace Fanex.Athena.AnalyticsAPI.Summary.Services
+﻿namespace Fanex.Athena.AnalyticsAPI.Summary.Services
 {
+    using System.Threading.Tasks;
+    using Models.MetaModels;
+    using Models.ViewModels;
+
     public interface ILicenseeDataPlatformService
     {
         Task<WidgetByPlatformViewModel> GetWinLoss(BaseSummaryMetaModel metaModel);

@@ -1,13 +1,13 @@
-﻿using System.Linq;
-using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Performance.Mappers;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
-using Moq;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Mappers
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Mappers
 {
+    using System.Linq;
+    using AutoFixture;
+    using Common.Services;
+    using Moq;
+    using Performance.Mappers;
+    using Performance.Models.DTO;
+    using Xunit;
+
     public class PerformanceVMMapper_ToOverallMeasurementVM_Test
     {
         private readonly Fixture _fixture;
@@ -45,7 +45,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Mappers
             //Arrange
 
             //Act
-            var result = _target.ToOverallMeasurementVM(null as TotalDTO, null as TotalDTO);
+            var result = _target.ToOverallMeasurementVM(null, null as TotalDTO);
 
             //Assert
             Assert.True(result.All(_ => _.Total == 0));
@@ -58,8 +58,8 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Mappers
         public void ToOverallMeasurement_WhenCall_ReturnCorrectOfTotal(double prevPeriodTotal, double currentPeriodTotal)
         {
             //Arrange
-            var prevPeriodDto = new TotalDTO() { Total = prevPeriodTotal };
-            var currentPeriodDto = new TotalDTO() { Total = currentPeriodTotal };
+            var prevPeriodDto = new TotalDTO { Total = prevPeriodTotal };
+            var currentPeriodDto = new TotalDTO { Total = currentPeriodTotal };
 
             //Act
             var result = _target.ToOverallMeasurementVM(prevPeriodDto, currentPeriodDto);

@@ -1,7 +1,7 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Helpers;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels
 {
+    using Helpers;
+
     public class MonthRangeMetaModel
     {
         private string _fromMonth;

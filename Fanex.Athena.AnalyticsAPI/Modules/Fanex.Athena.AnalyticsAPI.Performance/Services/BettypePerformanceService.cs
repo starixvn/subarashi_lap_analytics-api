@@ -1,19 +1,20 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Common.Helpers;
-using Fanex.Athena.AnalyticsAPI.Common.Mappers;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Performance.Mappers;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
-using Fanex.Athena.AnalyticsAPI.Performance.Repositories;
-using PerformanceHelper = Fanex.Athena.AnalyticsAPI.Performance.Helpers;
+﻿using PerformanceHelper = Fanex.Athena.AnalyticsAPI.Performance.Helpers;
 
 namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Common.Helpers;
+    using Common.Mappers;
+    using Common.Services;
+    using Mappers;
+    using Models.Criteria;
+    using Models.DTO;
+    using Models.MetaModels;
+    using Models.ViewModels;
+    using Repositories;
+
     public class BettypePerformanceService : PerformanceService, IBettypePerformanceService
     {
         private readonly IBettypePerformanceVMMapper _viewModelMapper;
@@ -75,7 +76,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
         {
             var result = new Dictionary<string, object>(filter.TopDistributions.Count());
 
-            var cloneFilter = MetaModelHelper.Clone(filter);
+            var cloneFilter = filter.Clone();
             cloneFilter = MetaModelHelper.BackToPeriodByMonth(cloneFilter, 1);
             cloneFilter = MetaModelHelper.BackToPeriodByMonth(cloneFilter, 1, false);
 
@@ -154,7 +155,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             var otherDistribution = filter.TopDistributions.FirstOrDefault(_ => _.DisplayId == ViewModelMapper.DISTRIBUTION_OTHERS_ID);
             if (otherDistribution != null)
             {
-                var cloneFilter = MetaModelHelper.Clone(filter);
+                var cloneFilter = filter.Clone();
                 cloneFilter.CombineIds = otherDistribution.PreviousPeriodDistributions?.Select(_ => _.Id);
                 var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToBettypePerformanceCriteria<BettypeGrowthCriteria, BettypePerformanceFilterMetaModel>(cloneFilter, false);
                 criteriaPrevPeriod.GroupBy = GroupByConst.NONE_GROUP;
@@ -185,7 +186,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Services
             var otherDistribution = filter.TopDistributions.FirstOrDefault(_ => _.DisplayId == ViewModelMapper.DISTRIBUTION_OTHERS_ID);
             if (otherDistribution != null)
             {
-                var cloneFilter = MetaModelHelper.Clone(filter);
+                var cloneFilter = filter.Clone();
 
                 cloneFilter.CombineIds = otherDistribution.PreviousPeriodDistributions?.Select(_ => _.Id);
                 var criteriaPrevPeriod = PerformanceHelper.CriteriaHelper.ToBettypePerformanceCriteria<BettypeMeasurementComparisonCriteria, BettypePerformanceFilterMetaModel>(cloneFilter, false);

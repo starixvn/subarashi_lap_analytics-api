@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Data;
-using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
-
-namespace Fanex.Athena.AnalyticsAPI.Summary.Services
+﻿namespace Fanex.Athena.AnalyticsAPI.Summary.Services
 {
+    using System;
+    using System.Collections;
+    using System.Data;
+    using System.Threading.Tasks;
+    using Common.Services;
+    using Models.MetaModels;
+
     public class SingleValueService : ISingleValueService
     {
         private readonly ISqlService _sqlService;

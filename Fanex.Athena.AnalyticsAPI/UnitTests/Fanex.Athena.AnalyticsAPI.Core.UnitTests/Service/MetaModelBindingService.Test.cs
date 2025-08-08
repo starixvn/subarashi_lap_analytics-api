@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
-using Fanex.Athena.AnalyticsAPI.Core.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Core.Services;
-using Fanex.Athena.AnalyticsAPI.UnitTests.Utils.Helpers;
-using Moq;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Core.UnitTests.Service
+﻿namespace Fanex.Athena.AnalyticsAPI.Core.UnitTests.Service
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using AnalyticsAPI.UnitTests.Utils.Helpers;
+    using Models.DataDomain;
+    using Models.MetaModels;
+    using Moq;
+    using Services;
+    using Xunit;
+
     public class MetaModelBindingService_Test
     {
         private readonly MetaModelBindingService _target;
@@ -26,7 +26,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.UnitTests.Service
             var expectedSiteName = FakeHelper.Create<string>();
 
             //Action
-            _target.BindSiteName(new Dictionary<string, object>() { { "metaModel", metaModel } }, expectedSiteName);
+            _target.BindSiteName(new Dictionary<string, object> { { "metaModel", metaModel } }, expectedSiteName);
 
             //Assert
             Assert.Equal(expectedSiteName, metaModel.SiteName);
@@ -41,7 +41,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.UnitTests.Service
             var expectedAgentXML = string.Empty;
 
             //Action
-            _target.BindAgentXml(new Dictionary<string, object>() { { "metaModel", metaModel } }, agentList);
+            _target.BindAgentXml(new Dictionary<string, object> { { "metaModel", metaModel } }, agentList);
 
             //Assert
             Assert.Equal(expectedAgentXML, metaModel.AgentListXml);
@@ -61,7 +61,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.UnitTests.Service
             {
                 new CurrencyAgentInfo
                 {
-                    AgentId = new int[] { 1 ,2 , 3},
+                    AgentId = new[] { 1 ,2 , 3},
                     CurrencyId = 1
                 }
             };
@@ -73,7 +73,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.UnitTests.Service
                 "</ROOT>";
 
             //Action
-            _target.BindAgentXml(new Dictionary<string, object>() { { "metaModel", metaModel }, { "currencyIdListMetaModel", currencyIdListMetaModel } }, agentList);
+            _target.BindAgentXml(new Dictionary<string, object> { { "metaModel", metaModel }, { "currencyIdListMetaModel", currencyIdListMetaModel } }, agentList);
 
             //Assert
             Assert.Equal(expectedAgentXML, metaModel.AgentListXml);
@@ -91,17 +91,17 @@ namespace Fanex.Athena.AnalyticsAPI.Core.UnitTests.Service
             {
                 new CurrencyAgentInfo
                 {
-                    AgentId = new int[] { 1 ,2 , 3},
+                    AgentId = new[] { 1 ,2 , 3},
                     CurrencyId = 1
                 },
                 new CurrencyAgentInfo
                 {
-                    AgentId = new int[] { 4 },
+                    AgentId = new[] { 4 },
                     CurrencyId = 2
                 },
                 new CurrencyAgentInfo
                 {
-                    AgentId = new int[] { 5, 6, 7 },
+                    AgentId = new[] { 5, 6, 7 },
                     CurrencyId = 3
                 }
             };
@@ -114,7 +114,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.UnitTests.Service
                 "</ROOT>";
 
             //Action
-            _target.BindAgentXml(new Dictionary<string, object>() { { "metaModel", metaModel }, { "currencyIdListMetaModel", currencyIdListMetaModel } }, agentList);
+            _target.BindAgentXml(new Dictionary<string, object> { { "metaModel", metaModel }, { "currencyIdListMetaModel", currencyIdListMetaModel } }, agentList);
 
             //Assert
             Assert.Equal(expectedAgentXML, metaModel.AgentListXml);

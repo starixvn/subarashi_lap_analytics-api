@@ -1,10 +1,10 @@
-using System.Net;
-using Fanex.Athena.AnalyticsAPI.Core.Constants;
-using Microsoft.AspNetCore.Mvc;
-using Xunit;
-
 namespace Fanex.Athena.AnalyticsAPI.Core.UnitTests.Constants
 {
+    using System.Net;
+    using Core.Constants;
+    using Microsoft.AspNetCore.Mvc;
+    using Xunit;
+
     public class RequestResultConstTests
     {
         [Fact]

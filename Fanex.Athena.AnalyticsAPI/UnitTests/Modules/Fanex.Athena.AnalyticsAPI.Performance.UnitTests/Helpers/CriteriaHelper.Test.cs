@@ -1,11 +1,13 @@
-﻿using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Common.Models.Criteria;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Helpers
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Helpers
 {
+    using AutoFixture;
+    using Common.Models.Criteria;
+    using Common.Models.MetaModels;
+    using Performance.Helpers;
+    using Performance.Models.Criteria;
+    using Performance.Models.MetaModels;
+    using Xunit;
+
     internal class AnalyticCriteriaTestClass : AnalyticCriteria, IMeasurementCriteria
     {
         public int MeasurementId { get; set; }
@@ -66,12 +68,12 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Helpers
             //Arrange
             var metaModel = new PerformanceFilterMetaModel
             {
-                CurrentPeriod = new Common.Models.MetaModels.MonthRangeMetaModel { FromMonth = "01/2019", ToMonth = "12/2019" },
-                PreviousPeriod = new Common.Models.MetaModels.MonthRangeMetaModel { FromMonth = "01/2018", ToMonth = "12/2019" },
-                Measurement = new Common.Models.MetaModels.SelectMetaModel { Id = measurementId },
+                CurrentPeriod = new MonthRangeMetaModel { FromMonth = "01/2019", ToMonth = "12/2019" },
+                PreviousPeriod = new MonthRangeMetaModel { FromMonth = "01/2018", ToMonth = "12/2019" },
+                Measurement = new SelectMetaModel { Id = measurementId },
             };
             //Act
-            var result = Performance.Helpers.CriteriaHelper.ToPerformanceCriteria<AnalyticCriteriaTestClass, PerformanceFilterMetaModel>(metaModel, isCurrentPeriod);
+            var result = CriteriaHelper.ToPerformanceCriteria<AnalyticCriteriaTestClass, PerformanceFilterMetaModel>(metaModel, isCurrentPeriod);
 
             //Assert
             Assert.Equal(metaModel.Measurement.Id, result.MeasurementId);
@@ -90,13 +92,13 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Helpers
             //Arrange
             var metaModel = new CurrenyPerformanceFilterMetaModel
             {
-                CurrentPeriod = new Common.Models.MetaModels.MonthRangeMetaModel { FromMonth = "01/2019", ToMonth = "12/2019" },
-                PreviousPeriod = new Common.Models.MetaModels.MonthRangeMetaModel { FromMonth = "01/2018", ToMonth = "12/2019" },
-                Measurement = new Common.Models.MetaModels.SelectMetaModel { Id = measurementId },
+                CurrentPeriod = new MonthRangeMetaModel { FromMonth = "01/2019", ToMonth = "12/2019" },
+                PreviousPeriod = new MonthRangeMetaModel { FromMonth = "01/2018", ToMonth = "12/2019" },
+                Measurement = new SelectMetaModel { Id = measurementId },
                 Currencies = currencies
             };
             //Act
-            var result = Performance.Helpers.CriteriaHelper.ToCurrencyPerformanceCriteria<CurrencyPerformanceCriteriaTestClass, CurrenyPerformanceFilterMetaModel>(metaModel, isCurrentPeriod);
+            var result = CriteriaHelper.ToCurrencyPerformanceCriteria<CurrencyPerformanceCriteriaTestClass, CurrenyPerformanceFilterMetaModel>(metaModel, isCurrentPeriod);
 
             //Assert
             Assert.Equal(metaModel.Measurement.Id, result.MeasurementId);
@@ -117,14 +119,14 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Helpers
             //Arrange
             var metaModel = new ProductPerformanceFilterMetaModel
             {
-                CurrentPeriod = new Common.Models.MetaModels.MonthRangeMetaModel { FromMonth = "01/2019", ToMonth = "12/2019" },
-                PreviousPeriod = new Common.Models.MetaModels.MonthRangeMetaModel { FromMonth = "01/2018", ToMonth = "12/2019" },
-                Measurement = new Common.Models.MetaModels.SelectMetaModel { Id = measurementId },
+                CurrentPeriod = new MonthRangeMetaModel { FromMonth = "01/2019", ToMonth = "12/2019" },
+                PreviousPeriod = new MonthRangeMetaModel { FromMonth = "01/2018", ToMonth = "12/2019" },
+                Measurement = new SelectMetaModel { Id = measurementId },
                 Products = products
             };
 
             //Act
-            var result = Performance.Helpers.CriteriaHelper.ToProductPerformanceCriteria<ProductPerformanceCriteriaTestClass, ProductPerformanceFilterMetaModel>(metaModel, isCurrentPeriod);
+            var result = CriteriaHelper.ToProductPerformanceCriteria<ProductPerformanceCriteriaTestClass, ProductPerformanceFilterMetaModel>(metaModel, isCurrentPeriod);
 
             //Assert
             Assert.Equal(metaModel.Measurement.Id, result.MeasurementId);
@@ -145,14 +147,14 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Helpers
             //Arrange
             var metaModel = new PlatformPerformanceFilterMetaModel
             {
-                CurrentPeriod = new Common.Models.MetaModels.MonthRangeMetaModel { FromMonth = "01/2019", ToMonth = "12/2019" },
-                PreviousPeriod = new Common.Models.MetaModels.MonthRangeMetaModel { FromMonth = "01/2018", ToMonth = "12/2019" },
-                Measurement = new Common.Models.MetaModels.SelectMetaModel { Id = measurementId },
+                CurrentPeriod = new MonthRangeMetaModel { FromMonth = "01/2019", ToMonth = "12/2019" },
+                PreviousPeriod = new MonthRangeMetaModel { FromMonth = "01/2018", ToMonth = "12/2019" },
+                Measurement = new SelectMetaModel { Id = measurementId },
                 Platforms = platforms
             };
 
             //Act
-            var result = Performance.Helpers.CriteriaHelper.ToPlatformPerformanceCriteria<PlatformPerformanceCriteriaTestClass, PlatformPerformanceFilterMetaModel>(metaModel, isCurrentPeriod);
+            var result = CriteriaHelper.ToPlatformPerformanceCriteria<PlatformPerformanceCriteriaTestClass, PlatformPerformanceFilterMetaModel>(metaModel, isCurrentPeriod);
 
             //Assert
             Assert.Equal(metaModel.Measurement.Id, result.MeasurementId);
@@ -173,14 +175,14 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Helpers
             //Arrange
             var metaModel = new BettypePerformanceFilterMetaModel
             {
-                CurrentPeriod = new Common.Models.MetaModels.MonthRangeMetaModel { FromMonth = "01/2019", ToMonth = "12/2019" },
-                PreviousPeriod = new Common.Models.MetaModels.MonthRangeMetaModel { FromMonth = "01/2018", ToMonth = "12/2019" },
-                Measurement = new Common.Models.MetaModels.SelectMetaModel { Id = measurementId },
+                CurrentPeriod = new MonthRangeMetaModel { FromMonth = "01/2019", ToMonth = "12/2019" },
+                PreviousPeriod = new MonthRangeMetaModel { FromMonth = "01/2018", ToMonth = "12/2019" },
+                Measurement = new SelectMetaModel { Id = measurementId },
                 CombineIds = combineIds
             };
 
             //Act
-            var result = Performance.Helpers.CriteriaHelper.ToBettypePerformanceCriteria<BettypePerformanceCriteriaTestClass, BettypePerformanceFilterMetaModel>(metaModel, isCurrentPeriod);
+            var result = CriteriaHelper.ToBettypePerformanceCriteria<BettypePerformanceCriteriaTestClass, BettypePerformanceFilterMetaModel>(metaModel, isCurrentPeriod);
 
             //Assert
             Assert.Equal(metaModel.Measurement.Id, result.MeasurementId);

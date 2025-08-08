@@ -1,12 +1,12 @@
-﻿using System;
-using System.Net;
-using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Core.Helpers;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-
-namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
+﻿namespace Fanex.Athena.AnalyticsAPI.Core.Middleware
 {
+    using System;
+    using System.Net;
+    using System.Threading.Tasks;
+    using Helpers;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.Extensions.Logging;
+
     public class ErrorHandler
     {
         private readonly RequestDelegate _next;

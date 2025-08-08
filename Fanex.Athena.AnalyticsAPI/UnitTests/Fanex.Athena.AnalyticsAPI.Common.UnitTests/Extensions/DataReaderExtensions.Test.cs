@@ -1,14 +1,14 @@
-﻿using System;
-using System.Data;
-using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Common.Attributes;
-using Fanex.Athena.AnalyticsAPI.Common.Extensions;
-using Moq;
-using Newtonsoft.Json;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Extensions
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Extensions
 {
+    using System;
+    using System.Data;
+    using AutoFixture;
+    using Common.Attributes;
+    using Common.Extensions;
+    using Moq;
+    using Newtonsoft.Json;
+    using Xunit;
+
     public class DataReaderExtensions_Test
     {
         private readonly Fixture _fixture;

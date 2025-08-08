@@ -1,10 +1,10 @@
-﻿using Fanex.Athena.AnalyticsAPI.Configuration;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-
-namespace Fanex.Athena.AnalyticsAPI.Controllers
+﻿namespace Fanex.Athena.AnalyticsAPI.Controllers
 {
+    using Configuration;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Options;
+
     [ApiController]
     public class HomeController : ControllerBase
     {

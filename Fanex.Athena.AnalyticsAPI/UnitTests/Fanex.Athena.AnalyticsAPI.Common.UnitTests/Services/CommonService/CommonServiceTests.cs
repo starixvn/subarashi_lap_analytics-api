@@ -1,13 +1,13 @@
-using System;
-using System.Data;
-using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Moq;
-using Xunit;
-
 namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services
 {
+    using System;
+    using System.Data;
+    using System.Threading.Tasks;
+    using Common.Services;
+    using Models.Configuration;
+    using Moq;
+    using Xunit;
+
     public class CommonServiceTests
     {
         private readonly Mock<ISqlService> _mockSqlService;

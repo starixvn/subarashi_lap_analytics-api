@@ -1,17 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Net;
-using System.Reflection;
-using Fanex.Athena.AnalyticsAPI.Core.Helpers;
-using Fanex.Data;
-using Microsoft.AspNetCore.Http;
-using Moq;
-using Xunit;
-
 namespace Fanex.Athena.AnalyticsAPI.Core.UnitTests.Helpers
 {
+    using System;
+    using System.Net;
+    using Core.Helpers;
+    using Microsoft.AspNetCore.Http;
+    using Moq;
+    using Xunit;
+
     public class ErrorMessageHelperTests
     {
         [Fact]

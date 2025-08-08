@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Models
+﻿namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Models
 {
+    using System.Collections.Generic;
+
     public class SportsbookBaseResponse
     {
         public IEnumerable<DimDistributionResponse> ByTurnover { get; set; }

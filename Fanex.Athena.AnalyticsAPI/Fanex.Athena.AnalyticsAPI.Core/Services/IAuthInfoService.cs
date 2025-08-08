@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
-
-namespace Fanex.Athena.AnalyticsAPI.Core.Services
+﻿namespace Fanex.Athena.AnalyticsAPI.Core.Services
 {
+    using System.Collections.Generic;
+    using Models.DataDomain;
+
     public interface IAuthInfoService
     {
         string SiteName { get; }

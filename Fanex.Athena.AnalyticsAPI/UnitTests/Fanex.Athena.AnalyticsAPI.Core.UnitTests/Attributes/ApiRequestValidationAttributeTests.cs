@@ -1,20 +1,19 @@
-using System;
-using System.Collections.Generic;
-using System.Net;
-using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Core.Attributes;
-using Fanex.Athena.AnalyticsAPI.Core.Constants;
-using Fanex.Athena.AnalyticsAPI.Core.Models.MetaModels;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Abstractions;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Routing;
-using Moq;
-using Xunit;
-
 namespace Fanex.Athena.AnalyticsAPI.Core.UnitTests.Attributes
 {
+    using System.Collections.Generic;
+    using System.Net;
+    using AutoFixture;
+    using Core.Attributes;
+    using Core.Constants;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Abstractions;
+    using Microsoft.AspNetCore.Mvc.Filters;
+    using Microsoft.AspNetCore.Routing;
+    using Models.MetaModels;
+    using Moq;
+    using Xunit;
+
     public class ApiRequestValidationAttributeTests
     {
         private readonly Fixture _fixture;

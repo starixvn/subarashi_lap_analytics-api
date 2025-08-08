@@ -1,7 +1,7 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Attributes;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels
 {
+    using Common.Attributes;
+
     public class OverallMeasurementVM
     {
         public string Id { get; set; }

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Data;
-using Fanex.Athena.AnalyticsAPI.Common.Attributes;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
 {
+    using System;
+    using System.Data;
+    using Attributes;
+
     public static class DataReaderExtensions
     {
         public static bool HasColumn(this IDataRecord reader, string columnName)

@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Performance.Repositories;
-using Moq;
-using Newtonsoft.Json;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Services
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Services
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using AutoFixture;
+    using Common.Models.MetaModels;
+    using Common.Services;
+    using Moq;
+    using Newtonsoft.Json;
+    using Performance.Models.MetaModels;
+    using Repositories;
+    using Xunit;
+
     public class PerformanceService_Test
     {
         private readonly PerformanceServiceTestable _target;

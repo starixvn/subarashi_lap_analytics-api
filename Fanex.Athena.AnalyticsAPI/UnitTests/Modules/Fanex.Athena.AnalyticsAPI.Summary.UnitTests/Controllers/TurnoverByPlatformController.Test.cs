@@ -1,18 +1,18 @@
-﻿using System;
-using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Common.Helpers;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Core.Services;
-using Fanex.Athena.AnalyticsAPI.Summary.Controllers;
-using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Summary.Models.ViewModels;
-using Fanex.Athena.AnalyticsAPI.Summary.Services;
-using Fanex.Athena.AnalyticsAPI.UnitTests.Utils.Helpers;
-using Moq;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Summary.UnitTests.Controllers
+﻿namespace Fanex.Athena.AnalyticsAPI.Summary.UnitTests.Controllers
 {
+    using System;
+    using System.Threading.Tasks;
+    using AnalyticsAPI.UnitTests.Utils.Helpers;
+    using Common.Helpers;
+    using Common.Services;
+    using Core.Services;
+    using Models.MetaModels;
+    using Models.ViewModels;
+    using Moq;
+    using Summary.Controllers;
+    using Summary.Services;
+    using Xunit;
+
     public class TurnoverByPlatformController_Test
     {
         private readonly TurnoverByPlatformController _target;

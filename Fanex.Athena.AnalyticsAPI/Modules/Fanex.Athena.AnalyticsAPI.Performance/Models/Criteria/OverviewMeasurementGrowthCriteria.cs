@@ -1,7 +1,7 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Criteria;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria
 {
+    using Common.Models.Criteria;
+
     public class OverviewMeasurementGrowthCriteria : AnalyticCriteria, IMeasurementCriteria
     {
         public int MeasurementId { get; set; }

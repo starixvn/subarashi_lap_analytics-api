@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Data.Repository;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.Repositories
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.Repositories
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Data.Repository;
+    using Services;
+
     public abstract class BaseRepository : IBaseRepository
     {
         protected readonly ISqlService _sqlService;

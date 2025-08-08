@@ -1,7 +1,7 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.Mappers
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.Mappers
 {
+    using Services;
+
     public class ViewModelMapper
     {
         public const string DISTRIBUTION_OTHERS_ID = "0";

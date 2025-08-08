@@ -1,8 +1,8 @@
-﻿using System;
-using System.Globalization;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
 {
+    using System;
+    using System.Globalization;
+
     public static class DateTimeHelper
     {
         private const int NUMBER_OF_MONTHS_OF_YEAR = 12;

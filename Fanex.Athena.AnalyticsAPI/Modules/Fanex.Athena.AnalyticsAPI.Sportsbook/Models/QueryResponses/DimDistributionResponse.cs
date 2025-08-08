@@ -1,8 +1,8 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Attributes;
-using Fanex.Athena.AnalyticsAPI.Common.Models.DataDomain;
-
-namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Models
+﻿namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Models
 {
+    using Common.Attributes;
+    using Common.Models.DataDomain;
+
     public class DimDistributionResponse : ISabaAble
     {
         public int Id { get; set; }

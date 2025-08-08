@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.Services
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
+    using System;
+    using System.Collections.Generic;
+
     public class ContextService : IContextService
     {
         public IDictionary<string, string> Errors { get; protected set; }
@@ -45,11 +45,8 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Services
                 {
                     msg = string.Join(", ", Info.Values);
                 }
-                else
-                {
-                    //nothing
-                }
 
+                //nothing
                 return msg;
             }
         }

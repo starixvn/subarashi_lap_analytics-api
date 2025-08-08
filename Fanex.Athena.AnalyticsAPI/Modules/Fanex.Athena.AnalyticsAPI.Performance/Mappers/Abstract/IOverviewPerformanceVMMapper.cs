@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
 {
+    using System.Collections.Generic;
+    using Models.DTO;
+    using Models.ViewModels;
+
     public interface IOverviewPerformanceVMMapper : IPerformanceVMMapper
     {
         IEnumerable<SummaryVM> ToSummaryVM(IEnumerable<SummaryDTO> prevPeriodDtos, IEnumerable<SummaryDTO> currentPeriodDtos);

@@ -1,8 +1,8 @@
-﻿using System;
-using Fanex.Athena.AnalyticsAPI.Common.Attributes;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
 {
+    using System;
+    using Common.Attributes;
+
     public class MeasurementTimeDTO : IMeasurement
     {
         [SsasColumn("DimDate[MonthKey]")]

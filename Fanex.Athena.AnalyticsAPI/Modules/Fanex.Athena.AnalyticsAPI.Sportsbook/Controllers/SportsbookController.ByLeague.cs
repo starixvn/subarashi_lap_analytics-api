@@ -1,11 +1,11 @@
-﻿using System.Net;
-using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Core.Attributes;
-using Fanex.Athena.AnalyticsAPI.Sportsbook.Models;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Controllers
+﻿namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Controllers
 {
+    using System.Net;
+    using System.Threading.Tasks;
+    using Core.Attributes;
+    using Microsoft.AspNetCore.Mvc;
+    using Models;
+
     public partial class SportsbookController
     {
         [HttpPost]

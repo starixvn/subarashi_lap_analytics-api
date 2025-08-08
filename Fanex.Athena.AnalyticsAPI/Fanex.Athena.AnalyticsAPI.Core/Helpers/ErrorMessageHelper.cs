@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using Fanex.Data;
-using Microsoft.AspNetCore.Http;
-
-namespace Fanex.Athena.AnalyticsAPI.Core.Helpers
+﻿namespace Fanex.Athena.AnalyticsAPI.Core.Helpers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data.SqlClient;
+    using System.Linq;
+    using System.Text;
+    using Data;
+    using Microsoft.AspNetCore.Http;
+
     public static class ErrorMessageHelper
     {
         public static string GenerateMessage(HttpContext context, Exception exception)

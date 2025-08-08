@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Performance.Constants;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Common.Services;
+    using Constants;
+    using Models.DTO;
+    using Models.ViewModels;
+
     public class OverviewPerformanceVMMapper : PerformanceVMMapper, IOverviewPerformanceVMMapper
     {
         private const int NUMBER_OF_TOP_CHANGE = 5;
@@ -57,7 +57,7 @@ namespace Fanex.Athena.AnalyticsAPI.Performance.Mappers
             var prevPeriodData = prevPeriodDtos.ToDictionary(_ => _.Id);
             var currentPeriodData = currentPeriodDtos.ToDictionary(_ => _.Id);
 
-            var distinctList = Enumerable.Union(currentPeriodDtos.Select(_ => _.Id), prevPeriodDtos.Select(_ => _.Id));
+            var distinctList = currentPeriodDtos.Select(_ => _.Id).Union(prevPeriodDtos.Select(_ => _.Id));
 
             var result = distinctList
                 .Select(_ =>

@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Fanex.Athena.AnalyticsAPI.Common.Helpers;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Helpers
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Helpers
 {
+    using System;
+    using System.Collections.Generic;
+    using Common.Helpers;
+    using Xunit;
+
     public class DateTimeHelper_Test
     {
         [Theory]

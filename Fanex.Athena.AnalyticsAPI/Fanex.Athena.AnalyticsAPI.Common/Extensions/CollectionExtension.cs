@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public static class CollectionExtension
     {
         public static IEnumerable<TOutput> GroupTo<TInput, TKey, TOutput>(this IEnumerable<TInput> collection,

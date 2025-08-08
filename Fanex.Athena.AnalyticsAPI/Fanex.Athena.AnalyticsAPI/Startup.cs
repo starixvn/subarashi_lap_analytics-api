@@ -1,34 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Configuration;
-using Fanex.Athena.AnalyticsAPI.Controllers;
-using Fanex.Athena.AnalyticsAPI.Core.Extensions;
-using Fanex.Athena.AnalyticsAPI.Core.Middleware;
-using Fanex.Data;
-using Fanex.Data.SqlServer;
-using Fanex.Data.Vault;
-using Fanex.RemotingRef;
-using IdentityModel.AspNetCore.OAuth2Introspection;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Extensions.Hosting;
-using Fanex.Athena.AnalyticsAPI.Common.Extensions;
-using Fanex.Athena.AnalyticsAPI.Common.Models;
-
-namespace Fanex.Athena.AnalyticsAPI
+﻿namespace Fanex.Athena.AnalyticsAPI
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Common.Extensions;
+    using Common.Models;
+    using Configuration;
+    using Controllers;
+    using Core.Extensions;
+    using Core.Middleware;
+    using Data;
+    using Data.SqlServer;
+    using Data.Vault;
+    using IdentityModel.AspNetCore.OAuth2Introspection;
+    using MediatR;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.HttpOverrides;
+    using Microsoft.AspNetCore.Localization;
+    using Microsoft.AspNetCore.Mvc.Authorization;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.DependencyInjection.Extensions;
+    using Microsoft.Extensions.Hosting;
+    using RemotingRef;
+    using DefendencyInjectionExtension = Performance.Extensions.DefendencyInjectionExtension;
+
     public class Startup
     {
         public Startup(IConfiguration configuration, IWebHostEnvironment hostingEnvironment)
@@ -102,11 +103,11 @@ namespace Fanex.Athena.AnalyticsAPI
             services.AddHttpClient<AuthController>()
             .SetHandlerLifetime(TimeSpan.FromDays(1));
 
-            Performance.Extensions.DefendencyInjectionExtension.AddDIPerformance(services);
+            DefendencyInjectionExtension.AddDIPerformance(services);
             Sportsbook.Extensions.DefendencyInjectionExtension.AddDIPerformance(services);
             Summary.Extensions.DefendencyInjectionExtension.AddDISummary(services);
-            Common.Extensions.DefendencyInjectionExtension.AddDICommon(services);
-            Core.Extensions.DefendencyInjectionExtension.AddDICore(services);
+            services.AddDICommon();
+            services.AddDICore();
 
             services.AddHttpsRedirection(options =>
             {

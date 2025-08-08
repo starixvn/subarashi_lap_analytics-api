@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text.RegularExpressions;
-using Fanex.Athena.AnalyticsAPI.Common.Attributes;
-using Fanex.Athena.AnalyticsAPI.Common.Constants;
-using Fanex.Athena.AnalyticsAPI.Common.Models.DataDomain;
-using Fanex.Athena.AnalyticsAPI.Common.Resources.Lang;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.Services
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Text.RegularExpressions;
+    using Attributes;
+    using Constants;
+    using Models.DataDomain;
+    using Resources.Lang;
+
     public class TranslationService : ITranslationService
     {
         private readonly ILangResourceService _langResourceService;

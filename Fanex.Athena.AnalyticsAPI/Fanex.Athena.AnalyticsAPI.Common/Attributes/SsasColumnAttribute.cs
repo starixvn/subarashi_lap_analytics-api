@@ -1,8 +1,8 @@
-﻿using System;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.Attributes
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.Attributes
 {
-    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
+    using System;
+
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
     public sealed class SsasColumnAttribute : Attribute
     {
         public SsasColumnAttribute(string mapColumn)

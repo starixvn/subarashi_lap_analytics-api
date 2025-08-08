@@ -1,10 +1,10 @@
-﻿using Fanex.Athena.AnalyticsAPI.Performance.Mappers;
-using Fanex.Athena.AnalyticsAPI.Performance.Repositories;
-using Fanex.Athena.AnalyticsAPI.Performance.Services;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.Extensions
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Extensions
 {
+    using Mappers;
+    using Microsoft.Extensions.DependencyInjection;
+    using Repositories;
+    using Services;
+
     public static class DefendencyInjectionExtension
     {
         public static IServiceCollection AddDIPerformance(this IServiceCollection services)

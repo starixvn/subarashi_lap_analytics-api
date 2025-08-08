@@ -1,12 +1,12 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Controllers;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Core.Attributes;
-using Fanex.Athena.AnalyticsAPI.Core.Constants;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Controllers
+﻿namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Controllers
 {
+    using Common.Controllers;
+    using Common.Services;
+    using Core.Attributes;
+    using Core.Constants;
+    using MediatR;
+    using Microsoft.AspNetCore.Mvc;
+
     [ApiController]
     [BearerAuthorize(Roles.SuperAdmin, Roles.SportsbookTab)]
     public partial class SportsbookController : ControllerBaseCustom

@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
-using Fanex.Athena.AnalyticsAPI.Performance.Repositories;
-using Fanex.Athena.AnalyticsAPI.Performance.Services;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Services
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Services
 {
+    using System.Collections.Generic;
+    using Common.Models.MetaModels;
+    using Common.Services;
+    using Performance.Models.DTO;
+    using Performance.Services;
+    using Repositories;
+
     public class DistributionDtoTestClass : DistributionDTO
     {
         public string TestId { get; set; }

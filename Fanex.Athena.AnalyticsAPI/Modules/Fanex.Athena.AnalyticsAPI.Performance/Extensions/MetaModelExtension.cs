@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Common.Mappers;
-using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Performance.Services;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.Extensions
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Extensions
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Common.Mappers;
+    using Common.Models.MetaModels;
+    using Models.MetaModels;
+    using Services;
+
     public static class MetaModelExtension
     {
         public static async Task BindTopDistributionsToFilterMetaModel<TService>(this PerformanceFilterMetaModel filter, TService performanceService, int numberOfTop = 5)

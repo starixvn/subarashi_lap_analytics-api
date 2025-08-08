@@ -1,15 +1,15 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Sportsbook.Controllers;
-using Fanex.Athena.AnalyticsAPI.Sportsbook.Models;
-using MediatR;
-using Moq;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Sportsbook.UnitTests.Controllers
+﻿namespace Fanex.Athena.AnalyticsAPI.Sportsbook.UnitTests.Controllers
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using AutoFixture;
+    using Common.Services;
+    using MediatR;
+    using Moq;
+    using Sportsbook.Controllers;
+    using Sportsbook.Models;
+    using Xunit;
+
     public class SportsbookController_Test
     {
         private readonly SportsbookController _target;

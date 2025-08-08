@@ -1,10 +1,10 @@
-using System;
-using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Core.Attributes;
-using Xunit;
-
 namespace Fanex.Athena.AnalyticsAPI.Core.UnitTests.Attributes
 {
+    using System;
+    using AutoFixture;
+    using Core.Attributes;
+    using Xunit;
+
     public class BearerAuthorizeAttributeTests
     {
         private readonly Fixture _fixture;
@@ -29,7 +29,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.UnitTests.Attributes
         public void Constructor_WithEmptyRoles_SetsAuthenticationSchemeOnly()
         {
             // Act
-            var attribute = new BearerAuthorizeAttribute(new string[0]);
+            var attribute = new BearerAuthorizeAttribute();
 
             // Assert
             Assert.Equal("Bearer", attribute.AuthenticationSchemes);

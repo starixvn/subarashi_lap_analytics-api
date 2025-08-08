@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Configuration;
-using Fanex.Athena.AnalyticsAPI.Models;
-using IdentityModel.Client;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.Extensions.Options;
-
-namespace Fanex.Athena.AnalyticsAPI.Controllers
+﻿namespace Fanex.Athena.AnalyticsAPI.Controllers
 {
+    using System.Collections.Generic;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+    using Configuration;
+    using IdentityModel.Client;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using Microsoft.Extensions.Options;
+    using Models;
+
     [ApiController]
     public class AuthController : Controller
     {
@@ -38,7 +38,7 @@ namespace Fanex.Athena.AnalyticsAPI.Controllers
             {
                 IsSuccess = !tokenResponse.IsError,
                 Msg = tokenResponse.ErrorDescription,
-                AccessToken = tokenResponse.AccessToken
+                tokenResponse.AccessToken
             });
         }
 

@@ -1,12 +1,12 @@
-﻿using System;
-using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Core.Services;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
-
-namespace Fanex.Athena.AnalyticsAPI.Core.Attributes
+﻿namespace Fanex.Athena.AnalyticsAPI.Core.Attributes
 {
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
+    using System;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Filters;
+    using Services;
+
+    [AttributeUsage(AttributeTargets.Method)]
     public sealed class AutoBindingMetaModelAttribute : TypeFilterAttribute
     {
         public AutoBindingMetaModelAttribute(bool bindSiteName = false, bool bindAgent = false, bool bindProductList = false)
@@ -16,7 +16,7 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Attributes
         }
     }
 
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Method)]
     public sealed class AutoBindingMetaModelImplAttribute : ActionFilterAttribute
     {
         private readonly IAuthInfoService _authInfoService;

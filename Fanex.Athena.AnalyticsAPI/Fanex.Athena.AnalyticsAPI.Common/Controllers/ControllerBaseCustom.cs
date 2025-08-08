@@ -1,10 +1,9 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
-
-using Microsoft.AspNetCore.Mvc;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.Controllers
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.Controllers
 {
+    using Core.Models.DataDomain;
+    using Microsoft.AspNetCore.Mvc;
+    using Services;
+
     public class ControllerBaseCustom : ControllerBase
     {
         protected readonly IContextService _contextService;

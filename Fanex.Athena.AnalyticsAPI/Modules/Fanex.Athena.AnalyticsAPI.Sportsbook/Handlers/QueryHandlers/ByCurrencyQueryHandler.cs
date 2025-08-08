@@ -1,14 +1,14 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Core.Services;
-using Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers;
-using Fanex.Athena.AnalyticsAPI.Sportsbook.Models;
-using Fanex.Athena.AnalyticsAPI.Sportsbook.Repositories;
-using MediatR;
-
-namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Handlers
+﻿namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Handlers
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Common.Services;
+    using Core.Services;
+    using Mappers;
+    using MediatR;
+    using Models;
+    using Repositories;
+
     public class ByCurrencyQueryHandler : SportsbookBaseQueryHandler, IRequestHandler<ByCurrencyRequest, ByCurrencyResponse>
     {
         public ByCurrencyQueryHandler(

@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.Services
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class RawDataService : IHandleRawData
     {
         public void HandleRawData<T>(IEnumerable<IEnumerable<T>> listData, IEnumerable<IHandleData> handlers)

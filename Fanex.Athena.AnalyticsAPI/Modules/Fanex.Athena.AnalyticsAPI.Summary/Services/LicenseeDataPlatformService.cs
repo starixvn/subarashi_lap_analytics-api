@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Summary.Helpers;
-using Fanex.Athena.AnalyticsAPI.Summary.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Summary.Models.ViewModels;
-
-namespace Fanex.Athena.AnalyticsAPI.Summary.Services
+﻿namespace Fanex.Athena.AnalyticsAPI.Summary.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+    using Common.Services;
+    using Helpers;
+    using Models.MetaModels;
+    using Models.ViewModels;
+
     public class LicenseeDataPlatformService : ILicenseeDataPlatformService
     {
         private readonly ISqlService _sqlService;
@@ -60,7 +61,7 @@ namespace Fanex.Athena.AnalyticsAPI.Summary.Services
             return result;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Critical Code Smell", "S3353:Unchanged local variables should be \"const\"", Justification = "<Pending>")]
+        [SuppressMessage("Critical Code Smell", "S3353:Unchanged local variables should be \"const\"", Justification = "<Pending>")]
         private static Func<string, Func<IDataReader, WidgetByPlatformViewModel>> ReadHandler = winlossColumnName => reader =>
                 {
                     var winlossColumn = winlossColumnName;

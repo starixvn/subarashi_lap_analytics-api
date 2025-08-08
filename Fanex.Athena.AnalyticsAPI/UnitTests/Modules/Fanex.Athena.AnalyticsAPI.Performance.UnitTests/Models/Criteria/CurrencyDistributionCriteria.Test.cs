@@ -1,9 +1,9 @@
-﻿using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Models.Criteria
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Models.Criteria
 {
+    using AutoFixture;
+    using Performance.Models.Criteria;
+    using Xunit;
+
     public class CurrencyDistributionCriteria_Test
     {
         private readonly Fixture _fixture;

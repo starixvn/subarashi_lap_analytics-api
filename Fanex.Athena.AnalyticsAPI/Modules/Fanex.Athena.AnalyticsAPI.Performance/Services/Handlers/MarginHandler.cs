@@ -1,8 +1,8 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.Services
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 {
+    using Common.Services;
+    using Models.DTO;
+
     public class MarginHandler : IHandleData
     {
         private const int PERCENT_VALUE = 100;

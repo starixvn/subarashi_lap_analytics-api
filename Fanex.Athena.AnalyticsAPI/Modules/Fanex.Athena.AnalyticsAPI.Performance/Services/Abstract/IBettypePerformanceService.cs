@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.Services
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Models.MetaModels;
+    using Models.ViewModels;
+
     public interface IBettypePerformanceService : IPerformanceService, IPerformanceDistributionService
     {
         Task<IEnumerable<DistributionVM>> GetDistributionWithComparison(BettypePerformanceFilterMetaModel filter);

@@ -1,12 +1,13 @@
-using System.Collections.Generic;
-using System.Linq;
-using Fanex.Athena.AnalyticsAPI.Core.Extensions;
-using Fanex.Athena.AnalyticsAPI.Core.Services;
-using Microsoft.Extensions.DependencyInjection;
-using Xunit;
-
 namespace Fanex.Athena.AnalyticsAPI.Core.UnitTests.Extensions
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Core.Extensions;
+    using Microsoft.Extensions.DependencyInjection;
+    using Models.DataDomain;
+    using Services;
+    using Xunit;
+
     public class DefendencyInjectionExtensionTests
     {
         [Fact]
@@ -132,9 +133,9 @@ namespace Fanex.Athena.AnalyticsAPI.Core.UnitTests.Extensions
             public string SiteName => "MockSite";
             public string UserName => "MockUser";
             public int UserId => 123;
-            public System.Collections.Generic.IEnumerable<Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain.CurrencyAgentInfo> CurrencyAgentList =>
-                new List<Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain.CurrencyAgentInfo>();
-            public System.Collections.Generic.IEnumerable<string> OfferedSubProductList => new List<string>();
+            public IEnumerable<CurrencyAgentInfo> CurrencyAgentList =>
+                new List<CurrencyAgentInfo>();
+            public IEnumerable<string> OfferedSubProductList => new List<string>();
             public string Language => "en-US";
             public int SpecialPlatform => 0;
             public int SpecialPlatformType => 0;

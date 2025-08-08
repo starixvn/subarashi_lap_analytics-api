@@ -1,7 +1,7 @@
-﻿using System.Linq;
-
-namespace Fanex.Athena.AnalyticsAPI.Configuration
+﻿namespace Fanex.Athena.AnalyticsAPI.Configuration
 {
+    using System.Linq;
+
     public class StaticResourceConfig
     {
         private string[] _scripts;

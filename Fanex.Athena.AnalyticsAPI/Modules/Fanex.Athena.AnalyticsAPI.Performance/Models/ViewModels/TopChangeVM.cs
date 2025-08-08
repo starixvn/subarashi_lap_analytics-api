@@ -1,7 +1,7 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Attributes;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels
 {
+    using Common.Attributes;
+
     public class TopChangeVM
     {
         public string PerspectiveId { get; set; }

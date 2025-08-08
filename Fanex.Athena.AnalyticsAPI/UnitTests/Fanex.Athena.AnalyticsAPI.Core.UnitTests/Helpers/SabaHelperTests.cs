@@ -1,10 +1,10 @@
-using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Core.Helpers;
-using Fanex.Athena.AnalyticsAPI.Core.Models.DataDomain;
-using Xunit;
-
 namespace Fanex.Athena.AnalyticsAPI.Core.UnitTests.Helpers
 {
+    using AutoFixture;
+    using Core.Helpers;
+    using Models.DataDomain;
+    using Xunit;
+
     public class SabaHelperTests
     {
         private readonly Fixture _fixture;

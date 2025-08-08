@@ -1,7 +1,7 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Attributes;
-
-namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Models
+﻿namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Models
 {
+    using Common.Attributes;
+
     public class SportsbookDTO
     {
         [SsasColumn("[ID]")]

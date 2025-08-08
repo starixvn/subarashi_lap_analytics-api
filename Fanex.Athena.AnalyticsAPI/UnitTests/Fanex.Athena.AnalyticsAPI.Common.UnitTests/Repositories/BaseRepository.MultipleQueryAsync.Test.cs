@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Moq;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Repositories
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Repositories
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using AutoFixture;
+    using Common.Services;
+    using Moq;
+    using Xunit;
+
     public class BaseRepository_MultipleQueryAsync_Test
     {
         private readonly Fixture _fixture;

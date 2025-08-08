@@ -1,15 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Data.Repository;
-using Moq;
-using Xunit;
-
 namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services
 {
+    using System;
+    using System.Data;
+    using System.Threading.Tasks;
+    using Common.Services;
+    using Data.Repository;
+    using Moq;
+    using Xunit;
+
     public class SqlService_Test
     {
         private readonly SqlService _target;

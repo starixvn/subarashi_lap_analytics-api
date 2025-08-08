@@ -1,11 +1,11 @@
-﻿using System;
-using System.Globalization;
-using Fanex.Athena.AnalyticsAPI.Common.Constants;
-using Fanex.Athena.AnalyticsAPI.Common.Resources.Lang;
-using Fanex.RemotingRef;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.Services
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
+    using System;
+    using System.Globalization;
+    using Constants;
+    using RemotingRef;
+    using Resources.Lang;
+
     public class LangResourceService : ILangResourceService
     {
         private static readonly string[] EXCEPTION_BETTYPE_IDs = new[] { "0" };

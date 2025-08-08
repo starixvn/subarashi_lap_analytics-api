@@ -1,25 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mime;
-using Fanex.Athena.AnalyticsAPI.Core.Middleware;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
-using Microsoft.Extensions.Primitives;
-using Newtonsoft.Json;
-using ONEbook.UM.AspNetCore;
-using ONEbook.UM.Configurations;
-using ONEbook.UM.Helpers;
-using ONEbook.UM.Services;
-using ONEbook.UM.Transport;
-
-namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
+﻿namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net.Mime;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.Extensions.Caching.Memory;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Diagnostics.HealthChecks;
+    using Microsoft.Extensions.Primitives;
+    using Microsoft.Net.Http.Headers;
+    using Middleware;
+    using Newtonsoft.Json;
+    using ONEbook.UM.AspNetCore;
+    using ONEbook.UM.Configurations;
+    using ONEbook.UM.Helpers;
+    using ONEbook.UM.Services;
+    using ONEbook.UM.Transport;
+
     public static class MiddlewareExtensions
     {
         public static void AddCorsPortalSite(this IServiceCollection services, IConfiguration configuration)
@@ -129,9 +130,9 @@ namespace Fanex.Athena.AnalyticsAPI.Core.Extensions
                 OnPrepareResponse = ctx =>
                 {
                     const int OneYear = 60 * 60 * 24 * 365;
-                    ctx.Context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.CacheControl] = isDev ?
+                    ctx.Context.Response.Headers[HeaderNames.CacheControl] = isDev ?
                     "no-cache" : "public,max-age=" + OneYear;
-                    ctx.Context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.AccessControlAllowOrigin] = "*";
+                    ctx.Context.Response.Headers[HeaderNames.AccessControlAllowOrigin] = "*";
                 }
             });
         }

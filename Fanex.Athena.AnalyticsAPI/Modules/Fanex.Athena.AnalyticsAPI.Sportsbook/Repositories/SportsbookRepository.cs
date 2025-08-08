@@ -1,8 +1,8 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Repositories;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-
-namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Repositories
+﻿namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Repositories
 {
+    using Common.Repositories;
+    using Common.Services;
+
     public class SportsbookRepository : BaseRepository, ISportsbookRepository
     {
         public SportsbookRepository(ISqlService sqlService) : base(sqlService)

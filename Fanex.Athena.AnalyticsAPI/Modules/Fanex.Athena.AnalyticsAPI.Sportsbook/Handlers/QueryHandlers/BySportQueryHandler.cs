@@ -1,18 +1,18 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Common.Constants;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Core.Services;
-using Fanex.Athena.AnalyticsAPI.Sportsbook.Constants;
-using Fanex.Athena.AnalyticsAPI.Sportsbook.Mappers;
-using Fanex.Athena.AnalyticsAPI.Sportsbook.Models;
-using Fanex.Athena.AnalyticsAPI.Sportsbook.Repositories;
-using MediatR;
-
-namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Handlers
+﻿namespace Fanex.Athena.AnalyticsAPI.Sportsbook.Handlers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Common.Constants;
+    using Common.Services;
+    using Constants;
+    using Core.Services;
+    using Mappers;
+    using MediatR;
+    using Models;
+    using Repositories;
+
     public class BySportQueryHandler : SportsbookBaseQueryHandler, IRequestHandler<BySportRequest, BySportResponse>
     {
         public BySportQueryHandler(

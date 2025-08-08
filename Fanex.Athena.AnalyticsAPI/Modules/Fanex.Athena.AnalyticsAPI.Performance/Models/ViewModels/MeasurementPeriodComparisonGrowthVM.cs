@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels
 {
+    using System.Collections.Generic;
+
     public class MeasurementPeriodComparisonGrowthVM
     {
         public string Id { get; set; }

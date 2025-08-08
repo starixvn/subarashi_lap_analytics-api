@@ -1,8 +1,8 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services
 {
+    using Common.Services;
+    using Xunit;
+
     public class CalculationService_CalculateGrowth_Test
     {
         private readonly CalculationService _targetService;

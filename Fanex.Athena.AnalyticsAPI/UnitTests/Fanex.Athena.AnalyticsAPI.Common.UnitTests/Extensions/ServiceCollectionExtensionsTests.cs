@@ -1,16 +1,15 @@
-using System;
-using System.Linq;
-using System.Net.Http;
-using Fanex.Athena.AnalyticsAPI.Common.Extensions;
-using Fanex.Athena.AnalyticsAPI.Common.Models;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
-using Moq;
-using Xunit;
-
 namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Extensions
 {
+    using System.Linq;
+    using System.Net.Http;
+    using Common.Extensions;
+    using Common.Services;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Options;
+    using Models;
+    using Moq;
+    using Xunit;
+
     public class ServiceCollectionExtensionsTests
     {
         [Fact]

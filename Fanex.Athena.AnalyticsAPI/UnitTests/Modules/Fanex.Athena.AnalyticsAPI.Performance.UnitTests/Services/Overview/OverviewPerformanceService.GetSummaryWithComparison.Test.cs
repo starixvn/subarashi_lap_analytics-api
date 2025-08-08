@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
-using Fanex.Data.Repository;
-using Moq;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Services
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Services
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using AutoFixture;
+    using Data.Repository;
+    using Moq;
+    using Performance.Models.DTO;
+    using Performance.Models.ViewModels;
+    using Xunit;
+
     public class OverviewPerformanceService_GetSummaryWithComparison_Test : OverviewPerformanceServiceTestBase
     {
         [Fact]

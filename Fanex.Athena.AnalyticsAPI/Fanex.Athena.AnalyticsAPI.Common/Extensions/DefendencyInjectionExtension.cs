@@ -1,9 +1,9 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.RemotingRef;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
 {
+    using Microsoft.Extensions.DependencyInjection;
+    using RemotingRef;
+    using Services;
+
     public static class DefendencyInjectionExtension
     {
         public static IServiceCollection AddDICommon(this IServiceCollection services)

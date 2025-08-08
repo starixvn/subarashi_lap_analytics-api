@@ -1,7 +1,7 @@
-﻿using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Mappers
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Mappers
 {
+    using Performance.Models.DTO;
+
     internal class DistributionDtoTestClass : DistributionDTO
     {
         public string TestId { get; set; }

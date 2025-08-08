@@ -1,20 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Moq;
-using Moq.Protected;
-using Newtonsoft.Json;
-using Xunit;
-
 namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services
 {
+    using System;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using AutoFixture;
+    using Common.Services;
+    using Moq;
+    using Moq.Protected;
+    using Newtonsoft.Json;
+    using Xunit;
+
     public class CommonApiClientTests
     {
         private readonly Fixture _fixture;

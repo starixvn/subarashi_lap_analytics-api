@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoFixture;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.ViewModels;
-using Fanex.Data.Repository;
-using Moq;
-using Xunit;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Services
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.UnitTests.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using AutoFixture;
+    using Data.Repository;
+    using Moq;
+    using Performance.Models.Criteria;
+    using Performance.Models.DTO;
+    using Performance.Models.MetaModels;
+    using Performance.Models.ViewModels;
+    using Xunit;
+
     public class PlatformPerformanceService_GetAllDetailMonthGrowthWithComparison_Test : PlatformPerformanceServiceTestBase
     {
         [Fact]

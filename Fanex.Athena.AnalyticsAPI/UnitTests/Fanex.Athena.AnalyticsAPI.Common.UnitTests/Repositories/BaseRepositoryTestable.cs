@@ -1,9 +1,9 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Repositories;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Data.Repository;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Repositories
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Repositories
 {
+    using Common.Repositories;
+    using Common.Services;
+    using Data.Repository;
+
     internal class BaseRepositoryTestable : BaseRepository
     {
         public BaseRepositoryTestable(ISqlService sqlService) : base(sqlService)

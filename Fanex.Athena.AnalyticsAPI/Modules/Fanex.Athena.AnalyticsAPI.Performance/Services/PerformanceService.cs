@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Common.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Fanex.Athena.AnalyticsAPI.Performance.Constants;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.DTO;
-using Fanex.Athena.AnalyticsAPI.Performance.Models.MetaModels;
-using Fanex.Athena.AnalyticsAPI.Performance.Repositories;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.Services
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Common.Models.MetaModels;
+    using Common.Services;
+    using Constants;
+    using Models.DTO;
+    using Models.MetaModels;
+    using Repositories;
+
     public class PerformanceService : IPerformanceService
     {
         private static readonly IHandleData MARGIN_HANDLER = new MarginHandler();

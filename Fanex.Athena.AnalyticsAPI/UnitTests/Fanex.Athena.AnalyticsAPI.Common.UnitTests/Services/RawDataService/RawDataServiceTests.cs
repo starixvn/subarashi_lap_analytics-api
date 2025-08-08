@@ -1,11 +1,11 @@
-using System.Collections.Generic;
-using System.Linq;
-using Fanex.Athena.AnalyticsAPI.Common.Services;
-using Moq;
-using Xunit;
-
 namespace Fanex.Athena.AnalyticsAPI.Common.UnitTests.Services
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Common.Services;
+    using Moq;
+    using Xunit;
+
     public class RawDataServiceTests
     {
         private readonly RawDataService _rawDataService;

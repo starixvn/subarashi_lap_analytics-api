@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
-using Fanex.Athena.AnalyticsAPI.Common.Models.Configuration;
-
-namespace Fanex.Athena.AnalyticsAPI.Common.Services
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.Services
 {
+    using System.Threading.Tasks;
+    using Models.Configuration;
+
     public interface ICommonService
     {
         Task<BalanceUp> GetBalanceUp();

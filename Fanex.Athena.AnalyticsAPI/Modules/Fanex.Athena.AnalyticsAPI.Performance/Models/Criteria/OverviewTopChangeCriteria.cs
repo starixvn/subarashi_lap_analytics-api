@@ -1,8 +1,8 @@
-﻿using Fanex.Athena.AnalyticsAPI.Common.Models.Criteria;
-using Fanex.Data;
-
-namespace Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Models.Criteria
 {
+    using Common.Models.Criteria;
+    using Data;
+
     public class OverviewTopChangeCriteria : AnalyticCriteria, IMeasurementCriteria
     {
         private static string[] settingKeys = new[]
