@@ -1,8 +1,8 @@
-﻿namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
-{
-    using System;
-    using System.Globalization;
+﻿using System;
+using System.Globalization;
 
+namespace Fanex.Athena.AnalyticsAPI.Common.Helpers
+{
     public static class DateTimeHelper
     {
         private const int NUMBER_OF_MONTHS_OF_YEAR = 12;
@@ -73,7 +73,7 @@
         {
             return DateTime.TryParseExact(date, MONTH_FORMAT,
                 CULTURE_INFO_DEFAULT,
-                DateTimeStyles.None, out DateTime dt);
+                DateTimeStyles.None, out DateTime _);
         }
     }
 }
