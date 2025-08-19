@@ -57,7 +57,7 @@ RUN dotnet publish "Fanex.Athena.AnalyticsAPI/Fanex.Athena.AnalyticsAPI.csproj" 
 	--runtime linux-x64 \
 	--self-contained false
 
-FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine-25h1 AS final
+FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine-25h2 AS final
 
 ENV DOTNET_HOSTBUILDER__RELOADCONFIGONCHANGE=false
 ENV ASPNETCORE_HTTP_PORTS=5000
