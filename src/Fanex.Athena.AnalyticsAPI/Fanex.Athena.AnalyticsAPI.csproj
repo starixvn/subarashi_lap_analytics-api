@@ -27,10 +27,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fanex.Data.SqlServer" Version="4.3.3" />
+    <PackageReference Include="Fanex.Data.SqlServer" Version="4.3.4.5" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
-    <PackageReference Include="IdentityModel.AspNetCore.OAuth2Introspection" Version="5.1.0" />
-    <PackageReference Include="Sentry.AspNetCore" Version="2.1.6" />
+    <PackageReference Include="IdentityModel.AspNetCore.OAuth2Introspection" Version="6.2.0" />
+    <PackageReference Include="Sentry.AspNetCore" Version="5.14.1" />
   </ItemGroup>
 
   <ItemGroup>

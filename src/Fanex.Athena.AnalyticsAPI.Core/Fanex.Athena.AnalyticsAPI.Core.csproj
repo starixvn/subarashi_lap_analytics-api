@@ -24,11 +24,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fanex.Data" Version="4.3.3" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
-    <PackageReference Include="ONEbook.UM.AspNetCore" Version="3.1.0-beta05" />
-    <PackageReference Include="ONEbook.UM.Transport" Version="3.1.1" />
+    <PackageReference Include="Fanex.Data" Version="4.3.4.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
+    <PackageReference Include="ONEbook.UM.AspNetCore" Version="3.1.1.1" />
+    <PackageReference Include="ONEbook.UM.Transport" Version="3.1.2" />
   </ItemGroup>
 
   <ItemGroup>
