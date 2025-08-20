@@ -11,7 +11,7 @@ const path = require("path");
 module.exports = (env = {}) => {
   const mode = env.production ? environment.production : environment.development;
   const isDevBuild = !(mode === environment.production);
-  const outputPath = env.output || "../../Fanex.Athena.AnalyticsAPI/Fanex.Athena.AnalyticsAPI/wwwroot";
+  const outputPath = env.output || "../../src/Fanex.Athena.AnalyticsAPI/wwwroot";
 
   const sharedConfig = {
     mode,

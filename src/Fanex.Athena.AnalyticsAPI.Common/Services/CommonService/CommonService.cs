@@ -1,0 +1,38 @@
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.Services
+{
+    using System;
+    using System.Data;
+    using System.Threading.Tasks;
+    using Models.Configuration;
+
+    public class CommonService : ICommonService
+    {
+        private readonly ISqlService _sqlService;
+
+        public CommonService(ISqlService sqlService)
+        {
+            _sqlService = sqlService;
+        }
+
+        public async Task<BalanceUp> GetBalanceUp()
+        {
+            const string spKey = "Lrf_SelBalanceUpDay";
+
+            var result = await _sqlService.ExecuteQueryWithReadHandler(spKey, null, ReadBalanceUpHandler);
+
+            return result;
+        }
+
+        private static Func<IDataReader, BalanceUp> ReadBalanceUpHandler = reader =>
+        {
+            BalanceUp balanceup = new BalanceUp();
+
+            if (reader.Read())
+            {
+                balanceup.BalanceUpDay = Convert.ToDateTime(reader["balanceupday"]);
+                balanceup.MoveBetsDay = Convert.ToDateTime(reader["movebetsday"]);
+            }
+            return balanceup;
+        };
+    }
+}

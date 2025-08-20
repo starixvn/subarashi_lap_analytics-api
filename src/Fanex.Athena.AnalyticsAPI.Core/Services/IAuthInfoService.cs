@@ -1,0 +1,23 @@
+﻿namespace Fanex.Athena.AnalyticsAPI.Core.Services
+{
+    using System.Collections.Generic;
+    using Models.DataDomain;
+
+    public interface IAuthInfoService
+    {
+        string SiteName { get; }
+
+        string UserName { get; }
+
+        int UserId { get; }
+
+        IEnumerable<CurrencyAgentInfo> CurrencyAgentList { get; }
+
+        IEnumerable<string> OfferedSubProductList { get; }
+
+        string Language { get; }
+
+        int SpecialPlatform { get; }
+        int SpecialPlatformType { get; }
+    }
+}

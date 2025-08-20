@@ -1,0 +1,35 @@
+﻿namespace Fanex.Athena.AnalyticsAPI.Common.Extensions
+{
+    using Microsoft.Extensions.DependencyInjection;
+    using RemotingRef;
+    using Services;
+
+    public static class DefendencyInjectionExtension
+    {
+        public static IServiceCollection AddDICommon(this IServiceCollection services)
+        {
+            return services
+                .AddServices()
+                .AddRepositories();
+        }
+
+        private static IServiceCollection AddServices(this IServiceCollection services)
+        {
+            services.AddTransient<IContextService, ContextService>();
+            services.AddSingleton<ICalculationService, CalculationService>();
+            services.AddSingleton<ISqlService, SqlService>();
+            services.AddSingleton<ILangResourceService, LangResourceService>();
+            services.AddSingleton<ITranslationService, TranslationService>();
+            services.AddSingleton<IHandleRawData, RawDataService>();
+            services.AddSingleton<IRemotingRefService, RemotingRefService>();
+            services.AddSingleton<ICommonService, CommonService>();
+
+            return services;
+        }
+
+        private static IServiceCollection AddRepositories(this IServiceCollection services)
+        {
+            return services;
+        }
+    }
+}

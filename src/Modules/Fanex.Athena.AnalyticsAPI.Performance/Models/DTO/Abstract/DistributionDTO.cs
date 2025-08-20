@@ -1,0 +1,20 @@
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Models.DTO
+{
+    using Common.Attributes;
+
+    public abstract class DistributionDTO : IIdentifiable
+    {
+        [SsasColumn("[Measurement]")]
+        public double Total { get; set; }
+
+        [SsasColumn("[MeasurementMargin]")]
+        public double Distribution { get; set; }
+
+        [SsasColumn("[IsTotal]")]
+        public bool IsSum { get; set; }
+
+        public abstract string Id { get; }
+
+        public abstract string Name { get; }
+    }
+}

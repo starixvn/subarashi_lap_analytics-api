@@ -1,0 +1,20 @@
+﻿namespace Fanex.Athena.AnalyticsAPI.Performance.Services
+{
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Models.MetaModels;
+    using Models.ViewModels;
+
+    public interface ICurrencyPerformanceService : IPerformanceService, IPerformanceDistributionService
+    {
+        Task<IEnumerable<DistributionVM>> GetDistributionWithComparison(CurrenyPerformanceFilterMetaModel filter);
+
+        Task<IEnumerable<MeasurementComparisonVM>> GetMeasurementDifferenceWithComparison(CurrenyPerformanceFilterMetaModel filter);
+
+        Task<IEnumerable<MeasurementPeriodComparisonGrowthVM>> GetPeriodGrowthWithComparison(CurrenyPerformanceFilterMetaModel filter);
+
+        Task<IEnumerable<OverallMeasurementVM>> GetOverallMeasurement(PerformanceFilterMetaModel filter);
+
+        Task<IDictionary<string, object>> GetAllDetailMonthGrowthWithComparison(CurrenyPerformanceFilterMetaModel filter);
+    }
+}
