@@ -54,6 +54,7 @@ export const vi = {
   DesktopCompact: 'Desktop nhỏ gọn',
   QuickBetWidget: 'Công cụ đặt cược nhanh',
   ChatRoom: 'Nhóm Chat',
+  CasinoRoyale: 'Sòng Bạc Hoàng Gia',
   Mobile: 'Di động',
   Desktop: 'Máy tính',
   Others: 'Khác',

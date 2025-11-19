@@ -54,6 +54,7 @@ export const cs = {
   DesktopCompact: '桌机轻量版',
   QuickBetWidget: '快捷投注元件',
   ChatRoom: '聊天室',
+  CasinoRoyale: '皇家娱乐城',
   Mobile: '手机',
   Desktop: '桌机',
   Others: '其他',

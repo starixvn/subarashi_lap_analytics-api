@@ -52,6 +52,7 @@ export const th = {
   DesktopCompact: "เดสก์ท็อปคอมแพค",
   QuickBetWidget: 'วิดเจ็ตเดิมพันด่วน',
   ChatRoom: "ห้องแชท",
+  CasinoRoyale: 'Casino Royale',
   Mobile: "โทรศัพท์มือถือ",
   Desktop: "คอมพิวเตอร์ตั้งโต๊ะ",
   Others: "อื่นๆ",

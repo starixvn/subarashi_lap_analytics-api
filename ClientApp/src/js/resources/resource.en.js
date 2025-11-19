@@ -54,6 +54,7 @@ export const en = {
   DesktopGalaxy: 'Desktop Galaxy',
   QuickBetWidget: 'Quick Bet Widget',
   ChatRoom: 'Chat Room',
+  CasinoRoyale: 'Casino Royale',
   Mobile: 'Mobile',
   Desktop: 'Desktop',
   Others: 'Others',
