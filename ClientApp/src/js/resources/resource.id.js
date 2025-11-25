@@ -52,6 +52,7 @@ export const id = {
   DesktopGalaxy: "Desktop Galaxy",
   QuickBetWidget: 'Widget Taruhan Cepat',
   ChatRoom: "Ruang Obrolan",
+  CasinoRoyale: 'Casino Royale',
   Mobile: "Ponsel",
   Desktop: "Komputer meja",
   Others: "Lainnya",

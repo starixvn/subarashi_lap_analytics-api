@@ -26,6 +26,7 @@
             { PlatformConst.DeepLink, nameof(PlatformConst.DeepLink) },
             { PlatformConst.WAP, nameof(PlatformConst.WAP) },
             { PlatformConst.QuickBetWidget, nameof(PlatformConst.QuickBetWidget) },
+            { PlatformConst.CasinoRoyale, nameof(PlatformConst.CasinoRoyale) },
             { PlatformConst.ChatRoom, nameof(PlatformConst.ChatRoom) },
             { PlatformConst.BetfromOthers, nameof(PlatformConst.BetfromOthers) }
         };

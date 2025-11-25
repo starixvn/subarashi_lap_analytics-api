@@ -394,6 +394,15 @@ namespace Fanex.Athena.AnalyticsAPI.Common.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Casino Royale.
+        /// </summary>
+        public static string platform_24 {
+            get {
+                return ResourceManager.GetString("platform_24", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deep Link.
         /// </summary>
         public static string platform_3 {
